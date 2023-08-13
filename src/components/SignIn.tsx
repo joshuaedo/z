@@ -13,7 +13,7 @@ const SignIn = () => {
                 </p>
 
                 {/* Sign In Form */}
-                <UserAuthForm />
+                <UserAuthForm  />
 
                 <p className="px-8 text-center text-sm text-zinc-700">
                     New to Z?{" "}
