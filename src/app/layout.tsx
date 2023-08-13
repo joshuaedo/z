@@ -7,6 +7,33 @@ import { Inter } from "next/font/google";
 export const metadata = {
   title: "Z",
   description: "Z, the network of diverse communities where you can explore your passions and interests. Join the conversation.",
+  openGraph: {
+    title: 'Z',
+    description: "The Z Network, Join the conversation.",
+    url: 'https://z.joshuaedo.com',
+    siteName: 'Z',
+    images: [
+      {
+        url: 'https://joshuaedo.sirv.com/Z/Z.svg',
+      },
+    ],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Z',
+    description: "The Z Network, Join the conversation.",
+    creator: 'Joshua Edo',
+    images: ['https://joshuaedo.sirv.com/Z/Z.svg'],
+  },
+  robots: {
+    follow: true,
+    nocache: true,
+    googleBot: {
+      index: true,
+      follow: false,
+    },
+  },
 };
 
 const inter = Inter({ subsets: ["latin"] });
