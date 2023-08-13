@@ -1,6 +1,7 @@
 import { LucideProps, MessageSquare, User } from 'lucide-react';
 
 export const Icons = {
+	user: User,
 	logo: (props: LucideProps) => (
 		<svg
 			version="1.1"
