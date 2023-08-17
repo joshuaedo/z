@@ -49,4 +49,45 @@ model User {
   image    String?
   accounts Account[]
   sessions Session[]
+  Post     Post[]
+  Comment  Comment[]
 }
+
+model Community {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  createdAt DateTime
+  updatedAt DateTime
+  posts     Post[]
+}
+
+model Post {
+  id          String    @id @default(cuid())
+  title       String    @unique
+  content     Json?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  community   Community @relation(fields: [communityId], references: [id])
+  communityId String
+
+  author   User   @relation(fields: [authorId], references: [id])
+  authorId String
+
+  comments Comment[]
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  text      String
+  createdAt DateTime @default(now())
+  author    User     @relation(fields: [userId], references: [id])
+  authorId  String
+  post      Post     @relation(fields: [postId], references: [id])
+  postId    String
+  userId    String
+
+  replytoId String?
+  replyTo   Comment? @relation("ReplyTo", fields: [replytoId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  replies   Comment[] @relation("ReplyTo")
+}
+ 
