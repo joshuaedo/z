@@ -1,7 +1,8 @@
 import { User } from 'next-auth';
 import React, { FC } from 'react';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from './ui/DropDownMenu';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from './ui/DropDownMenu';
 import UserAvatar from './UserAvatar';
+import Link from 'next/link';
 
 interface UserAccountNavProps {
     user: Pick<User, 'name' | 'image' | 'email'>;
@@ -26,6 +27,27 @@ const UserAccountNav: FC<UserAccountNavProps> = ({ user }) => {
                         {user.email && <p className='w-[200px] truncate text-sm text-zinc-700'>{user.email}</p>}
                     </div>
                 </div>
+
+                <DropdownMenuSeparator />
+
+                <DropdownMenuItem asChild>
+                    <Link href="/">Feed</Link>
+                </DropdownMenuItem>
+
+                <DropdownMenuItem asChild>
+                    <Link href="/z/create">Create community</Link>
+                </DropdownMenuItem>
+
+                <DropdownMenuItem asChild>
+                    <Link href="/settings">Settings</Link>
+                </DropdownMenuItem>
+
+                <DropdownMenuSeparator />
+
+                <DropdownMenuItem className='cursor-pointer'>
+                    Sign Out
+                </DropdownMenuItem>
+
             </DropdownMenuContent>
         </DropdownMenu>
     );
