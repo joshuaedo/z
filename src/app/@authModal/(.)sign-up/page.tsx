@@ -1,7 +1,7 @@
 import CloseModal from '@/components/CloseModal';
-import SignIn from '@/components/SignIn';
+import SignUp from '@/components/SignUp';
 
-const SignInModal= () => {
+const SignUpModal = () => {
     return (
         <div className='fixed inset-0 bg-zinc-900/20 z-10'>
             <div className='container flex items-center h-full max-w-lg mx-auto'>
@@ -10,11 +10,11 @@ const SignInModal= () => {
                         <CloseModal />                      
                     </div>
 
-                    <SignIn/>
+                    <SignUp/>
                 </div>
             </div>
         </div>
     );
 };
 
-export default SignInModal;
+export default SignUpModal;
