@@ -28,6 +28,8 @@ export async function POST(req: Request) {
             data: {
                 name,
                 creatorId: session.user.id,
+                createdAt: new Date(), // Set the creation date
+                updatedAt: new Date(), // Set the update date
             },
         });
 
