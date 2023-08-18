@@ -68,8 +68,8 @@ export default function RootLayout({
           </main>
 
           <Toaster />
-      </Providers>
-      
+          
+      </Providers>   
       </body>
     </html>
   );
