@@ -45,8 +45,17 @@ const Create = ({ }) => {
         if (err.response?.status === 401) {
           return loginToast();
         }
-
       }
+
+      toast({
+        title: "Action failed",
+        description: "There was an error creating your community",
+        variant: "destructive",
+      });
+    },
+
+    onSuccess: (data) => {
+      router.push(`/z/${data}`);
     }
   });
 
