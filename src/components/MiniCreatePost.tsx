@@ -27,9 +27,10 @@ const MiniCreatePost: FC<MiniCreatePostProps> = ({ session }) => {
                 image: session?.user.image || null,
               }}
             />
-            <span className="absolute bottom-0 right-0 rounded-full h-3 w-3 bg-green-500 outline outline-2 outline-white" />
+            <span className="absolute bottom-0 right-0 rounded-full h-3 w-3 bg-green-500 outline outline-2 outline-white" />    
+          </div>
 
-            <Input
+          <Input
               readOnly
               onClick={() => router.push(pathname + "/submit")}
               placeholder="Create post"
@@ -48,7 +49,7 @@ const MiniCreatePost: FC<MiniCreatePostProps> = ({ session }) => {
             >
               <Link2 className="text-zinc-600" />
             </Button>
-          </div>
+            
         </div>
       </li>
     </>
