@@ -1,5 +1,7 @@
+import { INFINITE_SCROLLING_PAGINATION_RESULTS } from "@/config";
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
+import { notFound } from "next/navigation";
 
 interface PageProps {
     params: {
@@ -22,13 +24,20 @@ const Page = async ({ params }: PageProps) => {
                     comments: true,
                     community: true,
                 },
+
+                take: INFINITE_SCROLLING_PAGINATION_RESULTS
             }
         }
 
     });
+
+    if (!community) {
+        return notFound();
+    }
+
     return (
         <div>
-            page
+            <h1 className="font-bold text-3xl md:text-4xl h-14">z/{community.name}</h1>
         </div>
     );
 };
