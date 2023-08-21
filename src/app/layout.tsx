@@ -16,7 +16,9 @@ export const metadata = {
     siteName: "Z",
     images: [
       {
-        url: "https://joshuaedo.sirv.com/Z/Z.svg",
+        url: "https://joshuaedo.sirv.com/Z/Z.png",
+        width: 200,
+        height: 200,
       },
     ],
     type: "website",
@@ -26,7 +28,7 @@ export const metadata = {
     title: "Z",
     description: "The Z Network, Join the conversation.",
     creator: "Joshua Edo",
-    images: ["https://joshuaedo.sirv.com/Z/Z.svg"],
+    images: ["https://joshuaedo.sirv.com/Z/Z.png"],
   },
   robots: {
     follow: true,
