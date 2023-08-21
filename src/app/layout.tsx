@@ -16,7 +16,7 @@ export const metadata = {
     siteName: "Z",
     images: [
       {
-        url: "https://joshuaedo.sirv.com/Z/Z.png",
+        url: "https://joshuaedo.sirv.com/Z/Z.svg",
       },
     ],
     type: "website",
@@ -26,7 +26,7 @@ export const metadata = {
     title: "Z",
     description: "The Z Network, Join the conversation.",
     creator: "Joshua Edo",
-    images: ["https://joshuaedo.sirv.com/Z/Z.png"],
+    images: ["https://joshuaedo.sirv.com/Z/Z.svg"],
   },
   robots: {
     follow: true,
@@ -42,7 +42,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
   children,
-  authModal
+  authModal,
 }: {
   children: React.ReactNode;
   authModal: React.ReactNode;
@@ -56,8 +56,7 @@ export default function RootLayout({
       )}
     >
       <body className="min-h-screen pt-12 bg-slate-50 antialiased">
-      <Providers>
-
+        <Providers>
           {/* @ts-expect-error Server Component */}
           <Navbar />
 
@@ -68,8 +67,7 @@ export default function RootLayout({
           </main>
 
           <Toaster />
-          
-      </Providers>   
+        </Providers>
       </body>
     </html>
   );
