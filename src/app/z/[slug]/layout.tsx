@@ -11,7 +11,7 @@ return (
         {/* Info sidebar */}
         <div className="hidden md:block overflow-hidden h-fit rounded-lg border border-gray-200 order-first md:order-last">
             
-        </div>d
+        </div>
       </div>
     </div>
   </div>
