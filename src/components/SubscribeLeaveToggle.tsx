@@ -11,18 +11,19 @@ import { useRouter } from "next/navigation";
 
 interface SubscribeLeaveToggleProps {
   communityId: string;
+  isSubscribed: boolean;
   communityName: string;
 }
 
 const SubscribeLeaveToggle: FC<SubscribeLeaveToggleProps> = ({
   communityId,
+  isSubscribed,
   communityName,
 }) => {
-  const isSubscribed = false;
   const { loginToast } = useCustomToast();
   const router = useRouter();
 
-  const {} = useMutation({
+  const { mutate: subscribe, isLoading: isSubLoading } = useMutation({
     mutationFn: async () => {
       const payload: SubscribeToCommunityPayload = {
         communityId,
@@ -59,7 +60,13 @@ const SubscribeLeaveToggle: FC<SubscribeLeaveToggleProps> = ({
   return isSubscribed ? (
     <Button className="w-full mt-1 mb-4">Leave community</Button>
   ) : (
-    <Button className="w-full mt-1 mb-4">Join to post</Button>
+    <Button
+      isLoading={isSubLoading}
+      onClick={() => subscribe()}
+      className="w-full mt-1 mb-4"
+    >
+      Join to post
+    </Button>
   );
 };
 

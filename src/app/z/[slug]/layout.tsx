@@ -83,7 +83,7 @@ return (
               ): null}
 
             {community.creatorId !== session?.user.id ? (
-             <SubscribeLeaveToggle communityId={community.id} communityName={community.name} />
+             <SubscribeLeaveToggle isSubscribed={isSubscribed} communityId={community.id} communityName={community.name} />
               ): null}
             </dl>
 
