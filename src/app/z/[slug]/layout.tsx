@@ -55,7 +55,7 @@ return (
         <div className="hidden md:block overflow-hidden h-fit rounded-lg border border-gray-200 order-first md:order-last">
             <div className="px-6 py-4">
               <p className="font-semi-bold py-3">
-                About r/{community.name}
+                About z/{community.name}
               </p>
             </div>
 
@@ -83,7 +83,7 @@ return (
               ): null}
 
             {community.creatorId !== session?.user.id ? (
-             <SubscribeLeaveToggle />
+             <SubscribeLeaveToggle communityId={community.id} communityName={community.name} />
               ): null}
             </dl>
 
