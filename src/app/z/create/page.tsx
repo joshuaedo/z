@@ -28,7 +28,7 @@ const Create = ({ }) => {
       if (err instanceof AxiosError) {
         if (err.response?.status === 409) {
           return toast({
-            title: "Community already exists.",
+            title: "Community already exists",
             description: "Please choose a different community.",
             variant: "destructive",
           });
@@ -36,7 +36,7 @@ const Create = ({ }) => {
 
         if (err.response?.status === 422) {
           return toast({
-            title: "Invalid subreddit name.",
+            title: "Invalid community name",
             description: "Please choose a name between 3 and 21 characters.",
             variant: "destructive",
           });
@@ -49,7 +49,7 @@ const Create = ({ }) => {
 
       toast({
         title: "Action failed",
-        description: "There was an error creating your community",
+        description: "There was an error creating your community.",
         variant: "destructive",
       });
     },
