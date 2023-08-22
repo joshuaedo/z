@@ -49,10 +49,10 @@ return (
     <div>
         {/* <Button>Back</Button> */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-y-4 md:gap-x-4 py-6">
-        <div className="flex flex-col col-span-2 space-y-6">{children}</div>
+        <div className="flex flex-col col-span-1 md:col-span-2 space-y-6">{children}</div>
 
         {/* Info sidebar */}
-        <div className="hidden md:block overflow-hidden h-fit rounded-lg border border-gray-200 order-first md:order-last">
+        <div className="col-span-1 overflow-hidden h-fit rounded-lg border border-gray-200 order-first md:order-last">
             <div className="px-6 py-4">
               <p className="font-semi-bold py-3">
                 About z/{community.name}
