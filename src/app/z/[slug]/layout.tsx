@@ -90,8 +90,8 @@ return (
             </dl>
 
           <Link href={`z/${slug}/submit`} className={buttonVariants({
-            variant: "outline",
-            className: "z-10 fixed bottom-6 right-6",
+            variant: "default",
+            className: "z-10 fixed bottom-10 right-10 rounded-full text-white",
           })}>
            <Feather />
           </Link>
