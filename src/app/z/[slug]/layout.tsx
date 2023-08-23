@@ -90,9 +90,9 @@ return (
 
           <Link href={`z/${slug}/submit`} className={buttonVariants({
             variant: "outline",
-            className: "w-full mb-6",
+            className: "w-[80%] my-3 mx-auto",
           })}>
-            Create Post
+            What&apos;s happening?
           </Link>
         </div>
       </div>
