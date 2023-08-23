@@ -5,6 +5,7 @@ import { db } from "@/lib/db";
 import { format } from "date-fns";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { Feather } from "lucide-react";
 
 const Layout = async ({children, params: {slug},}: {children: React.ReactNode; params: {slug: string}}) => {
 
@@ -90,9 +91,9 @@ return (
 
           <Link href={`z/${slug}/submit`} className={buttonVariants({
             variant: "outline",
-            className: "w-[80%] my-3 mx-auto",
+            className: "z-10 fixed bottom-6 right-6",
           })}>
-            What&apos;s happening?
+           <Feather />
           </Link>
         </div>
       </div>
