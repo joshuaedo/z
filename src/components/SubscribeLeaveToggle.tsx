@@ -23,7 +23,7 @@ const SubscribeLeaveToggle: FC<SubscribeLeaveToggleProps> = ({
   const { loginToast } = useCustomToast();
   const router = useRouter();
 
-  const { mutate: subscribe, isLoading: isSubLoading } = useMutation({
+  const { mutate: subscribe, isLoading: isSubscribing } = useMutation({
     mutationFn: async () => {
       const payload: SubscribeToCommunityPayload = {
         communityId,
@@ -57,11 +57,51 @@ const SubscribeLeaveToggle: FC<SubscribeLeaveToggleProps> = ({
     },
   });
 
+  const { mutate: unsubscribe, isLoading: isUnSubscribing } = useMutation({
+    mutationFn: async () => {
+      const payload: SubscribeToCommunityPayload = {
+        communityId,
+      };
+
+      const { data } = await axios.post("/api/community/unsubscribe", payload);
+      return data as string;
+    },
+    onError: (err) => {
+      if (err instanceof AxiosError) {
+        if (err.response?.status === 401) {
+          return loginToast();
+        }
+      }
+
+      return toast({
+        title: "Action failed",
+        description: "Something went wrong, please try again later",
+        variant: "destructive",
+      });
+    },
+    onSuccess: () => {
+      startTransition(() => {
+        router.refresh();
+      });
+
+      return toast({
+        title: "Unsubscribed",
+        description: `You are now subscribed from z/${communityName}`,
+      });
+    },
+  });
+
   return isSubscribed ? (
-    <Button className="w-full mt-1 mb-4">Leave community</Button>
+    <Button
+      isLoading={isUnSubscribing}
+      onClick={() => unsubscribe()}
+      className="w-full mt-1 mb-4"
+    >
+      Leave community
+    </Button>
   ) : (
     <Button
-      isLoading={isSubLoading}
+      isLoading={isSubscribing}
       onClick={() => subscribe()}
       className="w-full mt-1 mb-4"
     >
