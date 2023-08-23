@@ -1,4 +1,4 @@
-import { Button, buttonVariants } from "@/components/ui/Button"
+import { buttonVariants } from "@/components/ui/Button"
 import SubscribeLeaveToggle from "@/components/SubscribeLeaveToggle";
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
@@ -88,11 +88,12 @@ return (
               ): null}
             </dl>
 
-
-<Link href={`z/${slug}/submit`} className={buttonVariants({
-  variant: "outline",
-  className: "w-full mb-6",
-})}>Create Post</Link>
+          <Link href={`z/${slug}/submit`} className={buttonVariants({
+            variant: "outline",
+            className: "w-full mb-6",
+          })}>
+            Create Post
+          </Link>
         </div>
       </div>
     </div>
