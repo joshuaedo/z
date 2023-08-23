@@ -1,9 +1,10 @@
-// import { Button } from "@/components/ui/Button"
+import { Button, buttonVariants } from "@/components/ui/Button"
 import SubscribeLeaveToggle from "@/components/SubscribeLeaveToggle";
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { format } from "date-fns";
 import { notFound } from "next/navigation";
+import Link from "next/link";
 
 const Layout = async ({children, params: {slug},}: {children: React.ReactNode; params: {slug: string}}) => {
 
@@ -87,6 +88,11 @@ return (
               ): null}
             </dl>
 
+
+<Link href={`z/${slug}/submit`} className={buttonVariants({
+  variant: "outline",
+  className: "w-full mb-6",
+})}>Create Post</Link>
         </div>
       </div>
     </div>
