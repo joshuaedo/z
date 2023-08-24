@@ -89,9 +89,9 @@ return (
               ): null}
             </dl>
 
-            <div className="hidden md:flex justify-center items-center">
+            <div className="w-full hidden md:flex justify-center items-center">
               <Link href={`z/${slug}/submit`} className={buttonVariants({
-               variant: "link",
+               variant: "default",
                className: "w-[90%]",
                })}>
               What&apos;s happening?
@@ -100,11 +100,11 @@ return (
 
           <Link href={`z/${slug}/submit`} className={buttonVariants({
             variant: "default",
-            className: "md:hidden z-10 fixed bottom-10 right-10 rounded-[50%] text-white",
+            className: "w-10 h-10 md:hidden z-10 fixed bottom-10 right-10 rounded-[full] text-white",
           })}>
            <Feather />
           </Link>
-          
+
         </div>
       </div>
     </div>
