@@ -89,7 +89,7 @@ return (
               ): null}
             </dl>
 
-            <div className="w-full hidden md:flex justify-center items-center">
+            <div className="w-full hidden md:flex justify-center items-center my-4">
               <Link href={`z/${slug}/submit`} className={buttonVariants({
                variant: "default",
                className: "w-[90%]",
@@ -100,7 +100,7 @@ return (
 
           <Link href={`z/${slug}/submit`} className={buttonVariants({
             variant: "default",
-            className: "w-10 h-10 md:hidden z-10 fixed bottom-10 right-10 rounded-[full] text-white",
+            className: "md:hidden z-8 fixed bottom-10 right-8 rounded-full text-white",
           })}>
            <Feather />
           </Link>
