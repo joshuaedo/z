@@ -28,7 +28,7 @@ if(!community) return notFound()
           </div>
          </div> 
 
-         <Editor />
+         <Editor communityId={community.id} />
 
          <div className="w-full flex justify-end">
             <Button type="submit" className="w-full" form="community-post-form">Post</Button>
