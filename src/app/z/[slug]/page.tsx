@@ -38,11 +38,12 @@ const Page = async ({ params }: PageProps) => {
     }
 
     return (
-    //    @ts-expect-error Server Component 
-        <InfoSideBar>
+        // <InfoSideBar>
+        <>
             <h1 className="font-bold text-3xl md:text-4xl h-14">z/{community.name}</h1>
             <MiniCreatePost session={session}  />
-        </InfoSideBar>
+        </>
+        // </InfoSideBar>
     );
 };
 
