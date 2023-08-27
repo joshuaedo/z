@@ -44,10 +44,10 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
   children,
-  authModal,
+  modal,
 }: {
   children: React.ReactNode;
-  authModal: React.ReactNode;
+  modal: React.ReactNode;
 }) {
   return (
     <html
@@ -62,7 +62,7 @@ export default function RootLayout({
           {/* @ts-expect-error Server Component */}
           <Navbar />
 
-          {authModal}
+          {modal}
 
           <main className="container max-w-7xl mx-auto h-full pt-12">
             {children}

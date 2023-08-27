@@ -3,11 +3,8 @@ import { INFINITE_SCROLLING_PAGINATION_RESULTS } from "@/config";
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { notFound } from "next/navigation";
-import { buttonVariants } from "@/components/ui/Button";
 import SubscribeLeaveToggle from "@/components/SubscribeLeaveToggle";
 import { format } from "date-fns";
-import Link from "next/link";
-import { Feather } from "lucide-react";
 
 interface SubmitPageProps {
     params: {
@@ -65,8 +62,7 @@ const SubmitPage = async ({ params }: SubmitPageProps) => {
   });
 
     return (
-
-            <div className="sm:container max-w-7xl mx-auto h-full pt-12">
+     <div className="sm:container max-w-7xl mx-auto h-full pt-12">
       <div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-y-4 md:gap-x-4 py-6">
           <div className="flex flex-col col-span-1 md:col-span-2 space-y-6">
@@ -111,35 +107,10 @@ const SubmitPage = async ({ params }: SubmitPageProps) => {
                 />
               ) : null}
             </dl>
-
-            <div className="w-full hidden md:flex justify-center items-center my-4">
-              <Link
-                href={`z/${slug}/submit`}
-                className={buttonVariants({
-                  variant: "default",
-                  className: "w-[90%]",
-                })}
-              >
-                What&apos;s happening?
-              </Link>
-            </div>
-
-            <Link
-              href={`z/${slug}/submit`}
-              className={buttonVariants({
-                variant: "default",
-                className:
-                  "md:hidden z-8 fixed bottom-10 right-8 rounded-full text-white",
-              })}
-            >
-              <Feather />
-            </Link>
           </div>
         </div>
       </div>
     </div>
-
-
     )
 }
 
