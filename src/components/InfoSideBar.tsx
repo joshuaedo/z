@@ -7,7 +7,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Feather } from "lucide-react";
 
-const Layout = async ({
+const InfoSideBar = async ({
   children,
   params: { slug },
 }: {
@@ -129,4 +129,4 @@ const Layout = async ({
   );
 };
 
-export default Layout;
+export default InfoSideBar;
