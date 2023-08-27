@@ -15,7 +15,7 @@ const Modal: FC<ModalProps> = ({ modalContainer, children, showModal }) => {
   return (
     <>
       {isMobile && !showModal ? (
-        <div className="container">{children}</div>
+        <div className="">{children}</div>
       ) : (
         <div className={`fixed inset-0 bg-zinc-900/20 z-10`}>
           <div
