@@ -3,7 +3,7 @@ import SignUp from '@/components/SignUp';
 
 const SignUpModal= () => {
     return (
-       <Modal modalContainer='max-w-lg'>
+       <Modal modalContainer='max-w-lg' showModal>
          <SignUp/>
        </Modal>
     );
