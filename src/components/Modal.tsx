@@ -1,26 +1,36 @@
+"use client";
+import useDeviceSize from "@/hooks/use-device-size";
 import CloseModal from "./CloseModal";
 import { FC } from "react";
 
 interface ModalProps {
   modalContainer: string;
-  children?: React.ReactNode;
+  children: React.ReactNode;
 }
 
 const Modal: FC<ModalProps> = ({ modalContainer, children }) => {
+  const [width, height] = useDeviceSize();
+  const showModal = width >= 767;
   return (
-    <div className={`fixed inset-0 bg-zinc-900/20 z-10`}>
-      <div
-        className={`container flex items-center h-full ${modalContainer} justify-center`}
-      >
-        <div className={`relative bg-white h-fit py-20 px-2 rounded-lg`}>
-          <div className={`absolute top-4 right-4`}>
-            <CloseModal />
-          </div>
+    <>
+      {showModal ? (
+        <div className={`fixed inset-0 bg-zinc-900/20 z-10`}>
+          <div
+            className={`container flex items-center h-full ${modalContainer} justify-center`}
+          >
+            <div className={`relative bg-white h-fit py-20 px-2 rounded-lg`}>
+              <div className={`absolute top-4 right-4`}>
+                <CloseModal />
+              </div>
 
-          {children}
+              {children}
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      ) : (
+        <div className="px-10">{children}</div>
+      )}
+    </>
   );
 };
 
