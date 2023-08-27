@@ -3,13 +3,13 @@ import { Button } from "@/components/ui/Button";
 import { db } from "@/lib/db";
 import { notFound } from "next/navigation";
 
-interface SubmitProps {
+interface SubmitPageProps {
     params: {
         slug: string;
     };
 }
 
-const Submit = async ({ params }: SubmitProps) => {
+const SubmitPage = async ({ params }: SubmitPageProps) => {
 
 const community = await db.community.findFirst({
     where: {
@@ -37,4 +37,4 @@ if(!community) return notFound()
     );
 };
 
-export default Submit;
+export default SubmitPage;
