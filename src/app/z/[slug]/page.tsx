@@ -62,12 +62,14 @@ const SubmitPage = async ({ params }: SubmitPageProps) => {
   });
 
     return (
-     <div className="sm:container max-w-7xl mx-auto h-full pt-12">
+     <div className="sm:container max-w-7xl mx-auto h-full pt-4 md:pt-6 lg:pt-8">
       <div>
+        
         <div className="grid grid-cols-1 md:grid-cols-3 gap-y-4 md:gap-x-4 py-6">
           <div className="flex flex-col col-span-1 md:col-span-2 space-y-6">
           <h1 className="font-bold text-3xl md:text-4xl h-14">z/{community.name}</h1>
             <MiniCreatePost session={session}  />
+            {/* children */}
           </div>
 
           {/* Info sidebar */}
@@ -75,7 +77,6 @@ const SubmitPage = async ({ params }: SubmitPageProps) => {
             <div className="px-6 py-4">
               <p className="font-semi-bold py-3">About z/{community.name}</p>
             </div>
-
             <dl className="divide-y divide-gray-100 px-6 py-4 text-sm leading-6 bg-white">
               <div className="flex justify-between gap-x-4 py-3">
                 <dt className="text-gray-500">Created</dt>
@@ -85,20 +86,17 @@ const SubmitPage = async ({ params }: SubmitPageProps) => {
                   </time>
                 </dd>
               </div>
-
               <div className="flex justify-between gap-x-4 py-3">
                 <dt className="text-gray-500">Members</dt>
                 <dd className="text-gray-700">
                   <div className="text-gray-900">{memberCount}</div>
                 </dd>
               </div>
-
               {community.creatorId === session?.user.id ? (
                 <div className="flex justify-between gap-x-4 py-3">
                   <p className="text-gray-500">You created this community</p>
                 </div>
               ) : null}
-
               {community.creatorId !== session?.user.id ? (
                 <SubscribeLeaveToggle
                   isSubscribed={isSubscribed}
@@ -108,6 +106,7 @@ const SubmitPage = async ({ params }: SubmitPageProps) => {
               ) : null}
             </dl>
           </div>
+
         </div>
       </div>
     </div>
