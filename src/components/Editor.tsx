@@ -42,7 +42,7 @@ const Editor: FC<EditorProps> = ({ communityId }) => {
         <div className="prose prose-stone dark:prose-invert">
           <TextareaAutosize
             placeholder="Title"
-            className="w-full resize-none appearance-none overflow-hidden bg-transparent text-5xl font-bold focus:outline-none"
+            className="w-full resize-none appearance-none overflow-hidden bg-transparent text-3xl md:text-5xl font-bold focus:outline-none"
           />
         </div>
       </form>
