@@ -6,6 +6,7 @@ import { PostCreationRequest, PostValidator } from "@/lib/validators/post";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FC, useCallback, useRef } from "react";
 import type EditorJS from "@editorjs/editorjs";
+import { uploadFiles } from "@/lib/uploadthing";
 
 interface EditorProps {
   communityId: string;
@@ -37,37 +38,49 @@ const Editor: FC<EditorProps> = ({ communityId }) => {
     const InlineCode = (await import("@editorjs/inline-code")).default;
     const ImageTool = (await import("@editorjs/image")).default;
     // const Paragraph = (await import("@editorjs/paragraph")).default;
- 
-    if(!ref.current){
-  const editor = new EditorJS({
-    holder: "editor",
-    onReady() {
-        ref.current = editor
-    },
-    placeholder: "What's happening?",
-    inlineToolbar: true,
-    data: { blocks: []},
-    tools: {
-      header: Header,
-      linkTool: {
-        class: LinkTool,
-        config: {
-          endpoint: "api/link",
-        }
-      },
-      image: {
-        class: ImageTool,
-        config: {
-          uploader: {
-            async uploadByFile(file: File){
-              
-            }
-          }
-        }
-      }
+
+    if (!ref.current) {
+      const editor = new EditorJS({
+        holder: "editor",
+        onReady() {
+          ref.current = editor;
+        },
+        placeholder: "What's happening?",
+        inlineToolbar: true,
+        data: { blocks: [] },
+        tools: {
+          header: Header,
+          linkTool: {
+            class: LinkTool,
+            config: {
+              endpoint: "api/link",
+            },
+          },
+          image: {
+            class: ImageTool,
+            config: {
+              uploader: {
+                async uploadByFile(file: File) {
+                  const [res] = await uploadFiles([file], "imageUploader");
+
+                  return {
+                    success: 1,
+                    file: {
+                      url: res.fileUrl,
+                    },
+                  };
+                },
+              },
+            },
+          },
+          list: List,
+          code: Code,
+          inlineCode: InlineCode,
+          table: Table,
+          embed: Embed,
+        },
+      });
     }
-  })
- }
   }, []);
 
   return (
