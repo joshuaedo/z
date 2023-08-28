@@ -4,7 +4,8 @@ import TextareaAutosize from "react-textarea-autosize";
 import { useForm } from "react-hook-form";
 import { PostCreationRequest, PostValidator } from "@/lib/validators/post";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FC, useCallback } from "react";
+import { FC, useCallback, useRef } from "react";
+import type EditorJS from "@editorjs/editorjs";
 
 interface EditorProps {
   communityId: string;
@@ -24,6 +25,8 @@ const Editor: FC<EditorProps> = ({ communityId }) => {
     },
   });
 
+  const ref = useRef<EditorJS>();
+
   const initializeEditor = useCallback(async () => {
     const EditorJS = (await import("@editorjs/editorjs")).default;
     const Header = (await import("@editorjs/header")).default;
@@ -34,6 +37,37 @@ const Editor: FC<EditorProps> = ({ communityId }) => {
     const InlineCode = (await import("@editorjs/inline-code")).default;
     const ImageTool = (await import("@editorjs/image")).default;
     // const Paragraph = (await import("@editorjs/paragraph")).default;
+ 
+    if(!ref.current){
+  const editor = new EditorJS({
+    holder: "editor",
+    onReady() {
+        ref.current = editor
+    },
+    placeholder: "What's happening?",
+    inlineToolbar: true,
+    data: { blocks: []},
+    tools: {
+      header: Header,
+      linkTool: {
+        class: LinkTool,
+        config: {
+          endpoint: "api/link",
+        }
+      },
+      image: {
+        class: ImageTool,
+        config: {
+          uploader: {
+            async uploadByFile(file: File){
+              
+            }
+          }
+        }
+      }
+    }
+  })
+ }
   }, []);
 
   return (

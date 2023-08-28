@@ -25,7 +25,6 @@ const Modal: FC<ModalProps> = ({ modalContainer, children, showModal }) => {
               <div className={`absolute top-4 right-4`}>
                 <CloseModal />
               </div>
-
               {children}
             </div>
           </div>
