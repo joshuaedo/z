@@ -34,9 +34,5 @@ export async function GET(req: Request) {
     },
   });
 
-  return new Response(jsonResponse, {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  return new Response(jsonResponse);
 }
