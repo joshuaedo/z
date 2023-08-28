@@ -1,8 +1,8 @@
 import axios from "axios";
 
 export async function GET(req: Request) {
-  const url = new URL(req.url);
-  const href = url.searchParams.get("url");
+  const a = new URL(req.url);
+  const href = a.searchParams.get("url");
 
   if (!href) {
     return new Response("Invalid href", { status: 400 });
@@ -21,7 +21,7 @@ export async function GET(req: Request) {
   const imageMatch = res.data.match(
     /<meta property="og:image" content="(.*?)"/
   );
-  const imageURL = imageMatch ? imageMatch[1] : "";
+  const url = imageMatch ? imageMatch[1] : "";
 
   return new Response(
     JSON.stringify({
@@ -30,7 +30,7 @@ export async function GET(req: Request) {
         title,
         description,
         image: {
-          imageURL,
+          url,
         },
       },
     })
