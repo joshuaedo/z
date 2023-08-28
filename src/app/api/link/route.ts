@@ -14,25 +14,29 @@ export async function GET(req: Request) {
   const title = titleMatch ? titleMatch[1] : "";
 
   const descriptionMatch = res.data.match(
-    /<meta name="description" content="(.*?)"/
+    /<meta name="description" content="(.*?)">/
   );
   const description = descriptionMatch ? descriptionMatch[1] : "";
 
   const imageMatch = res.data.match(
-    /<meta property="og:image" content="(.*?)"/
+    /<meta property="og:image" content="(.*?)">/
   );
   const url = imageMatch ? imageMatch[1] : "";
 
-  return new Response(
-    JSON.stringify({
-      success: 1,
-      meta: {
-        title,
-        description,
-        image: {
-          url,
-        },
+  const jsonResponse = JSON.stringify({
+    success: 1,
+    meta: {
+      title,
+      description,
+      image: {
+        url,
       },
-    })
-  );
+    },
+  });
+
+  return new Response(jsonResponse, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 }
