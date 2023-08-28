@@ -6,15 +6,19 @@ import { FC } from "react";
 interface ModalProps {
   modalContainer: string;
   children: React.ReactNode;
-  showModal: boolean;
+  showMobileModal: boolean;
 }
 
-const Modal: FC<ModalProps> = ({ modalContainer, children, showModal }) => {
+const Modal: FC<ModalProps> = ({
+  modalContainer,
+  children,
+  showMobileModal,
+}) => {
   const [width, height] = useDeviceSize();
   const isMobile = width <= 767;
   return (
     <>
-      {isMobile && !showModal ? (
+      {isMobile && !showMobileModal ? (
         <div className="">{children}</div>
       ) : (
         <div className={`fixed inset-0 bg-zinc-900/20 z-10`}>

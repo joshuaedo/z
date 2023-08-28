@@ -3,7 +3,7 @@ import SignIn from '@/components/SignIn';
 
 const SignInModal= () => {
     return (
-       <Modal modalContainer='max-w-lg' showModal>
+       <Modal modalContainer='max-w-lg' showMobileModal>
          <SignIn/>
        </Modal>
     );
