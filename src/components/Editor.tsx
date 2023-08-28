@@ -37,6 +37,7 @@ const Editor: FC<EditorProps> = ({ communityId }) => {
     const LinkTool = (await import("@editorjs/link")).default;
     const InlineCode = (await import("@editorjs/inline-code")).default;
     const ImageTool = (await import("@editorjs/image")).default;
+    const Code = (await import("@editorjs/code")).default;
     // const Paragraph = (await import("@editorjs/paragraph")).default;
 
     if (!ref.current) {
