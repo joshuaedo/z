@@ -61,7 +61,7 @@ const Editor: FC<EditorProps> = ({ communityId }) => {
           linkTool: {
             class: LinkTool,
             config: {
-              endpoint: "api/link",
+              endpoint: "/api/link",
             },
           },
           image: {
