@@ -115,7 +115,7 @@ const Editor: FC<EditorProps> = ({ communityId }) => {
             placeholder="Title"
             className="w-full resize-none appearance-none overflow-hidden bg-transparent text-3xl md:text-5xl font-bold focus:outline-none"
           />
-          <div id="editor" className="min-h-[10vh]" />
+          <div id="editor" className="overflow-y-scroll pb-0" />
         </div>
       </form>
     </div>
