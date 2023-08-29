@@ -31,7 +31,7 @@ const SubmitPost = ({ params, community }: SubmitPostProps) => {
               className="h-6 w-6 p-0 rounded-md"
               aria-label="close modal"
             >
-              <Maximize2 className="h-4 w-4" />
+              <Maximize2 className="h-4 w-4 absolute top-4 left-4" />
             </Button>
           </div>
         </div>
