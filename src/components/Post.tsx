@@ -2,8 +2,8 @@
 import Editor from "@/components/Editor";
 import Modal from "@/components/Modal";
 import { Button } from "@/components/ui/Button";
-import { Minimize2, Maximize2 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { Maximize2 } from "lucide-react";
+import { useState } from "react";
 
 interface SubmitPostProps {
   params: {
@@ -21,15 +21,6 @@ const SubmitPost = ({ params, community }: SubmitPostProps) => {
     setIsModalOpen((prevIsModalOpen) => !prevIsModalOpen);
   };
 
-  useEffect(() => {
-    const redactorDiv = document.querySelector(
-      ".codex-editor__redactor"
-    ) as HTMLElement;
-    if (redactorDiv) {
-      redactorDiv.style.height = !isModalOpen ? "auto" : "150px";
-    }
-  }, []);
-
   const modalContent = (
     <div className={`flex flex-col items-start gap-4 md:gap-6`}>
       <div className="border-b border-gray-200 pb-5">
@@ -46,16 +37,12 @@ const SubmitPost = ({ params, community }: SubmitPostProps) => {
             className="h-6 w-6 p-0 rounded-md absolute top-4 left-3"
             aria-label="toggle modal"
           >
-            {isModalOpen ? (
-              <Maximize2 className="h-4 w-4" />
-            ) : (
-              <Minimize2 className="h-4 w-4" />
-            )}
+            <Maximize2 className="h-4 w-4" />
           </Button>
         </div>
       </div>
 
-      <Editor communityId={community.id} />
+      <Editor communityId={community.id} isModalOpen={isModalOpen} />
 
       <div className="w-full flex justify-end">
         <Button type="submit" className="w-full" form="community-post-form">

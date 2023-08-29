@@ -14,9 +14,10 @@ import { usePathname, useRouter } from "next/navigation";
 
 interface EditorProps {
   communityId: string;
+  isModalOpen: boolean;
 }
 
-const Editor: FC<EditorProps> = ({ communityId }) => {
+const Editor: FC<EditorProps> = ({ communityId, isModalOpen }) => {
   const {
     register,
     handleSubmit,
@@ -197,7 +198,7 @@ const Editor: FC<EditorProps> = ({ communityId }) => {
             placeholder="Title"
             className="w-full resize-none appearance-none overflow-hidden bg-transparent text-3xl md:text-5xl font-bold focus:outline-none"
           />
-          <div id="editor" className="" />
+          <div id="editor" className={isModalOpen ? "h-[160px]" : "h-auto"} />
         </div>
       </form>
     </div>
