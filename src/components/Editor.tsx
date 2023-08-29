@@ -183,7 +183,7 @@ const Editor: FC<EditorProps> = ({ communityId, isModalOpen }) => {
     <div className="w-full p-4 bg-zinc-50 rounded-lg border-zinc-200">
       <form
         id="community-post-form"
-        className="w-fit"
+        className="w-fit flex items-center justify-center"
         onSubmit={handleSubmit(() => {})}
       >
         <div className="prose prose-stone dark:prose-invert">
@@ -198,7 +198,10 @@ const Editor: FC<EditorProps> = ({ communityId, isModalOpen }) => {
             placeholder="Title"
             className="w-full resize-none appearance-none overflow-hidden bg-transparent text-3xl md:text-5xl font-bold focus:outline-none"
           />
-          <div id="editor" className={isModalOpen ? "h-[160px]" : "h-auto"} />
+          <div
+            id="editor"
+            className={isModalOpen ? "h-[160px]" : "h-auto mb-6"}
+          />
         </div>
       </form>
     </div>
