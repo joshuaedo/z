@@ -1,3 +1,4 @@
+"use client";
 import Editor from "@/components/Editor";
 import Modal from "@/components/Modal";
 import { Button } from "@/components/ui/Button";
