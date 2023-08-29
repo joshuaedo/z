@@ -196,11 +196,11 @@ const Editor: FC<EditorProps> = ({ communityId, isModalOpen }) => {
             }}
             {...rest}
             placeholder="Title"
-            className="w-full resize-none appearance-none overflow-hidden bg-transparent text-3xl md:text-5xl font-bold focus:outline-none"
+            className="w-full resize-none appearance-none overflow-hidden bg-transparent text-3xl md:text-4xl font-bold focus:outline-none"
           />
           <div
             id="editor"
-            className={isModalOpen ? "h-[160px]" : "h-auto"}
+            className={isModalOpen ? "h-[160px]" : "min-h-[160px]"}
           />
         </div>
       </form>
