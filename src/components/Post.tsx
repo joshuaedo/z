@@ -24,7 +24,11 @@ const SubmitPost = ({ params, community }: SubmitPostProps) => {
   const modalContent = (
     <div className={`flex flex-col items-start gap-4 md:gap-6`}>
       <div className="border-b border-gray-200 pb-5">
-        <div className="-ml-2 -mt-2 flex flex-wrap items-baseline">
+        <div
+          className={`-ml-2 -mt-2 flex flex-wrap items-baseline ${
+            !isModalOpen && "justify-center"
+          }`}
+        >
           <h3 className="ml-2 mt-2 text-base font-semibold leading-6 text-gray-900">
             Create Post
           </h3>
@@ -44,8 +48,14 @@ const SubmitPost = ({ params, community }: SubmitPostProps) => {
 
       <Editor communityId={community.id} isModalOpen={isModalOpen} />
 
-      <div className={isModalOpen ? "w-full" : "w-10 flex justify-end pb-6"}>
-        <Button type="submit" className="w-full" form="community-post-form">
+      <div
+        className={isModalOpen ? "w-full" : "w-full flex justify-center pb-20"}
+      >
+        <Button
+          type="submit"
+          className={isModalOpen ? "w-full" : "w-[30%]"}
+          form="community-post-form"
+        >
           Post
         </Button>
       </div>
