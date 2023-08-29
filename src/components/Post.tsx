@@ -25,7 +25,14 @@ const SubmitPost = ({ params, community }: SubmitPostProps) => {
             <p className="ml-2 mt-1 truncate text-sm text-gray-500s">
               in z/{params.slug}
             </p>
-            <Maximize2 />
+            <Button
+              onClick={() => {}}
+              variant="subtle"
+              className="h-6 w-6 p-0 rounded-md"
+              aria-label="close modal"
+            >
+              <Maximize2 className="h-4 w-4" />
+            </Button>
           </div>
         </div>
 
