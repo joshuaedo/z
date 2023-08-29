@@ -2,6 +2,7 @@
 import Editor from "@/components/Editor";
 import Modal from "@/components/Modal";
 import { Button } from "@/components/ui/Button";
+import { Maximize2 } from "lucide-react";
 
 interface SubmitPostProps {
   params: {
@@ -24,6 +25,7 @@ const SubmitPost = ({ params, community }: SubmitPostProps) => {
             <p className="ml-2 mt-1 truncate text-sm text-gray-500s">
               in z/{params.slug}
             </p>
+            <Maximize2 />
           </div>
         </div>
 
