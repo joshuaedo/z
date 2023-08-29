@@ -150,6 +150,7 @@ const Editor: FC<EditorProps> = ({ communityId }) => {
         variant: "destructive",
       });
     },
+
     onSuccess: () => {
       //z/community/submit => z/community
 
