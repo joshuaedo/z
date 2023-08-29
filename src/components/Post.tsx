@@ -28,10 +28,10 @@ const SubmitPost = ({ params, community }: SubmitPostProps) => {
             <Button
               onClick={() => {}}
               variant="subtle"
-              className="h-6 w-6 p-0 rounded-md"
+              className="h-6 w-6 p-0 rounded-md absolute top-4 left-4"
               aria-label="close modal"
             >
-              <Maximize2 className="h-4 w-4 absolute top-4 left-4" />
+              <Maximize2 className="h-4 w-4 " />
             </Button>
           </div>
         </div>
