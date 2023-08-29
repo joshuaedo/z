@@ -180,10 +180,10 @@ const Editor: FC<EditorProps> = ({ communityId, isModalOpen }) => {
   const { ref: titleRef, ...rest } = register("title");
 
   return (
-    <div className="w-full p-4 bg-zinc-50 rounded-lg border-zinc-200">
+    <div className="w-full p-4 bg-zinc-50 rounded-lg border-zinc-200 flex items-center justify-center">
       <form
         id="community-post-form"
-        className="w-fit flex items-center justify-center"
+        className="w-fit"
         onSubmit={handleSubmit(() => {})}
       >
         <div className="prose prose-stone dark:prose-invert">
