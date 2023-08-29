@@ -84,5 +84,16 @@
 }
 
 .codex-editor__redactor::-webkit-scrollbar {
+  width: 10px !important;
+}
+
+/* scrollbar Track */
+.codex-editor__redactor::-webkit-scrollbar-track {
   display: none !important;
+}
+
+/* scrollbar Handle */
+.codex-editor__redactor::-webkit-scrollbar-thumb {
+  background: black !important;
+  border-radius: 10px !important;
 }
