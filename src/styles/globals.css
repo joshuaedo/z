@@ -77,8 +77,6 @@
 
 .codex-editor__redactor {
   padding-bottom: 0px !important;
-  /* find a way to extract this */
-  height: 150px !important;
   width: 100%;
   padding-left: 0.5rem;
   padding-right: 0.5rem;

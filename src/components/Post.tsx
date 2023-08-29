@@ -3,7 +3,7 @@ import Editor from "@/components/Editor";
 import Modal from "@/components/Modal";
 import { Button } from "@/components/ui/Button";
 import { Minimize2, Maximize2 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface SubmitPostProps {
   params: {
@@ -21,8 +21,21 @@ const SubmitPost = ({ params, community }: SubmitPostProps) => {
     setIsModalOpen((prevIsModalOpen) => !prevIsModalOpen);
   };
 
+  useEffect(() => {
+    const redactorDiv = document.querySelector(
+      ".codex-editor__redactor"
+    ) as HTMLElement;
+    if (redactorDiv) {
+      redactorDiv.style.height = !isModalOpen ? "auto" : "10rem";
+    }
+  }, [isModalOpen]);
+
   const modalContent = (
-    <div className="flex flex-col items-start gap-4 md:gap-6">
+    <div
+      className={`flex flex-col items-start gap-4 md:gap-6 ${
+        isModalOpen && "relative"
+      }`}
+    >
       <div className="border-b border-gray-200 pb-5">
         <div className="-ml-2 -mt-2 flex flex-wrap items-baseline">
           <h3 className="ml-2 mt-2 text-base font-semibold leading-6 text-gray-900">
