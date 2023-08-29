@@ -22,9 +22,9 @@ const Modal: FC<ModalProps> = ({ modalContainer, children, showModal }) => {
             className={`container flex items-center h-full ${modalContainer} justify-center`}
           >
             <div
-              className={`relative bg-white h-fit pt-12 pb-8 px-2 rounded-lg`}
+              className={`relative bg-white h-fit pt-12 pb-8 px-3 rounded-lg`}
             >
-              <div className={`absolute top-4 right-4`}>
+              <div className={`absolute top-4 right-3`}>
                 <CloseModal />
               </div>
               {children}

@@ -34,7 +34,7 @@ const SubmitPost = ({ params, community }: SubmitPostProps) => {
           <Button
             onClick={toggleModal}
             variant="subtle"
-            className="h-6 w-6 p-0 rounded-md absolute top-4 left-4"
+            className="h-6 w-6 p-0 rounded-md absolute top-4 left-3"
             aria-label="toggle modal"
           >
             {isModalOpen ? (
