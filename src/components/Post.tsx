@@ -44,7 +44,7 @@ const SubmitPost = ({ params, community }: SubmitPostProps) => {
 
       <Editor communityId={community.id} isModalOpen={isModalOpen} />
 
-      <div className="w-full flex justify-end">
+      <div className={isModalOpen ? "w-full" : "w-10 flex justify-end pb-6"}>
         <Button type="submit" className="w-full" form="community-post-form">
           Post
         </Button>
