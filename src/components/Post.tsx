@@ -26,7 +26,7 @@ const SubmitPost = ({ params, community }: SubmitPostProps) => {
       <div className="border-b border-gray-200 pb-5">
         <div
           className={`-ml-2 -mt-2 flex flex-wrap items-baseline ${
-            !isModalOpen && "ml-20"
+            !isModalOpen && "ml-10"
           }`}
         >
           <h3 className="ml-2 mt-2 text-base font-semibold leading-6 text-gray-900">
