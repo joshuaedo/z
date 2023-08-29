@@ -28,7 +28,7 @@ const SubmitPost = ({ params, community }: SubmitPostProps) => {
     if (redactorDiv) {
       redactorDiv.style.height = !isModalOpen ? "auto" : "150px";
     }
-  }, [isModalOpen]);
+  }, []);
 
   const modalContent = (
     <div className={`flex flex-col items-start gap-4 md:gap-6`}>
