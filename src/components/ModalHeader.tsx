@@ -7,19 +7,19 @@ import { FC } from "react";
 
 interface ModalHeaderProps {
     showMax: boolean;
-    toggleModal: Function;
+    toggleModal: any;
 }
 
 const ModalHeader: FC<ModalHeaderProps> = ({showMax, toggleModal}) => {
 const router = useRouter();
 
     return (
-          <div className={`absolute top-4 w-full flex justify-between`}>
+          <>
             { showMax &&
                  <Button
-            onClick={toggleModal()}
+            onClick={toggleModal}
             variant="subtle"
-            className="h-6 w-6 p-0 rounded-md"
+            className="h-6 w-6 p-0 rounded-md absolute top-4 left-3"
             aria-label="toggle modal"
           >
             <Maximize2 className="h-4 w-4" />
@@ -27,10 +27,10 @@ const router = useRouter();
 
                <Button onClick={() => {
                         router.back()
-                    }} variant="subtle" className="h-6 w-6 p-0 rounded-md" aria-label="close modal">
+                    }} variant="subtle" className="h-6 w-6 p-0 rounded-md absolute top-4 right-3" aria-label="close modal">
                     <X className="h-4 w-4" />
                      </Button>
-                  </div>
+                  </>
       
     );
 };

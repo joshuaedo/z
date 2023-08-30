@@ -17,7 +17,7 @@ interface SubmitPostProps {
 const SubmitPost = ({ params, community }: SubmitPostProps) => {
   const [isModalOpen, setIsModalOpen] = useState(true);
 
-  function toggleModal() {
+  const toggleModal = () => {
     setIsModalOpen((prevIsModalOpen) => !prevIsModalOpen);
   };
 
