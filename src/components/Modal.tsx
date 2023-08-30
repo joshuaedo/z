@@ -18,7 +18,7 @@ const Modal: FC<ModalProps> = ({ modalContainer, children, showMax, toggleModal 
             <div
               className={`relative bg-white h-fit pt-12 pb-8 px-3 rounded-lg`}
             >
-                <ModalHeader showMax={showMax} toggleModal={toggleModal} />
+              <ModalHeader showMax={showMax} toggleModal={toggleModal} />
               {children}
             </div>
           </div>
