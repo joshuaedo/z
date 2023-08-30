@@ -100,14 +100,14 @@ const TermsOfService = () => {
         your violation of these Terms of Service.
       </p>
 
-      <h2>19. Changes to Terms of Service</h2>
+      <h2>9. Changes to Terms of Service</h2>
       <p>
         We may update these Terms of Service from time to time. Any changes will
         be posted on this page, and your continued use of the Website after such
         changes constitutes your acceptance of the updated terms.
       </p>
 
-      <h2>11. Contact Us</h2>
+      <h2>10. Contact Us</h2>
 
       <p>
         If you have any questions or concerns about these Terms of Service,
