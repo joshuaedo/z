@@ -1,8 +1,13 @@
+"use client"
 import Link from "next/link";
 import { Icons } from "./Icons";
 import UserAuthForm from "./UserAuthForm";
+import { Button, buttonVariants } from "./ui/Button";
+import { useRouter } from "next/navigation";
 
 const SignIn = () => {
+ const router = useRouter();
+
   return (
     <div className="container mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[25rem]">
       <div className="flex flex-col space-y-2 text-center">
@@ -10,20 +15,19 @@ const SignIn = () => {
         <h1 className="text-2xl font-semibold tracking-tight">Welcome back</h1>
         <p className="text-xs max-w-xs mx-auto">
           By continuing, you agree to our{" "}
-          <Link
-            href="/terms-of-service"
-            className="hover:text-zinc-800 text-xs underline underline-offset-4"
-          >
-            terms of service
-          </Link>{" "}
-          and{" "}
-          <Link
-            href="/privacy-policy"
-            className="hover:text-zinc-800 text-xs underline underline-offset-4"
-          >
-            privacy policy
-          </Link>
-          .
+          <Button onClick={() => {
+            router.push("/terms-of-service")
+          }} className={buttonVariants({
+            variant: "link",
+            size: "sm"
+          })}>terms of service</Button>
+          {" "}and{" "}
+          <Button onClick={() => {
+            router.push("/privacy-policy")
+          }} className={buttonVariants({
+            variant: "link",
+            size: "sm"
+          })}>privacy.</Button>
         </p>
 
         {/* Sign In Form */}
@@ -34,8 +38,7 @@ const SignIn = () => {
           <Link
             href="/sign-up"
             className="hover:text-zinc-800 text-sm underline underline-offset-4"
-          >
-            Sign Up
+          >         
           </Link>
         </p>
       </div>

@@ -1,4 +1,28 @@
+import { FC } from "react";
+
+interface UpdatedDateProps {
+  currentDate: Date;
+}
+
+const UpdatedDate: FC<UpdatedDateProps> = ({ currentDate }) => {
+  const yesterday = new Date(currentDate);
+  yesterday.setDate(currentDate.getDate() - 1);
+
+  const options: Intl.DateTimeFormatOptions = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  };
+
+  const formattedYesterday = yesterday.toLocaleDateString('en-US', options);
+
+  return (
+    <p>These Terms of Service were last updated on {formattedYesterday}.</p>
+  );
+};
+
 const TermsOfService = () => {
+  const today = new Date();
   return (
     <div id='terms-of-service'>
       <h3>
@@ -90,7 +114,7 @@ const TermsOfService = () => {
         please contact us using the contact information provided on the Website.
       </p>
 
-      <p>These Terms of Service were last updated on [Date].</p>
+      <UpdatedDate currentDate={today} />
     </div>
   );
 };
