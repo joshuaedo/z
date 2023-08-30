@@ -12,23 +12,22 @@ const SignIn = () => {
       <div className="flex flex-col space-y-2 text-center">
         <Icons.logo className="mx-auto h-7 w-7" />
         <h1 className="text-2xl font-semibold tracking-tight">Welcome back</h1>
-           <p className="text-xs max-w-xs mx-auto">
+        <p className="text-xs max-w-xs mx-auto">
           By continuing, you agree to our{" "}
           <button onClick={() => {
-            router.push("/terms-of-service");
             window.location.reload();
+            router.push("/terms-of-service");
           }} className={
             'p-0 text-xs text-black underline underline-offset-2'
           }>terms of service</button>
           {" "}and{" "}
           <button onClick={() => {
-            router.push("/privacy-policy");
             window.location.reload();
+            router.push("/privacy-policy");
           }} className={
             'p-0 text-xs text-black underline underline-offset-2'
           }>privacy policy.</button>
         </p>
-
         {/* Sign In Form */}
         <UserAuthForm />
 
