@@ -46,6 +46,6 @@ export async function POST(req: Request) {
             return new Response(error.message, { status: 422 });
         }
 
-        return new Response('Could not create community', {status: 500})
+        return new Response('Could not create community', { status: 500 });
     }
 }
