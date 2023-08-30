@@ -2,7 +2,6 @@
 import Editor from "@/components/Editor";
 import Modal from "@/components/Modal";
 import { Button } from "@/components/ui/Button";
-import { Maximize2 } from "lucide-react";
 import { useState } from "react";
 
 interface SubmitPostProps {
@@ -24,7 +23,7 @@ const SubmitPost = ({ params, community }: SubmitPostProps) => {
   const modalContent = (
     <div className={`flex flex-col items-start gap-4 md:gap-6`}>
       <div className={`border-b border-gray-200 pb-5 ${
-            !isModalOpen && "flex justify-center w-full"
+            !isModalOpen && "flex md:justify-center w-full"
           }`}>
         <div
           className={`-ml-2 -mt-2 flex flex-wrap items-baseline`}
@@ -41,7 +40,7 @@ const SubmitPost = ({ params, community }: SubmitPostProps) => {
       <Editor communityId={community.id} isModalOpen={isModalOpen} />
 
       <div
-        className={isModalOpen ? "w-full" : "w-full flex justify-center pb-20"}
+        className={isModalOpen ? "w-full" : "w-full flex md:justify-center pb-20"}
       >
         <Button
           type="submit"

@@ -6,7 +6,7 @@ interface ModalProps {
   modalContainer: string;
   children: React.ReactNode;
   showMax: boolean;
-  toggleModal: any;
+  toggleModal?: any;
 }
 
 const Modal: FC<ModalProps> = ({ modalContainer, children, showMax, toggleModal }) => {
