@@ -200,7 +200,7 @@ const Editor: FC<EditorProps> = ({ communityId, isModalOpen }) => {
           />
           <div
             id='editor'
-            className={isModalOpen ? 'h-[10rem]' : 'min-h-[45vh] md:min-h-[30vh]'}
+            className={isModalOpen ? 'h-[10rem]' : 'min-h-[45vh] md:min-h-[35vh]'}
           />
         </div>
       </form>
