@@ -130,7 +130,7 @@ const Editor: FC<EditorProps> = ({ communityId, isModalOpen }) => {
     }
   }, [isMounted, initializeEditor]);
 
-  const {} = useMutation({
+  const {mutate: createPost} = useMutation({
     mutationFn: async ({
       title,
       content,
@@ -175,6 +175,8 @@ const Editor: FC<EditorProps> = ({ communityId, isModalOpen }) => {
       content: blocks,
       communityId,
     };
+
+    createPost(payload)
   }
 
   const { ref: titleRef, ...rest } = register('title');
@@ -184,7 +186,7 @@ const Editor: FC<EditorProps> = ({ communityId, isModalOpen }) => {
       <form
         id='community-post-form'
         className='w-fit'
-        onSubmit={handleSubmit(() => {})}
+        onSubmit={handleSubmit(onSubmit)}
       >
         <div className='prose prose-stone dark:prose-invert'>
           <TextareaAutosize
