@@ -35,14 +35,6 @@ const SubmitPost = ({ params, community }: SubmitPostProps) => {
           <p className="ml-2 mt-1 truncate text-sm text-gray-500s">
             in z/{params.slug}
           </p>
-          <Button
-            onClick={toggleModal}
-            variant="subtle"
-            className="h-6 w-6 p-0 rounded-md absolute top-4 left-3"
-            aria-label="toggle modal"
-          >
-            <Maximize2 className="h-4 w-4" />
-          </Button>
         </div>
       </div>
 
@@ -63,7 +55,7 @@ const SubmitPost = ({ params, community }: SubmitPostProps) => {
   );
 
   return isModalOpen ? (
-    <Modal modalContainer="max-w-2xl" showModal={false}>
+    <Modal modalContainer="max-w-2xl" showMax toggleModal={toggleModal}>
       {modalContent}
     </Modal>
   ) : (
