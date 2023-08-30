@@ -32,7 +32,7 @@ const TermsOfService = () => {
         not use the Website.
       </h3>
 
-      <h2>1. Use of the Website</h2>
+      <h4>1. Use of the Website</h4>
 
       <p>
         You acknowledge and agree that your use of the Website is at your own
@@ -41,7 +41,7 @@ const TermsOfService = () => {
         of any kind.
       </p>
 
-      <h2>2. User Conduct</h2>
+      <h4>2. User Conduct</h4>
 
       <p>
         You agree to use the Website only for lawful purposes and in a manner
@@ -50,14 +50,14 @@ const TermsOfService = () => {
         infringing upon the rights of others.
       </p>
 
-      <h2>3. Privacy Policy</h2>
+      <h4>3. Privacy Policy</h4>
       <p>
         Your use of the Website is also governed by our Privacy Policy. By using
         the Website, you consent to the collection, processing, and use of your
         information as described in the Privacy Policy.
       </p>
 
-      <h2>4. Intellectual Property</h2>
+      <h4>4. Intellectual Property</h4>
       <p>
         The content on the Website, including but not limited to text, graphics,
         images, and logos, is protected by copyright and other intellectual
@@ -66,7 +66,7 @@ const TermsOfService = () => {
         written consent.
       </p>
 
-      <h2>5. Links to Third-Party Websites</h2>
+      <h4>5. Links to Third-Party Websites</h4>
       <p>
         The Website may contain links to third-party websites that are not owned
         or controlled by us. We have no control over, and assume no
@@ -76,14 +76,14 @@ const TermsOfService = () => {
         any third-party websites.
       </p>
 
-      <h2>6. Termination</h2>
+      <h4>6. Termination</h4>
       <p>
         We reserve the right to terminate or suspend your access to the Website
         at any time, without notice, for any reason, including, without
         limitation, breach of these Terms of Service.
       </p>
 
-      <h2>7. Limitation of Liability</h2>
+      <h4>7. Limitation of Liability</h4>
       <p>
         In no event shall we be liable for any direct, indirect, incidental,
         special, consequential, or punitive damages, or any loss of profits or
@@ -92,7 +92,7 @@ const TermsOfService = () => {
         the Website.
       </p>
 
-      <h2>8. Indemnification</h2>
+      <h4>8. Indemnification</h4>
       <p>
         You agree to indemnify and hold us harmless from any and all claims,
         liabilities, damages, costs, and expenses, including attorneys&apos;
@@ -100,14 +100,14 @@ const TermsOfService = () => {
         your violation of these Terms of Service.
       </p>
 
-      <h2>9. Changes to Terms of Service</h2>
+      <h4>9. Changes to Terms of Service</h4>
       <p>
         We may update these Terms of Service from time to time. Any changes will
         be posted on this page, and your continued use of the Website after such
         changes constitutes your acceptance of the updated terms.
       </p>
 
-      <h2>10. Contact Us</h2>
+      <h4>10. Contact Us</h4>
 
       <p>
         If you have any questions or concerns about these Terms of Service,
