@@ -1,7 +1,7 @@
 import PrivacyPolicy from "@/components/PrivacyPolicy";
 
-const PrivacyPolicyPage = () => {
+const PrivacyPolicyIntercept = () => {
   return <PrivacyPolicy />
 };
 
-export default PrivacyPolicyPage;
+export default PrivacyPolicyIntercept;

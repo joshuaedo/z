@@ -1,7 +1,7 @@
 import TermsOfService from "@/components/TermsOfService";
 
-const TermsOfServicePage = () => {
+const TermsOfServiceIntercept = () => {
   return <TermsOfService />
 };
 
-export default TermsOfServicePage;
+export default TermsOfServiceIntercept;
