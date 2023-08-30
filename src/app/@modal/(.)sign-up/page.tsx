@@ -1,3 +1,5 @@
+"use client"
+
 import Modal from '@/components/Modal';
 import SignUp from '@/components/SignUp';
 import { useRouter } from 'next/navigation';
