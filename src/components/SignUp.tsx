@@ -16,14 +16,14 @@ const SignUp = () => {
           By continuing, you agree to our{" "}
           <button onClick={() => {
             router.push("/terms-of-service");
-            router.refresh();
+           window.location.reload();
           }} className={
             'p-0 text-xs text-black underline underline-offset-2'
           }>terms of service</button>
           {" "}and{" "}
           <button onClick={() => {
             router.push("/privacy-policy");
-            router.refresh();
+            window.location.reload();
           }} className={
             'p-0 text-xs text-black underline underline-offset-2'
           }>privacy policy.</button>

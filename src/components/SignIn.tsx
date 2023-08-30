@@ -15,15 +15,15 @@ const SignIn = () => {
            <p className="text-xs max-w-xs mx-auto">
           By continuing, you agree to our{" "}
           <button onClick={() => {
-            router.replace("/terms-of-service");
-            router.refresh();
+            router.push("/terms-of-service");
+            window.location.reload();
           }} className={
             'p-0 text-xs text-black underline underline-offset-2'
           }>terms of service</button>
           {" "}and{" "}
           <button onClick={() => {
-            router.replace("/privacy-policy");
-            router.refresh();
+            router.push("/privacy-policy");
+            window.location.reload();
           }} className={
             'p-0 text-xs text-black underline underline-offset-2'
           }>privacy policy.</button>
