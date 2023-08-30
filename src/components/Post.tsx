@@ -40,7 +40,7 @@ const SubmitPost = ({ params, community }: SubmitPostProps) => {
       <Editor communityId={community.id} isModalOpen={isModalOpen} />
 
       <div
-        className={isModalOpen ? "w-full" : "w-full flex md:justify-center pb-20"}
+        className={isModalOpen ? "w-full" : "w-full flex justify-end md:justify-center pb-20"}
       >
         <Button
           type="submit"

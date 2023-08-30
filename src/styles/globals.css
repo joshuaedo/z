@@ -75,6 +75,11 @@
   }
 }
 
+.text-xs {
+  font-size: 0.7rem;
+  line-height: 1.14rem;
+}
+
 .codex-editor__redactor {
   padding-bottom: 0px !important;
   margin-right: 0 !important;
