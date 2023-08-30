@@ -1,6 +1,6 @@
 const PrivacyPolicy = () => {
     return (
-        <div>
+        <div id="privacy-policy">
             <h1>Privacy Policy for Z</h1>
             <p>At Z, accessible from z.joshuaedo.com, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Z and how we use it.</p>
 
