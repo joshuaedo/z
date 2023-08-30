@@ -13,24 +13,20 @@ const SignUp = () => {
       <div className="flex flex-col space-y-2 text-center">
         <Icons.logo className="mx-auto h-7 w-7" />
         <h1 className="text-2xl font-semibold tracking-tight">Sign Up</h1>
-          <p className="text-xs max-w-xs mx-auto">
+             <p className="text-xs max-w-xs mx-auto">
           By continuing, you agree to our{" "}
           <Button onClick={() => {
             router.back();
             router.push("/terms-of-service");
           }} className={buttonVariants({
-            variant: "link",
-            size: "sm",
-            className: 'p-0 text-xs'
+            className: 'p-0 text-xs hover:text-zinc-800 underline underline-offset-2'
           })}>terms of service</Button>
           {" "}and{" "}
           <Button onClick={() => {
             router.back();
             router.push("/privacy-policy");
           }} className={buttonVariants({
-            variant: "link",
-            size: "sm",
-            className: 'p-0 text-xs'
+            className: 'p-0 text-xs hover:text-zinc-800 underline underline-offset-2'
           })}>privacy policy.</Button>
         </p>
 

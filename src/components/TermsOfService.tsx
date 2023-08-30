@@ -17,14 +17,14 @@ const UpdatedDate: FC<UpdatedDateProps> = ({ currentDate }) => {
   const formattedYesterday = yesterday.toLocaleDateString('en-US', options);
 
   return (
-    <p>These Terms of Service were last updated on {formattedYesterday}.</p>
+    <h3>These Terms of Service were last updated on {formattedYesterday}.</h3>
   );
 };
 
 const TermsOfService = () => {
   const today = new Date();
   return (
-    <div id='terms-of-service'>
+    <div id='terms-of-service' className="prose prose-stone dark:prose-invert">
       <h3>
         By accessing and using the website located at z.joshuaedo.com (referred
         to as &quot;The Z Network&quot;), you agree to comply with and be bound

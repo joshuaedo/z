@@ -1,6 +1,6 @@
 const PrivacyPolicy = () => {
   return (
-    <div id='privacy-policy'>
+    <div id='privacy-policy' className="prose prose-stone dark:prose-invert">
       <h1>Privacy Policy for Z</h1>
       <p>
         At Z, accessible from z.joshuaedo.com, one of our main priorities is the

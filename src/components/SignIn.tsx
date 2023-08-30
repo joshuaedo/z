@@ -19,18 +19,14 @@ const SignIn = () => {
             router.back();
             router.push("/terms-of-service");
           }} className={buttonVariants({
-            variant: "link",
-            size: "sm",
-            className: 'p-0 text-xs'
+            className: 'p-0 text-xs hover:text-zinc-800 underline underline-offset-2'
           })}>terms of service</Button>
           {" "}and{" "}
           <Button onClick={() => {
             router.back();
             router.push("/privacy-policy");
           }} className={buttonVariants({
-            variant: "link",
-            size: "sm",
-            className: 'p-0 text-xs'
+            className: 'p-0 text-xs hover:text-zinc-800 underline underline-offset-2'
           })}>privacy policy.</Button>
         </p>
 

@@ -91,14 +91,14 @@
 #terms-of-service > h1,
 #privacy-policy > h1 {
   font-weight: bold;
-  font-size: large;
+  font-size: x-large;
   padding-bottom: 1rem;
 }
 
 #terms-of-service > h2,
 #privacy-policy > h2 {
   font-weight: bold;
-  font-size: x-large;
+  font-size: large;
   padding-bottom: 0.25rem;
 }
 
@@ -158,3 +158,11 @@
   background: black !important;
   border-radius: 8px !important;
 }
+
+/* @media (min-width: 768px) {
+  #terms-of-service,
+#privacy-policy {
+  padding-left: 5rem;
+  padding-right: 5rem;
+}
+} */
