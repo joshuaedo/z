@@ -16,18 +16,22 @@ const SignUp = () => {
           <p className="text-xs max-w-xs mx-auto">
           By continuing, you agree to our{" "}
           <Button onClick={() => {
-            router.push("/terms-of-service")
+            router.back();
+            router.push("/terms-of-service");
           }} className={buttonVariants({
             variant: "link",
-            size: "sm"
+            size: "sm",
+            className: 'p-0 text-xs'
           })}>terms of service</Button>
           {" "}and{" "}
           <Button onClick={() => {
-            router.push("/privacy-policy")
+            router.back();
+            router.push("/privacy-policy");
           }} className={buttonVariants({
             variant: "link",
-            size: "sm"
-          })}>privacy.</Button>
+            size: "sm",
+            className: 'p-0 text-xs'
+          })}>privacy policy.</Button>
         </p>
 
         {/* Sign Up Form */}

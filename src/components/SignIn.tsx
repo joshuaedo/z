@@ -13,21 +13,25 @@ const SignIn = () => {
       <div className="flex flex-col space-y-2 text-center">
         <Icons.logo className="mx-auto h-7 w-7" />
         <h1 className="text-2xl font-semibold tracking-tight">Welcome back</h1>
-        <p className="text-xs max-w-xs mx-auto">
+           <p className="text-xs max-w-xs mx-auto">
           By continuing, you agree to our{" "}
           <Button onClick={() => {
-            router.push("/terms-of-service")
+            router.back();
+            router.push("/terms-of-service");
           }} className={buttonVariants({
             variant: "link",
-            size: "sm"
+            size: "sm",
+            className: 'p-0 text-xs'
           })}>terms of service</Button>
           {" "}and{" "}
           <Button onClick={() => {
-            router.push("/privacy-policy")
+            router.back();
+            router.push("/privacy-policy");
           }} className={buttonVariants({
             variant: "link",
-            size: "sm"
-          })}>privacy.</Button>
+            size: "sm",
+            className: 'p-0 text-xs'
+          })}>privacy policy.</Button>
         </p>
 
         {/* Sign In Form */}
