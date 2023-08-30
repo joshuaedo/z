@@ -141,7 +141,7 @@ const Editor: FC<EditorProps> = ({ communityId, isModalOpen }) => {
         content,
         communityId,
       };
-      const { data } = await axios.post('/api/community/post/create');
+      const { data } = await axios.post('/api/community/post/create', payload);
       return data;
     },
     onError: () => {
