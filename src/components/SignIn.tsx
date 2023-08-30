@@ -35,7 +35,8 @@ const SignIn = () => {
           <Link
             href="/sign-up"
             className="hover:text-zinc-800 text-sm underline underline-offset-4"
-          >         
+          >      
+          Sign Up   
           </Link>
         </p>
       </div>
