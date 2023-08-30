@@ -19,7 +19,7 @@ const router = useRouter();
                  <Button
             onClick={toggleModal()}
             variant="subtle"
-            className="h-6 w-6 p-0 rounded-md pl-3"
+            className="h-6 w-6 p-0 rounded-md"
             aria-label="toggle modal"
           >
             <Maximize2 className="h-4 w-4" />
@@ -27,7 +27,7 @@ const router = useRouter();
 
                <Button onClick={() => {
                         router.back()
-                    }} variant="subtle" className="h-6 w-6 p-0 rounded-md pr-3" aria-label="close modal">
+                    }} variant="subtle" className="h-6 w-6 p-0 rounded-md" aria-label="close modal">
                     <X className="h-4 w-4" />
                      </Button>
                   </div>
