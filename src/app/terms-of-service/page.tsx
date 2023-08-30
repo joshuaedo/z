@@ -35,7 +35,7 @@ const TermsOfService: React.FC = () => {
 <p>In no event shall we be liable for any direct, indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly, or any loss of data, use, goodwill, or other intangible losses, resulting from your use of the Website.</p>
 
 <h2>8. Indemnification</h2>
-<p>You agree to indemnify and hold us harmless from any and all claims, liabilities, damages, costs, and expenses, including attorneys' fees, arising out of or in connection with your use of the Website or your violation of these Terms of Service.</p>
+<p>You agree to indemnify and hold us harmless from any and all claims, liabilities, damages, costs, and expenses, including attorneys&apos; fees, arising out of or in connection with your use of the Website or your violation of these Terms of Service.</p>
 
 <h2>19. Changes to Terms of Service</h2>
 <p>We may update these Terms of Service from time to time. Any changes will be posted on this page, and your continued use of the Website after such changes constitutes your acceptance of the updated terms.</p>
