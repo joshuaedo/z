@@ -1,30 +1,46 @@
+
 "use client"
+
+import { useState } from "react";
 import Link from "next/link";
 import { Icons } from "./Icons";
 import UserAuthForm from "./UserAuthForm";
 import { useRouter } from "next/navigation";
 
 const SignIn = () => {
- const router = useRouter();
+  const router = useRouter();
+  const [containerVisible, setContainerVisible] = useState(true); // State to manage container visibility
+
+  const hideContainer = () => {
+    setContainerVisible(false);
+  };
 
   return (
-    <div className="container mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[25rem]">
+    <div className={`container mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[25rem] ${containerVisible ? '' : 'hidden'}`}>
       <div className="flex flex-col space-y-2 text-center">
         <Icons.logo className="mx-auto h-7 w-7" />
         <h1 className="text-2xl font-semibold tracking-tight">Welcome back</h1>
-           <p className="text-xs max-w-xs mx-auto">
+        <p className="text-xs max-w-xs mx-auto">
           By continuing, you agree to our{" "}
-          <button onClick={() => {
-            router.replace("/terms-of-service");
-          }} className={
-            'p-0 text-xs text-black underline underline-offset-2'
-          }>terms of service</button>
-          {" "}and{" "}
-          <button onClick={() => {
-            router.replace("/privacy-policy");
-          }} className={
-            'p-0 text-xs text-black underline underline-offset-2'
-          }>privacy policy.</button>
+          <button
+            onClick={() => {
+              hideContainer(); // Hide the container when the button is clicked
+              router.replace("/terms-of-service");       
+            }}
+            className="p-0 text-xs text-black underline underline-offset-2"
+          >
+            terms of service
+          </button>{" "}
+          and{" "}
+          <button
+            onClick={() => {
+              hideContainer(); // Hide the container when the button is clicked
+              router.replace("/privacy-policy");           
+            }}
+            className="p-0 text-xs text-black underline underline-offset-2"
+          >
+            privacy policy.
+          </button>
         </p>
 
         {/* Sign In Form */}
@@ -35,8 +51,8 @@ const SignIn = () => {
           <Link
             href="/sign-up"
             className="hover:text-zinc-800 text-sm underline underline-offset-4"
-          >      
-          Sign Up   
+          >
+            Sign Up
           </Link>
         </p>
       </div>
