@@ -2,10 +2,8 @@
 import Link from "next/link";
 import { Icons } from "./Icons";
 import UserAuthForm from "./UserAuthForm";
-import { useRouter } from "next/navigation";
 
 const SignIn = () => {
- const router = useRouter();
 
   return (
     <div className="container mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[25rem]">
@@ -14,20 +12,16 @@ const SignIn = () => {
         <h1 className="text-2xl font-semibold tracking-tight">Welcome back</h1>
         <p className="text-xs max-w-xs mx-auto">
           By continuing, you agree to our{" "}
-          <button onClick={() => {
-            window.location.reload();
-            router.push("/terms-of-service");
-          }} className={
+          <a href="/terms-of-service"
+           className={
             'p-0 text-xs text-black underline underline-offset-2'
-          }>terms of service</button>
+          }>terms of service</a>
           {" "}and{" "}
-          <button onClick={() => {
-            window.location.reload();
-            router.push("/privacy-policy");
-          }} className={
+          <a href="/privacy-policy" className={
             'p-0 text-xs text-black underline underline-offset-2'
-          }>privacy policy.</button>
+          }>privacy policy.</a>
         </p>
+
         {/* Sign In Form */}
         <UserAuthForm />
 
