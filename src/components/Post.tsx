@@ -26,7 +26,7 @@ const Post: FC<PostProps> = ({communityName, post, commentAmt, votesAmt, current
   return (
     <>
       <div className='rounded-md bg-white shadow'>
-        <div className='px-6 py-4 flex justify-between'>
+        <div className='px-2 md:px-6 py-4 flex justify-between'>
         <PostVoteClient postId={post.id} initialVotesAmt={votesAmt} initialVote={currentVote?.type} />
 
           <div className='w-0 flex-1'>
