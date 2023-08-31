@@ -1,7 +1,9 @@
-// "use client";
+"use client";
 
+import { formatTimeToNow } from '@/lib/utils';
 import { Post, User, Vote } from '@prisma/client';
-import { FC } from 'react';
+import { MessageSquare } from 'lucide-react';
+import { FC, useRef } from 'react';
 
 interface PostProps {
   communityName: string
@@ -9,9 +11,12 @@ interface PostProps {
     author: User
     votes: Vote[]
   }
+  commentAmt: number
 }
 
-const Post: FC<PostProps> = ({communityName, post }) => {
+const Post: FC<PostProps> = ({communityName, post, commentAmt }) => {
+  const pRef = useRef<HTMLDivElement>(null)
+
   return (
     <>
       <div className='rounded-md bg-white shadow'>
@@ -30,10 +35,30 @@ const Post: FC<PostProps> = ({communityName, post }) => {
               <span className='px-1'>•</span>
               </>
             ) : null }
-            <span className=''>{`Posted by u/${post.author.name}`}</span>
+            <span className=''>{`Posted by u/${post.author.name} `}</span>
+            {formatTimeToNow(new Date(post.createdAt))}
            </div>
+
+            <a href={`z/${communityName}/post/${post.id}`}>
+               <h1 className="text-lg font-semibold py-2 leading-6 text-gray-900">
+                {post.title}
+               </h1>
+            </a>
+
+            <div className="relative text-sm max-h-40 w-full overflow-clip" ref={pRef}>
+              {pRef.current?.clientHeight === 160 ? (
+                 <div className='absolute bottom-0 h-24 w-full bg-gradient-to-t from-white to-transparent'/>
+              ) : null}
+            </div>
+
           </div>
         </div>
+
+         <div className='bg-gray-50 z-20 text-sm-p-4 sm:px-6'>
+            <a className="w-fit flex items-center gap-2" href={`z/${communityName}/post/${post.id}`}>
+               <MessageSquare className='h-4 w-4'/>{` ${commentAmt} comments`}
+            </a>
+         </div>
       </div>
     </>
   );
