@@ -28,7 +28,8 @@ const SubmitPage = async ({ params }: SubmitPageProps) => {
                     community: true,
                 },
 
-                take: INFINITE_SCROLLING_PAGINATION_RESULTS
+                take: 100
+                // take: INFINITE_SCROLLING_PAGINATION_RESULTS
             }
         }
 

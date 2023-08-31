@@ -23,7 +23,7 @@ const style = {
 
 const renderers = {
     image: CustomImageRenderer,
-    // code: CustomCodeRenderer,
+    code: CustomCodeRenderer,
 }
 
 const EditorOutput: FC<EditorOutputProps> = ({ content }) => {
@@ -40,6 +40,15 @@ function CustomImageRenderer({data}: any) {
         <div className="relative w-full min-h-[15rem]">
             <Image alt="" src={src} className="object-contain" fill />
         </div>
+    )
+}
+
+function CustomCodeRenderer({data}: any) {
+
+    return (
+        <pre className="bg-gray-800 rounded-md p-4">
+           <code className="text-gray-100 text-sm">{data.code}</code>
+        </pre>
     )
 }
 
