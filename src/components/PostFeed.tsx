@@ -60,13 +60,13 @@ const PostFeed: FC<PostFeedProps> = ({ initialPosts, communityName }) => {
         if (index === posts.length - 1) {
           return (
             <li key={post.id} ref={ref}>
-              <Post commentAmt={post.comments.length} post={post} communityName={post.community.name}/>
+              <Post currentVote={currentVote} votesAmt={votesAmt} commentAmt={post.comments.length} post={post} communityName={post.community.name}/>
             </li>
           );
         } else {
           return (
             <li key={post.id}>
-              <Post commentAmt={post.comments.length} post={post} communityName={post.community.name}/>
+              <Post currentVote={currentVote} votesAmt={votesAmt} commentAmt={post.comments.length} post={post} communityName={post.community.name}/>
             </li>
           );
         }

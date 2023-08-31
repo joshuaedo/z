@@ -5,7 +5,7 @@ import { usePrevious } from "@mantine/hooks";
 import { VoteType } from "@prisma/client";
 import { FC, useEffect, useState } from "react";
 import { Button } from "../ui/Button";
-import { ArrowBigUp } from "lucide-react";
+import { ArrowBigDown, ArrowBigUp } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface PostVoteClientProps {
@@ -29,8 +29,17 @@ const PostVoteClient: FC<PostVoteClientProps> = ({
   return (
       <div className='flex sm:flex:col gap-4 sm:gap-0 pr-6 sm:w-20 pb-4 sm:pb-0'>
         <Button size="sm" variant="ghost" aria-label="upvote">
-            <ArrowBigUp className={cn("h-5 w-5 tex-zinc-700", {})} />
+            <ArrowBigUp className={cn("h-5 w-5 text-zinc-700", {"text-purple-500 fill-purple-500" : currentVote === "UP" })} />
         </Button>
+
+        <p className="text-center py-2 font-medium text-sm text-zinc-900">
+            {votesAmt}
+        </p>
+
+        <Button size="sm" variant="ghost" aria-label="downvote">
+            <ArrowBigDown className={cn("h-5 w-5 text-zinc-700", {"text-red-500 fill-red-500" : currentVote === "DOWN" })} />
+        </Button>
+
       </div>
   );
 };
