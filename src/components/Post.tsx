@@ -1,20 +1,15 @@
 // "use client";
 
-import { FC } from "react";
+import { FC } from 'react';
 
-interface PostProps {
+interface PostProps {}
 
-}
-
-const Post: FC<PostProps> = ({
-
-}) => {
- 
+const Post: FC<PostProps> = ({}) => {
   return (
-  <>
-<div>a post</div>
-  </>
-  )
-}
+    <>
+      <div>a post</div>
+    </>
+  );
+};
 
 export default Post;

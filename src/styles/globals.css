@@ -80,8 +80,6 @@
   line-height: 1.14rem;
 }
 
-
-
 /* TOS & Privacy Policy */
 #terms-of-service,
 #privacy-policy {
@@ -103,9 +101,7 @@
 #terms-of-service > li,
 #privacy-policy > li {
   font-size: small;
-} 
-
-
+}
 
 /* Editor */
 .codex-editor__redactor {
