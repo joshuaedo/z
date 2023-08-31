@@ -5,6 +5,7 @@ import { db } from "@/lib/db";
 import { notFound } from "next/navigation";
 import SubscribeLeaveToggle from "@/components/SubscribeLeaveToggle";
 import { format } from "date-fns";
+import PostFeed from "@/components/PostFeed";
 
 interface SubmitPageProps {
     params: {
@@ -63,13 +64,12 @@ const SubmitPage = async ({ params }: SubmitPageProps) => {
 
     return (
      <div className="sm:container max-w-7xl mx-auto h-full pt-4 md:pt-6 lg:pt-8">
-      <div>
-        
+      <div> 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-y-4 md:gap-x-4 py-6">
           <div className="flex flex-col col-span-1 md:col-span-2 space-y-6">
           <h1 className="font-bold text-3xl md:text-4xl h-14">z/{community.name}</h1>
             <MiniCreatePost session={session}  />
-            {/* children */}
+            <PostFeed initialPosts={community.posts} communityName={community.name} />
           </div>
 
           {/* Info sidebar */}

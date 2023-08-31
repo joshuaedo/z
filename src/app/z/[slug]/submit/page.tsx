@@ -1,4 +1,4 @@
-import SubmitPost from "@/components/Post";
+import SubmitPost from "@/components/SubmitPost";
 import { db } from "@/lib/db";
 import { notFound } from "next/navigation";
 
