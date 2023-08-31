@@ -20,18 +20,17 @@ const Post: FC<PostProps> = ({communityName, post }) => {
 
           <div className='w-0 flex-1'>
            <div className='max-h-40 mt-1 text-xs text-gray-500'>
-             {communityName ? 
-            (
+             { communityName ? (
               <>
-              <a className='underline text-zinc-900 text-sm underline-offset-2' href={`z/${communityName}`}>
+              <a className='underline text-zinc-900 text-sm underline-offset-2' 
+               href={`z/${communityName}`}>
                z/{communityName}
               </a>
+
               <span className='px-1'>•</span>
               </>
-            ) :
-            null 
-            }
-            <span className=''>Posted by u/{post.author.name}</span>
+            ) : null }
+            <div className='inline'>Posted by u/{post.author.name}</div>
            </div>
           </div>
         </div>
