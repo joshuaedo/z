@@ -29,7 +29,7 @@ const Post: FC<PostProps> = ({communityName, post, commentAmt, votesAmt, current
         <div className='px-6 py-4 justify-between'>
         <PostVoteClient postId={post.id} initialVotesAmt={votesAmt} initialVote={currentVote?.type} />
 
-          <div className=''>
+          <div className='w-0 flex-1'>
            <div className='max-h-40 mt-1 text-xs text-gray-500'>
              { communityName ? (
               <>
