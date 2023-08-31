@@ -18,7 +18,7 @@ const Post: FC<PostProps> = ({communityName, post }) => {
         <div className='px-6 py-4 justify-between'>
         {/* PostVotes */}
 
-          <div className='w-0 flex-1'>
+          <div className=''>
            <div className='max-h-40 mt-1 text-xs text-gray-500'>
              { communityName ? (
               <>
@@ -30,7 +30,7 @@ const Post: FC<PostProps> = ({communityName, post }) => {
               <span className='px-1'>•</span>
               </>
             ) : null }
-            <div className='inline'>Posted by u/{post.author.name}</div>
+            <span className=''>{`Posted by u/${post.author.name}`}</span>
            </div>
           </div>
         </div>
