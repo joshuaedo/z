@@ -64,16 +64,17 @@ const SubmitPage = async ({ params }: SubmitPageProps) => {
     return (
      <div className="sm:container max-w-7xl mx-auto h-full pt-4 md:pt-6 lg:pt-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-y-4 md:gap-x-4 py-6">
-
           <div className="flex flex-col col-span-1 md:col-span-2 space-y-6">
             <h1 className="font-bold text-3xl md:text-4xl h-14">z/{community.name}</h1>
             <MiniCreatePost session={session}  />
+            <div className="inline md:hidden">
+              <SideBar community={community} session={session} isSubscribed={isSubscribed} memberCount={memberCount} />
+            </div>
             <PostFeed initialPosts={community.posts} communityName={community.name} />
           </div>
-
-          {/* Info sidebar */}
-          <SideBar community={community} session={session} isSubscribed={isSubscribed} memberCount={memberCount} />
-
+          <div className="hidden md:inline">
+            <SideBar community={community} session={session} isSubscribed={isSubscribed} memberCount={memberCount} />
+          </div>
         </div>
     </div>
     )

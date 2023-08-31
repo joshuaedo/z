@@ -18,7 +18,7 @@ memberCount: number,
 const SideBar: FC<SideBarProps> = ({community, session, isSubscribed, memberCount}) => {
 
     return (
-         <div className="col-span-1 overflow-hidden h-fit rounded-lg border border-gray-200 order-last">
+         <div className="col-span-1 overflow-hidden h-fit rounded-lg border border-gray-200">
             <div className="px-6 py-4">
               <p className="font-semi-bold py-3">About z/{community.name}</p>
             </div>
