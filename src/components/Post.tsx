@@ -12,7 +12,7 @@ const Post: FC<PostProps> = ({
  
   return (
   <>
-<div>post</div>
+<div>a post</div>
   </>
   )
 }
