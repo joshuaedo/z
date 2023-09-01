@@ -88,7 +88,7 @@ const PostVoteClient: FC<PostVoteClientProps> = ({
             <ArrowBigDown className={cn("h-4 w-4 md:h-5 md:w-5 text-zinc-700", {"text-red-500 fill-red-500" : currentVote === "DOWN" })} />
         </Button>
         <button onClick={() => vote("DOWN")} aria-label="upvote" className="flex justify-center items-center md:hidden">
-            <ArrowBigUp className={cn("h-4 w-4 md:h-5 md:w-5 text-zinc-700", {"text-red-500 fill-red-500" : currentVote === "DOWN" })} />
+            <ArrowBigDown className={cn("h-4 w-4 md:h-5 md:w-5 text-zinc-700", {"text-red-500 fill-red-500" : currentVote === "DOWN" })} />
         </button>
 
 
