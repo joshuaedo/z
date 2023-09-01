@@ -73,17 +73,24 @@ const PostVoteClient: FC<PostVoteClientProps> = ({
 
   return (
       <div className='flex flex-col w-12 md:w-20 md:gap-4 md:pr-6 md:pb-4'>
-        <Button onClick={() => vote("UP")} size="sm" variant="ghost" aria-label="upvote">
+        <Button onClick={() => vote("UP")} size="sm" variant="ghost" aria-label="upvote" className="hidden md:inline-flex">
             <ArrowBigUp className={cn("h-4 w-4 md:h-5 md:w-5 text-zinc-700", {"text-purple-500 fill-purple-500" : currentVote === "UP" })} />
         </Button>
+        <button onClick={() => vote("UP")} aria-label="upvote" className="inline-flex md:hidden">
+            <ArrowBigUp className={cn("h-4 w-4 md:h-5 md:w-5 text-zinc-700", {"text-purple-500 fill-purple-500" : currentVote === "UP" })} />
+        </button>
 
         <p className="text-center py-2 font-medium text-sm text-zinc-900">
             {votesAmt}
         </p>
 
-        <Button onClick={() => vote("DOWN")} size="sm" variant="ghost" aria-label="downvote">
+        <Button onClick={() => vote("DOWN")} size="sm" variant="ghost" aria-label="downvote" className="hidden md:inline-flex">
             <ArrowBigDown className={cn("h-4 w-4 md:h-5 md:w-5 text-zinc-700", {"text-red-500 fill-red-500" : currentVote === "DOWN" })} />
         </Button>
+        <button onClick={() => vote("DOWN")} aria-label="upvote" className="inline-flex md:hidden">
+            <ArrowBigUp className={cn("h-4 w-4 md:h-5 md:w-5 text-zinc-700", {"text-red-500 fill-red-500" : currentVote === "DOWN" })} />
+        </button>
+
 
       </div>
   );
