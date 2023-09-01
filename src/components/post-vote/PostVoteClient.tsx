@@ -27,8 +27,8 @@ const PostVoteClient: FC<PostVoteClientProps> = ({
  const prevVote = usePrevious(currentVote)
 
  useEffect(() => {
-    setCurrentVote(initialVote)
- }), [initialVote]
+  setCurrentVote(initialVote);
+}, [initialVote]);
 
  const {mutate: vote} = useMutation ({
   mutationFn: async (voteType: VoteType) => {
