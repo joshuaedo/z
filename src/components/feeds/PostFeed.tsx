@@ -28,9 +28,9 @@ const PostFeed: FC<PostFeedProps> = ({ initialPosts, communityName }) => {
   const { data, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
     ['infinte-query'],
     async ({ pageParam = 1 }) => {
-      const query =
+      const query =   
         `/api/posts?limit=${INFINITE_SCROLLING_PAGINATION_RESULTS}&page=${pageParam}` +
-        (!!communityName ? `communityName=${communityName}` : '');
+        (!!communityName ? `&communityName=${communityName}` : ''); // Add the '&' here
 
       const { data } = await axios.get(query);
       return data as ExtendedPost[];

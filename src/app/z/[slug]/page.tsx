@@ -27,15 +27,13 @@ const SubmitPage = async ({ params }: SubmitPageProps) => {
                     comments: true,
                     community: true,
                 },
+              // where: { communityId: community.id },
                 orderBy: {
                   createdAt: "desc"
                 },
-
-                // take: 100
                 take: INFINITE_SCROLLING_PAGINATION_RESULTS
             }
         }
-
     });
 
     if (!community) {
