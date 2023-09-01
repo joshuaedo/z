@@ -27,9 +27,12 @@ const SubmitPage = async ({ params }: SubmitPageProps) => {
                     comments: true,
                     community: true,
                 },
+                orderBy: {
+                  createdAt: "desc"
+                },
 
-                take: 100
-                // take: INFINITE_SCROLLING_PAGINATION_RESULTS
+                // take: 100
+                take: INFINITE_SCROLLING_PAGINATION_RESULTS
             }
         }
 
