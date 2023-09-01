@@ -1,21 +1,43 @@
-// 'use client';
+import { INFINITE_SCROLLING_PAGINATION_RESULTS } from '@/config';
+import { db } from '@/lib/db';
+import PostFeed from './PostFeed';
+import { getAuthSession } from '@/lib/auth';
 
-import { ExtendedPost } from '@/types/db';
-import { FC } from 'react';
+const CustomFeed= async () => {
 
-interface CustomFeedProps {
-//   initialPosts: ExtendedPost[];
-//   communityName?: string;
+  const session = await getAuthSession()
+
+  const followedCommunities = await db.subscription.findMany({
+     where: {
+        userId: session?.user.id
+     },
+     include: {
+        community: true
+     }
+  })
+
+  const posts = await db.post.findMany({
+    where: {
+        community: {
+            name: {
+                in: followedCommunities.map(({community}) => community.id)
+           }
+        }
+    },
+    orderBy: {
+        createdAt: "desc",
+    },
+    include: {
+        votes: true,
+        author: true,
+        comments: true,
+        community: true,
+    },
+    take: INFINITE_SCROLLING_PAGINATION_RESULTS,
 }
+)
 
-const CustomFeed: FC<CustomFeedProps> = ({ }) => {
- 
-
-  return (
-     <div className={``}>
-       CustomFeed
-    </div>
-  );
+  return <PostFeed initialPosts={posts} />
 };
 
 export default CustomFeed;
