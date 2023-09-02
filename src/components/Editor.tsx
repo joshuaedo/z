@@ -11,6 +11,7 @@ import { toast } from '@/hooks/use-toast';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import { usePathname, useRouter } from 'next/navigation';
+import dynamic from 'next/dynamic';
 
 interface EditorProps {
   communityId: string;
@@ -38,7 +39,9 @@ const Editor: FC<EditorProps> = ({ communityId, isModalOpen }) => {
   const router = useRouter();
 
   const initializeEditor = useCallback(async () => {
-    const EditorJS = (await import('@editorjs/editorjs')).default;
+    {/* @ts-expect-error Server Component */}
+    const EditorJS = dynamic(() => import('@editorjs/editorjs'))
+    // const EditorJS = (await import('@editorjs/editorjs')).default;
     const Header = (await import('@editorjs/header')).default;
     const Embed = (await import('@editorjs/embed')).default;
     const Table = (await import('@editorjs/table')).default;
