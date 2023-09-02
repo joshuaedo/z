@@ -4,14 +4,14 @@ import { Home, UserCircle, Search, Users } from "lucide-react";
 
  const Aside = () => {
     return (
-      <aside className="overflow-hidden h-fit rounded-lg border border-gray-200 fixed px-16 py-8 space-y-5">
+      <aside className="overflow-hidden h-fit rounded-lg border border-gray-200 fixed px-20 py-8 space-y-5">
         
         <Link href="/" className="hidden md:flex items-center">
           <Icons.logo className="h-8 w-8 md:h-10 md:w-10" />
         </Link>
 
-        <Link href="/" className="flex items-center justify-center text-xl font-medium">
-          <Home strokeWidth={1.5} className="h-5 w-5 md:h-7 md:w-7 mr-5" />
+        <Link href="/" className="flex items-center justify-center text-2xl font-medium p-2 rounded-lg">
+          <Home strokeWidth={1.2} className="h-7 w-7 md:h-9 md:w-9" />
            Home
         </Link>
 
