@@ -1,4 +1,4 @@
-import Navbar from "@/components/Navbar";
+import Header from "@/components/Header";
 import Providers from "@/components/Providers";
 import { Toaster } from "@/components/ui/Toaster";
 import { cn } from "@/lib/utils";
@@ -60,15 +60,14 @@ export default function RootLayout({
       <body className="min-h-screen pt-12 bg-slate-50 antialiased">
         <Providers>
           {/* @ts-expect-error Server Component */}
-          <Navbar />
-
+          <Header />
+          {/* Aside */}
           {modal}
-
           <main className="container max-w-7xl mx-auto h-full pt-12">
             {children}
           </main>
-
           <Toaster />
+          {/* MobileNav */}
         </Providers>
       </body>
     </html>

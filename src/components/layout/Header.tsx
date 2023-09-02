@@ -1,21 +1,13 @@
 import Link from "next/link";
-import { Icons } from "./Icons";
-import { buttonVariants } from "./ui/Button";
 import { getAuthSession } from "@/lib/auth";
-import UserAccountNav from "./UserAccountNav";
-// import { Lato } from "next/font/google";
-// const lato = Lato({ weight: "400", subsets: ["latin"] });
+import { Icons } from "../Icons";
+import UserAccountNav from "../UserAccountNav";
+import { buttonVariants } from "../ui/Button";
 
-const Navbar = async () => {
+const Header = async () => {
 
   const session = await getAuthSession();
   const zUser = session?.user;
-  // const zMail = session?.user.email;
-  // const zId = session?.user.id;
-  // const zImage = session?.user.image;
-  // const zName = session?.user.name;
-  // const zUsername = session?.user.username;
-
 
   return (
     <nav className="fixed top-0 inset-x-0 h-fit bg-zinc-100 bprder-b border-zinc-300 z-[10] py-2">
@@ -25,6 +17,7 @@ const Navbar = async () => {
         </Link>
 
         {/* Search Bar */}
+        
         {zUser ? (<UserAccountNav user={zUser} />) :
           (<Link href="/sign-in" className={buttonVariants()}>
             Sign In
@@ -34,4 +27,4 @@ const Navbar = async () => {
   );
 };
 
-export default Navbar;
+export default Header;
