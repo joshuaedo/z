@@ -58,16 +58,21 @@ export default function RootLayout({
         inter.className
       )}
     >
-      <body className="min-h-screen pt-12 bg-slate-50 antialiased">
+      <body className="min-h-screen bg-slate-50 antialiased">
         <Providers>
           {/* @ts-expect-error Server Component */}
           <Header />
           {modal}
           <main className="container max-w-5xl mx-auto h-full pt-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-y-4 md:gap-x-4 py-6 relative">
-           <Aside />
+          {/* Desktop */}
+          <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-y-4 md:gap-x-4 py-6 relative">
+            <Aside />
             {children}
-            </div>
+          </div>
+          {/* Mobile */}
+          <div className="block md:hidden gap-y-4 md:gap-x-4 py-6 relative">
+            {children}
+          </div>
           </main>
           <Toaster />
           {/* MobileNav */}
