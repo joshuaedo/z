@@ -10,7 +10,7 @@ import { buttonVariants } from "../ui/Button";
     const zUser = session?.user;
 
     return (
-      <aside className="overflow-hidden h-fit rounded-lg border border-gray-200 fixed px-10 py-8 space-y-2">
+      <aside className="overflow-hidden h-fit rounded-lg border border-gray-200 fixed px-10 py-8 space-y-4">
         
         <Link href="/" className="hidden md:flex items-center">
           <Icons.logo className="h-8 w-8 md:h-10 md:w-10" />
@@ -45,14 +45,14 @@ import { buttonVariants } from "../ui/Button";
 
        <hr />
 
-       <div>
-       <Link href="/privacy-policy" className="text-lg font-medium py-1 pr-2 rounded-lg">
+       <div className="space-y-2">
+       <Link href="/privacy-policy" className="block text-lg font-medium py-1 pr-2 rounded-lg">
            Privacy Policy
         </Link>
-        <Link href="/terms-of-service" className="text-lg font-medium py-1 pr-2 rounded-lg">
+        <Link href="/terms-of-service" className="block text-lg font-medium py-1 pr-2 rounded-lg">
            Terms of Service
         </Link>
-        <Link href="/" className="text-lg font-medium py-1 pr-2 rounded-lg">
+        <Link href="/" className="block text-lg font-medium py-1 pr-2 rounded-lg">
            Support
         </Link>
        </div>
