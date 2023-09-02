@@ -1,5 +1,6 @@
 import Aside from "@/components/layout/Aside";
 import Header from "@/components/layout/Header";
+import Main from "@/components/layout/Main";
 import Providers from "@/components/Providers";
 import { Toaster } from "@/components/ui/Toaster";
 import { cn } from "@/lib/utils";
@@ -62,25 +63,9 @@ export default function RootLayout({
         <Providers>
           <Header />
           {modal}
-          <main className="container max-w-5xl mx-auto h-full py-8">
-
-          {/* Desktop Page */}
-          <div className="hidden md:grid grid-cols-3 gap-y-4 gap-x-4">
-            <div className="col-span-1 h-full relative">
-              {/* @ts-expect-error Server Component */}
-              <Aside />
-            </div>
-            <div className="col-span-2">
+           <Main>
             {children}
-            </div>
-          </div>
-
-          {/* Mobile Page */}
-          <div className="md:hidden">
-            {children}
-          </div>
-          
-          </main>
+           </Main>
           <Toaster />
           {/* MobileNav */}
         </Providers>
