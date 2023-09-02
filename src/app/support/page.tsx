@@ -30,3 +30,4 @@ const SupportPage = ({}: SupportPageProps) => {
   )
 }
 
+export default SupportPage;
