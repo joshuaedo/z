@@ -1,6 +1,5 @@
 import Aside from "@/components/layout/Aside";
 import Header from "@/components/layout/Header";
-import Main from "@/components/layout/Main";
 import Providers from "@/components/Providers";
 import { Toaster } from "@/components/ui/Toaster";
 import { cn } from "@/lib/utils";
@@ -63,9 +62,17 @@ export default function RootLayout({
         <Providers>
           <Header />
           {modal}
-           <Main>
+          <main className="container max-w-5xl mx-auto h-full py-8">
+
+          {/* Desktop Page */}
+
+
+          {/* Mobile Page */}
+          <div className="block md:hidden gap-y-4 ">
             {children}
-           </Main>
+          </div>
+          
+          </main>
           <Toaster />
           {/* MobileNav */}
         </Providers>
