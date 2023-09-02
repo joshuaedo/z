@@ -12,26 +12,26 @@ import { buttonVariants } from "../ui/Button";
     return (
       <aside className="overflow-hidden h-fit rounded-lg border border-gray-200 fixed px-10 py-8 space-y-4">
         
-        <Link href="/" className="hidden md:flex items-center px-2 ">
+        <Link href="/" className="hidden md:flex items-center">
           <Icons.logo className="h-8 w-8 md:h-10 md:w-10" />
         </Link>
 
-        <Link href="/" className="flex items-end text-xl font-medium py-1 px-2 rounded-lg">
+        <Link href="/" className="flex items-end text-xl font-medium py-1 pr-2 rounded-lg">
            <Home strokeWidth={1.5} className="h-5 w-5 md:h-7 md:w-7 mr-3" />
            Home
         </Link>
 
-        <Link href="/profile" className="flex items-end text-xl font-medium py-1 px-2  rounded-lg">
+        <Link href="/profile" className="flex items-end text-xl font-medium py-1 pr-2 rounded-lg">
            <UserCircle strokeWidth={1.5} className="h-5 w-5 md:h-7 md:w-7 mr-3" />
            Profile
         </Link>
 
-        <Link href="/explore" className="flex items-end text-xl font-medium py-1 px-2  rounded-lg">
+        <Link href="/explore" className="flex items-end text-xl font-medium py-1 pr-2 rounded-lg">
            <Search strokeWidth={1.5} className="h-5 w-5 md:h-7 md:w-7 mr-3" />
            Explore
         </Link>
 
-        <Link href="/communities" className="flex items-end text-xl font-medium py-1 px-2 rounded-lg">
+        <Link href="/communities" className="flex items-end text-xl font-medium py-1 pr-2 rounded-lg">
            <Users strokeWidth={1.5} className="h-5 w-5 md:h-7 md:w-7 mr-3" />
            Communities
         </Link>
@@ -39,7 +39,10 @@ import { buttonVariants } from "../ui/Button";
        <hr />
         
         {zUser ? (<UserAccountNav user={zUser} />) :
-          (<Link href="/sign-in" className={buttonVariants()}>
+          (<Link href="/sign-in" className={ buttonVariants({
+            variant: "default",
+            size: "lg",
+          })}>
             Sign In
           </Link>)}
 

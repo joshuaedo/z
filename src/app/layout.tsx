@@ -70,7 +70,9 @@ export default function RootLayout({
               {/* @ts-expect-error Server Component */}
               <Aside />
             </div>
-            {children}
+            <div className="col-span-2 h-full relative">
+             {children}
+            </div>
           </div>
 
           {/* Mobile Page */}
