@@ -104,7 +104,7 @@
 }
 
 /* Editor */
-.codex-editor__redactor {
+/* .codex-editor__redactor {
   padding-bottom: 0px !important;
   margin-right: 0 !important;
 }
@@ -130,7 +130,7 @@
 #editor::-webkit-scrollbar-thumb {
   background: black !important;
   border-radius: 8px !important;
-}
+} */
 /* 
 @media (min-width: 768px) {
 } */
