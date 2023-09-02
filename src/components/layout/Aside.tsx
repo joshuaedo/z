@@ -4,7 +4,7 @@ import { Home, UserCircle, Search, Users } from "lucide-react";
 
  const Aside = () => {
     return (
-      <aside className="overflow-hidden h-fit rounded-lg border border-gray-200 order-first">
+      <aside className="overflow-hidden h-fit w-full rounded-lg border border-gray-200">
         
         <Link href="/" className="hidden md:flex items-center">
           <Icons.logo className="h-8 w-8 md:h-10 md:w-10" />
