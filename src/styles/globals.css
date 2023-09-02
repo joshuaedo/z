@@ -131,6 +131,9 @@
   background: black !important;
   border-radius: 8px !important;
 }
-/* 
-@media (min-width: 768px) {
-} */
+
+@media (max-width: 768px) {
+  #editor{
+    display: inline-block;
+  }
+}
