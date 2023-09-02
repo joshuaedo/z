@@ -18,13 +18,36 @@ interface UserAccountNavProps {
 const UserAccountNav: FC<UserAccountNavProps> = ({ user }) => {
   return (
     <>
+      <div className='flex items-center justify-between'>
+
         <UserAvatar
-          className='h-8 w-8'
+          className='h-11 w-11'
           user={{
             name: user.name || null,
             image: user.image || null,
           }}
         />
+
+
+          <DropdownMenu>
+             <DropdownMenuTrigger>
+                <MoreVertical className='h-6 w-6' />
+             </DropdownMenuTrigger>
+             <DropdownMenuContent>
+                <DropdownMenuItem
+                  onSelect={(e) => {
+                  e.preventDefault();
+                 signOut({
+                     callbackUrl: `${window.location.origin}/sign-in`,
+                  });
+                 }}
+                className='cursor-pointer'
+               >
+               Sign Out
+             </DropdownMenuItem>
+           </DropdownMenuContent>
+          </DropdownMenu> 
+        </div>
 
         <div className='flex items-center justify-start gap-2 p-2'>
           <div className='flex flex-col space-y-1 leading-none'>
@@ -37,24 +60,6 @@ const UserAccountNav: FC<UserAccountNavProps> = ({ user }) => {
           </div>
         </div>
 
-        <DropdownMenu>
-          <DropdownMenuTrigger>
-             <MoreVertical />
-          </DropdownMenuTrigger>
-          <DropdownMenuContent>
-             <DropdownMenuItem
-               onSelect={(e) => {
-               e.preventDefault();
-               signOut({
-                  callbackUrl: `${window.location.origin}/sign-in`,
-               });
-              }}
-             className='cursor-pointer'
-            >
-            Sign Out
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-       </DropdownMenu> 
     </>
   );
 };

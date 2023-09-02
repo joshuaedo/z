@@ -64,7 +64,7 @@ export default function RootLayout({
           {modal}
           <main className="container max-w-5xl mx-auto h-full pt-6">
 
-          {/* Desktop */}
+          {/* Desktop Page */}
           <div className="hidden md:grid grid-cols-3 gap-y-4 gap-x-4 py-6">
             <div className="col-span-1 h-full relative">
               {/* @ts-expect-error Server Component */}
@@ -73,7 +73,7 @@ export default function RootLayout({
             {children}
           </div>
 
-          {/* Mobile */}
+          {/* Mobile Page */}
           <div className="block md:hidden gap-y-4 py-6 relative">
             {children}
           </div>
