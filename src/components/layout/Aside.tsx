@@ -10,8 +10,8 @@ import { Home, UserCircle, Search, Users } from "lucide-react";
           <Icons.logo className="h-8 w-8 md:h-10 md:w-10" />
         </Link>
 
-        <Link href="/home" className="flex items-center justify-center space-x-5 text-lg">
-          <Home strokeWidth={1.2} className="h-7 w-7 md:h-9 md:w-9" />
+        <Link href="/" className="flex items-center justify-center text-xl">
+          <Home strokeWidth={1.5} className="h-5 w-5 md:h-7 md:w-7 mr-10" />
            Home
         </Link>
 

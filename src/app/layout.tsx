@@ -68,7 +68,7 @@ export default function RootLayout({
           {/* Desktop */}
           <div className="hidden md:grid grid-cols-3 gap-y-4 gap-x-4 py-6">
             <div className="col-span-1 h-full relative">
-            <Aside />
+              <Aside />
             </div>
             {children}
           </div>
