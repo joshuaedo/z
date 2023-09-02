@@ -43,7 +43,7 @@ const SubmitPost = ({ params, community }: SubmitPostProps) => {
         className={
           isModalOpen
             ? 'w-full'
-            : 'w-full flex justify-end md:justify-center pb-20'
+            : 'w-full flex justify-end pb-20'
         }
       >
         <Button
