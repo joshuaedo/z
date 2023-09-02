@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Icons } from "../Icons";
-import { Home, UserCircle, Search, User2 } from "lucide-react";
+import { Home, UserCircle, Search, Users2 } from "lucide-react";
 
  const Aside = () => {
     return (
@@ -17,9 +17,9 @@ import { Home, UserCircle, Search, User2 } from "lucide-react";
           </p>
         </div>
 
-        <UserCircle className="h-7 w-7 md:h-9 md:w-9" />
-        <Search className="h-7 w-7 md:h-9 md:w-9" />
-        <User2 className="h-7 w-7 md:h-9 md:w-9" />
+        <UserCircle strokeWidth={1} className="h-7 w-7 md:h-9 md:w-9" />
+        <Search strokeWidth={1} className="h-7 w-7 md:h-9 md:w-9" />
+        <Users2 strokeWidth={1} className="h-7 w-7 md:h-9 md:w-9" />
         
 
       </aside>
