@@ -1,7 +1,6 @@
 import Link from "next/link";
-import { HomeIcon } from "@radix-ui/react-icons";
 import { Icons } from "../Icons";
-import { SearchIcon } from "lucide-react";
+import { Home, UserCircle, Search, User2 } from "lucide-react";
 
  const Aside = () => {
     return (
@@ -12,19 +11,16 @@ import { SearchIcon } from "lucide-react";
         </Link>
 
         <div className="px-6 py-4">
-          <p className="font-semibold py-3 flex items-center gap-1.5">
-           <HomeIcon className="h-7 w-7 md:h-9 md:w-9" />
-            Home
+          <p className="py-3 flex items-center gap-1.5">
+           <Home className="h-7 w-7 md:h-9 md:w-9" />
+            <span className={`font-semibold`}>Home</span>
           </p>
         </div>
 
-        <div className="divide-y divide-gray-900 px-6 py-4">
-        <p className="font-semibold py-3 flex items-center gap-1.5">
-         <SearchIcon className="h-7 w-7 md:h-9 md:w-9" />
-          Explore
-          </p>
-        </div>
-
+        <UserCircle className="h-7 w-7 md:h-9 md:w-9" />
+        <Search className="h-7 w-7 md:h-9 md:w-9" />
+        <User2 className="h-7 w-7 md:h-9 md:w-9" />
+        
 
       </aside>
     )
