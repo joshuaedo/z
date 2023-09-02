@@ -46,13 +46,13 @@ import { buttonVariants } from "../ui/Button";
        <hr />
 
        <div className="space-y-1">
-       <Link href="/privacy-policy" className="block tend font-medium py-1 rounded-lg">
+       <Link href="/privacy-policy" className="block text-xs font-medium rounded-lg">
            Privacy Policy
         </Link>
-        <Link href="/terms-of-service" className="block text-sm font-medium py-1 rounded-lg">
+        <Link href="/terms-of-service" className="block  font-medium rounded-lg">
            Terms of Service
         </Link>
-        <Link href="/support" className="block text-sm font-medium py-1 rounded-lg">
+        <Link href="/support" className="block text-xs font-medium rounded-lg">
            Support
         </Link>
        </div>

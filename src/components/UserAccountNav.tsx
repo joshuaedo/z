@@ -31,7 +31,7 @@ const UserAccountNav: FC<UserAccountNavProps> = ({ user }) => {
 
           <DropdownMenu>
              <DropdownMenuTrigger>
-                <MoreVertical className='h-6 w-6' />
+                <MoreVertical className='h-4 w-4' />
              </DropdownMenuTrigger>
              <DropdownMenuContent>
                 <DropdownMenuItem
