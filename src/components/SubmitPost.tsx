@@ -48,7 +48,7 @@ const SubmitPost = ({ params, community }: SubmitPostProps) => {
       >
         <Button
           type='submit'
-          className={isModalOpen ? 'w-full' : 'w-[50%]'}
+          className={isModalOpen ? 'w-full' : 'w-[50%] md:w-[25%]'}
           form='community-post-form'
         >
           Post
