@@ -16,22 +16,22 @@ import { buttonVariants } from "../ui/Button";
           <Icons.logo className="h-8 w-8 md:h-10 md:w-10" />
         </Link>
 
-        <Link href="/" className="flex items-center text-2xl font-medium py-1 pr-2 rounded-lg">
+        <Link href="/" className="flex items-end text-2xl font-medium py-1 pr-2 rounded-lg">
            <Home strokeWidth={1.2} className="h-6 w-6 md:h-8 md:w-8 mr-2" />
            Home
         </Link>
 
-        <Link href="/profile" className="flex items-center text-2xl font-medium py-1 pr-2 rounded-lg">
+        <Link href="/profile" className="flex items-end text-2xl font-medium py-1 pr-2 rounded-lg">
            <UserCircle strokeWidth={1.2} className="h-6 w-6 md:h-8 md:w-8 mr-2" />
            Profile
         </Link>
 
-        <Link href="/explore" className="flex items-center text-2xl font-medium py-1 pr-2 rounded-lg">
+        <Link href="/explore" className="flex items-end text-2xl font-medium py-1 pr-2 rounded-lg">
            <Search strokeWidth={1.2} className="h-6 w-6 md:h-8 md:w-8 mr-2" />
            Explore
         </Link>
 
-        <Link href="/communities" className="flex items-center text-2xl font-medium py-1 pr-2 rounded-lg">
+        <Link href="/communities" className="flex items-end text-2xl font-medium py-1 pr-2 rounded-lg">
            <Users strokeWidth={1.2} className="h-6 w-6 md:h-8 md:w-8 mr-2" />
            Communities
         </Link>
@@ -45,14 +45,14 @@ import { buttonVariants } from "../ui/Button";
 
        <hr />
 
-       <div className="space-y-2">
-       <Link href="/privacy-policy" className="block text-lg font-medium py-1 pr-2 rounded-lg">
+       <div className="space-y-1">
+       <Link href="/privacy-policy" className="block tend font-medium py-1 rounded-lg">
            Privacy Policy
         </Link>
-        <Link href="/terms-of-service" className="block text-lg font-medium py-1 pr-2 rounded-lg">
+        <Link href="/terms-of-service" className="block text-sm font-medium py-1 rounded-lg">
            Terms of Service
         </Link>
-        <Link href="/" className="block text-lg font-medium py-1 pr-2 rounded-lg">
+        <Link href="/support" className="block text-sm font-medium py-1 rounded-lg">
            Support
         </Link>
        </div>
