@@ -11,7 +11,7 @@ const Header = async () => {
   const zUser = session?.user;
 
   return (
-    <nav className="hidden md:inline fixed top-0 inset-x-0 h-fit bg-zinc-100 border-b border-zinc-300 z-[10] py-2">
+    <nav className="inline md:hidden fixed top-0 inset-x-0 h-fit bg-zinc-100 border-b border-zinc-300 z-[10] py-2">
       <div className="container max-w-7xl h-full mx-auto flex items-center justify-center relative">
        
        <Link href="" className="absolute top-2 left-2">
