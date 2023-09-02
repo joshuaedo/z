@@ -1,8 +1,8 @@
 export const metadata = {
-  title: "Profile / Z",
+  title: "Explore / Z",
   description: "",
   openGraph: {
-    title: "Profile / Z",
+    title: "Explore / Z",
     description: "",
     images: [
       {
@@ -14,18 +14,18 @@ export const metadata = {
   },
   twitter: {
     card: "summary",
-    title: "Profile / Z",
+    title: "Explore / Z",
     description: "",
     images: [""],
   },
 };
 
-interface ProfilePageProps {}
+interface ExplorePageProps {}
 
-const ProfilePage = ({}: ProfilePageProps) => {
+const ExplorePage = ({}: ExplorePageProps) => {
   return (
      <div>
-      ProfilePage
+      ExplorePage
      </div>
   )
 }
