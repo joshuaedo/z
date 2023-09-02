@@ -21,26 +21,41 @@ import { buttonVariants } from "../ui/Button";
            Home
         </Link>
 
-        <Link href="/" className="flex items-center text-2xl font-medium py-1 pr-2 rounded-lg">
+        <Link href="/profile" className="flex items-center text-2xl font-medium py-1 pr-2 rounded-lg">
            <UserCircle strokeWidth={1.2} className="h-6 w-6 md:h-8 md:w-8 mr-2" />
            Profile
         </Link>
 
-        <Link href="/" className="flex items-center text-2xl font-medium py-1 pr-2 rounded-lg">
+        <Link href="/explore" className="flex items-center text-2xl font-medium py-1 pr-2 rounded-lg">
            <Search strokeWidth={1.2} className="h-6 w-6 md:h-8 md:w-8 mr-2" />
            Explore
         </Link>
 
-        <Link href="/" className="flex items-center text-2xl font-medium py-1 pr-2 rounded-lg">
+        <Link href="/communities" className="flex items-center text-2xl font-medium py-1 pr-2 rounded-lg">
            <Users strokeWidth={1.2} className="h-6 w-6 md:h-8 md:w-8 mr-2" />
            Communities
         </Link>
 
+       <hr />
         
-         {zUser ? (<UserAccountNav user={zUser} />) :
+        {zUser ? (<UserAccountNav user={zUser} />) :
           (<Link href="/sign-in" className={buttonVariants()}>
             Sign In
           </Link>)}
+
+       <hr />
+
+       <div>
+       <Link href="/privacy-policy" className="text-lg font-medium py-1 pr-2 rounded-lg">
+           Privacy Policy
+        </Link>
+        <Link href="/terms-of-service" className="text-lg font-medium py-1 pr-2 rounded-lg">
+           Terms of Service
+        </Link>
+        <Link href="/" className="text-lg font-medium py-1 pr-2 rounded-lg">
+           Support
+        </Link>
+       </div>
         
       </aside>
     )
