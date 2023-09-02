@@ -2,6 +2,8 @@ import Link from "next/link";
 import { Icons } from "../Icons";
 import { Home, UserCircle, Search, Users } from "lucide-react";
 import { getAuthSession } from "@/lib/auth";
+import UserAccountNav from "../UserAccountNav";
+import { buttonVariants } from "../ui/Button";
 
  const Aside = async () => {
     const session = await getAuthSession();

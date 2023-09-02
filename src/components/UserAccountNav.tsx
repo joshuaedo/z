@@ -5,12 +5,11 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from './ui/DropDownMenu';
 import UserAvatar from './UserAvatar';
-import Link from 'next/link';
 import { signOut } from 'next-auth/react';
+import { MoreVertical } from 'lucide-react';
 
 interface UserAccountNavProps {
   user: Pick<User, 'name' | 'image' | 'email'>;
@@ -18,8 +17,7 @@ interface UserAccountNavProps {
 
 const UserAccountNav: FC<UserAccountNavProps> = ({ user }) => {
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger>
+    <>
         <UserAvatar
           className='h-8 w-8'
           user={{
@@ -27,9 +25,7 @@ const UserAccountNav: FC<UserAccountNavProps> = ({ user }) => {
             image: user.image || null,
           }}
         />
-      </DropdownMenuTrigger>
 
-      <DropdownMenuContent className='bg-white' align='end'>
         <div className='flex items-center justify-start gap-2 p-2'>
           <div className='flex flex-col space-y-1 leading-none'>
             {user.name && <p className='font-medium'>{user.name}</p>}
@@ -41,35 +37,25 @@ const UserAccountNav: FC<UserAccountNavProps> = ({ user }) => {
           </div>
         </div>
 
-        <DropdownMenuSeparator />
-
-        <DropdownMenuItem asChild>
-          <Link href='/'>Feed</Link>
-        </DropdownMenuItem>
-
-        <DropdownMenuItem asChild>
-          <Link href='/z/create'>Create community</Link>
-        </DropdownMenuItem>
-
-        <DropdownMenuItem asChild>
-          <Link href='/settings'>Settings</Link>
-        </DropdownMenuItem>
-
-        <DropdownMenuSeparator />
-
-        <DropdownMenuItem
-          onSelect={(e) => {
-            e.preventDefault();
-            signOut({
-              callbackUrl: `${window.location.origin}/sign-in`,
-            });
-          }}
-          className='cursor-pointer'
-        >
-          Sign Out
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+        <DropdownMenu>
+          <DropdownMenuTrigger>
+             <MoreVertical />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+             <DropdownMenuItem
+               onSelect={(e) => {
+               e.preventDefault();
+               signOut({
+                  callbackUrl: `${window.location.origin}/sign-in`,
+               });
+              }}
+             className='cursor-pointer'
+            >
+            Sign Out
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+       </DropdownMenu> 
+    </>
   );
 };
 
