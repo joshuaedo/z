@@ -67,10 +67,11 @@ export default function RootLayout({
           {/* Desktop Page */}
           <div className="hidden md:grid grid-cols-3 gap-y-4 gap-x-4">
             <div className="col-span-1 h-full relative">
-              {/* <Aside /> */}
+             {/* @ts-expect-error Server Component */}
+             <Aside />
             </div>
             <div className="col-span-2">
-            {children}S
+            {children}
             </div>
           </div>
 
