@@ -64,7 +64,21 @@ export default function RootLayout({
           {modal}
           <main className="container max-w-5xl mx-auto h-full py-8">
 
-        {children}
+          {/* Desktop Page */}
+          <div className="hidden md:grid grid-cols-3 gap-y-4 gap-x-4">
+            <div className="col-span-1 h-full relative">
+              {/* @ts-expect-error Server Component */}
+              <Aside />
+            </div>
+            <div className="col-span-2">
+            {children}
+            </div>
+          </div>
+
+          {/* Mobile Page */}
+          <div className="md:hidden gap-y-4">
+            {children}
+          </div>
           
           </main>
           <Toaster />
