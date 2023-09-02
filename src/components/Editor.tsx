@@ -38,15 +38,15 @@ const Editor: FC<EditorProps> = ({ communityId, isModalOpen }) => {
   const router = useRouter();
 
   const initializeEditor = useCallback(async () => {
-    const EditorJS = (require('@editorjs/editorjs')).default;
-    const Header = (require('@editorjs/header')).default;
-    const Embed = (require('@editorjs/embed')).default;
-    const Table = (require('@editorjs/table')).default;
-    const List = (require('@editorjs/list')).default;
-    const LinkTool = (require('@editorjs/link')).default;
-    const InlineCode = (require('@editorjs/inline-code')).default;
-    const ImageTool = (require('@editorjs/image')).default;
-    const Code = (require('@editorjs/code')).default;
+    const EditorJS = (await import('@editorjs/editorjs')).default;
+    const Header = (await import('@editorjs/header')).default;
+    const Embed = (await import('@editorjs/embed')).default;
+    const Table = (await import('@editorjs/table')).default;
+    const List = (await import('@editorjs/list')).default;
+    const LinkTool = (await import('@editorjs/link')).default;
+    const InlineCode = (await import('@editorjs/inline-code')).default;
+    const ImageTool = (await import('@editorjs/image')).default;
+    const Code = (await import('@editorjs/code')).default;
     // const Paragraph = (await import("@editorjs/paragraph")).default;
 
     if (!ref.current) {
