@@ -64,15 +64,18 @@ export default function RootLayout({
           <Header />
           {modal}
           <main className="container max-w-5xl mx-auto h-full pt-6">
+
           {/* Desktop */}
-          <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-y-4 md:gap-x-4 py-6 relative">
+          <div className="hidden md:grid grid-cols-3 gap-y-4 gap-x-4 py-6 relative">
             <Aside />
             {children}
           </div>
+
           {/* Mobile */}
-          <div className="block md:hidden gap-y-4 md:gap-x-4 py-6 relative">
+          <div className="block md:hidden gap-y-4 py-6 relative">
             {children}
           </div>
+          
           </main>
           <Toaster />
           {/* MobileNav */}
