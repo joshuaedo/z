@@ -29,3 +29,5 @@ const ProfilePage = ({}: ProfilePageProps) => {
      </div>
   )
 }
+
+export default ProfilePage;

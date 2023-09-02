@@ -29,3 +29,5 @@ const CommunitiesPage = ({}: CommunitiesPageProps) => {
      </div>
   )
 }
+
+export default CommunitiesPage;

@@ -29,3 +29,5 @@ const ExplorePage = ({}: ExplorePageProps) => {
      </div>
   )
 }
+
+export default ExplorePage;
