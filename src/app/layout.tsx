@@ -62,7 +62,7 @@ export default function RootLayout({
         <Providers>
           <Header />
           {modal}
-          <main className="container max-w-5xl mx-auto h-full py-4">
+          <main className="container max-w-5xl mx-auto h-full py-8">
 
           {/* Desktop Page */}
           <div className="hidden md:grid grid-cols-3 gap-y-4 gap-x-4">
