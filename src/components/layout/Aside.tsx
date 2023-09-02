@@ -13,7 +13,7 @@ import { buttonVariants } from "../ui/Button";
       <aside className="overflow-hidden h-fit rounded-lg border border-gray-200 fixed px-10 py-8 space-y-4">
         
         <Link href="/" className="hidden md:flex items-center">
-          <Icons.logo className="h-8 w-8 md:h-10 md:w-10" />
+          <Icons.logo className="-ml-2 h-8 w-8 md:h-10 md:w-10" />
         </Link>
 
         <Link href="/" className="flex items-end text-xl font-medium py-1 pr-2 rounded-lg">
