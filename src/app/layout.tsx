@@ -60,7 +60,6 @@ export default function RootLayout({
     >
       <body className="min-h-screen bg-slate-50 antialiased">
         <Providers>
-          {/* @ts-expect-error Server Component */}
           <Header />
           {modal}
           <main className="container max-w-5xl mx-auto h-full pt-6">
@@ -68,6 +67,7 @@ export default function RootLayout({
           {/* Desktop */}
           <div className="hidden md:grid grid-cols-3 gap-y-4 gap-x-4 py-6">
             <div className="col-span-1 h-full relative">
+              {/* @ts-expect-error Server Component */}
               <Aside />
             </div>
             {children}
