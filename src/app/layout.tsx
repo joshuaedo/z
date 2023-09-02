@@ -76,7 +76,7 @@ export default function RootLayout({
           </div>
 
           {/* Mobile Page */}
-          <div className="md:hidden gap-y-4">
+          <div className="md:hidden">
             {children}
           </div>
           
