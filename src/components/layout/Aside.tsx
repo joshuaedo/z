@@ -12,7 +12,7 @@ import { Home, UserCircle, Search, User2 } from "lucide-react";
 
         <div className="px-6 py-4">
           <p className="py-3 flex items-center gap-1.5">
-           <Home className="h-7 w-7 md:h-9 md:w-9" />
+           <Home strokeWidth={1} className="h-7 w-7 md:h-9 md:w-9" />
             <span className={`font-semibold`}>Home</span>
           </p>
         </div>
