@@ -20,7 +20,7 @@ const AsideClient: FC<AsideClientProps> = ({ session, subs }) => {
   const zUser = session?.user;
 
   return (
-    <aside className='overflow-hidden h-fit rounded-lg md:shadow md:fixed px-10 py-8 space-y-4 bg-white'>
+    <aside className='overflow-hidden h-fit rounded-lg md:shadow md:fixed p-8 space-y-2 bg-white'>
       <button
         onClick={() => router.push('/')}
         className='hidden md:flex items-center'
@@ -30,7 +30,7 @@ const AsideClient: FC<AsideClientProps> = ({ session, subs }) => {
 
       <button
         onClick={() => router.push('/')}
-        className={`${pathname === "/" ? "font-bold" : "font-medium"} hidden md:flex items-end text-xl py-1 pr-2 rounded-lg hover:bg-[#F8FAFC]`}
+        className={`${pathname === "/" ? "font-bold" : "font-medium"} hidden md:flex items-end text-xl py-3 pr-4 rounded-lg hover:bg-[#F8FAFC]`}
       >
         <Home strokeWidth={pathname === "/" ? 2 : 1.5} className='h-5 w-5 md:h-7 md:w-7 mr-3' />
         Home
@@ -38,7 +38,7 @@ const AsideClient: FC<AsideClientProps> = ({ session, subs }) => {
 
       <button
         onClick={() => router.push('/communities')}
-        className={`${pathname === "/communities" ? "font-bold" : "font-medium"} hidden md:flex items-end text-xl py-1 pr-2 rounded-lg hover:bg-[#F8FAFC]`}
+        className={`${pathname === "/communities" ? "font-bold" : "font-medium"} hidden md:flex items-end text-xl py-3 pr-4 rounded-lg hover:bg-[#F8FAFC]`}
       >
         <Users strokeWidth={pathname === "/communities" ? 2 : 1.5} className='h-5 w-5 md:h-7 md:w-7 mr-3' />
         Communities
@@ -46,7 +46,7 @@ const AsideClient: FC<AsideClientProps> = ({ session, subs }) => {
 
       <button
         onClick={() => router.push('/explore')}
-        className={`${pathname === "/explore" ? "font-bold" : "font-medium"} hidden md:flex items-end text-xl py-1 pr-2 rounded-lg hover:bg-[#F8FAFC]`}
+        className={`${pathname === "/explore" ? "font-bold" : "font-medium"} hidden md:flex items-end text-xl py-3 pr-4 rounded-lg hover:bg-[#F8FAFC]`}
       >
         <Search strokeWidth={pathname === "/explore" ? 2 : 1.5} className='h-5 w-5 md:h-7 md:w-7 mr-3' />
         Explore
@@ -54,7 +54,7 @@ const AsideClient: FC<AsideClientProps> = ({ session, subs }) => {
 
       <button
         onClick={() => router.push('/profile')}
-        className={`${pathname === "/profile" ? "font-bold" : "font-medium"} hidden md:flex items-end text-xl py-1 pr-2 rounded-lg hover:bg-[#F8FAFC]`}
+        className={`${pathname === "/profile" ? "font-bold" : "font-medium"} hidden md:flex items-end text-xl py-3 pr-4 rounded-lg hover:bg-[#F8FAFC]`}
       >
         <UserCircle strokeWidth={pathname === "/profile" ? 2 : 1.5} className='h-5 w-5 md:h-7 md:w-7 mr-3' />
         Profile
