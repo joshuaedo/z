@@ -9,7 +9,7 @@ const MobileNavClient = () => {
   return ( <>
        <Link
           href='/'
-          className='flex items-end text-xl font-medium py-1 pr-2 rounded-lg'
+          className='flex items-end text-xl font-medium py-1 p-2 rounded-lg'
         >
           <Home strokeWidth={pathname === "/" ? 2.3 : 1.6} className='h-6 w-6' />
         </Link>
