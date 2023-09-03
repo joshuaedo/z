@@ -10,14 +10,14 @@ const Aside = async () => {
   const zUser = session?.user;
 
   return (
-    <aside className='overflow-hidden h-fit rounded-lg border border-gray-200 md:fixed px-10 py-8 space-y-4 bg-white'>
+    <aside className='overflow-hidden h-fit rounded-lg md:border border-gray-200 md:fixed px-10 py-8 space-y-4 bg-white'>
       <Link href='/' className='hidden md:flex items-center'>
         <Icons.logo className='-ml-2 h-8 w-8 md:h-10 md:w-10' />
       </Link>
 
       <Link
         href='/'
-        className='flex items-end text-xl font-medium py-1 pr-2 rounded-lg'
+        className='hidden md:flex items-end text-xl font-medium py-1 pr-2 rounded-lg'
       >
         <Home strokeWidth={1.5} className='h-5 w-5 md:h-7 md:w-7 mr-3' />
         Home
@@ -25,7 +25,7 @@ const Aside = async () => {
 
       <Link
         href='/communities'
-        className='flex items-end text-xl font-medium py-1 pr-2 rounded-lg'
+        className='hidden md:flex items-end text-xl font-medium py-1 pr-2 rounded-lg'
       >
         <Users strokeWidth={1.5} className='h-5 w-5 md:h-7 md:w-7 mr-3' />
         Communities
@@ -33,7 +33,7 @@ const Aside = async () => {
 
       <Link
         href='/explore'
-        className='flex items-end text-xl font-medium py-1 pr-2 rounded-lg'
+        className='hidden md:flex items-end text-xl font-medium py-1 pr-2 rounded-lg'
       >
         <Search strokeWidth={1.5} className='h-5 w-5 md:h-7 md:w-7 mr-3' />
         Explore
@@ -41,13 +41,13 @@ const Aside = async () => {
 
       <Link
         href='/profile'
-        className='flex items-end text-xl font-medium py-1 pr-2 rounded-lg'
+        className='hidden md:flex items-end text-xl font-medium py-1 pr-2 rounded-lg'
       >
         <UserCircle strokeWidth={1.5} className='h-5 w-5 md:h-7 md:w-7 mr-3' />
         Profile
       </Link>
 
-      <hr />
+      <hr className='hidden md:flex' />
 
       {zUser ? (
         <UserAccountNav user={zUser} />
@@ -62,6 +62,10 @@ const Aside = async () => {
           Sign In
         </Link>
       )}
+
+      <hr />
+
+      {/* Your Communities */}
 
       <hr />
 
