@@ -67,39 +67,34 @@ const Aside = async () => {
 
       {/* Your Communities */}
 
-      <div>
-        <h4>Your  Communities</h4>
-        <Link href="/z/create" className='text-zinc-600'>
+      <div className='md:hidden'>
+        <h4 className='font-medium'>Your  Communities</h4>
+        <Link href="/z/create" className='text-zinc-600 flex'>
             <Plus className='mr-4' />
             <span>Create a community</span>
         </Link>
-        <ul id='aside-communities' className='text-zinc-600 max-h-[10rem]'>
-            <li>z/community</li>
-            <li>z/community</li>
-            <li>z/community</li>
-            <li>z/community</li>
-            <li>z/community</li>
-            <li>z/community</li>
-            <li>z/community</li>
-            <li>z/community</li>
-            <li>z/community</li>
-            <li>z/community</li>
-            <li>z/community</li>
-            <li>z/community</li>
-            <li>z/community</li>
-            <li>z/community</li>
-            <li>z/community</li>
-            <li>z/community</li>
-            <li>z/community</li>
-            <li>z/community</li>
-            <li>z/community</li>
-            <li>z/community</li>
-            <li>z/community</li>
-            <li>z/community</li>
-            <li>z/community</li>
-            <li>z/community</li>
-            <li>z/community</li>
-            <li>z/community</li>
+        <ul id='aside-communities' className='text-zinc-600 max-h-[10rem] space-y-1'>
+        <Link href="z/community" className=''>z/community</Link>
+        <Link href="z/community" className=''>z/community</Link>
+        <Link href="z/community" className=''>z/community</Link>
+        <Link href="z/community" className=''>z/community</Link>
+        <Link href="z/community" className=''>z/community</Link>
+        <Link href="z/community" className=''>z/community</Link>
+        <Link href="z/community" className=''>z/community</Link>
+        <Link href="z/community" className=''>z/community</Link>
+        <Link href="z/community" className=''>z/community</Link>
+        <Link href="z/community" className=''>z/community</Link>
+        <Link href="z/community" className=''>z/community</Link>
+        <Link href="z/community" className=''>z/community</Link>
+        <Link href="z/community" className=''>z/community</Link>
+        <Link href="z/community" className=''>z/community</Link>
+        <Link href="z/community" className=''>z/community</Link>
+        <Link href="z/community" className=''>z/community</Link>
+        <Link href="z/community" className=''>z/community</Link>
+        <Link href="z/community" className=''>z/community</Link>
+        <Link href="z/community" className=''>z/community</Link>
+        <Link href="z/community" className=''>z/community</Link>
+        <Link href="z/community" className=''>z/community</Link>
         </ul>
       </div>
 
