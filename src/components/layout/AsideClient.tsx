@@ -1,144 +1,134 @@
-import Link from 'next/link';
+'use client';
 import { Icons } from '../Icons';
 import { Home, UserCircle, Search, Users, Plus } from 'lucide-react';
-import { getAuthSession } from '@/lib/auth';
 import UserAccountNav from '../UserAccountNav';
 import { buttonVariants } from '../ui/Button';
-import { db } from '@/lib/db';
+import { useRouter } from 'next/navigation';
+import { FC } from 'react';
 import { Community } from '@prisma/client';
+import { Session } from 'next-auth';
 
-const Aside = async () => {
-  const session = await getAuthSession();
+interface AsideClientProps {
+  session: Session | null
+  subs: Community[];
+}
+
+const AsideClient: FC<AsideClientProps> = ({ session, subs }) => {
+  const router = useRouter();
   const zUser = session?.user;
-  
-  let subs: Community[] = [];
-  
-  if (zUser) {
-    // Fetch user's subscriptions using Prisma
-    const followedCommunities = await db.subscription.findMany({
-      where: {
-        userId: zUser.id,
-      },
-      include: {
-        community: true,
-      },
-    });
-
-    // Extract community names from the subscriptions
-    const communityNames = followedCommunities.map(({ community }) => community.name);
-
-    // Fetch community data based on names
-    subs = await db.community.findMany({
-      where: {
-        name: {
-          in: communityNames,
-        },
-      },
-      orderBy: {
-        createdAt: 'desc',
-      },
-    });
-  }
-
 
   return (
     <aside className='overflow-hidden h-fit rounded-lg md:shadow md:fixed px-10 py-8 space-y-4 bg-white'>
-      <Link href='/' className='hidden md:flex items-center'>
+      <button
+        onClick={() => router.push('/')}
+        className='hidden md:flex items-center'
+      >
         <Icons.logo className='-ml-2 h-8 w-8 md:h-10 md:w-10' />
-      </Link>
+      </button>
 
-      <Link
-        href='/'
+      <button
+        onClick={() => router.push('/')}
         className='hidden md:flex items-end text-xl font-medium py-1 pr-2 rounded-lg'
       >
         <Home strokeWidth={1.5} className='h-5 w-5 md:h-7 md:w-7 mr-3' />
         Home
-      </Link>
+      </button>
 
-      <Link
-        href='/communities'
+      <button
+        onClick={() => router.push('/communities')}
         className='hidden md:flex items-end text-xl font-medium py-1 pr-2 rounded-lg'
       >
         <Users strokeWidth={1.5} className='h-5 w-5 md:h-7 md:w-7 mr-3' />
         Communities
-      </Link>
+      </button>
 
-      <Link
-        href='/explore'
+      <button
+        onClick={() => router.push('/explore')}
         className='hidden md:flex items-end text-xl font-medium py-1 pr-2 rounded-lg'
       >
         <Search strokeWidth={1.5} className='h-5 w-5 md:h-7 md:w-7 mr-3' />
         Explore
-      </Link>
+      </button>
 
-      <Link
-        href='/profile'
+      <button
+        onClick={() => router.push('/profile')}
         className='hidden md:flex items-end text-xl font-medium py-1 pr-2 rounded-lg'
       >
         <UserCircle strokeWidth={1.5} className='h-5 w-5 md:h-7 md:w-7 mr-3' />
         Profile
-      </Link>
+      </button>
 
       <hr className='hidden md:flex' />
 
       {zUser ? (
         <UserAccountNav user={zUser} />
       ) : (
-        <Link
-          href='/sign-in'
+        <button
+          onClick={() => router.push('/sign-in')}
           className={buttonVariants({
             variant: 'default',
             size: 'lg',
           })}
         >
           Sign In
-        </Link>
+        </button>
       )}
 
       <hr />
 
-      { zUser && (
-          <>
-             <div className='md:hidden space-y-3'>
-        <h4 className='font-medium'>Your  Communities</h4>
-        <Link href="/z/create" className='text-zinc-600 flex'>
-            <Plus className='mr-2' />
-            <span>Create a community</span>
-        </Link>
-        <ul id='aside-communities' className='text-zinc-600 max-h-[10rem] space-y-2'>
-        {/* Map over the user's subscribed communities and generate the list */}
-          {subs.map((community) => (
-            <li key={community.id}>
-              <Link href={`z/${community.name}`} className=''>{`z/${community.name}`}</Link>
-            </li>
-          ))}
-        </ul>
-      </div>
+      {zUser && (
+        <>
+          <div className='md:hidden space-y-3'>
+            <h4 className='font-medium'>Your Communities</h4>
+            <button
+              onClick={() => router.push('/z/create')}
+              className='text-zinc-600 flex'
+            >
+              <Plus className='mr-2' />
+              <span>Create a community</span>
+            </button>
+            <ul
+              id='aside-communities'
+              className='text-zinc-600 max-h-[10rem] space-y-2'
+            >
+              {/* Map over the user's subscribed communities and generate the list */}
+              {subs.map((community) => (
+                <li key={community.id}>
+                  <button
+                    onClick={() => router.push(`z/${community.name}`)}
+                    className=''
+                  >{`z/${community.name}`}</button>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-      <hr className='md:hidden' />
-          </>           
-        ) 
-      }
+          <hr className='md:hidden' />
+        </>
+      )}
 
       <div className='space-y-1'>
-        <Link
-          href='/privacy-policy'
+        <button
+          onClick={() => router.push('/privacy-policy')}
           className='block text-xs font-medium rounded-lg'
         >
           Privacy Policy
-        </Link>
-        <Link
-          href='/terms-of-service'
+        </button>
+        <button
+          onClick={() => router.push('/terms-of-service')}
           className='block text-xs font-medium rounded-lg'
         >
           Terms of Service
-        </Link>
-        <Link href='/support' className='block text-xs font-medium rounded-lg'>
+        </button>
+        <button
+          onClick={() => router.push('/support')}
+          className='block text-xs font-medium rounded-lg'
+        >
           Support
-        </Link>
+        </button>
       </div>
     </aside>
   );
 };
 
-export default Aside;
+export default AsideClient;
