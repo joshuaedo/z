@@ -98,9 +98,9 @@ const Aside = async () => {
 
       <hr />
 
-      {/* Your Communities */}
-
-      <div className='md:hidden space-y-3'>
+      { zUser && (
+          <>
+             <div className='md:hidden space-y-3'>
         <h4 className='font-medium'>Your  Communities</h4>
         <Link href="/z/create" className='text-zinc-600 flex'>
             <Plus className='mr-2' />
@@ -117,6 +117,9 @@ const Aside = async () => {
       </div>
 
       <hr className='md:hidden' />
+          </>           
+        ) 
+      }
 
       <div className='space-y-1'>
         <Link
