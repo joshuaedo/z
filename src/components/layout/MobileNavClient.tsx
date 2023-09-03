@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 
 const MobileNavClient = () => {
     const pathname = usePathname();
-    <>
+  return ( <>
        <Link
           href='/'
           className='flex items-end text-xl font-medium py-1 pr-2 rounded-lg'
@@ -28,6 +28,7 @@ const MobileNavClient = () => {
           <Search strokeWidth={pathname === "/explore" ? 2.1 : 1.7} className='h-6 w-6' />
         </Link>
     </>
+ )
 }
 
 export default MobileNavClient;
