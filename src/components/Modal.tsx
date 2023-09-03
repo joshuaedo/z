@@ -11,7 +11,7 @@ interface ModalProps {
 
 const Modal: FC<ModalProps> = ({ modalContainer, children, showMax, toggleModal }) => {
   return (
-        <div className={`fixed inset-0 bg-zinc-900/20 z-10`}>
+        <div className={`fixed inset-0 bg-zinc-900/20 z-50`}>
           <div
             className={`container flex items-center h-full ${modalContainer} justify-center`}
           >
