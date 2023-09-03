@@ -1,3 +1,4 @@
+"use client"
 import Link from 'next/link';
 import { Icons } from '../Icons';
 import { HamburgerMenuIcon } from '@radix-ui/react-icons';

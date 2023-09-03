@@ -130,7 +130,7 @@ const Editor: FC<EditorProps> = ({ communityId, isModalOpen }) => {
     }
   }, [isMounted, initializeEditor]);
 
-  const {mutate: createPost} = useMutation({
+  const { mutate: createPost } = useMutation({
     mutationFn: async ({
       title,
       content,
@@ -176,7 +176,7 @@ const Editor: FC<EditorProps> = ({ communityId, isModalOpen }) => {
       communityId,
     };
 
-    createPost(payload)
+    createPost(payload);
   }
 
   const { ref: titleRef, ...rest } = register('title');
@@ -202,7 +202,9 @@ const Editor: FC<EditorProps> = ({ communityId, isModalOpen }) => {
           />
           <div
             id='editor'
-            className={isModalOpen ? 'h-[10rem]' : 'min-h-[45vh] md:min-h-[35vh]'}
+            className={
+              isModalOpen ? 'h-[10rem]' : 'min-h-[45vh] md:min-h-[35vh]'
+            }
           />
         </div>
       </form>
