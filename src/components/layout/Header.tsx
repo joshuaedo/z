@@ -6,8 +6,8 @@ const Header = () => {
   return (
     <nav className='inline md:hidden fixed top-0 inset-x-0 h-fit bg-zinc-100 border-b border-zinc-300 z-[10] py-4'>
       <div className='container max-w-7xl h-full mx-auto flex items-center justify-center relative'>
-        <Link href='' className='absolute top-2 left-2'>
-          <HamburgerMenuIcon className='h-5 w-5' />
+        <Link href='' className='absolute top-2 left-5'>
+          <HamburgerMenuIcon strokeWidth={1.7} className='h-6 w-6' />
         </Link>
 
         <Link href='/' className='flex gap-2 items-center'>
