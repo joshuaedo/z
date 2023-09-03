@@ -9,7 +9,7 @@ const MobileNav = async () => {
 
   return (
     <nav className='inline md:hidden fixed bottom-0 inset-x-0 h-fit bg-zinc-100 border-t border-zinc-300 z-[10] py-4'>
-      <div className='container h-full flex items-center justify-evenly relative space-x-3'>
+      <div className='container h-full flex items-center justify-around relative'>
         <Link
           href='/'
           className='flex items-end text-xl font-medium py-1 pr-2 rounded-lg'
