@@ -67,34 +67,31 @@ const Aside = async () => {
 
       {/* Your Communities */}
 
-      <div className='md:hidden'>
+      <div className='md:hidden space-y-2'>
         <h4 className='font-medium'>Your  Communities</h4>
         <Link href="/z/create" className='text-zinc-600 flex'>
             <Plus className='mr-4' />
             <span>Create a community</span>
         </Link>
-        <ul id='aside-communities' className='text-zinc-600 max-h-[10rem] space-y-1'>
-        <Link href="z/community" className=''>z/community</Link>
-        <Link href="z/community" className=''>z/community</Link>
-        <Link href="z/community" className=''>z/community</Link>
-        <Link href="z/community" className=''>z/community</Link>
-        <Link href="z/community" className=''>z/community</Link>
-        <Link href="z/community" className=''>z/community</Link>
-        <Link href="z/community" className=''>z/community</Link>
-        <Link href="z/community" className=''>z/community</Link>
-        <Link href="z/community" className=''>z/community</Link>
-        <Link href="z/community" className=''>z/community</Link>
-        <Link href="z/community" className=''>z/community</Link>
-        <Link href="z/community" className=''>z/community</Link>
-        <Link href="z/community" className=''>z/community</Link>
-        <Link href="z/community" className=''>z/community</Link>
-        <Link href="z/community" className=''>z/community</Link>
-        <Link href="z/community" className=''>z/community</Link>
-        <Link href="z/community" className=''>z/community</Link>
-        <Link href="z/community" className=''>z/community</Link>
-        <Link href="z/community" className=''>z/community</Link>
-        <Link href="z/community" className=''>z/community</Link>
-        <Link href="z/community" className=''>z/community</Link>
+        <ul id='aside-communities' className='text-zinc-600 max-h-[10rem] space-y-2'>
+        <li><Link href="z/community" className=''>z/community</Link></li>
+        <li><Link href="z/community" className=''>z/community</Link></li>
+        <li><Link href="z/community" className=''>z/community</Link></li>
+        <li><Link href="z/community" className=''>z/community</Link></li>
+        <li><Link href="z/community" className=''>z/community</Link></li>
+        <li><Link href="z/community" className=''>z/community</Link></li>
+        <li><Link href="z/community" className=''>z/community</Link></li>
+        <li><Link href="z/community" className=''>z/community</Link></li>
+        <li><Link href="z/community" className=''>z/community</Link></li>
+        <li><Link href="z/community" className=''>z/community</Link></li>
+        <li><Link href="z/community" className=''>z/community</Link></li>
+        <li><Link href="z/community" className=''>z/community</Link></li>
+        <li><Link href="z/community" className=''>z/community</Link></li>
+        <li><Link href="z/community" className=''>z/community</Link></li>
+        <li><Link href="z/community" className=''>z/community</Link></li>
+        <li><Link href="z/community" className=''>z/community</Link></li>
+        <li><Link href="z/community" className=''>z/community</Link></li>
+        <li><Link href="z/community" className=''>z/community</Link></li>
         </ul>
       </div>
 
