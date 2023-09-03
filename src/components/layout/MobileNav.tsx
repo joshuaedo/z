@@ -11,7 +11,6 @@ const MobileNav = async () => {
     <nav className='inline md:hidden fixed bottom-0 inset-x-0 h-fit bg-zinc-100 border-t border-zinc-300 z-[10] py-4'>
       <div className='container h-full flex items-center justify-between px-8 relative'>
       
-      {/* @ts-expect-error server-component */}
        <MobileNavClient />
        
         <Link
