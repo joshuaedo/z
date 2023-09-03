@@ -1,5 +1,5 @@
 import FollowingFeed from "@/components/feeds/FollowingFeed";
-import SignIn from "@/components/feeds/SignIn";
+import SignIn from "@/components/SignIn";
 import HomeFeedToggle from "@/components/HomeFeedToggle";
 import { getAuthSession } from "@/lib/auth";
 
@@ -9,10 +9,10 @@ export default async function HomePage() {
 
   return (
       <>
-      {/* @ts-expect-error server-component */}
      {session ? (
            <>
              <HomeFeedToggle />
+             {/* @ts-expect-error server-component */}
              <FollowingFeed />
           </>
          )
