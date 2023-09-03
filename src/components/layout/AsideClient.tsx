@@ -3,10 +3,11 @@ import { Icons } from '../Icons';
 import { Home, UserCircle, Search, Users, Plus } from 'lucide-react';
 import UserAccountNav from '../UserAccountNav';
 import { buttonVariants } from '../ui/Button';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { FC } from 'react';
 import { Community } from '@prisma/client';
 import { Session } from 'next-auth';
+
 
 interface AsideClientProps {
   session: Session | null
@@ -15,6 +16,7 @@ interface AsideClientProps {
 
 const AsideClient: FC<AsideClientProps> = ({ session, subs }) => {
   const router = useRouter();
+  const pathname = usePathname();
   const zUser = session?.user;
 
   return (
@@ -28,33 +30,33 @@ const AsideClient: FC<AsideClientProps> = ({ session, subs }) => {
 
       <button
         onClick={() => router.push('/')}
-        className='hidden md:flex items-end text-xl font-medium py-1 pr-2 rounded-lg'
+        className={`${pathname === "/" ? "font-bold" : "font-medium"} hidden md:flex items-end text-xl py-1 pr-2 rounded-lg`}
       >
-        <Home strokeWidth={1.5} className='h-5 w-5 md:h-7 md:w-7 mr-3' />
+        <Home strokeWidth={pathname === "/" ? 2 : 1.5} className='h-5 w-5 md:h-7 md:w-7 mr-3' />
         Home
       </button>
 
       <button
         onClick={() => router.push('/communities')}
-        className='hidden md:flex items-end text-xl font-medium py-1 pr-2 rounded-lg'
+        className={`${pathname === "/communities" ? "font-bold" : "font-medium"} hidden md:flex items-end text-xl py-1 pr-2 rounded-lg`}
       >
-        <Users strokeWidth={1.5} className='h-5 w-5 md:h-7 md:w-7 mr-3' />
+        <Users strokeWidth={pathname === "/communities" ? 2 : 1.5} className='h-5 w-5 md:h-7 md:w-7 mr-3' />
         Communities
       </button>
 
       <button
         onClick={() => router.push('/explore')}
-        className='hidden md:flex items-end text-xl font-medium py-1 pr-2 rounded-lg'
+        className={`${pathname === "/explore" ? "font-bold" : "font-medium"} hidden md:flex items-end text-xl py-1 pr-2 rounded-lg`}
       >
-        <Search strokeWidth={1.5} className='h-5 w-5 md:h-7 md:w-7 mr-3' />
+        <Search strokeWidth={pathname === "/explore" ? 2 : 1.5} className='h-5 w-5 md:h-7 md:w-7 mr-3' />
         Explore
       </button>
 
       <button
         onClick={() => router.push('/profile')}
-        className='hidden md:flex items-end text-xl font-medium py-1 pr-2 rounded-lg'
+        className={`${pathname === "/profile" ? "font-bold" : "font-medium"} hidden md:flex items-end text-xl py-1 pr-2 rounded-lg`}
       >
-        <UserCircle strokeWidth={1.5} className='h-5 w-5 md:h-7 md:w-7 mr-3' />
+        <UserCircle strokeWidth={pathname === "/profile" ? 2 : 1.5} className='h-5 w-5 md:h-7 md:w-7 mr-3' />
         Profile
       </button>
 
