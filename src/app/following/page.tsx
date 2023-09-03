@@ -8,7 +8,7 @@ export default async function HomePage() {
    const session = await getAuthSession()
 
   return (
-      <>
+   <div className="relative">
      {session ? (
            <>
              <HomeFeedToggle />
@@ -21,6 +21,6 @@ export default async function HomePage() {
                 <SignIn />
              )
         }
-     </>
+     </div>
   )
 }
