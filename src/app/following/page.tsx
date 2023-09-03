@@ -12,7 +12,7 @@ export default async function HomePage() {
      {session ? (
            <>
              <HomeFeedToggle />
-             <div className={`${session && "pt-28"}`}>
+             <div className={`${session && "pt-6"}`}>
                {/* @ts-expect-error server-component */}
                <FollowingFeed />
              </div>
