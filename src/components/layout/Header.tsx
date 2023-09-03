@@ -18,8 +18,8 @@ const Header = () => {
             <DropdownMenuTrigger>
               <HamburgerMenuIcon strokeWidth={1.7} className='h-6 w-6' />
             </DropdownMenuTrigger>
-            <DropdownMenuContent className='bg-none border-0'>
-              <DropdownMenuItem className='bg-none border-0'>
+            <DropdownMenuContent>
+              <DropdownMenuItem>
                 {/* @ts-expect-error Server Component */}
                 <Aside />
               </DropdownMenuItem>
