@@ -89,15 +89,12 @@ const AsideClient: FC<AsideClientProps> = ({ session, subs }) => {
             </button>
             <ul
               id='aside-communities'
-              className='text-zinc-600 max-h-[10rem] space-y-2'
+              className='text-zinc-600 max-h-[10rem] space-y-1'
             >
               {/* Map over the user's subscribed communities and generate the list */}
               {subs.map((community) => (
-                <li key={community.id}>
-                  <button
-                    onClick={() => router.push(`z/${community.name}`)}
-                    className=''
-                  >{`z/${community.name}`}</button>
+                <li key={community.id} onClick={() => router.push(`z/${community.name}`)} className='py-1'>
+                   {`z/${community.name}`}
                 </li>
               ))}
             </ul>
