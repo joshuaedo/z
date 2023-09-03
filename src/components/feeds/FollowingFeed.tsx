@@ -3,7 +3,7 @@ import { db } from '@/lib/db';
 import PostFeed from './PostFeed';
 import { getAuthSession } from '@/lib/auth';
 
-const CustomFeed= async () => {
+const FollowingFeed= async () => {
 
   const session = await getAuthSession()
 
@@ -40,4 +40,4 @@ const CustomFeed= async () => {
   return <PostFeed initialPosts={posts} />
 };
 
-export default CustomFeed;
+export default FollowingFeed;
