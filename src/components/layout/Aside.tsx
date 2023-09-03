@@ -10,7 +10,7 @@ const Aside = async () => {
   const zUser = session?.user;
 
   return (
-    <aside className='overflow-hidden h-fit rounded-lg border border-gray-200 fixed px-10 py-8 space-y-4'>
+    <aside className='overflow-hidden h-fit rounded-lg border border-gray-200 md:fixed px-10 py-8 space-y-4 bg-white md:bg-transparent'>
       <Link href='/' className='hidden md:flex items-center'>
         <Icons.logo className='-ml-2 h-8 w-8 md:h-10 md:w-10' />
       </Link>
