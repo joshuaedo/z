@@ -1,4 +1,3 @@
-"use client"
 import Link from 'next/link';
 import { Icons } from '../Icons';
 import { HamburgerMenuIcon } from '@radix-ui/react-icons';
@@ -7,7 +6,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@radix-ui/react-dropdown-menu';
+} from '../ui/DropDownMenu';
 import Aside from './Aside';
 
 const Header = () => {
