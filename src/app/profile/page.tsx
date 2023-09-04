@@ -1,22 +1,24 @@
+import ProfileFeed from '@/components/feeds/ProfileFeed';
+
 export const metadata = {
-  title: "Profile / Z",
-  description: "",
+  title: 'Profile / Z',
+  description: '',
   openGraph: {
-    title: "Profile / Z",
-    description: "",
+    title: 'Profile / Z',
+    description: '',
     images: [
       {
-        url: "",
+        url: '',
         width: 200,
         height: 200,
       },
     ],
   },
   twitter: {
-    card: "summary",
-    title: "Profile / Z",
-    description: "",
-    images: [""],
+    card: 'summary',
+    title: 'Profile / Z',
+    description: '',
+    images: [''],
   },
 };
 
@@ -24,10 +26,11 @@ interface ProfilePageProps {}
 
 const ProfilePage = ({}: ProfilePageProps) => {
   return (
-     <div>
-      ProfilePage
-     </div>
-  )
-}
+    <div>
+      {/* @ts-expect-error */}
+      <ProfileFeed />
+    </div>
+  );
+};
 
 export default ProfilePage;
