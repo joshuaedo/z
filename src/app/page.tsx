@@ -8,19 +8,23 @@ export default async function HomePage() {
   const session = await getAuthSession()
 
   return (
-      <div className={`relative`}>
+    <>
+      <div className="relative">
         { session ? 
               (
               <>
               <HomeFeedToggle /> 
-              <div className={`pt-6`}> 
-              {/* @ts-expect-error Server Component */}           
-                    <ForYouFeedFeed />
+              <div className="pt-6"> 
+                    {/* @ts-expect-error */}
+                    <ForYouFeed />
               </div>
                </>
-               {/* @ts-expect-error Server Component */}
-               ) : <GeneralFeed />
+               ) : (
+                // @ts-expect-error
+               <GeneralFeed />
+               )
         }  
      </div>
+     </>
   )
 }
