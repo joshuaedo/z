@@ -13,7 +13,7 @@ const MobileNav = async () => {
       
        <MobileNavClient />
        
-        <a
+        <Link
           href='/profile'
           className='flex items-end text-xl font-medium py-1 pr-2 rounded-lg'
         >
@@ -24,7 +24,7 @@ const MobileNav = async () => {
               image: zUser?.image || null,
             }}
           />
-        </a>
+        </Link>
       </div>
     </nav>
   );
