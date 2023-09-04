@@ -27,7 +27,7 @@ const PostFeed: FC<PostFeedProps> = ({ initialPosts, communityName }) => {
   const { data, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
     ['infinte-query'],
     async ({ pageParam = 1 }) => {
-      const query =   
+      const query =
         `/api/posts?limit=${INFINITE_SCROLLING_PAGINATION_RESULTS}&page=${pageParam}` +
         (!!communityName ? `&communityName=${communityName}` : ''); // Add the '&' here
 
@@ -43,10 +43,10 @@ const PostFeed: FC<PostFeedProps> = ({ initialPosts, communityName }) => {
   );
 
   useEffect(() => {
-    if(entry?.isIntersecting){
-      fetchNextPage()
+    if (entry?.isIntersecting) {
+      fetchNextPage();
     }
-  }, [entry, fetchNextPage])
+  }, [entry, fetchNextPage]);
 
   const posts = data?.pages.flatMap((page) => page) ?? initialPosts;
 
@@ -66,13 +66,25 @@ const PostFeed: FC<PostFeedProps> = ({ initialPosts, communityName }) => {
         if (index === posts.length - 1) {
           return (
             <li key={post.id} ref={ref}>
-              <Post currentVote={currentVote} votesAmt={votesAmt} commentAmt={post.comments.length} post={post} communityName={post.community.name}/>
+              <Post
+                currentVote={currentVote}
+                votesAmt={votesAmt}
+                commentAmt={post.comments.length}
+                post={post}
+                communityName={post.community.name}
+              />
             </li>
           );
         } else {
           return (
             <li key={post.id}>
-              <Post currentVote={currentVote} votesAmt={votesAmt} commentAmt={post.comments.length} post={post} communityName={post.community.name}/>
+              <Post
+                currentVote={currentVote}
+                votesAmt={votesAmt}
+                commentAmt={post.comments.length}
+                post={post}
+                communityName={post.community.name}
+              />
             </li>
           );
         }

@@ -3,41 +3,39 @@ import { db } from '@/lib/db';
 import PostFeed from './PostFeed';
 import { getAuthSession } from '@/lib/auth';
 
-const FollowingFeed= async () => {
-
-  const session = await getAuthSession()
+const FollowingFeed = async () => {
+  const session = await getAuthSession();
 
   const followedCommunities = await db.subscription.findMany({
-     where: {
-        userId: session?.user.id
-     },
-     include: {
-        community: true
-     }
-  })
+    where: {
+      userId: session?.user.id,
+    },
+    include: {
+      community: true,
+    },
+  });
 
   const posts = await db.post.findMany({
     where: {
-        community: {
-            name: {
-                in: followedCommunities.map(({community}) => community.id)
-           }
-        }
+      community: {
+        name: {
+          in: followedCommunities.map(({ community }) => community.id),
+        },
+      },
     },
     orderBy: {
-        createdAt: "desc",
+      createdAt: 'desc',
     },
     include: {
-        votes: true,
-        author: true,
-        comments: true,
-        community: true,
+      votes: true,
+      author: true,
+      comments: true,
+      community: true,
     },
     take: INFINITE_SCROLLING_PAGINATION_RESULTS,
-}
-)
+  });
 
-  return <PostFeed initialPosts={posts} />
+  return <PostFeed initialPosts={posts} />;
 };
 
 export default FollowingFeed;

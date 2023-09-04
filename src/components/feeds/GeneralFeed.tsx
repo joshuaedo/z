@@ -5,7 +5,7 @@ import PostFeed from './PostFeed';
 const GeneralFeed = async () => {
   const posts = await db.post.findMany({
     orderBy: {
-      createdAt: "desc",
+      createdAt: 'desc',
     },
     include: {
       votes: true,
