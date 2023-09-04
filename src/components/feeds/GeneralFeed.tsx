@@ -3,7 +3,20 @@ import { db } from '@/lib/db';
 import PostFeed from './PostFeed';
 
 const GeneralFeed = async () => {
- return <div>sup?</div>
+  const posts = await db.post.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+    include: {
+      votes: true,
+      author: true,
+      comments: true,
+      community: true,
+    },
+    take: INFINITE_SCROLLING_PAGINATION_RESULTS,
+  });
+
+  return <PostFeed initialPosts={posts} />;
 };
 
 export default GeneralFeed;
