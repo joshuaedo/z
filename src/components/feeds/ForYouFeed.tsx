@@ -6,6 +6,7 @@ import { getAuthSession } from '@/lib/auth';
 const ForYouFeed = async () => {
   const session = await getAuthSession();
 
+
   // Fetch the communities the user is following
   const followedCommunities = await db.subscription.findMany({
     where: {

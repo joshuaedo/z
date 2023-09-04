@@ -27,7 +27,6 @@ const SlugPage = async ({ params }: SlugPageProps) => {
           comments: true,
           community: true,
         },
-        // where: { communityId: community.id },
         orderBy: {
           createdAt: 'desc',
         },
