@@ -9,7 +9,6 @@ import axios from 'axios';
 import { useSession } from 'next-auth/react';
 import Post from '../Post';
 
-
 interface PostFeedProps {
   initialPosts: ExtendedPost[];
   communityName?: string;
