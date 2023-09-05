@@ -5,7 +5,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { FC } from 'react';
 import { Button } from '../ui/Button';
 import UserAvatar from '../UserAvatar';
-import { Textarea } from '../ui/TextArea';
+import { Input } from '../ui/Input';
 
 interface AddCommunityPostProps {
   session: Session | null;
@@ -31,15 +31,9 @@ const AddCommunityPost: FC<AddCommunityPostProps> = ({ session }) => {
             <span className='absolute bottom-0 right-0 rounded-full h-3 w-3 bg-green-500 outline outline-2 outline-white' />
           </div>    
         
-        {/* Add Post */}
-        
-          <Button
-            variant='ghost'
-            onClick={() => router.push(pathname + '/submit')}
-            className=''
-          >
-            <Textarea placeholder="What's happening?" />
-          </Button>
+        {/* Add Post */}   
+
+            <Input onClick={() => router.push(pathname + '/submit')} placeholder="What's happening?" />
              
         </div>
       </li>
