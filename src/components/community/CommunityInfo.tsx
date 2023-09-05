@@ -39,7 +39,7 @@ const CommunityInfo: FC<CommunityInfoProps> = ({
             </div>
 
             <div className=''>
-                <p className='text-sm'>This is the community's description</p>
+                <p className='text-sm'>This is the community&apos;s description</p>
             </div>
 
             <div className="flex items-center pt-2">
