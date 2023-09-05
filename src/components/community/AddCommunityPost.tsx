@@ -5,7 +5,6 @@ import { usePathname, useRouter } from 'next/navigation';
 import { FC } from 'react';
 import UserAvatar from '../UserAvatar';
 import { Input } from '../ui/Input';
-import { Feather } from 'lucide-react';
 
 interface AddCommunityPostProps {
   session: Session | null;
@@ -22,7 +21,7 @@ const AddCommunityPost: FC<AddCommunityPostProps> = ({
   return (
     <>
       <li className='overflow-hidden rounded-md bg-white shadow list-none'>
-        <div className='h-full px-6 py-4 flex justify-between relative'>
+        <div className='h-full px-5 py-4 flex justify-between gap-4 md:gap-6'>
           {/* Avatar */}
           <div className='relative'>
             <UserAvatar
@@ -41,15 +40,9 @@ const AddCommunityPost: FC<AddCommunityPostProps> = ({
           {/* Add Post */}
 
           <Input
-            className='focus:ring-0 border-0 outline-none shadow-none placeholder:text-sm placeholder:font-medium'
+            className='no-focusing focus:ring-0 border-0 outline-none shadow-none placeholder:text-sm placeholder:font-medium px-0 pb-2'
             onClick={() => router.push(pathname + '/submit')}
             placeholder="What's happening?"
-          />
-
-          <Feather
-            onClick={() => router.push(pathname + '/submit')}
-            className='w-5 h-5 absolute top-2 right-2'
-            strokeWidth={1.5}
           />
         </div>
       </li>

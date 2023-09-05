@@ -73,6 +73,9 @@
   body {
     @apply bg-background text-foreground;
   }
+  .no-focusing {
+    @apply focus-visible:ring-0 focus-visible:outline-none
+  }
 }
 
 .text-2xs {
