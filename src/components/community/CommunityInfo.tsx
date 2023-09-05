@@ -28,7 +28,7 @@ const CommunityInfo: FC<CommunityInfoProps> = ({
   return (  
       <HoverCard>
       <HoverCardTrigger asChild>
-        <Button className='font-bold text-3xl md:text-4xl mr-3' variant="link">
+        <Button className='font-bold text-3xl md:text-4xl' variant="link">
            z/{community.name}
         </Button>
       </HoverCardTrigger>
@@ -56,7 +56,7 @@ const CommunityInfo: FC<CommunityInfoProps> = ({
               <Users className="mr-2 h-4 w-4 opacity-70" />{" "}
                <span className="text-xs text-muted-foreground">
                   <time dateTime={community.createdAt.toDateString()}>
-                    {`${memberCount} member${memberCount > 1 && "s"}`}
+                    {`${memberCount} member${memberCount > 1 ? "s" : ""}`}
                 </time>
               </span>
             </div>

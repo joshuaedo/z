@@ -7,7 +7,6 @@ import PostFeed from '@/components/feeds/PostFeed';
 import SubscribeLeaveToggle from '@/components/SubscribeLeaveToggle';
 import CommunityMenu from '@/components/community/CommunityMenu';
 import CommunityInfo from '@/components/community/CommunityInfo';
-import { Button } from '@/components/ui/Button';
 
 interface SlugPageProps {
   params: {
@@ -75,12 +74,13 @@ const SlugPage = async ({ params }: SlugPageProps) => {
         memberCount={memberCount}
       />
       {/* Community Status */}
+      <div className="ml-2">
        {community.creatorId === session?.user.id ? (
-          <Button
-          className='w-full mt-1 mb-4 rounded-[50%]'
+          <div
+          className='bg-purple-500 text-zinc-900 rounded-full'
          >
           Creator
-        </Button>
+        </div>
         ) : null}
         {community.creatorId !== session?.user.id ? (
           <SubscribeLeaveToggle
@@ -89,6 +89,7 @@ const SlugPage = async ({ params }: SlugPageProps) => {
             communityName={community.name}
           />
         ) : null}
+        </div>
       </div>
 
        {/* Community Menu */}

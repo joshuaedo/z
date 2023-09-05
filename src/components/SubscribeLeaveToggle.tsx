@@ -8,6 +8,7 @@ import axios, { AxiosError } from 'axios';
 import { useCustomToast } from '@/hooks/use-custom-toast';
 import { toast } from '@/hooks/use-toast';
 import { useRouter } from 'next/navigation';
+import { CheckCheck } from 'lucide-react';
 
 interface SubscribeLeaveToggleProps {
   communityId: string;
@@ -95,15 +96,15 @@ const SubscribeLeaveToggle: FC<SubscribeLeaveToggleProps> = ({
     <Button
       isLoading={isUnSubscribing}
       onClick={() => unsubscribe()}
-      className='w-full mt-1 mb-4'
+      className=''
     >
-      Joined
+      {`Joined ${<CheckCheck />}`}
     </Button>
   ) : (
     <Button
       isLoading={isSubscribing}
       onClick={() => subscribe()}
-      className='w-full mt-1 mb-4'
+      className=''
     >
       Join
     </Button>
