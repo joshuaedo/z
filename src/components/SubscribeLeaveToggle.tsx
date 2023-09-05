@@ -106,8 +106,8 @@ const SubscribeLeaveToggle: FC<SubscribeLeaveToggleProps> = ({
   });
 
   return isSubscribed ? (
-    <>
-      <div className='bg-purple-500 text-zinc-900 rounded-full font-semibold py-1 px-2 border border-zinc-900 mr-2'>
+    <div className='flex space-x-1'>
+      <div className='bg-purple-500 text-zinc-900 rounded-full font-semibold py-1 px-2 border border-zinc-900'>
         Member
       </div>
      
