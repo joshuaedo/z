@@ -40,7 +40,7 @@ const AddCommunityPost: FC<AddCommunityPostProps> = ({
           {/* Add Post */}
 
           <Input
-            className='focus:ring-0 border-0 outline-none'
+            className='focus:ring-0 border-0 outline-none shadow-none placeholder:text-sm placeholder:font-medium'
             onClick={() => router.push(pathname + '/submit')}
             placeholder="What's happening?"
           />
