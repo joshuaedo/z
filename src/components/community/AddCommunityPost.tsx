@@ -19,7 +19,6 @@ const AddCommunityPost: FC<AddCommunityPostProps> = ({ session }) => {
     <>
       <li className='overflow-hidden rounded-md bg-white shadow list-none'>
         <div className='h-full px-6 py-4 flex justify-between gap-4 md:gap-6'>
-
           {/* Avatar */}
           <div className='relative'>
             <UserAvatar
@@ -29,12 +28,14 @@ const AddCommunityPost: FC<AddCommunityPostProps> = ({ session }) => {
               }}
             />
             <span className='absolute bottom-0 right-0 rounded-full h-3 w-3 bg-green-500 outline outline-2 outline-white' />
-          </div>    
-        
-        {/* Add Post */}   
+          </div>
 
-            <Input onClick={() => router.push(pathname + '/submit')} placeholder="What's happening?" />
-             
+          {/* Add Post */}
+
+          <Input
+            onClick={() => router.push(pathname + '/submit')}
+            placeholder="What's happening?"
+          />
         </div>
       </li>
     </>

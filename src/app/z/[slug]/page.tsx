@@ -1,4 +1,3 @@
-
 import { INFINITE_SCROLLING_PAGINATION_RESULTS } from '@/config';
 import { getAuthSession } from '@/lib/auth';
 import { db } from '@/lib/db';
@@ -66,33 +65,27 @@ const SlugPage = async ({ params }: SlugPageProps) => {
 
   return (
     <div className='space-y-6'>
-
-      <div className="flex w-fit items-center justify-center">
+      <div className='flex w-fit items-center justify-center'>
         {/* Community Name & Info */}
-        <CommunityInfo
-        community={community}
-        memberCount={memberCount}
-      />
-      {/* Community Status */}
-      <div className="ml-2">
-       {community.creatorId === session?.user.id ? (
-          <div
-          className='bg-purple-500 text-zinc-900 rounded-full font-semibold py-1 px-2 border border-zinc-900'
-         >
-          Creator
-        </div>
-        ) : null}
-        {community.creatorId !== session?.user.id ? (
-          <SubscribeLeaveToggle
-            isSubscribed={isSubscribed}
-            communityId={community.id}
-            communityName={community.name}
-          />
-        ) : null}
+        <CommunityInfo community={community} memberCount={memberCount} />
+        {/* Community Status */}
+        <div className='ml-2'>
+          {community.creatorId === session?.user.id ? (
+            <div className='bg-purple-500 text-zinc-900 rounded-full font-semibold py-1 px-2 border border-zinc-900'>
+              Creator
+            </div>
+          ) : null}
+          {community.creatorId !== session?.user.id ? (
+            <SubscribeLeaveToggle
+              isSubscribed={isSubscribed}
+              communityId={community.id}
+              communityName={community.name}
+            />
+          ) : null}
         </div>
       </div>
 
-       {/* Community Menu */}
+      {/* Community Menu */}
       <AddCommunityPost session={session} />
 
       {/* Community Feed */}

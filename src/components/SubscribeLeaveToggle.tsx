@@ -8,7 +8,7 @@ import axios, { AxiosError } from 'axios';
 import { useCustomToast } from '@/hooks/use-custom-toast';
 import { toast } from '@/hooks/use-toast';
 import { useRouter } from 'next/navigation';
-import { CheckCheck, MoreVertical } from 'lucide-react';
+import { MoreVertical } from 'lucide-react';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -19,9 +19,13 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/ui/AlertDialog"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from './ui/DropDownMenu';
-
+} from '@/components/ui/AlertDialog';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from './ui/DropDownMenu';
 
 interface SubscribeLeaveToggleProps {
   communityId: string;
@@ -110,48 +114,41 @@ const SubscribeLeaveToggle: FC<SubscribeLeaveToggleProps> = ({
       <div className='bg-purple-500 text-zinc-900 rounded-full font-semibold py-1 px-2 border border-zinc-900'>
         Member
       </div>
-     
-          <DropdownMenu>
-             <DropdownMenuTrigger>
-                <MoreVertical className='h-4 w-4' />
-             </DropdownMenuTrigger>
-             <DropdownMenuContent>
-                <DropdownMenuItem
-                className='cursor-pointer'
-               >
-               <AlertDialog>
-    <AlertDialogTrigger>
-     <Button variant="destructive">Leave</Button>
-    </AlertDialogTrigger>
-    <AlertDialogContent>
-      <AlertDialogHeader>
-        <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-        <AlertDialogDescription>
-          {`This action cannot be undone. This will permanently unsubscribe you from z/${communityName}.`}
-        </AlertDialogDescription>
-      </AlertDialogHeader>
-      <AlertDialogFooter>
-        <AlertDialogCancel>Cancel</AlertDialogCancel>
-        <AlertDialogAction>
-          <Button
-            isLoading={isUnSubscribing}
-            onClick={() => unsubscribe()}
-             >Continue
-          </Button>
-      </AlertDialogAction>
-      </AlertDialogFooter>
-    </AlertDialogContent>
-  </AlertDialog>
-             </DropdownMenuItem>
-           </DropdownMenuContent>
-          </DropdownMenu> 
-  </div>
+
+      <DropdownMenu>
+        <DropdownMenuTrigger>
+          <MoreVertical className='h-4 w-4' />
+        </DropdownMenuTrigger>
+        <DropdownMenuContent>
+          <DropdownMenuItem className='cursor-pointer'>
+            <AlertDialog>
+              <AlertDialogTrigger asChild>Leave</AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    {`This action cannot be undone. This will permanently unsubscribe you from z/${communityName}.`}
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                  <AlertDialogAction>
+                    <Button
+                      isLoading={isUnSubscribing}
+                      onClick={() => unsubscribe()}
+                    >
+                      Continue
+                    </Button>
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </div>
   ) : (
-    <Button
-      isLoading={isSubscribing}
-      onClick={() => subscribe()}
-      className=''
-    >
+    <Button isLoading={isSubscribing} onClick={() => subscribe()} className=''>
       Join
     </Button>
   );
