@@ -24,7 +24,7 @@ const Create = ({}) => {
       };
 
       const { data } = await axios.post('/api/community', payload);
-      return data as string;
+      return data as object;
     },
     onError: (err) => {
       if (err instanceof AxiosError) {
