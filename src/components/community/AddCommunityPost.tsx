@@ -3,9 +3,9 @@
 import { Session } from 'next-auth';
 import { usePathname, useRouter } from 'next/navigation';
 import { FC } from 'react';
-import { Plus } from 'lucide-react';
 import { Button } from '../ui/Button';
 import UserAvatar from '../UserAvatar';
+import { Textarea } from '../ui/TextArea';
 
 interface AddCommunityPostProps {
   session: Session | null;
@@ -38,7 +38,7 @@ const AddCommunityPost: FC<AddCommunityPostProps> = ({ session }) => {
             onClick={() => router.push(pathname + '/submit')}
             className=''
           >
-            <TextArea placeholder="What's happening?" />
+            <Textarea placeholder="What's happening?" />
           </Button>
              
         </div>

@@ -93,7 +93,7 @@ const SlugPage = async ({ params }: SlugPageProps) => {
       </div>
 
        {/* Community Menu */}
-      <CommunityMenu session={session} />
+      <AddCommunityPost session={session} />
 
       {/* Community Feed */}
       <PostFeed initialPosts={community.posts} communityName={community.name} />
