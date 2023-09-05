@@ -25,9 +25,7 @@ const CommunityInfo: FC<CommunityInfoProps> = ({ community, memberCount }) => {
   return (
     <HoverCard>
       <HoverCardTrigger asChild>
-        <Button className='font-bold text-3xl md:text-4xl' variant='link'>
-          z/{community.name}
-        </Button>
+        <h2 className='font-bold text-3xl md:text-4xl'>z/{community.name}</h2>
       </HoverCardTrigger>
       <HoverCardContent className='w-80'>
         <div className='space-y-1'>

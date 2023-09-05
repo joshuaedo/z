@@ -8,9 +8,13 @@ import { Input } from '../ui/Input';
 
 interface AddCommunityPostProps {
   session: Session | null;
+  isCreator: boolean;
 }
 
-const AddCommunityPost: FC<AddCommunityPostProps> = ({ session }) => {
+const AddCommunityPost: FC<AddCommunityPostProps> = ({
+  session,
+  isCreator,
+}) => {
   const router = useRouter();
   const pathname = usePathname();
 
@@ -26,7 +30,11 @@ const AddCommunityPost: FC<AddCommunityPostProps> = ({ session }) => {
                 image: session?.user.image || null,
               }}
             />
-            <span className='absolute bottom-0 right-0 rounded-full h-3 w-3 bg-green-500 outline outline-2 outline-white' />
+            <span
+              className={`absolute bottom-0 right-0 rounded-full h-3 w-3 bg-${
+                isCreator ? 'purple' : 'green'
+              }-500 outline outline-2 outline-white`}
+            />
           </div>
 
           {/* Add Post */}

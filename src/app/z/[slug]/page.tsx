@@ -55,6 +55,8 @@ const SlugPage = async ({ params }: SlugPageProps) => {
 
   const isSubscribed = !!subscription;
 
+  const isCreator = community.creatorId === session?.user.id
+
   const memberCount = await db.subscription.count({
     where: {
       community: {
@@ -69,24 +71,22 @@ const SlugPage = async ({ params }: SlugPageProps) => {
         {/* Community Name & Info */}
         <CommunityInfo community={community} memberCount={memberCount} />
         {/* Community Status */}
-        <div className='ml-2'>
-          {community.creatorId === session?.user.id ? (
+          {isCreator ? (
             <div className='bg-purple-500 text-zinc-900 rounded-full font-semibold py-1 px-2 border border-zinc-900'>
               Creator
             </div>
           ) : null}
-          {community.creatorId !== session?.user.id ? (
+          {!isCreator ? (
             <SubscribeLeaveToggle
               isSubscribed={isSubscribed}
               communityId={community.id}
               communityName={community.name}
             />
           ) : null}
-        </div>
       </div>
 
       {/* Community Menu */}
-      <AddCommunityPost session={session} />
+      <AddCommunityPost session={session} isCreator={isCreator} />
 
       {/* Community Feed */}
       <PostFeed initialPosts={community.posts} communityName={community.name} />

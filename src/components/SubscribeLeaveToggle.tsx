@@ -8,7 +8,7 @@ import axios, { AxiosError } from 'axios';
 import { useCustomToast } from '@/hooks/use-custom-toast';
 import { toast } from '@/hooks/use-toast';
 import { useRouter } from 'next/navigation';
-import { LogOut, MoreVertical } from 'lucide-react';
+import { LogOut } from 'lucide-react';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -20,12 +20,6 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/AlertDialog';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from './ui/DropDownMenu';
 
 interface SubscribeLeaveToggleProps {
   communityId: string;
@@ -110,8 +104,8 @@ const SubscribeLeaveToggle: FC<SubscribeLeaveToggleProps> = ({
   });
 
   return isSubscribed ? (
-    <div className='flex space-x-1'>
-      <div className='bg-green-500 text-zinc-900 rounded-full font-semibold py-1 px-2 border border-zinc-900'>
+    <div className='flex items-center'>
+      <div className='bg-green-500 text-zinc-900 rounded-full font-semibold py-1 px-2 border border-zinc-900 mx-2'>
         Member
       </div>
 
