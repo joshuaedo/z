@@ -145,7 +145,7 @@ const SubscribeLeaveToggle: FC<SubscribeLeaveToggleProps> = ({
              </DropdownMenuItem>
            </DropdownMenuContent>
           </DropdownMenu> 
-  </>
+  </div>
   ) : (
     <Button
       isLoading={isSubscribing}
