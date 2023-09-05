@@ -7,6 +7,7 @@ import PostFeed from '@/components/feeds/PostFeed';
 import SubscribeLeaveToggle from '@/components/SubscribeLeaveToggle';
 import CommunityMenu from '@/components/community/CommunityMenu';
 import CommunityInfo from '@/components/community/CommunityInfo';
+import { Button } from '@/components/ui/Button';
 
 interface SlugPageProps {
   params: {
@@ -67,7 +68,7 @@ const SlugPage = async ({ params }: SlugPageProps) => {
   return (
     <div className='space-y-6'>
 
-      <div className="flex w-fit">
+      <div className="flex w-fit items-center justify-between">
         {/* Community Name & Info */}
         <CommunityInfo
         community={community}
@@ -75,9 +76,11 @@ const SlugPage = async ({ params }: SlugPageProps) => {
       />
       {/* Community Status */}
        {community.creatorId === session?.user.id ? (
-          <div className='flex justify-between gap-x-4 py-3'>
-            <p className='text-gray-500'>You created this community</p>
-          </div>
+          <Button
+          className='w-full mt-1 mb-4 rounded-[50%]'
+         >
+          Creator
+        </Button>
         ) : null}
         {community.creatorId !== session?.user.id ? (
           <SubscribeLeaveToggle

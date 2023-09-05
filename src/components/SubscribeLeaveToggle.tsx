@@ -97,7 +97,7 @@ const SubscribeLeaveToggle: FC<SubscribeLeaveToggleProps> = ({
       onClick={() => unsubscribe()}
       className='w-full mt-1 mb-4'
     >
-      Join
+      Joined
     </Button>
   ) : (
     <Button
@@ -105,7 +105,7 @@ const SubscribeLeaveToggle: FC<SubscribeLeaveToggleProps> = ({
       onClick={() => subscribe()}
       className='w-full mt-1 mb-4'
     >
-      Joined
+      Join
     </Button>
   );
 };
