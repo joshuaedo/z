@@ -8,7 +8,7 @@ import axios, { AxiosError } from 'axios';
 import { useCustomToast } from '@/hooks/use-custom-toast';
 import { toast } from '@/hooks/use-toast';
 import { useRouter } from 'next/navigation';
-import { CheckCheck } from 'lucide-react';
+import { CheckCheck, MoreVertical } from 'lucide-react';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -20,6 +20,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/AlertDialog"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from './ui/DropDownMenu';
 
 
 interface SubscribeLeaveToggleProps {
@@ -105,11 +106,22 @@ const SubscribeLeaveToggle: FC<SubscribeLeaveToggleProps> = ({
   });
 
   return isSubscribed ? (
-    <AlertDialog>
+    <>
+      <div className='bg-purple-500 text-zinc-900 rounded-full font-semibold py-1 px-2 border border-zinc-900 mr-2'>
+        Member
+      </div>
+     
+          <DropdownMenu>
+             <DropdownMenuTrigger>
+                <MoreVertical className='h-4 w-4' />
+             </DropdownMenuTrigger>
+             <DropdownMenuContent>
+                <DropdownMenuItem
+                className='cursor-pointer'
+               >
+               <AlertDialog>
     <AlertDialogTrigger asChild>
-      <Button variant="outline">
-        Joined{" "}<CheckCheck />
-      </Button>
+     <Button variant="destructive">Leave</Button>
     </AlertDialogTrigger>
     <AlertDialogContent>
       <AlertDialogHeader>
@@ -130,6 +142,10 @@ const SubscribeLeaveToggle: FC<SubscribeLeaveToggleProps> = ({
       </AlertDialogFooter>
     </AlertDialogContent>
   </AlertDialog>
+             </DropdownMenuItem>
+           </DropdownMenuContent>
+          </DropdownMenu> 
+  </>
   ) : (
     <Button
       isLoading={isSubscribing}
