@@ -12,13 +12,15 @@ import { useCustomToast } from '@/hooks/use-custom-toast';
 
 const Create = ({ }) => {
   const [input, setInput] = useState<string>('');
+  const [description, setDescription] = useState<string>('')
   const router = useRouter();
   const { loginToast } = useCustomToast();
 
   const { mutate: createCommunity, isLoading } = useMutation({
     mutationFn: async () => {
       const payload: CreateCommunityPayload = {
-        name: input
+        name: input,
+        description: description, 
       };
 
       const { data } = await axios.post("/api/community", payload);
@@ -79,6 +81,16 @@ const Create = ({ }) => {
 
           <Input value={input} onChange={(e) => setInput(e.target.value)} className='pl-6' />
         </div>
+
+        <div>
+  <p className="text-lg font-medium">Description</p>
+</div>
+<Input
+  value={description}
+  onChange={(e) => setDescription(e.target.value)}
+  className='pl-6'
+  placeholder='Enter community description'
+/>
 
         <div className='flex justify-end gap-4'>
           <Button variant="subtle" onClick={() => router.back()}>Cancel</Button>

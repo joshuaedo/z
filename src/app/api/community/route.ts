@@ -12,7 +12,7 @@ export async function POST(req: Request) {
         }
 
         const body = await req.json();
-        const { name } = CommunityValidator.parse(body);
+        const { name, description } = CommunityValidator.parse(body);
 
         const communityExists = await db.community.findFirst({
             where: {
@@ -27,6 +27,7 @@ export async function POST(req: Request) {
         const community = await db.community.create({
             data: {
                 name,
+                description,
                 creatorId: session.user.id,
                 createdAt: new Date(), // Set the creation date
                 updatedAt: new Date(), // Set the update date
