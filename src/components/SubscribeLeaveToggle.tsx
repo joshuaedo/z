@@ -115,9 +115,9 @@ const SubscribeLeaveToggle: FC<SubscribeLeaveToggleProps> = ({
         </AlertDialogTrigger>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+            <AlertDialogTitle>Leaving?</AlertDialogTitle>
             <AlertDialogDescription>
-              {`This action cannot be undone. This will permanently unsubscribe you from z/${communityName}.`}
+              {`This will permanently unsubscribe you from z/${communityName}.`}
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
