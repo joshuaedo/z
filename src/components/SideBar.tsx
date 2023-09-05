@@ -1,3 +1,5 @@
+"use client"
+
 import { FC } from 'react';
 import { format } from 'date-fns';
 import SubscribeLeaveToggle from './SubscribeLeaveToggle';

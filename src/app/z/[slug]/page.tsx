@@ -1,3 +1,4 @@
+
 import MiniCreatePost from '@/components/MiniCreatePost';
 import { INFINITE_SCROLLING_PAGINATION_RESULTS } from '@/config';
 import { getAuthSession } from '@/lib/auth';
