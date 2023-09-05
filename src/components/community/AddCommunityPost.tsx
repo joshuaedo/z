@@ -6,13 +6,12 @@ import { FC } from 'react';
 import { Plus } from 'lucide-react';
 import { Button } from '../ui/Button';
 import UserAvatar from '../UserAvatar';
-import { Input } from '../ui/Input';
 
-interface CommunityMenuProps {
+interface AddCommunityPostProps {
   session: Session | null;
 }
 
-const CommunityMenu: FC<CommunityMenuProps> = ({ session }) => {
+const AddCommunityPost: FC<AddCommunityPostProps> = ({ session }) => {
   const router = useRouter();
   const pathname = usePathname();
 
@@ -33,12 +32,13 @@ const CommunityMenu: FC<CommunityMenuProps> = ({ session }) => {
           </div>    
         
         {/* Add Post */}
+        
           <Button
             variant='ghost'
             onClick={() => router.push(pathname + '/submit')}
-            className='inline lg:hidden'
+            className=''
           >
-            <Plus className='text-zinc-600' />
+            <TextArea placeholder="What's happening?" />
           </Button>
              
         </div>
@@ -47,4 +47,4 @@ const CommunityMenu: FC<CommunityMenuProps> = ({ session }) => {
   );
 };
 
-export default CommunityMenu;
+export default AddCommunityPost;

@@ -7,7 +7,7 @@ import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
-} from "@/components/ui/hover-card"
+} from "@/components/ui/HoverCard"
 import { Button } from '../ui/Button';
 import { Users } from 'lucide-react';
 

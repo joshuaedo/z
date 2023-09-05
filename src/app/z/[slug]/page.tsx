@@ -5,7 +5,7 @@ import { db } from '@/lib/db';
 import { notFound } from 'next/navigation';
 import PostFeed from '@/components/feeds/PostFeed';
 import SubscribeLeaveToggle from '@/components/SubscribeLeaveToggle';
-import CommunityMenu from '@/components/community/CommunityMenu';
+import AddCommunityPost from '@/components/community/AddCommunityPost';
 import CommunityInfo from '@/components/community/CommunityInfo';
 
 interface SlugPageProps {
