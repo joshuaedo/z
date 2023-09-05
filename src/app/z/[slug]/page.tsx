@@ -5,7 +5,9 @@ import { notFound } from 'next/navigation';
 import PostFeed from '@/components/feeds/PostFeed';
 import SubscribeLeaveToggle from '@/components/SubscribeLeaveToggle';
 import AddCommunityPost from '@/components/community/AddCommunityPost';
-import CommunityInfo from '@/components/community/CommunityInfo';
+import { CalendarIcon } from '@radix-ui/react-icons';
+import { format } from 'date-fns/esm';
+import { Users } from 'lucide-react';
 
 interface SlugPageProps {
   params: {
@@ -69,7 +71,7 @@ const SlugPage = async ({ params }: SlugPageProps) => {
     <div className='space-y-6'>
       <div className='flex w-fit items-center justify-center'>
         {/* Community Name & Info */}
-        <CommunityInfo community={community} memberCount={memberCount} />
+        <h2 className='font-bold text-3xl md:text-4xl'>z/{community.name}</h2>
         {/* Community Status */}
         {isCreator ? (
           <div className='bg-purple-500 text-zinc-900 rounded-full font-semibold py-1 px-2 border border-zinc-900 mx-2'>
@@ -84,6 +86,34 @@ const SlugPage = async ({ params }: SlugPageProps) => {
           />
         ) : null}
       </div>
+
+      <div className='space-y-1 overflow-hidden rounded-md bg-white shadow'>
+          <div className=''>
+            <p className='font-bold'>About z/{community.name}</p>
+          </div>
+
+          <div className=''>
+            <p className='text-sm'>This is the community&apos;s description.</p>
+          </div>
+
+          <div className='flex items-center pt-2'>
+            <CalendarIcon className='mr-2 h-4 w-4 opacity-70' />{' '}
+            <span className='text-xs text-muted-foreground'>
+              <time dateTime={community.createdAt.toDateString()}>
+                {`Created on ${format(community.createdAt, 'MMMM d, yyyy')}`}
+              </time>
+            </span>
+          </div>
+
+          <div className='flex items-center pt-2'>
+            <Users className='mr-2 h-4 w-4 opacity-70' />{' '}
+            <span className='text-xs text-muted-foreground'>
+              <time dateTime={community.createdAt.toDateString()}>
+                {`${memberCount} member${memberCount > 1 ? 's' : ''}`}
+              </time>
+            </span>
+          </div>
+        </div>
 
       {/* Community Menu */}
       <AddCommunityPost session={session} isCreator={isCreator} />
