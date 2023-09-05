@@ -77,7 +77,7 @@ const SlugPage = async ({ params }: SlugPageProps) => {
       <div className="ml-2">
        {community.creatorId === session?.user.id ? (
           <div
-          className='bg-purple-500 text-zinc-900 rounded-full'
+          className='bg-purple-500 text-zinc-900 rounded-full font-semibold py-1 px-2 border border-zinc-900'
          >
           Creator
         </div>

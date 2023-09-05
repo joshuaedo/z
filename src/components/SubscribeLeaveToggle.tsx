@@ -120,10 +120,12 @@ const SubscribeLeaveToggle: FC<SubscribeLeaveToggleProps> = ({
       </AlertDialogHeader>
       <AlertDialogFooter>
         <AlertDialogCancel>Cancel</AlertDialogCancel>
-        <AlertDialogAction
-          isLoading={isUnSubscribing}
-          onClick={() => unsubscribe()}
-          >Continue
+        <AlertDialogAction>
+          <Button
+            isLoading={isUnSubscribing}
+            onClick={() => unsubscribe()}
+             >Continue
+          </Button>
       </AlertDialogAction>
       </AlertDialogFooter>
     </AlertDialogContent>
