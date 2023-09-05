@@ -123,7 +123,11 @@ const SubscribeLeaveToggle: FC<SubscribeLeaveToggleProps> = ({
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
             <AlertDialogAction>
-              <Button isLoading={isUnSubscribing} onClick={() => unsubscribe()}>
+              <Button
+                className='w-full'
+                isLoading={isUnSubscribing}
+                onClick={() => unsubscribe()}
+              >
                 Continue
               </Button>
             </AlertDialogAction>
@@ -132,7 +136,11 @@ const SubscribeLeaveToggle: FC<SubscribeLeaveToggleProps> = ({
       </AlertDialog>
     </div>
   ) : (
-    <Button isLoading={isSubscribing} onClick={() => subscribe()} className=''>
+    <Button
+      isLoading={isSubscribing}
+      onClick={() => subscribe()}
+      className='mx-2'
+    >
       Join
     </Button>
   );
