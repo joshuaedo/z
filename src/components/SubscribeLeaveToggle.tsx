@@ -10,6 +10,19 @@ import { toast } from '@/hooks/use-toast';
 import { useRouter } from 'next/navigation';
 import { CheckCheck } from 'lucide-react';
 
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
+import { Button } from "@/components/ui/button"
+
 interface SubscribeLeaveToggleProps {
   communityId: string;
   isSubscribed: boolean;
@@ -93,13 +106,29 @@ const SubscribeLeaveToggle: FC<SubscribeLeaveToggleProps> = ({
   });
 
   return isSubscribed ? (
-    <Button
-      isLoading={isUnSubscribing}
-      onClick={() => unsubscribe()}
-      className=''
-    >
-      {`Joined `}<CheckCheck />
-    </Button>
+    <AlertDialog>
+    <AlertDialogTrigger asChild>
+      <Button variant="outline">
+        Joined{" "}<CheckCheck />
+      </Button>
+    </AlertDialogTrigger>
+    <AlertDialogContent>
+      <AlertDialogHeader>
+        <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+        <AlertDialogDescription>
+          {`This action cannot be undone. This will permanently unsubscribe you from z/${communityName}.`}
+        </AlertDialogDescription>
+      </AlertDialogHeader>
+      <AlertDialogFooter>
+        <AlertDialogCancel>Cancel</AlertDialogCancel>
+        <AlertDialogAction
+          isLoading={isUnSubscribing}
+          onClick={() => unsubscribe()}
+          >Continue
+      </AlertDialogAction>
+      </AlertDialogFooter>
+    </AlertDialogContent>
+  </AlertDialog>
   ) : (
     <Button
       isLoading={isSubscribing}

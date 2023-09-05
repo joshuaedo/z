@@ -11,6 +11,8 @@ import {
 import { Button } from '../ui/Button';
 import { Users } from 'lucide-react';
 
+
+
 interface CommunityInfoProps {
   community: {
     id: string;
