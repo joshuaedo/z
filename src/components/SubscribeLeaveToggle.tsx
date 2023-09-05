@@ -1,6 +1,5 @@
 'use client';
 
-
 import { useMutation } from '@tanstack/react-query';
 import { Button } from './ui/Button';
 import { SubscribeToCommunityPayload } from '@/lib/validators/community';

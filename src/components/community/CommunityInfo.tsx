@@ -28,7 +28,9 @@ const CommunityInfo: FC<CommunityInfoProps> = ({
   return (  
       <HoverCard>
       <HoverCardTrigger asChild>
-        <Button variant="link">z/{community.name}</Button>
+        <Button variant="link">
+          <h1 className='font-bold text-3xl md:text-4xl h-14'>z/{community.name}</h1>
+        </Button>
       </HoverCardTrigger>
       <HoverCardContent className="w-80">
         <div className="flex justify-between space-x-4">
@@ -47,7 +49,7 @@ const CommunityInfo: FC<CommunityInfoProps> = ({
               <CalendarIcon className="mr-2 h-4 w-4 opacity-70" />{" "}
               <span className="text-xs text-muted-foreground">
                   <time dateTime={community.createdAt.toDateString()}>
-                    {`Created on {format(community.createdAt, 'MMMM d, yyyy')}`}
+                    {`Created on ${format(community.createdAt, 'MMMM d, yyyy')}`}
                 </time>
               </span>
               <div className='flex justify-between gap-x-4 py-3'>

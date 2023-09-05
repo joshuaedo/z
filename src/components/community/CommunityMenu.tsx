@@ -3,7 +3,7 @@
 import { Session } from 'next-auth';
 import { usePathname, useRouter } from 'next/navigation';
 import { FC } from 'react';
-import { ImageIcon, Link2, Plus } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import { Button } from '../ui/Button';
 import UserAvatar from '../UserAvatar';
 import { Input } from '../ui/Input';

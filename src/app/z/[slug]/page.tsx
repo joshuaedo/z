@@ -67,11 +67,12 @@ const SlugPage = async ({ params }: SlugPageProps) => {
   return (
     <div className='space-y-6'>
 
-      <div>
-        {/* Community Name */}
-      <h1 className='font-bold text-3xl md:text-4xl h-14'>
-        z/{community.name}
-      </h1>
+      <div className="flex w-fit">
+        {/* Community Name & Info */}
+        <CommunityInfo
+        community={community}
+        memberCount={memberCount}
+      />
       {/* Community Status */}
        {community.creatorId === session?.user.id ? (
           <div className='flex justify-between gap-x-4 py-3'>
@@ -89,10 +90,6 @@ const SlugPage = async ({ params }: SlugPageProps) => {
 
        {/* Community Menu */}
       <CommunityMenu session={session} />
-      <CommunityInfo
-        community={community}
-        memberCount={memberCount}
-      />
 
       {/* Community Feed */}
       <PostFeed initialPosts={community.posts} communityName={community.name} />
