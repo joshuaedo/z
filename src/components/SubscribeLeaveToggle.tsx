@@ -98,7 +98,7 @@ const SubscribeLeaveToggle: FC<SubscribeLeaveToggleProps> = ({
       onClick={() => unsubscribe()}
       className='w-full mt-1 mb-4'
     >
-      Leave community
+      Join
     </Button>
   ) : (
     <Button
@@ -106,7 +106,7 @@ const SubscribeLeaveToggle: FC<SubscribeLeaveToggleProps> = ({
       onClick={() => subscribe()}
       className='w-full mt-1 mb-4'
     >
-      Join to post
+      Joined
     </Button>
   );
 };
