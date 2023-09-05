@@ -68,7 +68,7 @@ const SlugPage = async ({ params }: SlugPageProps) => {
   return (
     <div className='space-y-6'>
 
-      <div className="flex w-fit items-center justify-between">
+      <div className="flex w-fit items-center justify-center">
         {/* Community Name & Info */}
         <CommunityInfo
         community={community}

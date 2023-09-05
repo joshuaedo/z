@@ -9,6 +9,7 @@ import {
   HoverCardTrigger,
 } from "@/components/ui/hover-card"
 import { Button } from '../ui/Button';
+import { Users } from 'lucide-react';
 
 interface CommunityInfoProps {
   community: {
@@ -27,7 +28,7 @@ const CommunityInfo: FC<CommunityInfoProps> = ({
   return (  
       <HoverCard>
       <HoverCardTrigger asChild>
-        <Button className='font-bold text-3xl md:text-4xl h-14' variant="link">
+        <Button className='font-bold text-3xl md:text-4xl mr-3' variant="link">
            z/{community.name}
         </Button>
       </HoverCardTrigger>
@@ -35,11 +36,11 @@ const CommunityInfo: FC<CommunityInfoProps> = ({
           <div className="space-y-1">
 
             <div className=''>
-                <p className='font-semi-bold'>About z/{community.name}</p>
+                <p className='font-bold'>About z/{community.name}</p>
             </div>
 
             <div className=''>
-                <p className='text-sm'>This is the community&apos;s description</p>
+                <p className='text-sm'>This is the community&apos;s description.</p>
             </div>
 
             <div className="flex items-center pt-2">
@@ -52,10 +53,10 @@ const CommunityInfo: FC<CommunityInfoProps> = ({
             </div>
 
             <div className="flex items-center pt-2">
-              <CalendarIcon className="mr-2 h-4 w-4 opacity-70" />{" "}
+              <Users className="mr-2 h-4 w-4 opacity-70" />{" "}
                <span className="text-xs text-muted-foreground">
                   <time dateTime={community.createdAt.toDateString()}>
-                    {`${memberCount} members`}
+                    {`${memberCount} member${memberCount > 1 && "s"}`}
                 </time>
               </span>
             </div>
