@@ -22,7 +22,7 @@ const AddCommunityPost: FC<AddCommunityPostProps> = ({
   return (
     <>
       <li className='overflow-hidden rounded-md bg-white shadow list-none'>
-        <div className='h-full px-4 py-4 flex justify-between'>
+        <div className='h-full px-6 py-4 flex justify-between relative'>
           {/* Avatar */}
           <div className='relative'>
             <UserAvatar
@@ -40,21 +40,17 @@ const AddCommunityPost: FC<AddCommunityPostProps> = ({
 
           {/* Add Post */}
 
-          <div className='text-sm font-normal opacity-60'>
-            What&apos;s happening?
-          </div>
+          <Input
+            className='focus:ring-0 border-0 outline-none shadow-none placeholder:text-sm placeholder:font-medium'
+            onClick={() => router.push(pathname + '/submit')}
+            placeholder="What's happening?"
+          />
 
-          <div
-            className={`relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full bg-${
-              isCreator ? 'purple' : 'green'
-            }-500`}
-          >
-            <Feather
-              onClick={() => router.push(pathname + '/submit')}
-              className='w-8 h-8'
-              strokeWidth={1.9}
-            />
-          </div>
+          <Feather
+            onClick={() => router.push(pathname + '/submit')}
+            className='w-5 h-5 absolute top-2 right-2'
+            strokeWidth={1.5}
+          />
         </div>
       </li>
     </>
