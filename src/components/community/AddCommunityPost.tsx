@@ -3,7 +3,6 @@
 import { Session } from 'next-auth';
 import { usePathname, useRouter } from 'next/navigation';
 import { FC } from 'react';
-import { Button } from '../ui/Button';
 import UserAvatar from '../UserAvatar';
 import { Input } from '../ui/Input';
 
@@ -33,6 +32,7 @@ const AddCommunityPost: FC<AddCommunityPostProps> = ({ session }) => {
           {/* Add Post */}
 
           <Input
+            className='focus:ring-0 border-0 outline-none'
             onClick={() => router.push(pathname + '/submit')}
             placeholder="What's happening?"
           />
