@@ -88,29 +88,30 @@ const SlugPage = async ({ params }: SlugPageProps) => {
       </div>
 
       <div className='space-y-1 overflow-hidden rounded-md bg-white shadow h-full px-5 py-4'>
-
+        {community?.description && (
           <div className=''>
-            <p className='text-sm'>{community.description}.</p>
+            <p className='text-sm'>{community?.description}.</p>
           </div>
+        )}
 
-          <div className='flex items-center pt-2'>
-            <CalendarIcon className='mr-2 h-4 w-4 opacity-70' />{' '}
-            <span className='text-xs text-muted-foreground'>
-              <time dateTime={community.createdAt.toDateString()}>
-                {`Created on ${format(community.createdAt, 'MMMM d, yyyy')}`}
-              </time>
-            </span>
-          </div>
-
-          <div className='flex items-center pt-2'>
-            <Users className='mr-2 h-4 w-4 opacity-70' />{' '}
-            <span className='text-xs text-muted-foreground'>
-              <time dateTime={community.createdAt.toDateString()}>
-                {`${memberCount} member${memberCount > 1 ? 's' : ''}`}
-              </time>
-            </span>
-          </div>
+        <div className='flex items-center pt-2'>
+          <CalendarIcon className='mr-2 h-4 w-4 opacity-70' />{' '}
+          <span className='text-xs text-muted-foreground'>
+            <time dateTime={community.createdAt.toDateString()}>
+              {`Created on ${format(community.createdAt, 'MMMM d, yyyy')}`}
+            </time>
+          </span>
         </div>
+
+        <div className='flex items-center pt-2'>
+          <Users className='mr-2 h-4 w-4 opacity-70' />{' '}
+          <span className='text-xs text-muted-foreground'>
+            <time dateTime={community.createdAt.toDateString()}>
+              {`${memberCount} member${memberCount > 1 ? 's' : ''}`}
+            </time>
+          </span>
+        </div>
+      </div>
 
       {/* Community Menu */}
       <AddCommunityPost session={session} isCreator={isCreator} />
