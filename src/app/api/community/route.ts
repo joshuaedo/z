@@ -12,7 +12,7 @@ export async function POST(req: Request) {
         }
 
         const body = await req.json();
-        const { name, description } = CommunityValidator.parse(body);
+        const { name } = CommunityValidator.parse(body);
 
         const communityExists = await db.community.findFirst({
             where: {
