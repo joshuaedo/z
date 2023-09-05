@@ -87,7 +87,7 @@ const SlugPage = async ({ params }: SlugPageProps) => {
         ) : null}
       </div>
 
-      <div className='space-y-1 overflow-hidden rounded-md bg-white shadow'>
+      <div className='space-y-1 overflow-hidden rounded-md bg-white shadow h-full px-5 py-4'>
           <div className=''>
             <p className='font-bold'>About z/{community.name}</p>
           </div>
