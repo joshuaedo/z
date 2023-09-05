@@ -98,7 +98,7 @@ const SubscribeLeaveToggle: FC<SubscribeLeaveToggleProps> = ({
       onClick={() => unsubscribe()}
       className=''
     >
-      {`Joined ${<CheckCheck />}`}
+      {`Joined ${CheckCheck}`}
     </Button>
   ) : (
     <Button
