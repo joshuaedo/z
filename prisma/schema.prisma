@@ -59,12 +59,12 @@ model User {
 }
 
 model Community {
-  id          String         @id @default(cuid())
-  name        String         @unique
-  createdAt   DateTime
-  updatedAt   DateTime
-  posts       Post[]
-  description String?
+  id        String   @id @default(cuid())
+  name      String   @unique
+  createdAt DateTime
+  updatedAt DateTime
+  posts     Post[]
+
   creatorId   String?
   Creator     User?          @relation("CreatedBy", fields: [creatorId], references: [id])
   subscribers Subscription[]
