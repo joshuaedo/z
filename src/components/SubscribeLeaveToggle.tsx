@@ -9,7 +9,6 @@ import { useCustomToast } from '@/hooks/use-custom-toast';
 import { toast } from '@/hooks/use-toast';
 import { useRouter } from 'next/navigation';
 import { CheckCheck } from 'lucide-react';
-
 import {
   AlertDialog,
   AlertDialogAction,
@@ -21,7 +20,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
-import { Button } from "@/components/ui/button"
+
 
 interface SubscribeLeaveToggleProps {
   communityId: string;
