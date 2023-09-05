@@ -120,7 +120,7 @@ const SubscribeLeaveToggle: FC<SubscribeLeaveToggleProps> = ({
                 className='cursor-pointer'
                >
                <AlertDialog>
-    <AlertDialogTrigger asChild>
+    <AlertDialogTrigger>
      <Button variant="destructive">Leave</Button>
     </AlertDialogTrigger>
     <AlertDialogContent>
