@@ -27,7 +27,6 @@ export async function POST(req: Request) {
         const community = await db.community.create({
             data: {
                 name,
-                description,
                 creatorId: session.user.id,
                 createdAt: new Date(), // Set the creation date
                 updatedAt: new Date(), // Set the update date
