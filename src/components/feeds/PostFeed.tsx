@@ -7,7 +7,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { INFINITE_SCROLLING_PAGINATION_RESULTS } from '@/config';
 import axios from 'axios';
 import { useSession } from 'next-auth/react';
-import Post from '../Post';
+import Post from '../posts/Post';
 
 interface PostFeedProps {
   initialPosts: ExtendedPost[];

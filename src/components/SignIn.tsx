@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import { Icons } from './Icons';
+import { Icons } from './ui/Icons';
 import UserAuthForm from './UserAuthForm';
 
 const SignIn = () => {

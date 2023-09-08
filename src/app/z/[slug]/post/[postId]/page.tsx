@@ -1,3 +1,5 @@
+import CommentSection from '@/components/comments/CommentSection';
+import EditorOutput from '@/components/editor/EditorOutput';
 import PostVoteServer from '@/components/post-vote/PostVoteServer';
 import { Button } from '@/components/ui/Button';
 import { db } from '@/lib/db';
@@ -74,6 +76,17 @@ const PostPage = async ({ params }: PostPageProps) => {
           <h1 className='text-xl font-semibold py-2 leading-6 text-gray-900'>
             {post?.title ?? cachedPost.title}
           </h1>
+
+          <EditorOutput content={post?.content ?? cachedPost.content} />
+
+          <Suspense
+            fallback={
+              <Loader2 className='h-5 w-5 animate-spin text-zinc-500' />
+            }
+          >
+            {/* @ts-expect-error Server Component */}
+            <CommentSection postId={post?.id ?? cachedPost.id} />
+          </Suspense>
         </div>
       </div>
     </div>

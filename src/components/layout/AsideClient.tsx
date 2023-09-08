@@ -1,5 +1,5 @@
 'use client';
-import { Icons } from '../Icons';
+import { Icons } from '../ui/Icons';
 import { Home, UserCircle, Search, Users, Plus } from 'lucide-react';
 import UserAccountNav from '../UserAccountNav';
 import { buttonVariants } from '../ui/Button';
@@ -8,9 +8,8 @@ import { FC } from 'react';
 import { Community } from '@prisma/client';
 import { Session } from 'next-auth';
 
-
 interface AsideClientProps {
-  session: Session | null
+  session: Session | null;
   subs: Community[];
 }
 
@@ -30,33 +29,53 @@ const AsideClient: FC<AsideClientProps> = ({ session, subs }) => {
 
       <button
         onClick={() => router.push('/')}
-        className={`${pathname === "/" ? "font-bold" : "font-medium"} hidden md:flex items-end text-xl py-3 pr-4 rounded-lg hover:bg-[#F8FAFC]`}
+        className={`${
+          pathname === '/' ? 'font-bold' : 'font-medium'
+        } hidden md:flex items-end text-xl py-3 pr-4 rounded-lg hover:bg-[#F8FAFC]`}
       >
-        <Home strokeWidth={pathname === "/" ? 2 : 1.5} className='h-5 w-5 md:h-7 md:w-7 mr-3' />
+        <Home
+          strokeWidth={pathname === '/' ? 2 : 1.5}
+          className='h-5 w-5 md:h-7 md:w-7 mr-3'
+        />
         Home
       </button>
 
       <button
         onClick={() => router.push('/communities')}
-        className={`${pathname === "/communities" ? "font-bold" : "font-medium"} hidden md:flex items-end text-xl py-3 pr-4 rounded-lg hover:bg-[#F8FAFC]`}
+        className={`${
+          pathname === '/communities' ? 'font-bold' : 'font-medium'
+        } hidden md:flex items-end text-xl py-3 pr-4 rounded-lg hover:bg-[#F8FAFC]`}
       >
-        <Users strokeWidth={pathname === "/communities" ? 2 : 1.5} className='h-5 w-5 md:h-7 md:w-7 mr-3' />
+        <Users
+          strokeWidth={pathname === '/communities' ? 2 : 1.5}
+          className='h-5 w-5 md:h-7 md:w-7 mr-3'
+        />
         Communities
       </button>
 
       <button
         onClick={() => router.push('/explore')}
-        className={`${pathname === "/explore" ? "font-bold" : "font-medium"} hidden md:flex items-end text-xl py-3 pr-4 rounded-lg hover:bg-[#F8FAFC]`}
+        className={`${
+          pathname === '/explore' ? 'font-bold' : 'font-medium'
+        } hidden md:flex items-end text-xl py-3 pr-4 rounded-lg hover:bg-[#F8FAFC]`}
       >
-        <Search strokeWidth={pathname === "/explore" ? 2 : 1.5} className='h-5 w-5 md:h-7 md:w-7 mr-3' />
+        <Search
+          strokeWidth={pathname === '/explore' ? 2 : 1.5}
+          className='h-5 w-5 md:h-7 md:w-7 mr-3'
+        />
         Explore
       </button>
 
       <button
         onClick={() => router.push('/profile')}
-        className={`${pathname === "/profile" ? "font-bold" : "font-medium"} hidden md:flex items-end text-xl py-3 pr-4 rounded-lg hover:bg-[#F8FAFC]`}
+        className={`${
+          pathname === '/profile' ? 'font-bold' : 'font-medium'
+        } hidden md:flex items-end text-xl py-3 pr-4 rounded-lg hover:bg-[#F8FAFC]`}
       >
-        <UserCircle strokeWidth={pathname === "/profile" ? 2 : 1.5} className='h-5 w-5 md:h-7 md:w-7 mr-3' />
+        <UserCircle
+          strokeWidth={pathname === '/profile' ? 2 : 1.5}
+          className='h-5 w-5 md:h-7 md:w-7 mr-3'
+        />
         Profile
       </button>
 
@@ -95,8 +114,12 @@ const AsideClient: FC<AsideClientProps> = ({ session, subs }) => {
             >
               {/* Map over the user's subscribed communities and generate the list */}
               {subs.map((community) => (
-                <li key={community.id} onClick={() => router.push(`z/${community.name}`)} className='py-1'>
-                   {`z/${community.name}`}
+                <li
+                  key={community.id}
+                  onClick={() => router.push(`z/${community.name}`)}
+                  className='py-1'
+                >
+                  {`z/${community.name}`}
                 </li>
               ))}
             </ul>

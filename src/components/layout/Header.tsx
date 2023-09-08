@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Icons } from '../Icons';
+import { Icons } from '../ui/Icons';
 import { HamburgerMenuIcon } from '@radix-ui/react-icons';
 import {
   DropdownMenu,

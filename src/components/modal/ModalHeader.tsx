@@ -1,7 +1,7 @@
 'use client';
 
 import { Maximize2, X } from 'lucide-react';
-import { Button } from './ui/Button';
+import { Button } from '../ui/Button';
 import { useRouter } from 'next/navigation';
 import { FC } from 'react';
 

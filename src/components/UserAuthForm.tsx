@@ -1,15 +1,13 @@
-"use client";
+'use client';
 
 import React, { FC, useState } from 'react';
 import { Button } from './ui/Button';
 import { cn } from '@/lib/utils';
 import { signIn } from 'next-auth/react';
-import { Icons } from './Icons';
+import { Icons } from './ui/Icons';
 import { useToast } from '@/hooks/use-toast';
 
-interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {
-
-}
+interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 const UserAuthForm: FC<UserAuthFormProps> = ({ className, ...props }) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -25,7 +23,7 @@ const UserAuthForm: FC<UserAuthFormProps> = ({ className, ...props }) => {
       // error toast notification
       toast({
         title: 'Error',
-        description: "There was a problem logging in with Google",
+        description: 'There was a problem logging in with Google',
         variant: 'destructive',
       });
     } finally {
@@ -35,8 +33,15 @@ const UserAuthForm: FC<UserAuthFormProps> = ({ className, ...props }) => {
 
   return (
     <div className={cn('flex justify-center', className)} {...props}>
-      <Button size='sm' className='w-full' onClick={loginWithGoogle} isLoading={isLoading}>{!isLoading && <Icons.google className='h-4 w-4 mr-2' />}
-        Google</Button>
+      <Button
+        size='sm'
+        className='w-full'
+        onClick={loginWithGoogle}
+        isLoading={isLoading}
+      >
+        {!isLoading && <Icons.google className='h-4 w-4 mr-2' />}
+        Google
+      </Button>
     </div>
   );
 };

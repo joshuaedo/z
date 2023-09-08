@@ -1,6 +1,6 @@
 'use client';
-import Editor from '@/components/Editor';
-import Modal from '@/components/Modal';
+import Editor from '@/components/editor/Editor';
+import Modal from '@/components/modal/Modal';
 import { Button } from '@/components/ui/Button';
 import { useState } from 'react';
 
@@ -39,13 +39,7 @@ const SubmitPost = ({ params, community }: SubmitPostProps) => {
 
       <Editor communityId={community.id} isModalOpen={isModalOpen} />
 
-      <div
-        className={
-          isModalOpen
-            ? 'w-full'
-            : 'w-full flex justify-end pb-20'
-        }
-      >
+      <div className={isModalOpen ? 'w-full' : 'w-full flex justify-end pb-20'}>
         <Button
           type='submit'
           className={isModalOpen ? 'w-full' : 'w-[50%] md:w-[25%]'}
