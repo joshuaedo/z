@@ -65,6 +65,12 @@ const PostPage = async ({ params }: PostPageProps) => {
             }}
           />
         </Suspense>
+
+        <div className="sm:w-0 w-full flex-1 bg-white p-4 rounded-sm">
+           <p className="max-h-40 mt-1 truncate text-xs text-gray-500">
+             Posted by u/{post?.author.username ?? cachedPost.authorUsername}
+           </p>
+        </div>
       </div>
     </div>
   );
