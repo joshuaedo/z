@@ -3,8 +3,8 @@ import { getAuthSession } from '@/lib/auth';
 import { db } from '@/lib/db';
 import { notFound } from 'next/navigation';
 import PostFeed from '@/components/feeds/PostFeed';
-import SubscribeLeaveToggle from '@/components/SubscribeLeaveToggle';
-import AddCommunityPost from '@/components/community/AddCommunityPost';
+import SubscribeLeaveToggle from '@/components/auth/SubscribeLeaveToggle';
+import AddCommunityPost from '@/components/posts/AddCommunityPost';
 import { CalendarIcon } from '@radix-ui/react-icons';
 import { format } from 'date-fns/esm';
 import { Users } from 'lucide-react';
@@ -88,29 +88,28 @@ const SlugPage = async ({ params }: SlugPageProps) => {
       </div>
 
       <div className='space-y-1 overflow-hidden rounded-md bg-white shadow h-full px-5 py-4'>
-
-          <div className=''>
-            <p className='text-sm'>This is the community&apos;s description.</p>
-          </div>
-
-          <div className='flex items-center pt-2'>
-            <CalendarIcon className='mr-2 h-4 w-4 opacity-70' />{' '}
-            <span className='text-xs text-muted-foreground'>
-              <time dateTime={community.createdAt.toDateString()}>
-                {`Created on ${format(community.createdAt, 'MMMM d, yyyy')}`}
-              </time>
-            </span>
-          </div>
-
-          <div className='flex items-center pt-2'>
-            <Users className='mr-2 h-4 w-4 opacity-70' />{' '}
-            <span className='text-xs text-muted-foreground'>
-              <time dateTime={community.createdAt.toDateString()}>
-                {`${memberCount} member${memberCount > 1 ? 's' : ''}`}
-              </time>
-            </span>
-          </div>
+        <div className=''>
+          <p className='text-sm'>This is the community&apos;s description.</p>
         </div>
+
+        <div className='flex items-center pt-2'>
+          <CalendarIcon className='mr-2 h-4 w-4 opacity-70' />{' '}
+          <span className='text-xs text-muted-foreground'>
+            <time dateTime={community.createdAt.toDateString()}>
+              {`Created on ${format(community.createdAt, 'MMMM d, yyyy')}`}
+            </time>
+          </span>
+        </div>
+
+        <div className='flex items-center pt-2'>
+          <Users className='mr-2 h-4 w-4 opacity-70' />{' '}
+          <span className='text-xs text-muted-foreground'>
+            <time dateTime={community.createdAt.toDateString()}>
+              {`${memberCount} member${memberCount > 1 ? 's' : ''}`}
+            </time>
+          </span>
+        </div>
+      </div>
 
       {/* Community Menu */}
       <AddCommunityPost session={session} isCreator={isCreator} />

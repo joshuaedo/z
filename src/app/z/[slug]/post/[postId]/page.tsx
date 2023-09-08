@@ -1,6 +1,6 @@
 import CommentSection from '@/components/comments/CommentSection';
 import EditorOutput from '@/components/editor/EditorOutput';
-import PostVoteServer from '@/components/post-vote/PostVoteServer';
+import PostVoteServer from '@/components/posts/post-vote/PostVoteServer';
 import { Button } from '@/components/ui/Button';
 import { db } from '@/lib/db';
 import { redis } from '@/lib/redis';

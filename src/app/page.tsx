@@ -1,6 +1,6 @@
 import ForYouFeed from '@/components/feeds/ForYouFeed';
 import GeneralFeed from '@/components/feeds/GeneralFeed';
-import HomeFeedToggle from '@/components/HomeFeedToggle';
+import HomeFeedToggle from '@/components/ui/HomeFeedToggle';
 import { getAuthSession } from '@/lib/auth';
 
 export const metadata = {

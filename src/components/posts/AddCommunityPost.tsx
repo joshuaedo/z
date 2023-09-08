@@ -3,7 +3,7 @@
 import { Session } from 'next-auth';
 import { usePathname, useRouter } from 'next/navigation';
 import { FC } from 'react';
-import UserAvatar from '../UserAvatar';
+import UserAvatar from '../ui/UserAvatar';
 import { Input } from '../ui/Input';
 
 interface AddCommunityPostProps {

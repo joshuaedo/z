@@ -1,7 +1,7 @@
 import Aside from '@/components/layout/Aside';
 import Header from '@/components/layout/Header';
 import MobileNav from '@/components/layout/MobileNav';
-import Providers from '@/components/Providers';
+import Providers from '@/components/wrappers/Providers';
 import { Toaster } from '@/components/ui/Toaster';
 import { cn } from '@/lib/utils';
 import '@/styles/globals.css';

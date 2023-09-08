@@ -1,6 +1,6 @@
 import FollowingFeed from '@/components/feeds/FollowingFeed';
-import SignIn from '@/components/SignIn';
-import HomeFeedToggle from '@/components/HomeFeedToggle';
+import SignIn from '@/components/auth/SignIn';
+import HomeFeedToggle from '@/components/ui/HomeFeedToggle';
 import { getAuthSession } from '@/lib/auth';
 
 export default async function HomePage() {

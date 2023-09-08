@@ -1,7 +1,7 @@
 'use client';
 import { Icons } from '../ui/Icons';
 import { Home, UserCircle, Search, Users, Plus } from 'lucide-react';
-import UserAccountNav from '../UserAccountNav';
+import UserAccountNav from '../ui/UserAccountNav';
 import { buttonVariants } from '../ui/Button';
 import { usePathname, useRouter } from 'next/navigation';
 import { FC } from 'react';
