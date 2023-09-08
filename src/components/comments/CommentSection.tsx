@@ -4,34 +4,19 @@ import PostComment from './PostComment';
 import CreateComment from './CreateComment';
 
 // model User {
-//   id                String      @id @default(cuid())
-//   name              String?
-//   email             String?     @unique
-//   emailVerified     DateTime?
-//   createdCommmunity Community[] @relation("CreatedBy")
-//   image             String?
-//   username          String?     @unique
 
-//   bio        String?
-//   link       String?
-//   birthday   DateTime?
-//   coverImage String?
+  // bio        String?
+  // link       String?
+  // birthday   DateTime?
+  // coverImage String?
 
-//   accounts    Account[]
-//   sessions    Session[]
-//   Post        Post[]
-//   Comment     Comment[]
-//   CommentVote CommentVote[]
-//   Vote        Vote[]
-
-//   Subscription Subscription[]
 // }
 
 // model Community {
-// …  Creator     User?          @relation("CreatedBy", fields: [creatorId], references: [id])
-//   subscribers Subscription[]
 
-//   @@index([name])
+  // description String?
+  // image       String?
+
 // }
 
 
@@ -62,7 +47,7 @@ const CommentSection = async ({ postId }: CommentSectionProps) => {
     <div className='flex flex-col gap-y-4 mt-4'>
       <hr className='w-full h-px my-6' />
 
-      <CreateComment postId={postId} />
+      <CreateComment postId={postId}/>
 
       <div className='flex flex-col gap-y-6 mt-4'>
         {comments
