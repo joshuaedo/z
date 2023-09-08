@@ -47,11 +47,6 @@ model User {
   image             String?
   username          String?     @unique
 
-  bio        String?
-  link       String?
-  birthday   DateTime?
-  coverImage String?
-
   accounts    Account[]
   sessions    Session[]
   Post        Post[]
@@ -68,9 +63,6 @@ model Community {
   createdAt DateTime
   updatedAt DateTime
   posts     Post[]
-
-  image       String?
-  description String?
 
   creatorId   String?
   Creator     User?          @relation("CreatedBy", fields: [creatorId], references: [id])

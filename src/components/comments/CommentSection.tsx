@@ -3,6 +3,38 @@ import { db } from '@/lib/db';
 import PostComment from './PostComment';
 import CreateComment from './CreateComment';
 
+// model User {
+//   id                String      @id @default(cuid())
+//   name              String?
+//   email             String?     @unique
+//   emailVerified     DateTime?
+//   createdCommmunity Community[] @relation("CreatedBy")
+//   image             String?
+//   username          String?     @unique
+
+//   bio        String?
+//   link       String?
+//   birthday   DateTime?
+//   coverImage String?
+
+//   accounts    Account[]
+//   sessions    Session[]
+//   Post        Post[]
+//   Comment     Comment[]
+//   CommentVote CommentVote[]
+//   Vote        Vote[]
+
+//   Subscription Subscription[]
+// }
+
+// model Community {
+// …  Creator     User?          @relation("CreatedBy", fields: [creatorId], references: [id])
+//   subscribers Subscription[]
+
+//   @@index([name])
+// }
+
+
 interface CommentSectionProps {
   postId: string;
 }
