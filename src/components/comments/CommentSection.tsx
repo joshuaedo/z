@@ -1,6 +1,7 @@
 import { getAuthSession } from '@/lib/auth';
 import { db } from '@/lib/db';
 import PostComment from './PostComment';
+import CreateComment from './CreateComment';
 
 interface CommentSectionProps {
   postId: string;
@@ -12,7 +13,7 @@ const CommentSection = async ({ postId }: CommentSectionProps) => {
   const comments = await db.comment.findMany({
     where: {
       postId: postId,
-      replytoId: null,
+      replyToId: null,
     },
     include: {
       author: true,
@@ -29,11 +30,11 @@ const CommentSection = async ({ postId }: CommentSectionProps) => {
     <div className='flex flex-col gap-y-4 mt-4'>
       <hr className='w-full h-px my-6' />
 
-      {/* Create comment */}
+      <CreateComment postId={postId} />
 
       <div className='flex flex-col gap-y-6 mt-4'>
         {comments
-          .filter((comment) => !comment.replytoId)
+          .filter((comment) => !comment.replyToId)
           .map((topLevelComment) => {
             const topLevelCommentVotesAmt = topLevelComment.votes.reduce(
               (acc, vote) => {
@@ -48,11 +49,13 @@ const CommentSection = async ({ postId }: CommentSectionProps) => {
               (vote) => vote.userId === session?.user.id
             );
 
-            return <div key={topLevelComment.id} className='flex flex-col'>
-              <div className='mb-2'>
-                <PostComment />
+            return (
+              <div key={topLevelComment.id} className='flex flex-col'>
+                <div className='mb-2'>
+                  <PostComment comment={topLevelComment} />
+                </div>
               </div>
-            </div>
+            );
           })}
       </div>
     </div>
