@@ -45,10 +45,10 @@ interface ProfileCardProps {
 
 const ProfileCard: FC<ProfileCardProps> = ({ user }) => {
   return (
-    <div className='rounded-md bg-white shadow md:px-6 py-4'>
+    <div className='rounded-md bg-white shadow'>
       <div className='h-[40vh] flex items-start relative'>
         <div id='cover-photo-fallback' className='bg-black w-full h-[75%]' />
-        <div className='h-[50%] absolute z-2 bottom-0 flex items-center justfify-between'>
+        <div className='h-[50%] w-full absolute z-2 bottom-0 flex items-center justfify-between px-2'>
           <UserAvatar
             user={{
               name: user?.name || null,
