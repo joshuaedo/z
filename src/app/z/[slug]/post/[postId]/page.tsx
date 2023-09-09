@@ -70,18 +70,20 @@ const PostPage = async ({ params }: PostPageProps) => {
               />
             </Suspense>
 
-            <p className='max-h-40 mt-1 truncate text-xs text-gray-500'>
-              Posted by u/{post?.author.username ?? cachedPost.authorUsername}{' '}
-              {formatTimeToNow(
-                new Date(post?.createdAt ?? cachedPost.createdAt)
-              )}
-            </p>
-            <h1 className='text-xl font-semibold py-2 leading-6 text-gray-900'>
-              {post?.title ?? cachedPost.title}
-            </h1>
-          </div>
+            <div className=''>
+              <p className='max-h-40 mt-1 truncate text-xs text-gray-500'>
+                Posted by u/{post?.author.username ?? cachedPost.authorUsername}{' '}
+                {formatTimeToNow(
+                  new Date(post?.createdAt ?? cachedPost.createdAt)
+                )}
+              </p>
+              <h1 className='text-xl font-semibold py-2 leading-6 text-gray-900'>
+                {post?.title ?? cachedPost.title}
+              </h1>
 
-          <EditorOutput content={post?.content ?? cachedPost.content} />
+              <EditorOutput content={post?.content ?? cachedPost.content} />
+            </div>
+          </div>
 
           <Suspense
             fallback={
