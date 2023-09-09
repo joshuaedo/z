@@ -8,6 +8,11 @@ import { Button } from '../ui/Button';
 import { MessageSquare } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
+import { Label } from '@radix-ui/react-dropdown-menu';
+import { Textarea } from '../ui/TextArea';
+import { useMutation } from '@tanstack/react-query';
+import { CommentRequest } from '@/lib/validators/comment';
+import axios from 'axios';
 
 type ExtendedComment = Comment & {
   votes: CommentVote[];
@@ -30,6 +35,20 @@ const PostComment: FC<PostCommentProps> = ({
   const router = useRouter();
   const { data: session } = useSession();
   const [isReplying, setIsReplying] = useState<boolean>(false);
+  const [input, setInput] = useState<string>("")
+
+  const {mutate: postComment, isLoading} = useMutation({
+    mutationFn: async ({postId, text, replyToId}: CommentRequest) => {
+      const payload: CommentRequest = {
+        postId,
+        text,
+        replyToId,
+      };
+
+      const {data} = await axios.patch(`/api/community/post/comment`, payload)
+      return data
+    }
+  })
 
   return (
     <div ref={commentRef} className='flex flex-col space-y-3'>
@@ -65,11 +84,39 @@ const PostComment: FC<PostCommentProps> = ({
           size='xs'
           onClick={() => {
             if (!session) return router.push('/sign-in');
+            setIsReplying(true);
           }}
         >
           <MessageSquare className='h-4 w-4 mr-1.5' />
           Reply
         </Button>
+
+        {isReplying ? (
+          <div className='grid w-full gap-1.5'>
+            <Label>{`replying as ${session?.user.username}`}</Label>
+            <div className='mt-2'>
+              <Textarea
+                id='comment'
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                rows={1}
+                placeholder='Post your reply!'
+              />
+
+              <div className='mt-2 flex justify-end'>
+                <Button
+                  isLoading={isLoading}
+                  disabled={input.length === 0}
+                  onClick={() => {
+                    if(!input) return;
+                    postComment({ postId, text: input, replyToId: comment.replyToId ?? comment.id })}}
+                >
+                  Post
+                </Button>
+              </div>
+            </div>
+          </div>
+        ) : null}
       </div>
     </div>
   );

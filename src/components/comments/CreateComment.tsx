@@ -50,6 +50,7 @@ const CreateComment: FC<CreateCommentProps> = ({ postId, replyToId }) => {
     onSuccess: () => {
       startTransition(() => {
         router.refresh();
+        setInput('');
       });
     },
   });
