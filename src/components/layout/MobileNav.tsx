@@ -13,7 +13,7 @@ const MobileNav = async () => {
         <MobileNavClient />
 
         <Link
-          href='/profile'
+          href={`/z/${zUser?.username}`}
           className='flex items-end text-xl font-medium py-1 pr-2 rounded-lg'
         >
           <UserAvatar

@@ -15,8 +15,8 @@ const Communities: FC<CommunitiesProps> = ({ session, subs }) => {
   const zUser = session?.user;
 
   return (
-    <main className='overflow-hidden h-fit rounded-lg md:shadow md:fixed p-8 space-y-2 bg-white'>
-      <ul id='community' className='text-zinc-600 max-h-[10rem] space-y-1'>
+    <main className='rounded-lg shadow p-8 space-y-2 bg-white'>
+      <ul id='community' className='text-zinc-900 space-y-1'>
         {subs.map((community) => (
           <li
             key={community.id}

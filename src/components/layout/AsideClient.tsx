@@ -67,13 +67,13 @@ const AsideClient: FC<AsideClientProps> = ({ session, subs }) => {
       </button>
 
       <button
-        onClick={() => router.push('/profile')}
+        onClick={() => router.push(`/z/${zUser?.username}`)}
         className={`${
-          pathname === '/profile' ? 'font-bold' : 'font-medium'
+          pathname === `/z/${zUser?.username}` ? 'font-bold' : 'font-medium'
         } hidden md:flex items-end text-xl py-3 pr-4 rounded-lg hover:bg-[#F8FAFC]`}
       >
         <UserCircle
-          strokeWidth={pathname === '/profile' ? 2 : 1.5}
+          strokeWidth={pathname === `/z/${zUser?.username}` ? 2 : 1.5}
           className='h-5 w-5 md:h-7 md:w-7 mr-3'
         />
         Profile
