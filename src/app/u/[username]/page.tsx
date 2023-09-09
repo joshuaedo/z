@@ -3,28 +3,38 @@ import { getAuthSession } from '@/lib/auth';
 import { INFINITE_SCROLLING_PAGINATION_RESULTS } from '@/config';
 import { db } from '@/lib/db';
 import PostFeed from '@/components/feeds/PostFeed';
+import type { Metadata } from 'next';
 
-export const metadata = {
-  title: 'Profile / Z',
-  description: '',
-  openGraph: {
-    title: 'Profile / Z',
-    description: '',
-    images: [
-      {
-        url: '',
-        width: 200,
-        height: 200,
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary',
-    title: 'Profile / Z',
-    description: '',
-    images: [''],
-  },
+type Props = {
+  params: { username: string };
 };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  // read route params
+  const { username } = params;
+
+  return {
+    title: `${username} / Z`,
+    description: '',
+    openGraph: {
+      title: `${username} / Z`,
+      description: '',
+      images: [
+        {
+          url: '',
+          width: 200,
+          height: 200,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary',
+      title: `${username} / Z`,
+      description: '',
+      images: [''],
+    },
+  };
+}
 
 interface ProfilePageProps {
   params: {

@@ -82,7 +82,7 @@ const AsideClient: FC<AsideClientProps> = ({ session, subs }) => {
       <hr className='hidden md:flex' />
 
       {zUser ? (
-        <UserAccountNav user={zUser} />
+        <UserAccountNav session={session} />
       ) : (
         <button
           onClick={() => router.push('/sign-in')}

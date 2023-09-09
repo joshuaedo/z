@@ -1,5 +1,5 @@
 'use client';
-import { User } from 'next-auth';
+
 import React, { FC } from 'react';
 import {
   DropdownMenu,
@@ -10,20 +10,23 @@ import {
 import UserAvatar from './UserAvatar';
 import { signOut } from 'next-auth/react';
 import { MoreVertical } from 'lucide-react';
+import { Session } from 'next-auth';
 
 interface UserAccountNavProps {
-  user: Pick<User, 'name' | 'image' | 'email'>;
+  session: Session | null;
 }
 
-const UserAccountNav: FC<UserAccountNavProps> = ({ user }) => {
+const UserAccountNav: FC<UserAccountNavProps> = ({ session }) => {
+  const zUser = session?.user;
+
   return (
     <>
       <div className='flex items-center justify-between'>
         <UserAvatar
           className='h-11 w-11'
           user={{
-            name: user.name || null,
-            image: user.image || null,
+            name: zUser?.name || null,
+            image: zUser?.image || null,
           }}
         />
 
@@ -48,10 +51,10 @@ const UserAccountNav: FC<UserAccountNavProps> = ({ user }) => {
       </div>
 
       <div className='flex flex-col space-y-1 leading-none'>
-        {user.name && <p className='font-medium'>{user.name}</p>}
-        {user.email && (
+        {zUser?.name && <p className='font-medium'>{zUser.name}</p>}
+        {zUser?.username && (
           <p className='w-[200px] truncate text-sm text-zinc-700'>
-            {user.email}
+            {zUser.username}
           </p>
         )}
       </div>
