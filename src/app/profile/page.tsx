@@ -27,8 +27,8 @@ interface ProfilePageProps {}
 const ProfilePage = ({}: ProfilePageProps) => {
   return (
     <div>
-            ProfilePage
-      {/* <ProfileFeed /> */}
+      {/* @ts-expect-error Server Component */}
+      <ProfileFeed />
     </div>
   );
 };

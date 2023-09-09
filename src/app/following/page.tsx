@@ -8,20 +8,17 @@ export default async function HomePage() {
 
   return (
     <div className={`relative`}>
-      {/* {session ? (
-           <>
-             <HomeFeedToggle />
-             <div className={`${session && "pt-6"}`}>
-               <FollowingFeed />
-             </div>
-          </>
-         )
-             : 
-             (
-                <SignIn />
-             )
-        } */}
-      FollowingPage
+      {session ? (
+        <>
+          <HomeFeedToggle />
+          <div className={`${session && 'pt-6'}`}>
+            {/* @ts-expect-error Server Component */}
+            <FollowingFeed />
+          </div>
+        </>
+      ) : (
+        <SignIn />
+      )}
     </div>
   );
 }
