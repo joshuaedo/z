@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { FC } from 'react';
 import { Community } from '@prisma/client';
 import { Session } from 'next-auth';
+import CommunityAvatar from '../ui/CommunityAvatar';
 
 interface CommunitiesProps {
   session: Session | null;
@@ -23,6 +24,7 @@ const Communities: FC<CommunitiesProps> = ({ session, subs }) => {
             onClick={() => router.push(`z/${community.name}`)}
             className='py-1'
           >
+            <CommunityAvatar community={community} />
             {`z/${community.name}`}
           </li>
         ))}
