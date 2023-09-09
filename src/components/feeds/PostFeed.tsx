@@ -1,25 +1,20 @@
 'use client';
 
+import { ExtendedPost } from '@/types/db';
 import { FC, useEffect, useRef } from 'react';
 import { useIntersection } from '@mantine/hooks';
 import { useInfiniteQuery } from '@tanstack/react-query';
+import { INFINITE_SCROLLING_PAGINATION_RESULTS } from '@/config';
 import axios from 'axios';
 import { useSession } from 'next-auth/react';
-import { INFINITE_SCROLLING_PAGINATION_RESULTS } from '@/config';
-import { ExtendedPost } from '@/types/db';
 import Post from '../posts/Post';
 
 interface PostFeedProps {
   initialPosts: ExtendedPost[];
   communityName?: string;
-  feedType: 'regular' | 'following';
 }
 
-const PostFeed: FC<PostFeedProps> = ({
-  initialPosts,
-  communityName,
-  feedType,
-}) => {
+const PostFeed: FC<PostFeedProps> = ({ initialPosts, communityName }) => {
   const lastPostRef = useRef<HTMLElement>(null);
 
   const { ref, entry } = useIntersection({
@@ -53,10 +48,9 @@ const PostFeed: FC<PostFeedProps> = ({
     }
   }, [entry, fetchNextPage]);
 
-  const posts =
-    feedType === 'following'
-      ? initialPosts
-      : data?.pages.flatMap((page) => page) ?? initialPosts;
+  //  const posts = data?.pages.flatMap((page) => page) ?? initialPosts;
+
+  const posts = initialPosts;
 
   return (
     <ul className='flex flex-col space-y-6'>

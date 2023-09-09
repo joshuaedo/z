@@ -96,7 +96,7 @@ const ProfilePage = async ({ params }: ProfilePageProps) => {
           />
         )}
       </div>
-      
+
       <p>{user?.email}</p>
       <p>{user?.id}</p>
       <UserAvatar
@@ -108,7 +108,7 @@ const ProfilePage = async ({ params }: ProfilePageProps) => {
       <p>{user?.link}</p>
       <p>{user?.name}</p>
       <p>{user?.username}</p>
-      <PostFeed feedType='regular' initialPosts={posts} />
+      <PostFeed initialPosts={posts} />
     </div>
   ) : (
     <SignInFireWall />
