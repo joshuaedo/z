@@ -80,7 +80,7 @@ const ProfilePage = async ({ params }: ProfilePageProps) => {
       </time>
       <time dateTime={user?.birthday?.toDateString()}>
         {user?.birthday
-          ? `Joined on ${format(user.birthday, 'MMMM d, yyyy')}`
+          ? `Birthday is ${format(user.birthday, 'MMMM d, yyyy')}`
           : ''}
       </time>
       <p>{user?.coverImage}</p>
