@@ -29,10 +29,8 @@ const ExplorePage = ({}: ExplorePageProps) => {
   return (
     <>
       <SearchBar />
-      {/* <div className={'pt-6'}>
-
-        <ExploreFeed />
-      </div> */}
+      {/* @ts-expect-error Server Component */}
+      <ExploreFeed />
     </>
   );
 };

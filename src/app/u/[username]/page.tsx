@@ -14,10 +14,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { username } = params;
 
   return {
-    title: `${username} / Z`,
+    title: `u/${username} | Z`,
     description: '',
     openGraph: {
-      title: `${username} / Z`,
+      title: `u/${username} | Z`,
       description: '',
       images: [
         {
@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     twitter: {
       card: 'summary',
-      title: `${username} / Z`,
+      title: `u/${username} | Z`,
       description: '',
       images: [''],
     },

@@ -54,7 +54,7 @@ const UserAccountNav: FC<UserAccountNavProps> = ({ session }) => {
         {zUser?.name && <p className='font-medium'>{zUser.name}</p>}
         {zUser?.username && (
           <p className='w-[200px] truncate text-sm text-zinc-700'>
-            {zUser.username}
+            {`u/${zUser.username}`}
           </p>
         )}
       </div>

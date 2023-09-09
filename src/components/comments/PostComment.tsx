@@ -117,7 +117,7 @@ const PostComment: FC<PostCommentProps> = ({
 
         {isReplying ? (
           <div className='grid w-full gap-1.5'>
-            <Label className='text-xs text-zinc-900'>{`replying as ${session?.user.username}`}</Label>
+            <Label className='text-xs text-zinc-900'>{`replying as u/${session?.user.username}`}</Label>
             <div className='mt-2'>
               <Textarea
                 id='comment'
