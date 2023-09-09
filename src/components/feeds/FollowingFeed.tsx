@@ -51,9 +51,7 @@ const FollowingFeed: FC<FollowingFeedProps> = ({
     }
   }, [entry, fetchNextPage]);
 
-  //  const posts = data?.pages.flatMap((page) => page) ?? initialPosts;
-
-  const posts = initialPosts;
+   const posts = data?.pages.flatMap((page) => page) ?? initialPosts;
 
   return (
     <ul className='flex flex-col space-y-6'>
