@@ -4,6 +4,7 @@ import { INFINITE_SCROLLING_PAGINATION_RESULTS } from '@/config';
 import { db } from '@/lib/db';
 import PostFeed from '@/components/feeds/PostFeed';
 import type { Metadata } from 'next';
+import ProfileCard from '@/components/ui/ProfileCard';
 
 type Props = {
   params: { username: string };
@@ -64,8 +65,8 @@ const ProfilePage = async ({ params }: ProfilePageProps) => {
   });
 
   return session ? (
-    // ProfileCard
-    <div className={'pt-6'}>
+    <div className='space-y-6'>
+      <ProfileCard />
       <PostFeed initialPosts={posts} />
     </div>
   ) : (
