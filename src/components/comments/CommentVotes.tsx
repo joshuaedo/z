@@ -74,7 +74,7 @@ const CommentVotes: FC<CommentVotesProps> = ({
       <button
         onClick={() => vote('UP')}
         aria-label='upvote'
-        className='py-2 flex justify-center items-center md:hidden'
+        className='py-2 flex justify-center items-center'
       >
         <ArrowBigUp
           className={cn('h-4 w-4 md:h-5 md:w-5 text-zinc-700', {
@@ -90,7 +90,7 @@ const CommentVotes: FC<CommentVotesProps> = ({
       <button
         onClick={() => vote('DOWN')}
         aria-label='upvote'
-        className='py-2 flex justify-center items-center md:hidden'
+        className='py-2 flex justify-center items-center'
       >
         <ArrowBigDown
           className={cn('h-4 w-4 md:h-5 md:w-5 text-zinc-700', {
