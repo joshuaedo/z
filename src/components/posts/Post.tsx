@@ -82,7 +82,7 @@ const Post: FC<PostProps> = ({
             href={`/z/${communityName}/post/${post.id}`}
           >
             <MessageSquare className='h-4 w-4' />
-            {` ${commentAmt} comments`}
+            {` ${commentAmt} comment${commentAmt > 1 ? 's' : ''}`}
           </a>
         </div>
       </div>

@@ -3,23 +3,6 @@ import { db } from '@/lib/db';
 import PostComment from './PostComment';
 import CreateComment from './CreateComment';
 
-// model User {
-
-  // bio        String?
-  // link       String?
-  // birthday   DateTime?
-  // coverImage String?
-
-// }
-
-// model Community {
-
-  // description String?
-  // image       String?
-
-// }
-
-
 interface CommentSectionProps {
   postId: string;
 }
@@ -47,7 +30,7 @@ const CommentSection = async ({ postId }: CommentSectionProps) => {
     <div className='flex flex-col gap-y-4 mt-4'>
       <hr className='w-full h-px my-6' />
 
-      <CreateComment postId={postId}/>
+      <CreateComment postId={postId} />
 
       <div className='flex flex-col gap-y-6 mt-4'>
         {comments
@@ -69,7 +52,12 @@ const CommentSection = async ({ postId }: CommentSectionProps) => {
             return (
               <div key={topLevelComment.id} className='flex flex-col'>
                 <div className='mb-2'>
-                  <PostComment comment={topLevelComment} />
+                  <PostComment
+                    postId={postId}
+                    votesAmt={topLevelCommentVotesAmt}
+                    currentVote={topLevelCommentVote}
+                    comment={topLevelComment}
+                  />
                 </div>
               </div>
             );
