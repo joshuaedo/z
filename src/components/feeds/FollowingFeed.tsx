@@ -91,7 +91,9 @@ const FollowingFeed: FC<FollowingFeedProps> = ({
           );
         }
       })}
-      <li>- end of feed -</li>
+      <li className='w-full text-xs py-6 flex items-center justify-center'>
+        <span>- end of feed -</span>
+      </li>
     </ul>
   );
 };

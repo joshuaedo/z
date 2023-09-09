@@ -39,7 +39,9 @@ const PostFeed: FC<PostFeedProps> = ({ initialPosts }) => {
           </li>
         );
       })}
-      <li>- end of feed -</li>
+      <li className='w-full text-xs py-6 flex items-center justify-center'>
+        <span>- end of feed -</span>
+      </li>
     </ul>
   );
 };
