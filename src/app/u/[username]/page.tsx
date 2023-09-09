@@ -5,6 +5,8 @@ import { db } from '@/lib/db';
 import PostFeed from '@/components/feeds/PostFeed';
 import type { Metadata } from 'next';
 import { format } from 'date-fns';
+import UserAvatar from '@/components/ui/UserAvatar';
+import Image from 'next/image';
 
 type Props = {
   params: { username: string };
@@ -83,10 +85,26 @@ const ProfilePage = async ({ params }: ProfilePageProps) => {
           ? `Birthday is ${format(user.birthday, 'MMMM d, yyyy')}`
           : ''}
       </time>
-      <p>{user?.coverImage}</p>
+
+      <div className='relative w-full min-h-[15rem]'>
+        {user && user.coverImage && user.name && (
+          <Image
+            alt={user?.name}
+            src={user?.coverImage}
+            className='object-contain'
+            fill
+          />
+        )}
+      </div>
+      
       <p>{user?.email}</p>
       <p>{user?.id}</p>
-      <p>{user?.image}</p>
+      <UserAvatar
+        user={{
+          name: user?.name || null,
+          image: user?.image || null,
+        }}
+      />
       <p>{user?.link}</p>
       <p>{user?.name}</p>
       <p>{user?.username}</p>
