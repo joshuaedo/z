@@ -108,7 +108,7 @@ const ProfilePage = async ({ params }: ProfilePageProps) => {
       <p>{user?.link}</p>
       <p>{user?.name}</p>
       <p>{user?.username}</p>
-      <PostFeed initialPosts={posts} />
+      <PostFeed feedType='regular' initialPosts={posts} />
     </div>
   ) : (
     <SignInFireWall />

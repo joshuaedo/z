@@ -35,7 +35,7 @@ const FollowingFeed = async () => {
     take: INFINITE_SCROLLING_PAGINATION_RESULTS,
   });
 
-  return <PostFeed initialPosts={posts} />;
+  return <PostFeed feedType='following' initialPosts={posts} />;
 };
 
 export default FollowingFeed;
