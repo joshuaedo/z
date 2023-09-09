@@ -1,4 +1,6 @@
+import SignInFireWall from '@/components/auth/SignInFireWall';
 import ProfileFeed from '@/components/feeds/ProfileFeed';
+import { getAuthSession } from '@/lib/auth';
 
 export const metadata = {
   title: 'Profile / Z',
@@ -24,12 +26,14 @@ export const metadata = {
 
 interface ProfilePageProps {}
 
-const ProfilePage = ({}: ProfilePageProps) => {
-  return (
-    <div>
-      {/* @ts-expect-error Server Component */}
-      <ProfileFeed />
-    </div>
+const ProfilePage = async ({}: ProfilePageProps) => {
+  const session = await getAuthSession();
+
+  return session ? (
+    // @ts-expect-error Server Component *
+    <ProfileFeed />
+  ) : (
+    <SignInFireWall />
   );
 };
 

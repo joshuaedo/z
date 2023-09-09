@@ -1,7 +1,7 @@
 import FollowingFeed from '@/components/feeds/FollowingFeed';
-import SignIn from '@/components/auth/SignIn';
 import HomeFeedToggle from '@/components/ui/HomeFeedToggle';
 import { getAuthSession } from '@/lib/auth';
+import SignInFireWall from '@/components/auth/SignInFireWall';
 
 export default async function HomePage() {
   const session = await getAuthSession();
@@ -17,7 +17,7 @@ export default async function HomePage() {
           </div>
         </>
       ) : (
-        <SignIn />
+        <SignInFireWall />
       )}
     </div>
   );

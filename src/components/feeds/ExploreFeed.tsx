@@ -3,9 +3,8 @@ import { db } from '@/lib/db';
 import PostFeed from './PostFeed';
 import { getAuthSession } from '@/lib/auth';
 
-const ForYouFeed = async () => {
+const ExploreFeed = async () => {
   const session = await getAuthSession();
-
 
   // Fetch the communities the user is following
   const followedCommunities = await db.subscription.findMany({
@@ -48,4 +47,4 @@ const ForYouFeed = async () => {
   return <PostFeed initialPosts={posts} />;
 };
 
-export default ForYouFeed;
+export default ExploreFeed;

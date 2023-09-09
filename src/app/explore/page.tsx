@@ -1,3 +1,4 @@
+import ExploreFeed from '@/components/feeds/ExploreFeed';
 import SearchBar from '@/components/ui/SearchBar';
 
 export const metadata = {
@@ -28,6 +29,8 @@ const ExplorePage = ({}: ExplorePageProps) => {
   return (
     <>
       <SearchBar />
+      {/* @ts-expect-error */}
+      <ExploreFeed />
     </>
   );
 };
