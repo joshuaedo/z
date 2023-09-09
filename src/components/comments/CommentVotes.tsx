@@ -7,7 +7,7 @@ import { FC, useState } from 'react';
 import { ArrowBigDown, ArrowBigUp } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useMutation } from '@tanstack/react-query';
-import { PostCommentRequest } from '@/lib/validators/vote';
+import { CommentVoteRequest } from '@/lib/validators/vote';
 import axios, { AxiosError } from 'axios';
 import { toast } from '@/hooks/use-toast';
 
@@ -29,7 +29,7 @@ const CommentVotes: FC<CommentVotesProps> = ({
 
   const { mutate: vote } = useMutation({
     mutationFn: async (voteType: VoteType) => {
-      const payload: PostCommentRequest = {
+      const payload: CommentVoteRequest = {
         commentId,
         voteType,
       };

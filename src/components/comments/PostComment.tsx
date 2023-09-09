@@ -60,7 +60,6 @@ const PostComment: FC<PostCommentProps> = ({
           return loginToast();
         }
       }
-
       return toast({
         title: 'Action failed',
         description: 'Something went wrong, please try again later',
