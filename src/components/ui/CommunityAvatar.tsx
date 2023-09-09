@@ -25,7 +25,7 @@ const CommunityAvatar: FC<communityAvatarProps> = ({
       ) : (
         <AvatarFallback>
           <span className='sr-only'>{community?.name}</span>
-          <Icons.communityFallbackLogo className={fallbackClassName} />
+          <Icons.communityFallbackLogoTwo className={fallbackClassName} />
         </AvatarFallback>
       )}
     </Avatar>
