@@ -27,7 +27,7 @@ interface ExplorePageProps {}
 
 const ExplorePage = ({}: ExplorePageProps) => {
   return (
-    <div className='space-y-6 relative'>
+    <div className='space-y-6'>
       <SearchBar />
       {/* @ts-expect-error Server Component */}
       <ExploreFeed />

@@ -7,7 +7,7 @@ interface SearchBarProps {}
 
 const SearchBar: FC<SearchBarProps> = ({}) => {
   return (
-    <Command className='rounded-lg border max-w-lg z-50 overflow-visible fixed top-0 inset-x-0 h-fit'>
+    <Command className='rounded-lg border max-w-lg z-50 overflow-visible h-fit'>
       <CommandInput
         className='outline-none border-none focus focus:border-none focus:outline-none ring-0'
         placeholder='Explore'
