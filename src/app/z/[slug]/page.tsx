@@ -115,7 +115,7 @@ const SlugPage = async ({ params }: SlugPageProps) => {
       <AddCommunityPost session={session} isCreator={isCreator} />
 
       {/* Community Feed */}
-      <PostFeed initialPosts={community.posts} communityName={community.name} />
+      <PostFeed initialPosts={community.posts} />
     </div>
   );
 };

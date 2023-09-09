@@ -2,7 +2,6 @@ import FollowingFeed from '@/components/feeds/FollowingFeed';
 import HomeFeedToggle from '@/components/ui/HomeFeedToggle';
 import { getAuthSession } from '@/lib/auth';
 import SignInFireWall from '@/components/auth/SignInFireWall';
-import { INFINITE_SCROLLING_PAGINATION_RESULTS } from '@/config';
 import { db } from '@/lib/db';
 export default async function HomePage() {
   const session = await getAuthSession();
@@ -33,7 +32,7 @@ export default async function HomePage() {
       comments: true,
       community: true,
     },
-    take: INFINITE_SCROLLING_PAGINATION_RESULTS,
+    take: 15,
   });
 
   return (

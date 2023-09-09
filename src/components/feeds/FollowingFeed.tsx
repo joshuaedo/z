@@ -4,7 +4,6 @@ import { ExtendedPost } from '@/types/db';
 import { FC, useEffect, useRef } from 'react';
 import { useIntersection } from '@mantine/hooks';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { INFINITE_SCROLLING_PAGINATION_RESULTS } from '@/config';
 import axios from 'axios';
 import { useSession } from 'next-auth/react';
 import Post from '../posts/Post';
@@ -28,10 +27,10 @@ const FollowingFeed: FC<FollowingFeedProps> = ({
   const { data: session } = useSession();
 
   const { data, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
-    ['infinte-query'],
+    ['infinite-query'],
     async ({ pageParam = 1 }) => {
       const query =
-        `/api/posts?limit=${INFINITE_SCROLLING_PAGINATION_RESULTS}&page=${pageParam}` +
+        `/api/posts?limit=15&page=${pageParam}` +
         (!!communityName ? `&communityName=${communityName}` : '');
 
       const { data } = await axios.get(query);
