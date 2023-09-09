@@ -10,7 +10,6 @@ import { useMutation } from '@tanstack/react-query';
 import { PostCommentRequest } from '@/lib/validators/vote';
 import axios, { AxiosError } from 'axios';
 import { toast } from '@/hooks/use-toast';
-import { Button } from '../ui/Button';
 
 interface CommentVotesProps {
   commentId: string;
@@ -71,20 +70,7 @@ const CommentVotes: FC<CommentVotesProps> = ({
   });
 
   return (
-    <div className='flex gap-1'>
-      <Button
-        onClick={() => vote('UP')}
-        size='sm'
-        variant='ghost'
-        aria-label='upvote'
-        className='hidden md:inline-flex'
-      >
-        <ArrowBigUp
-          className={cn('h-4 w-4 md:h-5 md:w-5 text-zinc-700', {
-            'text-purple-500 fill-purple-500': currentVote?.type === 'UP',
-          })}
-        />
-      </Button>
+    <div className='flex gap-1 md:gap-2'>
       <button
         onClick={() => vote('UP')}
         aria-label='upvote'
@@ -101,19 +87,6 @@ const CommentVotes: FC<CommentVotesProps> = ({
         {votesAmt}
       </p>
 
-      <Button
-        onClick={() => vote('DOWN')}
-        size='sm'
-        variant='ghost'
-        aria-label='downvote'
-        className='hidden md:inline-flex'
-      >
-        <ArrowBigDown
-          className={cn('h-4 w-4 md:h-5 md:w-5 text-zinc-700', {
-            'text-red-500 fill-red-500': currentVote?.type === 'DOWN',
-          })}
-        />
-      </Button>
       <button
         onClick={() => vote('DOWN')}
         aria-label='upvote'
