@@ -29,7 +29,7 @@ const PostFeed: FC<PostFeedProps> = ({ initialPosts, communityName }) => {
     async ({ pageParam = 1 }) => {
       const query =
         `/api/posts?limit=${INFINITE_SCROLLING_PAGINATION_RESULTS}&page=${pageParam}` +
-        (!!communityName ? `&communityName=${communityName}` : '');
+        (!!communityName ? `&communityName=${communityName}` : ''); 
 
       const { data } = await axios.get(query);
       return data as ExtendedPost[];
@@ -47,6 +47,8 @@ const PostFeed: FC<PostFeedProps> = ({ initialPosts, communityName }) => {
       fetchNextPage();
     }
   }, [entry, fetchNextPage]);
+
+  //  const posts = data?.pages.flatMap((page) => page) ?? initialPosts;
 
   const posts = initialPosts;
 
