@@ -1,7 +1,5 @@
 'use client';
 
-import { db } from '@/lib/db';
-import { getAuthSession } from '@/lib/auth';
 import { ExtendedPost } from '@/types/db';
 import { FC, useEffect, useRef } from 'react';
 import { useIntersection } from '@mantine/hooks';
@@ -11,49 +9,15 @@ import axios from 'axios';
 import { useSession } from 'next-auth/react';
 import Post from '../posts/Post';
 
-const FollowingFeed = async () => {
-  const session = await getAuthSession();
-
-  const followedCommunities = await db.subscription.findMany({
-    where: {
-      userId: session?.user.id,
-    },
-    include: {
-      community: true,
-    },
-  });
-
-  const posts = await db.post.findMany({
-    where: {
-      community: {
-        name: {
-          in: followedCommunities.map(({ community }) => community.id),
-        },
-      },
-    },
-    orderBy: {
-      createdAt: 'desc',
-    },
-    include: {
-      votes: true,
-      author: true,
-      comments: true,
-      community: true,
-    },
-    take: INFINITE_SCROLLING_PAGINATION_RESULTS,
-  });
-
-  return <PostFeed initialPosts={posts} />;
-};
-
-export default FollowingFeed;
-
-interface PostFeedProps {
+interface FollowingFeedProps {
   initialPosts: ExtendedPost[];
   communityName?: string;
 }
 
-const PostFeed: FC<PostFeedProps> = ({ initialPosts, communityName }) => {
+const FollowingFeed: FC<FollowingFeedProps> = ({
+  initialPosts,
+  communityName,
+}) => {
   const lastPostRef = useRef<HTMLElement>(null);
 
   const { ref, entry } = useIntersection({
@@ -87,7 +51,9 @@ const PostFeed: FC<PostFeedProps> = ({ initialPosts, communityName }) => {
     }
   }, [entry, fetchNextPage]);
 
-  const posts = data?.pages.flatMap((page) => page) ?? initialPosts;
+  //  const posts = data?.pages.flatMap((page) => page) ?? initialPosts;
+
+  const posts = initialPosts;
 
   return (
     <ul className='flex flex-col space-y-6'>
@@ -131,3 +97,5 @@ const PostFeed: FC<PostFeedProps> = ({ initialPosts, communityName }) => {
     </ul>
   );
 };
+
+export default FollowingFeed;
