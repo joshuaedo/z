@@ -70,7 +70,7 @@ const CommentVotes: FC<CommentVotesProps> = ({
   });
 
   return (
-    <div className='flex gap-1 md:gap-2'>
+    <div className='flex gap-2'>
       <button
         onClick={() => vote('UP')}
         aria-label='upvote'

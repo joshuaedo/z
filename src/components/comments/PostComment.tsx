@@ -1,11 +1,13 @@
 'use client';
-import React, { FC, useRef } from 'react';
+import React, { FC, useRef, useState } from 'react';
 import UserAvatar from '../ui/UserAvatar';
 import { Comment, CommentVote, User } from '@prisma/client';
 import { formatTimeToNow } from '@/lib/utils';
 import CommentVotes from './CommentVotes';
 import { Button } from '../ui/Button';
 import { MessageSquare } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 
 type ExtendedComment = Comment & {
   votes: CommentVote[];
@@ -25,6 +27,9 @@ const PostComment: FC<PostCommentProps> = ({
   postId,
 }) => {
   const commentRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
+  const { data: session } = useSession();
+  const [isReplying, setIsReplying] = useState<boolean>(false);
 
   return (
     <div ref={commentRef} className='flex flex-col space-y-3'>
@@ -55,9 +60,16 @@ const PostComment: FC<PostCommentProps> = ({
           initialVotesAmt={votesAmt}
         />
 
-        <Button variant="ghost" size="xs">
+        <Button
+          variant='ghost'
+          size='xs'
+          onClick={() => {
+            if (!session) return router.push('/sign-in');
+          }}
+        >
           <MessageSquare className='h-4 w-4 mr-1.5' />
-          Reply</Button>
+          Reply
+        </Button>
       </div>
     </div>
   );
