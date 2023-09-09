@@ -16,10 +16,10 @@ export default async function HomePage() {
   const session = await getAuthSession();
 
   return (
-    <div className={`relative space-y-6`}>
-      <HomeFeedToggle />
-        {/* @ts-expect-error Server Component */}
-        <GeneralFeed />
-      </div>
+    <div className={`${session && 'space-y-6'} relative`}>
+      {session && <HomeFeedToggle />}
+      {/* @ts-expect-error Server Component */}
+      <GeneralFeed />
+    </div>
   );
 }
