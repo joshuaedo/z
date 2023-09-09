@@ -44,6 +44,10 @@ interface ProfileCardProps {
 //   <p>{user?.username}</p>
 
 const ProfileCard: FC<ProfileCardProps> = ({ user }) => {
+  const imageUrl = user?.image || null;
+
+  const cleanedImageUrl = imageUrl?.replace(/=s\d+-[a-z]/, '');
+
   return (
     <div className='rounded-md bg-white shadow'>
       <div className='h-[40vh] flex items-start relative'>
@@ -52,19 +56,21 @@ const ProfileCard: FC<ProfileCardProps> = ({ user }) => {
           className='bg-black w-full h-[75%] rounded-t-md shadow'
         />
         <div className='h-[20vh] w-full absolute z-2 bottom-0 flex items-center px-3 md:px-5 justify-between '>
-          <div className='h-[15vh] w-[15vh]'>
+          <div className='h-[15vh] w-[15vh] border-2 rounded-[50%] border-white'>
             <UserAvatar
               user={{
                 name: user?.name || null,
-                image: user?.image || null,
+                image: cleanedImageUrl,
               }}
               className='w-full h-full object-contain'
             />
           </div>
 
-          <Button variant='subtle' size='sm'>
-            Edit Profile
-          </Button>
+          <div className='h-15vh w-15vh flex items-end justify-end'>
+            <Button variant='outline' size='sm'>
+              Edit Profile
+            </Button>
+          </div>
         </div>
       </div>
     </div>
