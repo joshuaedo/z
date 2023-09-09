@@ -1,3 +1,5 @@
+'use client';
+
 import { ExtendedPost } from '@/types/db';
 import { FC } from 'react';
 import { useSession } from 'next-auth/react';
