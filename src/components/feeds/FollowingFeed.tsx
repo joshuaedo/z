@@ -91,6 +91,7 @@ const FollowingFeed: FC<FollowingFeedProps> = ({
           );
         }
       })}
+      <li>- end of feed -</li>
     </ul>
   );
 };

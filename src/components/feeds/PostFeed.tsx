@@ -39,6 +39,7 @@ const PostFeed: FC<PostFeedProps> = ({ initialPosts }) => {
           </li>
         );
       })}
+      <li>- end of feed -</li>
     </ul>
   );
 };
