@@ -70,12 +70,6 @@ const ProfilePage = async ({ params }: ProfilePageProps) => {
     take: INFINITE_SCROLLING_PAGINATION_RESULTS,
   });
 
-  // const comments = await db.comment.findMany({
-  //   where: {
-  //     authorId: user?.id,
-  //   }
-  // })
-
   const replies = await db.post.findMany({
     where: {
       comments: {
@@ -95,9 +89,21 @@ const ProfilePage = async ({ params }: ProfilePageProps) => {
     },
   });
 
+  const subscriptions = await db.subscription.findMany({
+    where: {
+      userId: user?.id,
+    },
+  });
+  
+  const createdCommunities = await db.community.findMany({
+    where: {
+      Creator: user
+    }
+  });
+
   return session ? (
     <div className='space-y-6'>
-      <ProfileCard user={user} />
+      <ProfileCard user={user} subscriptions={subscriptions} createdCommunities={createdCommunities} />
       <ProfileFeed posts={posts} replies={replies} />
     </div>
   ) : (
