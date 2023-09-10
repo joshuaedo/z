@@ -62,7 +62,7 @@ const ProfileCard: FC<ProfileCardProps> = ({
           id='cover-photo'
           className={`${
             user && coverImage && user.name ? 'bg-transparent' : 'bg-black'
-          } w-full h-[75%] rounded-t-md shadow`}
+          } w-full h-[75%] rounded-t-md shadow overflow-hidden`}
         >
           {user && coverImage && user.name && (
             <img
