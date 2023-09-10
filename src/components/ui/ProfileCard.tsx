@@ -4,6 +4,7 @@ import { format } from 'date-fns';
 import UserAvatar from '@/components/ui/UserAvatar';
 import Image from 'next/image';
 import { Button } from './Button';
+import { UserPlus, Users } from 'lucide-react';
 
 interface ProfileCardProps {
   user: User | null;
@@ -41,20 +42,21 @@ interface ProfileCardProps {
 
 //   <p>{user?.link}</p>
 
-
-const ProfileCard: FC<ProfileCardProps> = ({ user, subscriptions, createdCommunities }) => {
+const ProfileCard: FC<ProfileCardProps> = ({
+  user,
+  subscriptions,
+  createdCommunities,
+}) => {
   const imageUrl = user?.image || null;
 
   const cleanedImageUrl = imageUrl?.replace(/=s\d+-[a-z]/, '');
 
-  const userSubs = subscriptions.length
+  const userSubs = subscriptions.length;
 
-  const ownedCommunities = createdCommunities.length
+  const ownedCommunities = createdCommunities.length;
 
   return (
     <div className='rounded-md bg-white shadow'>
-
-
       <div className='h-[30vh] md:h-[40vh] flex items-start relative'>
         <div
           id='cover-photo-fallback'
@@ -79,19 +81,38 @@ const ProfileCard: FC<ProfileCardProps> = ({ user, subscriptions, createdCommuni
         </div>
       </div>
 
+      <div className='px-3 md:px-5 py-3 md:py-5 space-y-2'>
+        <div>
+          <p className='text-lg font-bold'>{user?.name}</p>
+          <p className='text-sm text-muted-foreground'>u/{user?.username}</p>
+        </div>
 
-      <div>
-        <p>{user?.name}</p>
-        <p>{user?.username}</p>
+        <div className=''>
+          <p className='text-sm'>This is your bio.</p>
+        </div>
+
+        <div className='flex items-center'>
+          <Users className='mr-2 h-4 w-4 opacity-70' />{' '}
+          <span className='text-xs text-muted-foreground'>
+            <span>
+              <span>{`${ownedCommunities}`}</span>
+              {''}
+              {`communit${ownedCommunities === 1 ? 'y' : 'ies'} created`}
+            </span>
+          </span>
+        </div>
+
+        <div className='flex items-center'>
+          <UserPlus className='mr-2 h-4 w-4 opacity-70' />{' '}
+          <span className='text-xs text-muted-foreground'>
+            <span>
+              <span>{`${userSubs}`}</span>
+              {''}
+              {`subscription${userSubs === 1 ? '' : 's'}`}
+            </span>
+          </span>
+        </div>
       </div>
-
-
-      <div>
-        <p>{userSubs} subscriptions</p>
-        <p>{ownedCommunities} communities created</p>
-      </div>
-
-      
     </div>
   );
 };
