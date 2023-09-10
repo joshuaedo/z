@@ -66,9 +66,8 @@ export default function EditProfileForm() {
             <FormItem>
               <FormLabel>Username</FormLabel>
               <FormControl>
-                <Input placeholder='username' {...field} />
+                <Input placeholder='This is your unique username.' {...field} />
               </FormControl>
-              <FormDescription>This is your unique username.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -82,7 +81,6 @@ export default function EditProfileForm() {
               <FormControl>
                 <Input placeholder='Display Name' {...field} />
               </FormControl>
-              <FormDescription>This is your display name.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -94,9 +92,8 @@ export default function EditProfileForm() {
             <FormItem>
               <FormLabel>Bio</FormLabel>
               <FormControl>
-                <Input placeholder='Bio' {...field} />
+                <Input placeholder='Tell us about yourself.' {...field} />
               </FormControl>
-              <FormDescription>Tell us about yourself.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -108,7 +105,7 @@ export default function EditProfileForm() {
             <FormItem>
               <FormLabel>Link</FormLabel>
               <FormControl>
-                <Input placeholder='Link' {...field} />
+                <Input placeholder='Website?' {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
