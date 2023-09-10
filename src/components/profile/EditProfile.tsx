@@ -10,7 +10,7 @@ interface EditProfileProps {
 
 const EditProfile: FC<EditProfileProps> = ({ session }) => {
   return (
-    <div className='rounded-md bg-white shadow'>
+    <div className='rounded-md bg-white shadow px-4 md:px-6 py-4 flex justify-center items-center'>
       <EditProfileForm />
     </div>
   );
