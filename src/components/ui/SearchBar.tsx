@@ -64,7 +64,7 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
   return (
     <Command
       ref={commandRef}
-      className='rounded-lg border max-w-lg z-50 overflow-visible absolute'
+      className='rounded-lg border max-w-lg z-50 overflow-visible h-fit relative'
     >
       <CommandInput
         onValueChange={(text) => {
