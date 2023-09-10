@@ -129,14 +129,14 @@ const ProfileCard: FC<ProfileCardProps> = ({
           </span>
         </div>
 
-        <div className='flex items-start font-medium'>
+        <div className='flex items-start font-normal'>
           <Cake className='mr-2 h-4 w-4' />{' '}
           <span className='text-sm text-muted-foreground'>
             Born November 28, 2002
           </span>
         </div>
 
-        <div className='flex font-medium'>
+        <div className='flex font-normal'>
           <div className='flex items-end text-xs tracking-tight text-muted-foreground'>
             <span className='flex items-start'>
               <span className='font-bold text-black mr-1'>{`${ownedCommunities}`}</span>
