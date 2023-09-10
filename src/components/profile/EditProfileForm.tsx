@@ -43,14 +43,8 @@ const FormSchema = z.object({
 
 export default function EditProfileForm() {
   const router = useRouter();
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
-  });
 
-  const {
-    handleSubmit,
-    formState: { errors },
-  } = useForm<z.infer<typeof FormSchema>>({
+  const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
 
@@ -69,7 +63,6 @@ export default function EditProfileForm() {
           });
         }
       }
-
       return toast({
         title: 'Something went wrong.',
         description: 'Your profile was not updated. Please try again.',
@@ -98,7 +91,7 @@ export default function EditProfileForm() {
   return (
     <Form {...form}>
       <form
-        onSubmit={handleSubmit((e) => updateProfile(e))}
+        onSubmit={form.handleSubmit((e) => updateProfile(e))}
         className='space-y-5'
       >
         <div className='h-[30vh] md:h-[40vh] flex items-start relative'>
