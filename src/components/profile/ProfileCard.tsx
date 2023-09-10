@@ -129,7 +129,7 @@ const ProfileCard: FC<ProfileCardProps> = ({
           </span>
         </div>
 
-        <div className='flex items-start font-normal'>
+        <div className='flex items-start font-normal tracking-tight'>
           <Cake className='mr-2 h-4 w-4' />{' '}
           <span className='text-sm text-muted-foreground'>
             Born November 28, 2002

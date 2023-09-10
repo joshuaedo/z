@@ -11,7 +11,6 @@ interface EditProfileProps {
 const EditProfile: FC<EditProfileProps> = ({ session }) => {
   return (
     <div>
-      Edit your Profile
       <EditProfileForm />
     </div>
   );
