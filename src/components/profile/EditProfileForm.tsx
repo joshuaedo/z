@@ -79,7 +79,7 @@ export default function EditProfileForm() {
             <FormItem>
               <FormLabel>Display Name</FormLabel>
               <FormControl>
-                <Input placeholder='A nickname.' {...field} />
+                <Input placeholder='Any nicknames?' {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
