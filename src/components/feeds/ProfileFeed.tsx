@@ -19,7 +19,7 @@ const ProfileFeed: FC<ProfileFeedProps> = ({ posts, replies }) => {
           <button
             onClick={() => setIsReply(false)}
             className={`py-2 px-3 hover:bg-[#F8FAFC] cursor-pointer mr-4 ${
-              isReply ? 'font-bold' : 'opacity-60'
+              !isReply ? 'font-bold' : 'opacity-60'
             }`}
           >
             Posts
@@ -27,7 +27,7 @@ const ProfileFeed: FC<ProfileFeedProps> = ({ posts, replies }) => {
           <button
             onClick={() => setIsReply(true)}
             className={`py-2 px-3 hover:bg-[#F8FAFC] cursor-pointer ${
-              !isReply ? 'font-bold' : 'opacity-60'
+              isReply ? 'font-bold' : 'opacity-60'
             }`}
           >
             Replies

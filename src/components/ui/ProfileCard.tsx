@@ -56,7 +56,7 @@ const ProfileCard: FC<ProfileCardProps> = ({ user }) => {
           className='bg-black w-full h-[75%] rounded-t-md shadow'
         />
         <div className='h-[15vh] w-full absolute z-2 bottom-0 flex items-center px-3 md:px-5 justify-between '>
-          <div className='h-[12vh] md:h-[17vh] w-[12vh] md:w-[17vh] border-2 md:border-4 rounded-[50%] border-white'>
+          <div className='h-[12vh] md:h-[14vh] w-[12vh] md:w-[14vh] border-2 md:border-4 rounded-[50%] border-white'>
             <UserAvatar
               user={{
                 name: user?.name || null,
@@ -66,8 +66,8 @@ const ProfileCard: FC<ProfileCardProps> = ({ user }) => {
             />
           </div>
 
-          <div className='h-[12vh] w-[12vh] flex items-end justify-end'>
-            <Button variant='outline' size='sm' className="text-xs">
+          <div className='h-[12vh] md:h-[14vh] w-[12vh] md:w-[14vh] flex items-end justify-end'>
+            <Button variant='outline' size='sm' className='text-xs'>
               Edit Profile
             </Button>
           </div>
