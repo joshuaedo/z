@@ -51,7 +51,7 @@ model User {
   link       String?
   displayName String?
   birthday   DateTime?
-  coverImage String?
+  profileTheme String?
 
   accounts    Account[]
   sessions    Session[]

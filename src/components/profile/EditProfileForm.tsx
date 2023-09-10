@@ -1,33 +1,23 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { CalendarIcon } from '@radix-ui/react-icons';
-import { format } from 'date-fns';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
-import { cn } from '@/lib/utils';
-import { Calendar } from '@/components/ui/Calendar';
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from '@/components/ui/Form';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/Popover';
 import { toast } from '@/hooks/use-toast';
 import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';
 
 const FormSchema = z.object({
   //  image: z.string(),
-  //  coverImage: z.string(),
+  profileTheme: z.string(),
   username: z
     .string()
     .min(2, {
@@ -37,7 +27,7 @@ const FormSchema = z.object({
   displayName: z.string().max(50),
   bio: z.string().max(160),
   link: z.string().max(100),
-  birthday: z.date(),
+  birthday: z.string().max(50),
 });
 
 export default function EditProfileForm() {
@@ -66,7 +56,7 @@ export default function EditProfileForm() {
             <FormItem>
               <FormLabel>Username</FormLabel>
               <FormControl>
-                <Input placeholder='This is your unique username.' {...field} />
+                <Input placeholder='Choose a unique username.' {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -115,42 +105,11 @@ export default function EditProfileForm() {
           control={form.control}
           name='birthday'
           render={({ field }) => (
-            <FormItem className='flex flex-col'>
-              <FormLabel>Date of birth</FormLabel>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <FormControl>
-                    <Button
-                      variant={'outline'}
-                      className={cn(
-                        'w-[240px] pl-3 text-left font-normal',
-                        !field.value && 'text-muted-foreground'
-                      )}
-                    >
-                      {field.value ? (
-                        format(field.value, 'PPP')
-                      ) : (
-                        <span>Pick a date</span>
-                      )}
-                      <CalendarIcon className='ml-auto h-4 w-4 opacity-50' />
-                    </Button>
-                  </FormControl>
-                </PopoverTrigger>
-                <PopoverContent className='w-auto p-0' align='start'>
-                  <Calendar
-                    mode='single'
-                    selected={field.value}
-                    onSelect={field.onChange}
-                    disabled={(date) =>
-                      date > new Date() || date < new Date('1900-01-01')
-                    }
-                    initialFocus
-                  />
-                </PopoverContent>
-              </Popover>
-              <FormDescription>
-                Your date of birth is used to calculate your age.
-              </FormDescription>
+            <FormItem>
+              <FormLabel>Birthday</FormLabel>
+              <FormControl>
+                <Input placeholder='E.g November 28' {...field} />
+              </FormControl>
               <FormMessage />
             </FormItem>
           )}

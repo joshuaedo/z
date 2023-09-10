@@ -34,9 +34,9 @@ const ProfileCard: FC<ProfileCardProps> = ({
 
   const link = href.replace(/^(https?:\/\/(www\.)?)?/, '');
 
-  // replace "https://www.vangoghgallery.com/img/starry_night_full.jpg" with user?.coverImage
+  // replace "black" with user?.profileTheme
 
-  const coverImage = 'https://www.vangoghgallery.com/img/starry_night_full.jpg';
+  const profileTheme = 'black';
 
   //  replace "This is a bio." with user?.bio
 
@@ -48,15 +48,13 @@ const ProfileCard: FC<ProfileCardProps> = ({
 
   const displayName = nullValue ?? user?.name;
 
+  // replace "November" with user?.birthday
+
+  const birthday = "November 28"
+
   //   <time dateTime={user?.emailVerified?.toDateString()}>
   //     {user?.emailVerified
   //       ? `Joined on ${format(user.emailVerified, 'MMMM d, yyyy')}`
-  //       : ''}
-  //   </time>
-
-  //   <time dateTime={user?.birthday?.toDateString()}>
-  //     {user?.birthday
-  //       ? `Birthday is ${format(user.birthday, 'MMMM d, yyyy')}`
   //       : ''}
   //   </time>
 
@@ -69,18 +67,8 @@ const ProfileCard: FC<ProfileCardProps> = ({
       <div className='h-[30vh] md:h-[40vh] flex items-start relative'>
         <div
           id='cover-photo'
-          className={`${
-            user && coverImage && user.name ? 'bg-transparent' : 'bg-black'
-          } w-full h-[75%] rounded-t-md shadow overflow-hidden`}
-        >
-          {user && coverImage && user.name && (
-            <img
-              alt={user?.name}
-              src={coverImage}
-              className='object-cover object-center'
-            />
-          )}
-        </div>
+          className={`bg-${profileTheme} w-full h-[75%] rounded-t-md shadow overflow-hidden`}
+        ></div>
 
         <div className='h-[15vh] md:h-[17vh] w-full absolute z-2 bottom-0 flex items-center px-3 md:px-5 justify-between '>
           <div className='h-[12vh] md:h-[17vh] w-[12vh] md:w-[17vh] border-2 md:border-4 rounded-[50%] border-white'>
@@ -132,7 +120,7 @@ const ProfileCard: FC<ProfileCardProps> = ({
         <div className='flex items-start font-normal tracking-tight'>
           <Cake className='mr-2 h-4 w-4' />{' '}
           <span className='text-sm text-muted-foreground'>
-            Born November 28, 2002
+            {`Born on ${birthday}`}
           </span>
         </div>
 
