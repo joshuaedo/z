@@ -4,7 +4,7 @@ import { format } from 'date-fns';
 import UserAvatar from '@/components/ui/UserAvatar';
 import Image from 'next/image';
 import { Button } from './Button';
-import { Cake, Link, UserPlus, Users } from 'lucide-react';
+import { Cake, Link, Users } from 'lucide-react';
 
 interface ProfileCardProps {
   user: User | null;
@@ -47,10 +47,9 @@ const ProfileCard: FC<ProfileCardProps> = ({
 
   const link = href.replace(/^(https?:\/\/(www\.)?)?/, '');
 
-  // replace "https://pbs.twimg.com/profile_banners/1107072179898933248/1676823891/600x200" with user?.coverImage
+  // replace "https://www.vangoghgallery.com/img/starry_night_full.jpg" with user?.coverImage
 
-  const coverImage =
-    'https://pbs.twimg.com/profile_banners/1107072179898933248/1676823891/600x200';
+  const coverImage = 'https://www.vangoghgallery.com/img/starry_night_full.jpg';
 
   //  replace "This is your bio." with user?.bio
 
@@ -69,7 +68,7 @@ const ProfileCard: FC<ProfileCardProps> = ({
             <Image
               alt={user?.name}
               src={coverImage}
-              className='object-contain'
+              className='object-cover object-center'
               fill
             />
           )}
@@ -104,14 +103,14 @@ const ProfileCard: FC<ProfileCardProps> = ({
           <p className='text-sm'>{bio}</p>
         </div>
 
-        <div className='flex items-center'>
+        <div className='flex items-end'>
           <Link className='mr-2 h-4 w-4' />{' '}
           <span className='text-sm text-blue-500'>
             <a href={href}>{link}</a>
           </span>
         </div>
 
-        <div className='flex items-center'>
+        <div className='flex items-end'>
           <Cake className='mr-2 h-4 w-4' />{' '}
           <span className='text-sm text-muted-foreground'>
             Born November 28, 2002
@@ -122,7 +121,7 @@ const ProfileCard: FC<ProfileCardProps> = ({
           <div className='flex items-center'>
             <Users className='mr-2 h-4 w-4' />{' '}
             <span className='text-sm text-muted-foreground'>
-              <span className='items-center'>
+              <span className='flex items-end'>
                 <span className='font-bold text-black'>{`${ownedCommunities}`}</span>{' '}
                 {`communit${ownedCommunities === 1 ? 'y' : 'ies'} created`}
               </span>
@@ -130,12 +129,9 @@ const ProfileCard: FC<ProfileCardProps> = ({
           </div>
 
           <div className='flex items-center ml-3'>
-            <UserPlus className='mr-2 h-4 w-4' />{' '}
-            <span className='text-sm text-muted-foreground'>
-              <span className='items-center'>
-                <span className='font-bold text-black'>{`${userSubs}`}</span>{' '}
-                {`subscription${userSubs === 1 ? '' : 's'}`}
-              </span>
+            <span className='flex items-end text-sm text-muted-foreground'>
+              <span className='font-bold text-black'>{`${userSubs}`}</span>{' '}
+              {`subscription${userSubs === 1 ? '' : 's'}`}
             </span>
           </div>
         </div>
