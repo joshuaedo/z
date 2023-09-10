@@ -65,12 +65,10 @@ const ProfileCard: FC<ProfileCardProps> = ({
           } w-full h-[75%] rounded-t-md shadow`}
         >
           {user && coverImage && user.name && (
-            <Image
+            <img
               alt={user?.name}
               src={coverImage}
               className='object-cover object-center'
-              height={1280}
-              width={1014}
             />
           )}
         </div>
@@ -104,7 +102,7 @@ const ProfileCard: FC<ProfileCardProps> = ({
           <p className='text-sm'>{bio}</p>
         </div>
 
-        <div className='flex items-start'>
+        <div className='flex items-center'>
           <Link className='mr-2 h-4 w-4' />{' '}
           <span className='text-sm text-blue-500'>
             <a href={href}>{link}</a>
@@ -123,16 +121,16 @@ const ProfileCard: FC<ProfileCardProps> = ({
             <Users className='mr-2 h-4 w-4' />{' '}
             <span className='text-sm text-muted-foreground'>
               <span className='flex items-start'>
-                <span className='font-bold text-black'>{`${ownedCommunities} `}</span>
-                {`communit${ownedCommunities === 1 ? 'y' : 'ies'} created`}
+                <span className='font-bold text-black mr-2'>{`${ownedCommunities}`}</span>
+                {`Communit${ownedCommunities === 1 ? 'y' : 'ies'} created`}
               </span>
             </span>
           </div>
 
           <div className='flex items-start ml-3'>
             <span className='flex items-end text-sm text-muted-foreground'>
-              <span className='font-bold text-black'>{`${userSubs} `}</span>
-              {`subscription${userSubs === 1 ? '' : 's'}`}
+              <span className='font-bold text-black mr-2'>{`${userSubs}`}</span>
+              {`Subscription${userSubs === 1 ? '' : 's'}`}
             </span>
           </div>
         </div>
