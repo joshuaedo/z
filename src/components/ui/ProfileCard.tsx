@@ -94,7 +94,7 @@ const ProfileCard: FC<ProfileCardProps> = ({
         </div>
       </div>
 
-      <div className='px-3 md:px-5 py-3 md:py-5 space-y-2'>
+      <div className='px-3 md:px-5 pb-3 md:pb-5 space-y-2'>
         <div>
           <p className='text-lg font-bold'>{user?.name}</p>
           <p className='text-sm text-muted-foreground'>u/{user?.username}</p>
@@ -106,14 +106,14 @@ const ProfileCard: FC<ProfileCardProps> = ({
 
         <div className='flex items-center'>
           <Link className='mr-2 h-4 w-4' />{' '}
-          <span className='text-xs text-blue-500'>
+          <span className='text-sm text-blue-500'>
             <a href={href}>{link}</a>
           </span>
         </div>
 
         <div className='flex items-center'>
           <Cake className='mr-2 h-4 w-4' />{' '}
-          <span className='text-xs text-muted-foreground'>
+          <span className='text-sm text-muted-foreground'>
             Born November 28, 2002
           </span>
         </div>
@@ -121,9 +121,9 @@ const ProfileCard: FC<ProfileCardProps> = ({
         <div className='flex'>
           <div className='flex items-center'>
             <Users className='mr-2 h-4 w-4' />{' '}
-            <span className='text-xs text-muted-foreground'>
-              <span>
-                <span className='font-bold'>{`${ownedCommunities}`}</span>{' '}
+            <span className='text-sm text-muted-foreground'>
+              <span className='items-center'>
+                <span className='font-bold text-black'>{`${ownedCommunities}`}</span>{' '}
                 {`communit${ownedCommunities === 1 ? 'y' : 'ies'} created`}
               </span>
             </span>
@@ -131,9 +131,9 @@ const ProfileCard: FC<ProfileCardProps> = ({
 
           <div className='flex items-center ml-3'>
             <UserPlus className='mr-2 h-4 w-4' />{' '}
-            <span className='text-xs text-muted-foreground'>
-              <span>
-                <span className='font-bold'>{`${userSubs}`}</span>{' '}
+            <span className='text-sm text-muted-foreground'>
+              <span className='items-center'>
+                <span className='font-bold text-black'>{`${userSubs}`}</span>{' '}
                 {`subscription${userSubs === 1 ? '' : 's'}`}
               </span>
             </span>
