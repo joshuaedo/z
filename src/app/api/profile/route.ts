@@ -24,12 +24,19 @@ export async function PATCH(req: Request) {
       return new Response('Username is taken', { status: 409 });
     }
 
-    // update username
+    // update profile
     await db.user.update({
       where: {
         id: session.user.id,
       },
-      data: { profileTheme, username, displayName, bio, link, birthday },
+      data: {
+        profileTheme: profileTheme,
+        username: username,
+        displayName: displayName,
+        bio: bio,
+        link: link,
+        birthday: birthday,
+      },
     });
 
     return new Response('OK');
