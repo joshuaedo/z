@@ -58,7 +58,7 @@ export default function EditProfileForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
+      <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-5'>
         <FormField
           control={form.control}
           name='username'
@@ -79,7 +79,7 @@ export default function EditProfileForm() {
             <FormItem>
               <FormLabel>Display Name</FormLabel>
               <FormControl>
-                <Input placeholder='Display Name' {...field} />
+                <Input placeholder='A nickname.' {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
