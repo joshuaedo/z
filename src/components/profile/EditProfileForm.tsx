@@ -22,6 +22,9 @@ import { toast } from '@/hooks/use-toast';
 import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';
 import UserAvatar from '../ui/UserAvatar';
+import { useMutation } from '@tanstack/react-query';
+import axios, { AxiosError } from 'axios';
+import { useRouter } from 'next/navigation';
 
 const FormSchema = z.object({
   //  image: z.string(),
@@ -39,24 +42,65 @@ const FormSchema = z.object({
 });
 
 export default function EditProfileForm() {
+  const router = useRouter();
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast({
-      title: 'You submitted the following values:',
-      description: (
-        <pre className='mt-2 w-[340px] rounded-md bg-slate-950 p-4'>
-          <code className='text-white'>{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    });
-  }
+  const {
+    handleSubmit,
+    formState: { errors },
+  } = useForm<z.infer<typeof FormSchema>>({
+    resolver: zodResolver(FormSchema),
+  });
+
+  const { mutate: updateProfile, isLoading } = useMutation({
+    mutationFn: async (payload: z.infer<typeof FormSchema>) => {
+      const { data } = await axios.patch(`/api/profile/`, payload);
+      return data;
+    },
+    onError: (err) => {
+      if (err instanceof AxiosError) {
+        if (err.response?.status === 409) {
+          return toast({
+            title: 'Username already taken.',
+            description: 'Please choose another username.',
+            variant: 'destructive',
+          });
+        }
+      }
+
+      return toast({
+        title: 'Something went wrong.',
+        description: 'Your profile was not updated. Please try again.',
+        variant: 'destructive',
+      });
+    },
+    onSuccess: () => {
+      toast({
+        description: 'Your profile has been updated.',
+      });
+      router.refresh();
+    },
+  });
+
+  // function onSubmit(data: z.infer<typeof FormSchema>) {
+  //   toast({
+  //     title: 'You submitted the following values:',
+  //     description: (
+  //       <pre className='mt-2 w-[340px] rounded-md bg-slate-950 p-4'>
+  //         <code className='text-white'>{JSON.stringify(data, null, 2)}</code>
+  //       </pre>
+  //     ),
+  //   });
+  // }
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-5'>
+      <form
+        onSubmit={handleSubmit((e) => updateProfile(e))}
+        className='space-y-5'
+      >
         <div className='h-[30vh] md:h-[40vh] flex items-start relative'>
           <div
             className={`w-full h-[75%] rounded-t-md shadow overflow-hidden flex items-center justify-center px-3`}
@@ -168,7 +212,9 @@ export default function EditProfileForm() {
             </FormItem>
           )}
         />
-        <Button type='submit'>Submit</Button>
+        <Button isLoading={isLoading} type='submit'>
+          Submit
+        </Button>
       </form>
     </Form>
   );
