@@ -1,4 +1,4 @@
-"use client"
+'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { CalendarIcon } from '@radix-ui/react-icons';
@@ -23,11 +23,21 @@ import {
 } from '@/components/ui/Popover';
 import { toast } from '@/hooks/use-toast';
 import { Button } from '../ui/Button';
+import { Input } from '../ui/Input';
 
 const FormSchema = z.object({
-  dob: z.date({
-    required_error: 'A date of birth is required.',
-  }),
+  //  image: z.string(),
+  //  coverImage: z.string(),
+  username: z
+    .string()
+    .min(2, {
+      message: 'Username must be at least 2 characters.',
+    })
+    .max(50),
+  displayName: z.string().max(50),
+  bio: z.string().max(160),
+  link: z.string().max(100),
+  birthday: z.date(),
 });
 
 export default function EditProfileForm() {
@@ -51,7 +61,62 @@ export default function EditProfileForm() {
       <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
         <FormField
           control={form.control}
-          name='dob'
+          name='username'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Username</FormLabel>
+              <FormControl>
+                <Input placeholder='username' {...field} />
+              </FormControl>
+              <FormDescription>This is your unique username.</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name='displayName'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Display Name</FormLabel>
+              <FormControl>
+                <Input placeholder='Display Name' {...field} />
+              </FormControl>
+              <FormDescription>This is your display name.</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name='bio'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Bio</FormLabel>
+              <FormControl>
+                <Input placeholder='Bio' {...field} />
+              </FormControl>
+              <FormDescription>Tell us about yourself.</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name='link'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Link</FormLabel>
+              <FormControl>
+                <Input placeholder='Link' {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name='birthday'
           render={({ field }) => (
             <FormItem className='flex flex-col'>
               <FormLabel>Date of birth</FormLabel>
