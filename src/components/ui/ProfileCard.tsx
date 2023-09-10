@@ -4,14 +4,13 @@ import { format } from 'date-fns';
 import UserAvatar from '@/components/ui/UserAvatar';
 import Image from 'next/image';
 import { Button } from './Button';
-import { UserPlus, Users } from 'lucide-react';
+import { Cake, Link, UserPlus, Users } from 'lucide-react';
 
 interface ProfileCardProps {
   user: User | null;
   createdCommunities: Community[];
   subscriptions: Subscription[];
 }
-//   <p>{user?.bio}</p>
 
 //   <time dateTime={user?.emailVerified?.toDateString()}>
 //     {user?.emailVerified
@@ -25,43 +24,57 @@ interface ProfileCardProps {
 //       : ''}
 //   </time>
 
-//   <div className='relative w-full min-h-[15rem]'>
-//     {user && user.coverImage && user.name && (
-//       <Image
-//         alt={user?.name}
-//         src={user?.coverImage}
-//         className='object-contain'
-//         fill
-//       />
-//     )}
-//   </div>
+//   {user?.email}
 
-//   <p>{user?.email}</p>
-
-//   <p>{user?.id}</p>
-
-//   <p>{user?.link}</p>
+//   {user?.id}
 
 const ProfileCard: FC<ProfileCardProps> = ({
   user,
   subscriptions,
   createdCommunities,
 }) => {
+  const userSubs = subscriptions.length;
+
+  const ownedCommunities = createdCommunities.length;
+
   const imageUrl = user?.image || null;
 
   const cleanedImageUrl = imageUrl?.replace(/=s\d+-[a-z]/, '');
 
-  const userSubs = subscriptions.length;
+  // replace "https://www.joshuaedo.com" with user?.link
 
-  const ownedCommunities = createdCommunities.length;
+  const href = 'https://www.joshuaedo.com';
+
+  const link = href.replace(/^(https?:\/\/(www\.)?)?/, '');
+
+  // replace "https://pbs.twimg.com/profile_banners/1107072179898933248/1676823891/600x200" with user?.coverImage
+
+  const coverImage =
+    'https://pbs.twimg.com/profile_banners/1107072179898933248/1676823891/600x200';
+
+  //  replace "This is your bio." with user?.bio
+
+  const bio = 'This is your bio';
 
   return (
     <div className='rounded-md bg-white shadow'>
       <div className='h-[30vh] md:h-[40vh] flex items-start relative'>
         <div
-          id='cover-photo-fallback'
-          className='bg-black w-full h-[75%] rounded-t-md shadow'
-        />
+          id='cover-photo'
+          className={`${
+            user && coverImage && user.name ? 'bg-transparent' : 'bg-black'
+          } w-full h-[75%] rounded-t-md shadow`}
+        >
+          {user && coverImage && user.name && (
+            <Image
+              alt={user?.name}
+              src={coverImage}
+              className='object-contain'
+              fill
+            />
+          )}
+        </div>
+
         <div className='h-[15vh] md:h-[17vh] w-full absolute z-2 bottom-0 flex items-center px-3 md:px-5 justify-between '>
           <div className='h-[12vh] md:h-[17vh] w-[12vh] md:w-[17vh] border-2 md:border-4 rounded-[50%] border-white'>
             <UserAvatar
@@ -88,29 +101,43 @@ const ProfileCard: FC<ProfileCardProps> = ({
         </div>
 
         <div className=''>
-          <p className='text-sm'>This is your bio.</p>
+          <p className='text-sm'>{bio}</p>
         </div>
 
         <div className='flex items-center'>
-          <Users className='mr-2 h-4 w-4 opacity-70' />{' '}
-          <span className='text-xs text-muted-foreground'>
-            <span>
-              <span>{`${ownedCommunities}`}</span>
-              {''}
-              {`communit${ownedCommunities === 1 ? 'y' : 'ies'} created`}
-            </span>
+          <Link className='mr-2 h-4 w-4' />{' '}
+          <span className='text-xs text-blue-500'>
+            <a href={href}>{link}</a>
           </span>
         </div>
 
         <div className='flex items-center'>
-          <UserPlus className='mr-2 h-4 w-4 opacity-70' />{' '}
+          <Cake className='mr-2 h-4 w-4' />{' '}
           <span className='text-xs text-muted-foreground'>
-            <span>
-              <span>{`${userSubs}`}</span>
-              {''}
-              {`subscription${userSubs === 1 ? '' : 's'}`}
-            </span>
+            Born November 28, 2002
           </span>
+        </div>
+
+        <div className='flex'>
+          <div className='flex items-center'>
+            <Users className='mr-2 h-4 w-4' />{' '}
+            <span className='text-xs text-muted-foreground'>
+              <span>
+                <span className='font-bold'>{`${ownedCommunities}`}</span>{' '}
+                {`communit${ownedCommunities === 1 ? 'y' : 'ies'} created`}
+              </span>
+            </span>
+          </div>
+
+          <div className='flex items-center ml-3'>
+            <UserPlus className='mr-2 h-4 w-4' />{' '}
+            <span className='text-xs text-muted-foreground'>
+              <span>
+                <span className='font-bold'>{`${userSubs}`}</span>{' '}
+                {`subscription${userSubs === 1 ? '' : 's'}`}
+              </span>
+            </span>
+          </div>
         </div>
       </div>
     </div>
