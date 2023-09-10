@@ -41,7 +41,7 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
       const { data } = await axios.get(`/api/search?q=${input}`);
       return data as (Community & {
         _count: Prisma.CommunityCountOutputType;
-      })[];
+      })[]
     },
     queryKey: ['search-query'],
     enabled: false,
@@ -64,7 +64,7 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
   return (
     <Command
       ref={commandRef}
-      className='rounded-lg border max-w-lg z-50 overflow-visible h-fit'
+      className='rounded-lg border max-w-lg z-50 overflow-visible absolute'
     >
       <CommandInput
         onValueChange={(text) => {
