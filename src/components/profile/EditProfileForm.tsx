@@ -78,7 +78,7 @@ export default function EditProfileForm() {
                     </FormControl>
                     <SelectContent>
                       <SelectItem value='white'>white (default)</SelectItem>
-                      <SelectItem value='zinc-900'>dark</SelectItem>
+                      <SelectItem value='zinc-900'>black</SelectItem>
                       <SelectItem value='purple-500'>purple</SelectItem>
                       <SelectItem value='green-500'>green</SelectItem>
                       <SelectItem value='zinc-500'>gray</SelectItem>
