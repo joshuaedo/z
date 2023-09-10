@@ -1,15 +1,17 @@
 import { Community, Subscription, User } from '@prisma/client';
 import React, { FC } from 'react';
-import { format } from 'date-fns';
 import UserAvatar from '@/components/ui/UserAvatar';
-import Image from 'next/image';
-import { Button } from './Button';
-import { Cake, Link, Users } from 'lucide-react';
+import { buttonVariants } from '../ui/Button';
+import { Cake, Link } from 'lucide-react';
+import NextLink from 'next/link';
+import { cn } from '@/lib/utils';
+import { Session } from 'next-auth';
 
 interface ProfileCardProps {
   user: User | null;
   createdCommunities: Community[];
   subscriptions: Subscription[];
+  session: Session | null;
 }
 
 //   <time dateTime={user?.emailVerified?.toDateString()}>
@@ -30,6 +32,7 @@ interface ProfileCardProps {
 
 const ProfileCard: FC<ProfileCardProps> = ({
   user,
+  session,
   subscriptions,
   createdCommunities,
 }) => {
@@ -85,9 +88,20 @@ const ProfileCard: FC<ProfileCardProps> = ({
           </div>
 
           <div className='h-[12vh] md:h-[17vh] w-[12vh] md:w-[17vh] flex items-end justify-end'>
-            <Button variant='outline' size='sm' className='text-xs'>
-              Edit Profile
-            </Button>
+            {session?.user.id === user?.id && (
+              <NextLink
+                href={`/u/${user?.name}/edit`}
+                className={cn(
+                  buttonVariants({
+                    variant: 'outline',
+                    size: 'sm',
+                  }),
+                  'text-xs'
+                )}
+              >
+                Edit Profile
+              </NextLink>
+            )}
           </div>
         </div>
       </div>
@@ -117,19 +131,16 @@ const ProfileCard: FC<ProfileCardProps> = ({
         </div>
 
         <div className='flex'>
-          <div className='flex items-start'>
-            <Users className='mr-2 h-4 w-4' />{' '}
-            <span className='text-sm text-muted-foreground'>
-              <span className='flex items-start'>
-                <span className='font-bold text-black mr-2'>{`${ownedCommunities}`}</span>
-                {`Communit${ownedCommunities === 1 ? 'y' : 'ies'} created`}
-              </span>
+          <div className='flex items-end text-sm text-muted-foreground'>
+            <span className='flex items-start'>
+              <span className='font-bold text-black mr-1'>{`${ownedCommunities}`}</span>
+              {`Communit${ownedCommunities === 1 ? 'y' : 'ies'} Created`}
             </span>
           </div>
 
           <div className='flex items-start ml-3'>
             <span className='flex items-end text-sm text-muted-foreground'>
-              <span className='font-bold text-black mr-2'>{`${userSubs}`}</span>
+              <span className='font-bold text-black mr-1'>{`${userSubs}`}</span>
               {`Subscription${userSubs === 1 ? '' : 's'}`}
             </span>
           </div>

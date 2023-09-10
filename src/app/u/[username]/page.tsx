@@ -2,9 +2,8 @@ import SignInFireWall from '@/components/auth/SignInFireWall';
 import { getAuthSession } from '@/lib/auth';
 import { INFINITE_SCROLLING_PAGINATION_RESULTS } from '@/config';
 import { db } from '@/lib/db';
-import PostFeed from '@/components/feeds/PostFeed';
 import type { Metadata } from 'next';
-import ProfileCard from '@/components/ui/ProfileCard';
+import ProfileCard from '@/components/profile/ProfileCard';
 import ProfileFeed from '@/components/feeds/ProfileFeed';
 
 type Props = {
@@ -94,16 +93,21 @@ const ProfilePage = async ({ params }: ProfilePageProps) => {
       userId: user?.id,
     },
   });
-  
+
   const createdCommunities = await db.community.findMany({
     where: {
-      Creator: user
-    }
+      Creator: user,
+    },
   });
 
   return session ? (
     <div className='space-y-6'>
-      <ProfileCard user={user} subscriptions={subscriptions} createdCommunities={createdCommunities} />
+      <ProfileCard
+        user={user}
+        session={session}
+        subscriptions={subscriptions}
+        createdCommunities={createdCommunities}
+      />
       <ProfileFeed posts={posts} replies={replies} />
     </div>
   ) : (
