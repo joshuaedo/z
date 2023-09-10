@@ -40,7 +40,7 @@ const ProfileCard: FC<ProfileCardProps> = ({
 
   //  replace "This is a bio." with user?.bio
 
-  const bio = 'This is a bio';
+  const bio = 'This is where the bio would be.';
 
   // replace nullValue with user?.displayName
 
@@ -129,14 +129,14 @@ const ProfileCard: FC<ProfileCardProps> = ({
           </span>
         </div>
 
-        <div className='flex items-start'>
+        <div className='flex items-start font-medium'>
           <Cake className='mr-2 h-4 w-4' />{' '}
           <span className='text-sm text-muted-foreground'>
             Born November 28, 2002
           </span>
         </div>
 
-        <div className='flex'>
+        <div className='flex font-medium'>
           <div className='flex items-end text-xs tracking-tight text-muted-foreground'>
             <span className='flex items-start'>
               <span className='font-bold text-black mr-1'>{`${ownedCommunities}`}</span>
