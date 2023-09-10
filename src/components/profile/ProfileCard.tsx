@@ -50,24 +50,13 @@ const ProfileCard: FC<ProfileCardProps> = ({
 
   // replace "November" with user?.birthday
 
-  const birthday = "November 28"
-
-  //   <time dateTime={user?.emailVerified?.toDateString()}>
-  //     {user?.emailVerified
-  //       ? `Joined on ${format(user.emailVerified, 'MMMM d, yyyy')}`
-  //       : ''}
-  //   </time>
-
-  //   {user?.email}
-
-  //   {user?.id}
+  const birthday = 'November 28';
 
   return (
-    <div className='rounded-md bg-white shadow'>
+    <div className='rounded-md bg-white'>
       <div className='h-[30vh] md:h-[40vh] flex items-start relative'>
         <div
-          id='cover-photo'
-          className={`bg-${profileTheme} w-full h-[75%] rounded-t-md shadow overflow-hidden`}
+          className={`w-full bg-${profileTheme}  h-[75%] rounded-t-md overflow-hidden`}
         ></div>
 
         <div className='h-[15vh] md:h-[17vh] w-full absolute z-2 bottom-0 flex items-center px-3 md:px-5 justify-between '>

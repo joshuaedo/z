@@ -11,9 +11,17 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/Form';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/Select';
 import { toast } from '@/hooks/use-toast';
 import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';
+import UserAvatar from '../ui/UserAvatar';
 
 const FormSchema = z.object({
   //  image: z.string(),
@@ -49,6 +57,54 @@ export default function EditProfileForm() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-5'>
+        <div className='h-[30vh] md:h-[40vh] flex items-start relative'>
+          <div
+            className={`w-full h-[75%] rounded-t-md shadow overflow-hidden flex items-center justify-center`}
+          >
+            <FormField
+              control={form.control}
+              name='profileTheme'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Profile Theme</FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder='Select a background colour for your profile.' />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value='black'>black</SelectItem>
+                      <SelectItem value='white'>white</SelectItem>
+                      <SelectItem value='purple-500'>purple</SelectItem>
+                      <SelectItem value='blue-500'>blue</SelectItem>
+                      <SelectItem value='pink-500'>pink</SelectItem>
+                      <SelectItem value='green-500'>green</SelectItem>
+                      <SelectItem value='gray-500'>gray</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+
+          <div className='h-[15vh] md:h-[17vh] w-full absolute z-2 bottom-0 flex items-center px-3 md:px-5 justify-between '>
+            <div className='h-[12vh] md:h-[17vh] w-[12vh] md:w-[17vh] rounded-[50%]'>
+              <UserAvatar
+                user={{
+                  name: null,
+                  image: null,
+                }}
+                className='w-full h-full object-contain'
+              />
+            </div>
+          </div>
+        </div>
+
         <FormField
           control={form.control}
           name='username'
