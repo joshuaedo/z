@@ -14,22 +14,6 @@ interface ProfileCardProps {
   session: Session | null;
 }
 
-//   <time dateTime={user?.emailVerified?.toDateString()}>
-//     {user?.emailVerified
-//       ? `Joined on ${format(user.emailVerified, 'MMMM d, yyyy')}`
-//       : ''}
-//   </time>
-
-//   <time dateTime={user?.birthday?.toDateString()}>
-//     {user?.birthday
-//       ? `Birthday is ${format(user.birthday, 'MMMM d, yyyy')}`
-//       : ''}
-//   </time>
-
-//   {user?.email}
-
-//   {user?.id}
-
 const ProfileCard: FC<ProfileCardProps> = ({
   user,
   session,
@@ -54,9 +38,31 @@ const ProfileCard: FC<ProfileCardProps> = ({
 
   const coverImage = 'https://www.vangoghgallery.com/img/starry_night_full.jpg';
 
-  //  replace "This is your bio." with user?.bio
+  //  replace "This is a bio." with user?.bio
 
-  const bio = 'This is your bio';
+  const bio = 'This is a bio';
+
+  // replace nullValue with user?.displayName
+
+  const nullValue = null;
+
+  const displayName = nullValue ?? user?.name;
+
+  //   <time dateTime={user?.emailVerified?.toDateString()}>
+  //     {user?.emailVerified
+  //       ? `Joined on ${format(user.emailVerified, 'MMMM d, yyyy')}`
+  //       : ''}
+  //   </time>
+
+  //   <time dateTime={user?.birthday?.toDateString()}>
+  //     {user?.birthday
+  //       ? `Birthday is ${format(user.birthday, 'MMMM d, yyyy')}`
+  //       : ''}
+  //   </time>
+
+  //   {user?.email}
+
+  //   {user?.id}
 
   return (
     <div className='rounded-md bg-white shadow'>
@@ -90,7 +96,7 @@ const ProfileCard: FC<ProfileCardProps> = ({
           <div className='h-[12vh] md:h-[17vh] w-[12vh] md:w-[17vh] flex items-end justify-end'>
             {session?.user.id === user?.id && (
               <NextLink
-                href={`/u/${user?.name}/edit`}
+                href={`/u/${user?.username}/edit`}
                 className={cn(
                   buttonVariants({
                     variant: 'outline',
@@ -108,7 +114,7 @@ const ProfileCard: FC<ProfileCardProps> = ({
 
       <div className='px-3 md:px-5 pb-3 md:pb-5 space-y-2'>
         <div>
-          <p className='text-lg font-bold'>{user?.name}</p>
+          <p className='text-lg font-bold'>{displayName}</p>
           <p className='text-sm text-muted-foreground'>u/{user?.username}</p>
         </div>
 
@@ -131,7 +137,7 @@ const ProfileCard: FC<ProfileCardProps> = ({
         </div>
 
         <div className='flex'>
-          <div className='flex items-end text-sm text-muted-foreground'>
+          <div className='flex items-end text-xs tracking-tight text-muted-foreground'>
             <span className='flex items-start'>
               <span className='font-bold text-black mr-1'>{`${ownedCommunities}`}</span>
               {`Communit${ownedCommunities === 1 ? 'y' : 'ies'} Created`}
@@ -139,7 +145,7 @@ const ProfileCard: FC<ProfileCardProps> = ({
           </div>
 
           <div className='flex items-start ml-3'>
-            <span className='flex items-end text-sm text-muted-foreground'>
+            <span className='flex items-end text-xs tracking-tight text-muted-foreground'>
               <span className='font-bold text-black mr-1'>{`${userSubs}`}</span>
               {`Subscription${userSubs === 1 ? '' : 's'}`}
             </span>

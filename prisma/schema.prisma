@@ -49,6 +49,7 @@ model User {
 
   bio        String?
   link       String?
+  displayName String?
   birthday   DateTime?
   coverImage String?
 
