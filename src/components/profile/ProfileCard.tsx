@@ -36,9 +36,9 @@ const ProfileCard: FC<ProfileCardProps> = ({
 
   // replace "black" with user?.profileTheme
 
-  const profileTheme = 'black';
+  const profileTheme = 'zinc-900';
 
-  //  replace "This is a bio." with user?.bio
+  //  replace "This is where the bio would be." with user?.bio
 
   const bio = 'This is where the bio would be.';
 
@@ -53,10 +53,10 @@ const ProfileCard: FC<ProfileCardProps> = ({
   const birthday = 'November 28';
 
   return (
-    <div className='rounded-md bg-white'>
+    <div className='rounded-md bg-white shadow'>
       <div className='h-[30vh] md:h-[40vh] flex items-start relative'>
         <div
-          className={`w-full bg-${profileTheme}  h-[75%] rounded-t-md overflow-hidden`}
+          className={`w-full bg-${profileTheme} h-[75%] rounded-t-md`}
         ></div>
 
         <div className='h-[15vh] md:h-[17vh] w-full absolute z-2 bottom-0 flex items-center px-3 md:px-5 justify-between '>
@@ -89,7 +89,7 @@ const ProfileCard: FC<ProfileCardProps> = ({
         </div>
       </div>
 
-      <div className='px-3 md:px-5 pb-3 md:pb-5 space-y-2'>
+      <div className='px-3 md:px-5 pb-5 space-y-2.5'>
         <div>
           <p className='text-lg font-bold'>{displayName}</p>
           <p className='text-sm text-muted-foreground'>u/{user?.username}</p>
@@ -113,7 +113,7 @@ const ProfileCard: FC<ProfileCardProps> = ({
           </span>
         </div>
 
-        <div className='flex font-normal'>
+        <div className='flex font-normal ml-1.5'>
           <div className='flex items-end text-xs tracking-tight text-muted-foreground'>
             <span className='flex items-start'>
               <span className='font-bold text-black mr-1'>{`${ownedCommunities}`}</span>

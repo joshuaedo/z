@@ -59,7 +59,7 @@ export default function EditProfileForm() {
       <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-5'>
         <div className='h-[30vh] md:h-[40vh] flex items-start relative'>
           <div
-            className={`w-full h-[75%] rounded-t-md shadow overflow-hidden flex items-center justify-center`}
+            className={`w-full h-[75%] rounded-t-md shadow overflow-hidden flex items-center justify-center px-3`}
           >
             <FormField
               control={form.control}
@@ -72,18 +72,16 @@ export default function EditProfileForm() {
                     defaultValue={field.value}
                   >
                     <FormControl>
-                      <SelectTrigger>
+                      <SelectTrigger className='text-xs md:text-sm'>
                         <SelectValue placeholder='Select a background colour for your profile.' />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value='black'>black</SelectItem>
-                      <SelectItem value='white'>white</SelectItem>
+                      <SelectItem value='white'>white (default)</SelectItem>
+                      <SelectItem value='zinc-900'>dark</SelectItem>
                       <SelectItem value='purple-500'>purple</SelectItem>
-                      <SelectItem value='blue-500'>blue</SelectItem>
-                      <SelectItem value='pink-500'>pink</SelectItem>
                       <SelectItem value='green-500'>green</SelectItem>
-                      <SelectItem value='gray-500'>gray</SelectItem>
+                      <SelectItem value='zinc-500'>gray</SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />
