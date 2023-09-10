@@ -5,6 +5,7 @@ import { db } from '@/lib/db';
 import PostFeed from '@/components/feeds/PostFeed';
 import type { Metadata } from 'next';
 import ProfileCard from '@/components/ui/ProfileCard';
+import ProfileFeed from '@/components/feeds/ProfileFeed';
 
 type Props = {
   params: { username: string };
@@ -47,9 +48,15 @@ const ProfilePage = async ({ params }: ProfilePageProps) => {
 
   const session = await getAuthSession();
 
+  const user = await db.user.findUnique({
+    where: {
+      username: username,
+    },
+  });
+
   const posts = await db.post.findMany({
     where: {
-      authorId: session?.user.id,
+      authorId: user?.id,
     },
     orderBy: {
       createdAt: 'desc',
@@ -63,16 +70,35 @@ const ProfilePage = async ({ params }: ProfilePageProps) => {
     take: INFINITE_SCROLLING_PAGINATION_RESULTS,
   });
 
-  const user = await db.user.findUnique({
+  // const comments = await db.comment.findMany({
+  //   where: {
+  //     authorId: user?.id,
+  //   }
+  // })
+
+  const replies = await db.post.findMany({
     where: {
-      username: username,
+      comments: {
+        some: {
+          authorId: user?.id,
+        },
+      },
+    },
+    orderBy: {
+      createdAt: 'desc',
+    },
+    include: {
+      votes: true,
+      author: true,
+      comments: true,
+      community: true,
     },
   });
 
   return session ? (
     <div className='space-y-6'>
       <ProfileCard user={user} />
-      <PostFeed initialPosts={posts} />
+      <ProfileFeed posts={posts} replies={replies} />
     </div>
   ) : (
     <SignInFireWall />

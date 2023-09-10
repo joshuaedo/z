@@ -67,7 +67,7 @@ const ProfileCard: FC<ProfileCardProps> = ({ user }) => {
           </div>
 
           <div className='h-[12vh] w-[12vh] flex items-end justify-end'>
-            <Button variant='outline' size='sm'>
+            <Button variant='outline' size='sm' className="text-xs">
               Edit Profile
             </Button>
           </div>
