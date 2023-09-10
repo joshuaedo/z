@@ -69,7 +69,8 @@ const ProfileCard: FC<ProfileCardProps> = ({
               alt={user?.name}
               src={coverImage}
               className='object-cover object-center'
-              fill
+              height={1280}
+              width={1014}
             />
           )}
         </div>
@@ -103,14 +104,14 @@ const ProfileCard: FC<ProfileCardProps> = ({
           <p className='text-sm'>{bio}</p>
         </div>
 
-        <div className='flex items-end'>
+        <div className='flex items-start'>
           <Link className='mr-2 h-4 w-4' />{' '}
           <span className='text-sm text-blue-500'>
             <a href={href}>{link}</a>
           </span>
         </div>
 
-        <div className='flex items-end'>
+        <div className='flex items-start'>
           <Cake className='mr-2 h-4 w-4' />{' '}
           <span className='text-sm text-muted-foreground'>
             Born November 28, 2002
@@ -118,19 +119,19 @@ const ProfileCard: FC<ProfileCardProps> = ({
         </div>
 
         <div className='flex'>
-          <div className='flex items-center'>
+          <div className='flex items-start'>
             <Users className='mr-2 h-4 w-4' />{' '}
             <span className='text-sm text-muted-foreground'>
-              <span className='flex items-end'>
-                <span className='font-bold text-black'>{`${ownedCommunities}`}</span>{' '}
+              <span className='flex items-start'>
+                <span className='font-bold text-black'>{`${ownedCommunities} `}</span>
                 {`communit${ownedCommunities === 1 ? 'y' : 'ies'} created`}
               </span>
             </span>
           </div>
 
-          <div className='flex items-center ml-3'>
+          <div className='flex items-start ml-3'>
             <span className='flex items-end text-sm text-muted-foreground'>
-              <span className='font-bold text-black'>{`${userSubs}`}</span>{' '}
+              <span className='font-bold text-black'>{`${userSubs} `}</span>
               {`subscription${userSubs === 1 ? '' : 's'}`}
             </span>
           </div>
