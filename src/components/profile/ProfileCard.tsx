@@ -30,7 +30,7 @@ const ProfileCard: FC<ProfileCardProps> = ({
 
   const href = user?.link
 
-  const link = href?.replace(/^(https?:\/\/(www\.)?)?/, '');
+  const link = href?.replace(/^(https?:\/\/(www\.)?)?/, '').replace(/\/+$/, '');
 
   const profileTheme = user?.profileTheme ?? "transparent"
 
@@ -77,7 +77,7 @@ const ProfileCard: FC<ProfileCardProps> = ({
         </div>
       </div>
 
-      <div className='px-3 md:px-5 pb-5 space-y-2.5'>
+      <div className='px-3 md:px-5 pb-7 space-y-2.5'>
         <div>
           {displayName && <p className='text-lg font-bold'>{displayName}</p>}
           <p className='text-sm text-muted-foreground'>u/{user?.username}</p>
@@ -101,7 +101,7 @@ const ProfileCard: FC<ProfileCardProps> = ({
           </span>
         </div>}
 
-        <div className='flex font-normal ml-1.5'>
+        <div className={`${birthday && 'ml-1'} flex font-normal`}>
           <div className='flex items-end text-xs tracking-tight text-muted-foreground'>
             <span className='flex items-start'>
               <span className='font-bold text-black mr-1'>{`${ownedCommunities}`}</span>
