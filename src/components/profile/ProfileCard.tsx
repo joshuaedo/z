@@ -28,29 +28,17 @@ const ProfileCard: FC<ProfileCardProps> = ({
 
   const cleanedImageUrl = imageUrl?.replace(/=s\d+-[a-z]/, '');
 
-  // replace "https://www.joshuaedo.com" with user?.link
+  const href = user?.link
 
-  const href = 'https://www.joshuaedo.com';
+  const link = href?.replace(/^(https?:\/\/(www\.)?)?/, '');
 
-  const link = href.replace(/^(https?:\/\/(www\.)?)?/, '');
+  const profileTheme = user?.profileTheme ?? "transparent"
 
-  // replace "black" with user?.profileTheme
+  const bio = user?.bio ?? ""
 
-  const profileTheme = 'zinc-900';
+  const displayName = user?.displayName ?? user?.name;
 
-  //  replace "This is where the bio would be." with user?.bio
-
-  const bio = 'This is where the bio would be.';
-
-  // replace nullValue with user?.displayName
-
-  const nullValue = null;
-
-  const displayName = nullValue ?? user?.name;
-
-  // replace "November" with user?.birthday
-
-  const birthday = 'November 28';
+  const birthday = user?.birthday
 
   return (
     <div className='rounded-md bg-white shadow'>
@@ -91,7 +79,7 @@ const ProfileCard: FC<ProfileCardProps> = ({
 
       <div className='px-3 md:px-5 pb-5 space-y-2.5'>
         <div>
-          <p className='text-lg font-bold'>{displayName}</p>
+          {displayName && <p className='text-lg font-bold'>{displayName}</p>}
           <p className='text-sm text-muted-foreground'>u/{user?.username}</p>
         </div>
 
@@ -99,19 +87,19 @@ const ProfileCard: FC<ProfileCardProps> = ({
           <p className='text-sm'>{bio}</p>
         </div>
 
-        <div className='flex items-center'>
+        {link && <div className='flex items-center'>
           <Link className='mr-2 h-4 w-4' />{' '}
           <span className='text-sm text-blue-500'>
             <a href={href}>{link}</a>
           </span>
-        </div>
+        </div>}
 
-        <div className='flex items-start font-normal tracking-tight'>
+        {birthday && <div className='flex items-start font-normal tracking-tight'>
           <Cake className='mr-2 h-4 w-4' />{' '}
           <span className='text-sm text-muted-foreground'>
             {`Born on ${birthday}`}
           </span>
-        </div>
+        </div>}
 
         <div className='flex font-normal ml-1.5'>
           <div className='flex items-end text-xs tracking-tight text-muted-foreground'>
