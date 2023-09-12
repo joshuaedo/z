@@ -50,7 +50,7 @@ model User {
   bio        String?
   link       String?
   displayName String?
-  birthday   DateTime?
+  birthday   String?
   profileTheme String?
 
   accounts    Account[]
