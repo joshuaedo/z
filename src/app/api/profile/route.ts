@@ -1,5 +1,6 @@
 import { getAuthSession } from '@/lib/auth';
 import { db } from '@/lib/db';
+import { ProfileValidator } from "@/lib/validators/profile"
 import { z } from 'zod';
 
 export async function PATCH(req: Request) {
@@ -10,8 +11,11 @@ export async function PATCH(req: Request) {
       return new Response('Unauthorized', { status: 401 });
     }
 
-    const { profileTheme, username, displayName, bio, link, birthday } =
-      await req.json();
+     const body = await req.json();
+
+    const { profileTheme, username, displayName, bio, link, birthday } = ProfileValidator.parse(body)
+    
+      console.log('Received data:', { profileTheme, username, displayName, bio, link, birthday });
 
     // check if username is taken
     const usernameExists = await db.user.findFirst({
