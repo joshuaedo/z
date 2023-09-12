@@ -77,7 +77,7 @@ const ProfileCard: FC<ProfileCardProps> = ({
         </div>
       </div>
 
-      <div className='px-3 md:px-5 pb-7 space-y-2.5'>
+      <div className='px-3 md:px-5 pb-8 space-y-2.5'>
         <div>
           {displayName && <p className='text-lg font-bold'>{displayName}</p>}
           <p className='text-sm text-muted-foreground'>u/{user?.username}</p>
