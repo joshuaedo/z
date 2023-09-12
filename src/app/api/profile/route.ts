@@ -14,7 +14,7 @@ export async function PATCH(req: Request) {
      const body = await req.json();
 
     const { profileTheme, username, displayName, bio, link, birthday } = ProfileValidator.parse(body)
-    
+
       console.log('Received data:', { profileTheme, username, displayName, bio, link, birthday });
 
     // check if username is taken
@@ -52,7 +52,7 @@ export async function PATCH(req: Request) {
     }
 
     return new Response(
-      'Could not update profile at this time. Please try later',
+      error + 'Could not update profile at this time. Please try later',
       { status: 500 }
     );
   }
