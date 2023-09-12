@@ -87,7 +87,7 @@ const ProfileCard: FC<ProfileCardProps> = ({
           <p className='text-sm'>{bio}</p>
         </div>
 
-        {link && <div className='flex items-center'>
+        {link && href && <div className='flex items-center'>
           <Link className='mr-2 h-4 w-4' />{' '}
           <span className='text-sm text-blue-500'>
             <a href={href}>{link}</a>
