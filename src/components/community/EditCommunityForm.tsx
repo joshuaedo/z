@@ -36,7 +36,7 @@ export default function EditCommunityForm() {
 
   const { mutate: updateProfile, isLoading } = useMutation({
     mutationFn: async (payload: z.infer<typeof FormSchema>) => {
-      const { data } = await axios.post("/api/community", payload);
+      const { data } = await axios.patch("/api/community/edit", payload);
       return data;
     },
     onError: (err) => {
@@ -83,8 +83,8 @@ export default function EditCommunityForm() {
         onSubmit={form.handleSubmit((e) => updateProfile(e))}
         className="space-y-5"
       >
-        <div className="w-full flex justify-center items-center p-5 md:p-7">
-          <div className="h-[9vh] md:h-[14vh] w-[9vh] md:w-[14vh] border border-zinc-500 rounded-[50%]">
+        <div className="w-full flex justify-center items-center p-2">
+          <div className="h-[9vh] md:h-[12vh] w-[9vh] md:w-[12vh] rounded-[50%]">
             <Users className="w-full h-full object-contain" />
           </div>
         </div>

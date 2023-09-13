@@ -3,7 +3,7 @@ import { db, restrictedNames } from "@/lib/db";
 import { CommunityValidator } from "@/lib/validators/community";
 import { z } from "zod";
 
-export async function POST(req: Request) {
+export async function PATCH(req: Request) {
   try {
     const session = await getAuthSession();
 
@@ -19,39 +19,29 @@ export async function POST(req: Request) {
       return new Response("Community name is restricted", { status: 422 });
     }
 
-    const communityExists = await db.community.findFirst({
-      where: {
-        name,
-      },
+    const community = await db.community.findFirst({
+        where: {
+          name: name
+        },
+
     });
 
-    if (communityExists) {
-      return new Response("Community already exists", { status: 409 });
-    }
-
-    const community = await db.community.create({
-      data: {
-        name,
-        description,
-        creatorId: session.user.id,
-        createdAt: new Date(), // Set the creation date
-        updatedAt: new Date(), // Set the update date
-      },
-    });
-
-    await db.subscription.create({
-      data: {
-        userId: session.user.id,
-        communityId: community.id,
-      },
-    });
-
-    return new Response(community.name);
+    await db.community.update({
+        where: {
+          id: community?.id
+        },    
+        data: {
+            name,
+            description,
+            updatedAt: new Date(), // Set the update date
+          },
+    })
+    return new Response("OK");
   } catch (error) {
     if (error instanceof z.ZodError) {
       return new Response(error.message, { status: 422 });
     }
 
-    return new Response("Could not create community", { status: 500 });
+    return new Response("Could not update community", { status: 500 });
   }
 }

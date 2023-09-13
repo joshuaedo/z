@@ -85,7 +85,7 @@ export default function EditProfileForm() {
       >
         <div className="h-[30vh] md:h-[40vh] flex items-start relative">
           <div
-            className={`w-full h-[50%] md:h-[75%] rounded-t-md shadow overflow-hidden flex items-center justify-center px-6`}
+            className={`w-full h-[75%] rounded-t-md shadow overflow-hidden flex items-center justify-center px-9`}
           >
             <FormField
               control={form.control}
