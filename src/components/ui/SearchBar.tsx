@@ -16,6 +16,7 @@ import { Loader2, User2, Users } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import debounce from "lodash.debounce";
 import { useOnClickOutside } from "@/hooks/use-on-click-outside";
+import { SearchResults } from "@/types/search";
 
 interface SearchBarProps {}
 
@@ -40,12 +41,7 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
 
       const { data } = await axios.get(`/api/search?q=${input}`);
       console.log(data);
-      return data as (Community & {
-        _count: Prisma.CommunityCountOutputType;
-      })[] &
-        (User & {
-          _count: Prisma.UserCountOutputType;
-        })[];
+      return data as SearchResults;
     },
     queryKey: ["search-query"],
     enabled: false,
@@ -86,45 +82,53 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
               <Loader2 className="animate-spin" />
             </div>
           )}
-          {isFetched && (
+          {isFetched && !queryResults && (
             <CommandEmpty className="p-3 text-sm font-medium">
               No results found.
             </CommandEmpty>
           )}
-          {(queryResults?.length ?? 0) > 0 ? (
-            <div className="space-y-1">
-              <CommandGroup heading="Communities">
-                {queryResults?.map((community) => (
-                  <CommandItem
-                    onSelect={(e) => {
-                      router.push(`/z/${e}`);
-                      router.refresh();
-                    }}
-                    key={community.id}
-                    value={community.name}
-                  >
-                    <Users className="mr-2 h-4 w-4" />
-                    <a href={`/z/${community.name}`}>z/{community.name}</a>
-                  </CommandItem>
-                ))}
-              </CommandGroup>
-              <CommandGroup heading="Users">
-                {queryResults?.map((user) => (
-                  <CommandItem
-                    onSelect={(e) => {
-                      router.push(`/u/${e}`);
-                      router.refresh();
-                    }}
-                    key={user.id}
-                    value={user.name}
-                  >
-                    <User2 className="mr-2 h-4 w-4" />
-                    <a href={`/u/${user.name}`}>u/{user.name}</a>
-                  </CommandItem>
-                ))}
-              </CommandGroup>
-            </div>
-          ) : null}
+          {isFetched && (
+            <>
+              {Array.isArray(queryResults) ? (
+                <CommandEmpty className="p-3 text-sm font-medium">
+                  No results found.
+                </CommandEmpty>
+              ) : (
+                <div className="space-y-1">
+                  <CommandGroup heading="Communities">
+                    {queryResults?.communities.map((community) => (
+                      <CommandItem
+                        onSelect={(e) => {
+                          router.push(`/z/${e}`);
+                          router.refresh();
+                        }}
+                        key={community.id}
+                        value={community.name}
+                      >
+                        <Users className="mr-2 h-4 w-4" />
+                        <a href={`/z/${community.name}`}>z/{community.name}</a>
+                      </CommandItem>
+                    ))}
+                  </CommandGroup>
+                  <CommandGroup heading="Users">
+                    {queryResults?.users.map((user) => (
+                      <CommandItem
+                        onSelect={(e) => {
+                          router.push(`/u/${e}`);
+                          router.refresh();
+                        }}
+                        key={user.id}
+                        value={user.name}
+                      >
+                        <User2 className="mr-2 h-4 w-4" />
+                        <a href={`/u/${user.name}`}>u/{user.name}</a>
+                      </CommandItem>
+                    ))}
+                  </CommandGroup>
+                </div>
+              )}
+            </>
+          )}
         </CommandList>
       )}
     </Command>
