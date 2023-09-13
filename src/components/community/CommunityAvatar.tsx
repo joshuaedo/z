@@ -1,8 +1,8 @@
-import React, { FC } from 'react';
-import { Avatar, AvatarImage, AvatarFallback } from './Avatar';
-import { Icons } from './Icons';
-import { AvatarProps } from '@radix-ui/react-avatar';
-import { Community } from '@prisma/client';
+import React, { FC } from "react";
+import { Avatar, AvatarImage, AvatarFallback } from "../ui/Avatar";
+import { Icons } from "../ui/Icons";
+import { AvatarProps } from "@radix-ui/react-avatar";
+import { Community } from "@prisma/client";
 
 interface communityAvatarProps extends AvatarProps {
   community?: Community;
@@ -19,12 +19,12 @@ const CommunityAvatar: FC<communityAvatarProps> = ({
       {community?.image ? (
         <AvatarImage
           src={community.image}
-          alt='profile picture'
-          referrerPolicy='no-referrer'
+          alt="profile picture"
+          referrerPolicy="no-referrer"
         />
       ) : (
         <AvatarFallback>
-          <span className='sr-only'>{community?.name}</span>
+          <span className="sr-only">{community?.name}</span>
           <Icons.communityFallbackLogoTwo className={fallbackClassName} />
         </AvatarFallback>
       )}

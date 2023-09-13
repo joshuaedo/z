@@ -1,10 +1,10 @@
-import SignInFireWall from '@/components/auth/SignInFireWall';
-import { getAuthSession } from '@/lib/auth';
-import { INFINITE_SCROLLING_PAGINATION_RESULTS } from '@/config';
-import { db } from '@/lib/db';
-import type { Metadata } from 'next';
-import ProfileCard from '@/components/profile/ProfileCard';
-import ProfileFeed from '@/components/feeds/ProfileFeed';
+import SignInFireWall from "@/components/auth/SignInFireWall";
+import { getAuthSession } from "@/lib/auth";
+import { INFINITE_SCROLLING_PAGINATION_RESULTS } from "@/config";
+import { db } from "@/lib/db";
+import type { Metadata } from "next";
+import ProfileCard from "@/components/profile/ProfileCard";
+import ProfileFeed from "@/components/feeds/ProfileFeed";
 
 type Props = {
   params: { username: string };
@@ -13,25 +13,27 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { username } = params;
 
+  const userMetaName = username ?? "guest";
+
   return {
     title: `u/${username} • Z`,
-    description: '',
+    description: "",
     openGraph: {
       title: `u/${username} • Z`,
-      description: '',
+      description: "",
       images: [
         {
-          url: '',
+          url: "",
           width: 200,
           height: 200,
         },
       ],
     },
     twitter: {
-      card: 'summary',
+      card: "summary",
       title: `u/${username} • Z`,
-      description: '',
-      images: [''],
+      description: "",
+      images: [""],
     },
   };
 }
@@ -58,7 +60,7 @@ const ProfilePage = async ({ params }: ProfilePageProps) => {
       authorId: user?.id,
     },
     orderBy: {
-      createdAt: 'desc',
+      createdAt: "desc",
     },
     include: {
       votes: true,
@@ -78,7 +80,7 @@ const ProfilePage = async ({ params }: ProfilePageProps) => {
       },
     },
     orderBy: {
-      createdAt: 'desc',
+      createdAt: "desc",
     },
     include: {
       votes: true,
@@ -101,7 +103,7 @@ const ProfilePage = async ({ params }: ProfilePageProps) => {
   });
 
   return session ? (
-    <div className='space-y-6'>
+    <div className="space-y-6">
       <ProfileCard
         user={user}
         session={session}

@@ -12,7 +12,7 @@ export async function POST(req: Request) {
         }
 
         const body = await req.json();
-        const { name } = CommunityValidator.parse(body);
+        const { name, description } = CommunityValidator.parse(body);
 
         const communityExists = await db.community.findFirst({
             where: {
@@ -21,7 +21,20 @@ export async function POST(req: Request) {
         });
 
         if (communityExists) {
-            return new Response("Community already exists", { status: 409 });
+            if (communityExists.creatorId !== session.user.id) {
+                await db.community.update({
+                    where: {
+                        id: communityExists.id,
+                    },
+                    data: {
+                        name,
+                        description,
+                    },
+                })
+
+            }else {
+                return new Response("Community already exists", { status: 409 });
+            }
         }
 
         const community = await db.community.create({

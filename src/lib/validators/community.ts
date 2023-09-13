@@ -1,7 +1,8 @@
 import { z } from "zod";
 
 export const CommunityValidator = z.object({
-    name: z.string().min(3).max(21)
+    name: z.string().min(3).max(21),
+    description: z.string().max(50)
 });
 
 export const CommunitySubscriptionValidator = z.object({

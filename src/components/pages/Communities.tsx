@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { useRouter } from 'next/navigation';
-import { FC } from 'react';
-import { Community } from '@prisma/client';
-import { Session } from 'next-auth';
-import CommunityAvatar from '../ui/CommunityAvatar';
+import { useRouter } from "next/navigation";
+import { FC } from "react";
+import { Community } from "@prisma/client";
+import { Session } from "next-auth";
+import CommunityAvatar from "../community/CommunityAvatar";
 
 interface CommunitiesProps {
   session: Session | null;
@@ -16,18 +16,15 @@ const Communities: FC<CommunitiesProps> = ({ session, subs }) => {
   const zUser = session?.user;
 
   return (
-    <main className='rounded-lg shadow p-8 space-y-2 bg-white'>
-      <ul id='community' className='text-zinc-900 space-y-1'>
+    <main className="rounded-lg shadow p-8 space-y-2 bg-white">
+      <ul id="community" className="text-zinc-900 space-y-1">
         {subs.map((community) => (
           <li
             key={community.id}
             onClick={() => router.push(`z/${community.name}`)}
-            className='py-1 flex gap-x-3'
+            className="py-1 flex gap-x-3"
           >
-            <CommunityAvatar
-              community={community}
-              className='h-7 w-7'
-            />
+            <CommunityAvatar community={community} className="h-7 w-7" />
             {`z/${community.name}`}
           </li>
         ))}
