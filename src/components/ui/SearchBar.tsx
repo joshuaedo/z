@@ -94,7 +94,7 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
                   No results found.
                 </CommandEmpty>
               ) : (
-                <div className="space-y-1">
+                <div className="">
                   <CommandGroup heading="Communities">
                     {queryResults?.communities.map((community) => (
                       <CommandItem
@@ -118,10 +118,10 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
                           router.refresh();
                         }}
                         key={user.id}
-                        value={user.name}
+                        value={user.username}
                       >
                         <User2 className="mr-2 h-4 w-4" />
-                        <a href={`/u/${user.name}`}>u/{user.name}</a>
+                        <a href={`/u/${user.username}`}>u/{user.username}</a>
                       </CommandItem>
                     ))}
                   </CommandGroup>
