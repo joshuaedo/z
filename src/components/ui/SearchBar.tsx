@@ -79,7 +79,6 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
         className="outline-none border-none focus focus:border-none focus:outline-none ring-0"
         placeholder="Explore"
       />
-
       {input.length > 0 && (
         <CommandList className="absolute bg-white top-full inset-x-0 shadow rounded-b-md">
           {isFetching && (
@@ -88,11 +87,7 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
             </div>
           )}
           {isFetched && (
-            <CommandEmpty className="          {isFetched && (
-            <CommandEmpty className="z-50  bg-black text-white p-3 text-sm font-medium">
-              No results found.
-            </CommandEmpty>
-          )}p-3 text-sm font-medium">
+            <CommandEmpty className="p-3 text-sm font-medium">
               No results found.
             </CommandEmpty>
           )}
@@ -117,14 +112,14 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
                 {queryResults?.map((user) => (
                   <CommandItem
                     onSelect={(e) => {
-                      router.push(`/z/${e}`);
+                      router.push(`/u/${e}`);
                       router.refresh();
                     }}
                     key={user.id}
                     value={user.name}
                   >
                     <User2 className="mr-2 h-4 w-4" />
-                    <a href={`/z/${user.name}`}>z/{user.name}</a>
+                    <a href={`/u/${user.name}`}>u/{user.name}</a>
                   </CommandItem>
                 ))}
               </CommandGroup>
