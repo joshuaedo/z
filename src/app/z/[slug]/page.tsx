@@ -1,13 +1,19 @@
-import { INFINITE_SCROLLING_PAGINATION_RESULTS } from '@/config';
-import { getAuthSession } from '@/lib/auth';
-import { db } from '@/lib/db';
-import { notFound } from 'next/navigation';
-import PostFeed from '@/components/feeds/PostFeed';
-import SubscribeLeaveToggle from '@/components/auth/SubscribeLeaveToggle';
-import AddCommunityPost from '@/components/posts/AddCommunityPost';
-import { CalendarIcon } from '@radix-ui/react-icons';
-import { format } from 'date-fns/esm';
-import { Users } from 'lucide-react';
+import { INFINITE_SCROLLING_PAGINATION_RESULTS } from "@/config";
+import { getAuthSession } from "@/lib/auth";
+import { db } from "@/lib/db";
+import { notFound, useRouter } from "next/navigation";
+import PostFeed from "@/components/feeds/PostFeed";
+import SubscribeLeaveToggle from "@/components/auth/SubscribeLeaveToggle";
+import AddCommunityPost from "@/components/posts/AddCommunityPost";
+import { CalendarIcon } from "@radix-ui/react-icons";
+import { format } from "date-fns/esm";
+import { MoreVertical, Users } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/DropDownMenu";
 
 interface SlugPageProps {
   params: {
@@ -17,6 +23,8 @@ interface SlugPageProps {
 
 const SlugPage = async ({ params }: SlugPageProps) => {
   const { slug } = params;
+
+  const router = useRouter();
 
   const session = await getAuthSession();
 
@@ -31,7 +39,7 @@ const SlugPage = async ({ params }: SlugPageProps) => {
           community: true,
         },
         orderBy: {
-          createdAt: 'desc',
+          createdAt: "desc",
         },
         take: INFINITE_SCROLLING_PAGINATION_RESULTS,
       },
@@ -68,14 +76,32 @@ const SlugPage = async ({ params }: SlugPageProps) => {
   });
 
   return (
-    <div className='space-y-6'>
-      <div className='flex w-fit items-center justify-center'>
+    <div className="space-y-6">
+      <div className="flex w-fit items-center justify-center">
         {/* Community Name & Info */}
-        <h2 className='font-bold text-3xl md:text-4xl'>z/{community.name}</h2>
+        <h2 className="font-bold text-3xl md:text-4xl">z/{community.name}</h2>
         {/* Community Status */}
         {isCreator ? (
-          <div className='bg-purple-500 text-zinc-900 rounded-full font-semibold py-1 px-2 border border-zinc-900 mx-2'>
-            Creator
+          <div>
+            <div className="bg-purple-500 text-zinc-900 rounded-full font-semibold py-1 px-2 border border-zinc-900 mx-2">
+              Creator
+            </div>
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                <MoreVertical className="h-4 w-4" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuItem
+                  onSelect={(e) => {
+                    e.preventDefault();
+                    void router.push(`/z/${community.name}/edit`);
+                  }}
+                  className="cursor-pointer"
+                >
+                  Edit Community
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         ) : null}
         {!isCreator ? (
@@ -87,25 +113,25 @@ const SlugPage = async ({ params }: SlugPageProps) => {
         ) : null}
       </div>
 
-      <div className='space-y-1 overflow-hidden rounded-md bg-white shadow h-full px-5 py-4'>
-        <div className=''>
-          <p className='text-sm'>This is the community&apos;s description.</p>
+      <div className="space-y-1 overflow-hidden rounded-md bg-white shadow h-full px-5 py-4">
+        <div className="">
+          <p className="text-sm">This is the community&apos;s description.</p>
         </div>
 
-        <div className='flex items-center pt-2'>
-          <CalendarIcon className='mr-2 h-4 w-4 opacity-70' />{' '}
-          <span className='text-xs text-muted-foreground'>
+        <div className="flex items-center pt-2">
+          <CalendarIcon className="mr-2 h-4 w-4 opacity-70" />{" "}
+          <span className="text-xs text-muted-foreground">
             <time dateTime={community.createdAt.toDateString()}>
-              {`Created on ${format(community.createdAt, 'MMMM d, yyyy')}`}
+              {`Created on ${format(community.createdAt, "MMMM d, yyyy")}`}
             </time>
           </span>
         </div>
 
-        <div className='flex items-center pt-2'>
-          <Users className='mr-2 h-4 w-4 opacity-70' />{' '}
-          <span className='text-xs text-muted-foreground'>
+        <div className="flex items-center pt-2">
+          <Users className="mr-2 h-4 w-4 opacity-70" />{" "}
+          <span className="text-xs text-muted-foreground">
             <time dateTime={community.createdAt.toDateString()}>
-              {`${memberCount} member${memberCount > 1 ? 's' : ''}`}
+              {`${memberCount} member${memberCount > 1 ? "s" : ""}`}
             </time>
           </span>
         </div>

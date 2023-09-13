@@ -57,6 +57,14 @@ export default function EditCommunityForm() {
           });
         }
 
+        if (err.response?.status === 412) {
+            return toast({
+              title: "Invalid community name",
+              description: "Community name is restricted.",
+              variant: "destructive",
+            });
+          }
+
         if (err.response?.status === 401) {
           return loginToast();
         }

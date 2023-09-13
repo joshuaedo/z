@@ -16,7 +16,7 @@ export async function PATCH(req: Request) {
 
     // Check if the community name is in the restrictedNames array
     if (restrictedNames.includes(name.toLowerCase())) {
-      return new Response("Community name is restricted", { status: 422 });
+      return new Response("Community name is restricted", { status: 412 });
     }
 
     const community = await db.community.findFirst({
@@ -36,7 +36,7 @@ export async function PATCH(req: Request) {
             updatedAt: new Date(), // Set the update date
           },
     })
-    return new Response("OK");
+    return new Response(community?.name);
   } catch (error) {
     if (error instanceof z.ZodError) {
       return new Response(error.message, { status: 422 });

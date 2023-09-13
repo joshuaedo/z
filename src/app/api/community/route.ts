@@ -16,7 +16,7 @@ export async function POST(req: Request) {
 
     // Check if the community name is in the restrictedNames array
     if (restrictedNames.includes(name.toLowerCase())) {
-      return new Response("Community name is restricted", { status: 422 });
+      return new Response("Community name is restricted", { status: 412 });
     }
 
     const communityExists = await db.community.findFirst({
