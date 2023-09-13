@@ -93,9 +93,10 @@ const SlugPage = async ({ params }: SlugPageProps) => {
       </div>
 
       <div className="space-y-1 overflow-hidden rounded-md bg-white shadow h-full px-5 py-4">
+        {community.description &&
         <div className="">
-          <p className="text-sm">This is the community&apos;s description.</p>
-        </div>
+          <p className="text-sm">{community.description}</p>
+        </div>}
 
         <div className="flex items-center pt-2">
           <CalendarIcon className="mr-2 h-4 w-4 opacity-70" />{" "}
