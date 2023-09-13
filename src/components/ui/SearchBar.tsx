@@ -12,7 +12,7 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Community, Prisma, User } from "@prisma/client";
-import { Users } from "lucide-react";
+import { User2, Users } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import debounce from "lodash.debounce";
 import { useOnClickOutside } from "@/hooks/use-on-click-outside";
@@ -39,6 +39,7 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
       if (!input) return [];
 
       const { data } = await axios.get(`/api/search?q=${input}`);
+      console.log(data);
       return data as ((Community & {
         _count: Prisma.CommunityCountOutputType;
       }) &
@@ -83,21 +84,38 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
         <CommandList className="absolute bg-white top-full inset-x-0 shadow rounded-b-md">
           {isFetched && <CommandEmpty>No results found.</CommandEmpty>}
           {(queryResults?.length ?? 0) > 0 ? (
-            <CommandGroup heading="Communities">
-              {queryResults?.map((community) => (
-                <CommandItem
-                  onSelect={(e) => {
-                    router.push(`/z/${e}`);
-                    router.refresh();
-                  }}
-                  key={community.id}
-                  value={community.name}
-                >
-                  <Users className="mr-2 h-4 w-4" />
-                  <a href={`/z/${community.name}`}>z/{community.name}</a>
-                </CommandItem>
-              ))}
-            </CommandGroup>
+            <div className="space-y-1">
+              <CommandGroup heading="Communities">
+                {queryResults?.map((community) => (
+                  <CommandItem
+                    onSelect={(e) => {
+                      router.push(`/z/${e}`);
+                      router.refresh();
+                    }}
+                    key={community.id}
+                    value={community.name}
+                  >
+                    <Users className="mr-2 h-4 w-4" />
+                    <a href={`/z/${community.name}`}>z/{community.name}</a>
+                  </CommandItem>
+                ))}
+              </CommandGroup>
+              <CommandGroup heading="Users">
+                {queryResults?.map((user) => (
+                  <CommandItem
+                    onSelect={(e) => {
+                      router.push(`/z/${e}`);
+                      router.refresh();
+                    }}
+                    key={user.id}
+                    value={user.name}
+                  >
+                    <User2 className="mr-2 h-4 w-4" />
+                    <a href={`/z/${user.name}`}>z/{user.name}</a>
+                  </CommandItem>
+                ))}
+              </CommandGroup>
+            </div>
           ) : null}
         </CommandList>
       )}
