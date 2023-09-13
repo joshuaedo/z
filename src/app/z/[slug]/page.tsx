@@ -1,19 +1,15 @@
 import { INFINITE_SCROLLING_PAGINATION_RESULTS } from "@/config";
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { notFound, useRouter } from "next/navigation";
+import { notFound } from "next/navigation";
 import PostFeed from "@/components/feeds/PostFeed";
 import SubscribeLeaveToggle from "@/components/auth/SubscribeLeaveToggle";
 import AddCommunityPost from "@/components/posts/AddCommunityPost";
 import { CalendarIcon } from "@radix-ui/react-icons";
 import { format } from "date-fns/esm";
-import { MoreVertical, Users } from "lucide-react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/DropDownMenu";
+import { Users } from "lucide-react";
+import EditCommunityDropdown from "@/components/ui/EditCommunityDropdown";
+
 
 interface SlugPageProps {
   params: {
@@ -23,8 +19,6 @@ interface SlugPageProps {
 
 const SlugPage = async ({ params }: SlugPageProps) => {
   const { slug } = params;
-
-  const router = useRouter();
 
   const session = await getAuthSession();
 
@@ -82,26 +76,11 @@ const SlugPage = async ({ params }: SlugPageProps) => {
         <h2 className="font-bold text-3xl md:text-4xl">z/{community.name}</h2>
         {/* Community Status */}
         {isCreator ? (
-          <div>
+          <div className="flex items-center">
             <div className="bg-purple-500 text-zinc-900 rounded-full font-semibold py-1 px-2 border border-zinc-900 mx-2">
               Creator
             </div>
-            <DropdownMenu>
-              <DropdownMenuTrigger>
-                <MoreVertical className="h-4 w-4" />
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuItem
-                  onSelect={(e) => {
-                    e.preventDefault();
-                    void router.push(`/z/${community.name}/edit`);
-                  }}
-                  className="cursor-pointer"
-                >
-                  Edit Community
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+           <EditCommunityDropdown communityPath={community.name} />
           </div>
         ) : null}
         {!isCreator ? (
