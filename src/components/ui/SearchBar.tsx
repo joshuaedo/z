@@ -106,7 +106,7 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
                         value={community.name}
                       >
                         <Users className="mr-2 h-4 w-4" />
-                        <a href={`/z/${community.name}`}>z/{community.name}</a>
+                        <a className="w-full" href={`/z/${community.name}`}>z/{community.name}</a>
                       </CommandItem>
                     ))}
                   </CommandGroup>
@@ -121,7 +121,9 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
                         value={user.username}
                       >
                         <User2 className="mr-2 h-4 w-4" />
-                        <a href={`/u/${user.username}`}>u/{user.username}</a>
+                        <a className="w-full" href={`/u/${user.username}`}>
+                          u/{user.username}
+                        </a>
                       </CommandItem>
                     ))}
                   </CommandGroup>
