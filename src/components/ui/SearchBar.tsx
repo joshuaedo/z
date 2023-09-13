@@ -12,7 +12,7 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Community, Prisma, User } from "@prisma/client";
-import { User2, Users } from "lucide-react";
+import { Loader2, User2, Users } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import debounce from "lodash.debounce";
 import { useOnClickOutside } from "@/hooks/use-on-click-outside";
@@ -40,12 +40,12 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
 
       const { data } = await axios.get(`/api/search?q=${input}`);
       console.log(data);
-      return data as ((Community & {
+      return data as (Community & {
         _count: Prisma.CommunityCountOutputType;
-      }) &
+      })[] &
         (User & {
           _count: Prisma.UserCountOutputType;
-        }))[];
+        })[];
     },
     queryKey: ["search-query"],
     enabled: false,
@@ -82,7 +82,20 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
 
       {input.length > 0 && (
         <CommandList className="absolute bg-white top-full inset-x-0 shadow rounded-b-md">
-          {isFetched && <CommandEmpty>No results found.</CommandEmpty>}
+          {isFetching && (
+            <div className="w-full flex p-2 items-center justify-center">
+              <Loader2 className="animate-spin" />
+            </div>
+          )}
+          {isFetched && (
+            <CommandEmpty className="          {isFetched && (
+            <CommandEmpty className="z-50  bg-black text-white p-3 text-sm font-medium">
+              No results found.
+            </CommandEmpty>
+          )}p-3 text-sm font-medium">
+              No results found.
+            </CommandEmpty>
+          )}
           {(queryResults?.length ?? 0) > 0 ? (
             <div className="space-y-1">
               <CommandGroup heading="Communities">
