@@ -20,8 +20,9 @@ export async function POST(req: Request) {
             },
         });
 
+
         if (communityExists) {
-            if (communityExists.creatorId !== session.user.id) {
+            if (communityExists.creatorId === session.user.id) {
                 await db.community.update({
                     where: {
                         id: communityExists.id,
@@ -31,8 +32,7 @@ export async function POST(req: Request) {
                         description,
                     },
                 })
-
-            }else {
+            } else {
                 return new Response("Community already exists", { status: 409 });
             }
         }
@@ -41,10 +41,14 @@ export async function POST(req: Request) {
             data: {
                 name,
                 creatorId: session.user.id,
-                createdAt: new Date(), // Set the creation date
-                updatedAt: new Date(), // Set the update date
+                createdAt: new Date(), 
+                updatedAt: new Date(), 
             },
         });
+
+        if (communityExists?.name === "create" || communityExists?.name === "edit") {   
+            return new Response("You can't create a community with that name", { status: 401 });
+        }
 
         await db.subscription.create({
             data: {

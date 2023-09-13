@@ -19,6 +19,7 @@ import { useMutation } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { useCustomToast } from "@/hooks/use-custom-toast";
+import { Users } from "lucide-react";
 
 const FormSchema = z.object({
   name: z.string().min(3).max(21),
@@ -69,9 +70,8 @@ export default function EditCommunityForm() {
     },
     onSuccess: (data) => {
       toast({
-        description: "Your profile has been updated.",
+        description: "Your community has been updated.",
       });
-
       router.refresh();
       router.push(`/z/${data}`);
     },
@@ -83,17 +83,9 @@ export default function EditCommunityForm() {
         onSubmit={form.handleSubmit((e) => updateProfile(e))}
         className="space-y-5"
       >
-        <div className="h-[18vh] md:h-[28vh] flex items-start relative">
-          <div className="h-[15vh] md:h-[17vh] w-full absolute z-2 bottom-0 flex items-center px-3 md:px-5 justify-between ">
-            <div className="h-[9vh] md:h-[14vh] w-[9vh] md:w-[14vh] rounded-[50%]">
-              <UserAvatar
-                user={{
-                  name: null,
-                  image: null,
-                }}
-                className="w-full h-full object-contain"
-              />
-            </div>
+        <div className="w-full flex justify-center items-center p-5 md:p-7">
+          <div className="h-[9vh] md:h-[14vh] w-[9vh] md:w-[14vh] border border-zinc-500 rounded-[50%]">
+            <Users className="w-full h-full object-contain" />
           </div>
         </div>
 

@@ -85,7 +85,7 @@ export default function EditProfileForm() {
       >
         <div className="h-[30vh] md:h-[40vh] flex items-start relative">
           <div
-            className={`w-full h-[75%] rounded-t-md shadow overflow-hidden flex items-center justify-center px-3`}
+            className={`w-full h-[50%] md:h-[75%] rounded-t-md shadow overflow-hidden flex items-center justify-center px-6`}
           >
             <FormField
               control={form.control}
@@ -117,7 +117,7 @@ export default function EditProfileForm() {
           </div>
 
           <div className="h-[15vh] md:h-[17vh] w-full absolute z-2 bottom-0 flex items-center px-3 md:px-5 justify-between ">
-            <div className="h-[12vh] md:h-[17vh] w-[12vh] md:w-[17vh] rounded-[50%]">
+            <div className="h-[10vh] md:h-[17vh] w-[10vh] md:w-[17vh] rounded-[50%]">
               <UserAvatar
                 user={{
                   name: null,
