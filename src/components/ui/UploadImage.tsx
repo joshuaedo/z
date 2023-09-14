@@ -5,7 +5,7 @@ import { UploadButton, UploadDropzone } from "@uploadthing/react";
 import { useFormContext } from "react-hook-form";
 
 interface UploadImageProps {
-  image: string;
+  name: string;
 }
 
 const UploadImageButton: React.FC<UploadImageProps> = ({ name }) => {
@@ -20,7 +20,7 @@ const UploadImageButton: React.FC<UploadImageProps> = ({ name }) => {
   );
 };
 
-const DropZone: React.FC<UploadImageProps> = ({ image }) => {
+const DropZone: React.FC<UploadImageProps> = ({ name }) => {
   const { register, setValue } = useFormContext(); // Get form context
 
   // Handle the upload completion
@@ -32,7 +32,7 @@ const DropZone: React.FC<UploadImageProps> = ({ image }) => {
       const fileUrl = res[0].fileUrl;
 
       // Set the value of the registered field in your form
-      setValue(image, fileUrl);
+      setValue(name, fileUrl);
     }
   };
 
