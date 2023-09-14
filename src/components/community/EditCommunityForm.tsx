@@ -6,6 +6,7 @@ import * as z from "zod";
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -18,12 +19,12 @@ import { useMutation } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { useCustomToast } from "@/hooks/use-custom-toast";
-import { Users } from "lucide-react";
 import { DropZone } from "../ui/UploadImage";
 
 const FormSchema = z.object({
   name: z.string().min(3).max(21),
   description: z.string().max(50),
+  image: z.string().url(),
 });
 
 export default async function EditCommunityForm() {
@@ -78,8 +79,16 @@ export default async function EditCommunityForm() {
     },
     onSuccess: (data) => {
       toast({
-        description: "Your community has been updated.",
+        title: "You submitted the following values:",
+        description: (
+          <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+            <code className="text-white">{JSON.stringify(data, null, 2)}</code>
+          </pre>
+        ),
       });
+      // toast({
+      //   description: "Your community has been updated.",
+      // });
       router.refresh();
       router.push(`/z/${data}`);
     },
@@ -91,13 +100,24 @@ export default async function EditCommunityForm() {
         onSubmit={form.handleSubmit((e) => updateProfile(e))}
         className="space-y-5"
       >
-        <div className="w-full flex justify-around items-center p-5">
-          <div className="h-[9vh] md:h-[12vh] w-[9vh] md:w-[12vh] rounded-[50%] space-y-1">
-            <h2 className="text-lg font-semibold">Community Photo</h2>
-            <p className="text-sm">1:1 is recommended</p>
-            <DropZone />
-          </div>
-        </div>
+        <FormField
+          control={form.control}
+          name="image"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Community Photo</FormLabel>
+              <FormControl>
+                <div className="w-full flex justify-around items-center p-5">
+                  <div className="h-[9vh] md:h-[12vh] w-[9vh] md:w-[12vh] rounded-[50%] space-y-1">
+                    <DropZone {...field} />
+                  </div>
+                </div>
+              </FormControl>
+              <FormDescription>1:1 is recommended</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
         <FormField
           control={form.control}
