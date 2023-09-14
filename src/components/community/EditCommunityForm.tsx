@@ -107,11 +107,7 @@ export default async function EditCommunityForm() {
             <FormItem>
               <FormLabel>Community Photo</FormLabel>
               <FormControl>
-                <div className="w-full flex justify-around items-center p-5">
-                  <div className="h-[9vh] md:h-[12vh] w-[9vh] md:w-[12vh] rounded-[50%] space-y-1">
-                    <DropZone {...field} />
-                  </div>
-                </div>
+                <DropZone {...field} />
               </FormControl>
               <FormDescription>1:1 is recommended</FormDescription>
               <FormMessage />
