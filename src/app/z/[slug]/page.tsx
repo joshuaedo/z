@@ -9,7 +9,7 @@ import { CalendarIcon } from "@radix-ui/react-icons";
 import { format } from "date-fns/esm";
 import { Users } from "lucide-react";
 import EditCommunityDropdown from "@/components/ui/EditCommunityDropdown";
-
+import CommunityAvatar from "@/components/community/CommunityAvatar";
 
 interface SlugPageProps {
   params: {
@@ -73,14 +73,17 @@ const SlugPage = async ({ params }: SlugPageProps) => {
     <div className="space-y-6">
       <div className="flex w-fit items-center justify-center">
         {/* Community Name & Info */}
-        <h2 className="font-bold text-3xl md:text-4xl">z/{community.name}</h2>
+        <CommunityAvatar />
+        <h2 className="font-bold text-3xl md:text-4xl ml-2">
+          z/{community.name}
+        </h2>
         {/* Community Status */}
         {isCreator ? (
           <div className="flex items-center">
             <div className="bg-purple-500 text-zinc-900 rounded-full font-semibold py-1 px-2 border border-zinc-900 mx-2">
               Creator
             </div>
-           <EditCommunityDropdown communityPath={community.name} />
+            <EditCommunityDropdown communityPath={community.name} />
           </div>
         ) : null}
         {!isCreator ? (
@@ -93,10 +96,11 @@ const SlugPage = async ({ params }: SlugPageProps) => {
       </div>
 
       <div className="space-y-1 overflow-hidden rounded-md bg-white shadow h-full px-5 py-4">
-        {community.description &&
-        <div className="">
-          <p className="text-sm">{community.description}</p>
-        </div>}
+        {community.description && (
+          <div className="">
+            <p className="text-sm">{community.description}</p>
+          </div>
+        )}
 
         <div className="flex items-center pt-2">
           <CalendarIcon className="mr-2 h-4 w-4 opacity-70" />{" "}
