@@ -101,6 +101,7 @@ export default function EditCommunityForm() {
         className="space-y-5"
       >
         <FormField
+         control={form.control}
           name="image"
           render={({ field }) => (
             <FormItem>
