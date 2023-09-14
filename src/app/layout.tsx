@@ -1,3 +1,4 @@
+import "@uploadthing/react/styles.css"
 import Aside from '@/components/layout/Aside';
 import Header from '@/components/layout/Header';
 import MobileNav from '@/components/layout/MobileNav';
