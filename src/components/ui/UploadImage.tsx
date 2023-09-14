@@ -9,12 +9,25 @@ interface UploadImageProps {
 }
 
 const UploadImageButton: React.FC<UploadImageProps> = ({ name }) => {
+  const { register, setValue } = useFormContext(); // Get form context
+
+  // Handle the upload completion
+  const handleUploadComplete = (
+    res?: { fileUrl: string; fileKey: string }[] | undefined
+  ) => {
+    if (res && res.length > 0) {
+      // Extract the file URL from the response
+      const fileUrl = res[0].fileUrl;
+
+      // Set the value of the registered field in your form
+      setValue(name, fileUrl);
+    }
+  };
+
   return (
     <UploadButton<OurFileRouter>
       endpoint="imageUploader"
-      onClientUploadComplete={(
-        res?: { fileUrl: string; fileKey: string }[] | undefined
-      ) => console.log(res)}
+      onClientUploadComplete={handleUploadComplete}
       onUploadError={(err) => console.log(err)}
     />
   );

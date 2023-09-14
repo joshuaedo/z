@@ -71,28 +71,30 @@ const SlugPage = async ({ params }: SlugPageProps) => {
 
   return (
     <div className="space-y-6">
-      <div className="flex w-fit items-center justify-center">
-        {/* Community Name & Info */}
-        <CommunityAvatar community={community} />
-        <h2 className="font-bold text-3xl md:text-4xl ml-2">
-          z/{community.name}
-        </h2>
-        {/* Community Status */}
-        {isCreator ? (
-          <div className="flex items-center">
-            <div className="bg-purple-500 text-zinc-900 rounded-full font-semibold py-1 px-2 border border-zinc-900 mx-2">
-              Creator
+      <div className="md:flex items-center justify-center gap-y-2 md:gap-x-2">
+        <CommunityAvatar community={community} className="h-12 w-12" />
+        <div className="flex w-fit items-center justify-center">
+          {/* Community Name & Info */}
+          <h2 className="font-bold text-3xl md:text-4xl ml-2">
+            z/{community.name}
+          </h2>
+          {/* Community Status */}
+          {isCreator ? (
+            <div className="flex items-center">
+              <div className="bg-purple-500 text-zinc-900 rounded-full font-semibold py-1 px-2 border border-zinc-900 mx-2">
+                Creator
+              </div>
+              <EditCommunityDropdown communityPath={community.name} />
             </div>
-            <EditCommunityDropdown communityPath={community.name} />
-          </div>
-        ) : null}
-        {!isCreator ? (
-          <SubscribeLeaveToggle
-            isSubscribed={isSubscribed}
-            communityId={community.id}
-            communityName={community.name}
-          />
-        ) : null}
+          ) : null}
+          {!isCreator ? (
+            <SubscribeLeaveToggle
+              isSubscribed={isSubscribed}
+              communityId={community.id}
+              communityName={community.name}
+            />
+          ) : null}
+        </div>
       </div>
 
       <div className="space-y-1 overflow-hidden rounded-md bg-white shadow h-full px-5 py-4">

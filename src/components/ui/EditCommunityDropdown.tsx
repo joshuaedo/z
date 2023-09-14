@@ -22,7 +22,7 @@ const EditCommunityDropdown: FC<EditCommunityDropdownProps> = ({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
-        <MoreVertical className="h-4 w-4" />
+        <MoreVertical className="flex h-4 w-4" />
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuItem
