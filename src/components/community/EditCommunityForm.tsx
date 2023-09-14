@@ -82,15 +82,15 @@ export default function EditCommunityForm() {
         title: "You submitted the following values:",
         description: (
           <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-            <code className="text-white">{JSON.stringify(data, null, 2)}</code>
+            <code className="text-white">{JSON.stringify(data)}</code>
           </pre>
         ),
       });
       // toast({
       //   description: "Your community has been updated.",
       // });
-      router.refresh();
-      router.push(`/z/${data}`);
+      // router.refresh();
+      // router.push(`/z/${data}`);
     },
   });
 
