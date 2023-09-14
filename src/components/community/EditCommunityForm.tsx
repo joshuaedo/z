@@ -19,7 +19,7 @@ import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { useCustomToast } from "@/hooks/use-custom-toast";
 import { Users } from "lucide-react";
-import UploadImage from "../ui/UploadImage";
+import { DropZone } from "../ui/UploadImage";
 
 const FormSchema = z.object({
   name: z.string().min(3).max(21),
@@ -92,10 +92,11 @@ export default async function EditCommunityForm() {
         className="space-y-5"
       >
         <div className="w-full flex justify-around items-center p-5">
-          <div className="h-[9vh] md:h-[12vh] w-[9vh] md:w-[12vh] rounded-[50%]">
-            <Users className="w-full h-full object-contain" />
+          <div className="h-[9vh] md:h-[12vh] w-[9vh] md:w-[12vh] rounded-[50%] space-y-1">
+            <h2 className="text-lg font-semibold">Community Photo</h2>
+            <p className="text-sm">1:1 is recommended</p>
+            <DropZone />
           </div>
-          <UploadImage />
         </div>
 
         <FormField
