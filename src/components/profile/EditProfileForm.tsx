@@ -22,7 +22,6 @@ import {
 import { toast } from "@/hooks/use-toast";
 import { Button } from "../ui/Button";
 import { Input } from "../ui/Input";
-import UserAvatar from "../ui/UserAvatar";
 import { useMutation } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
@@ -85,10 +84,6 @@ export default function EditProfileForm() {
         onSubmit={form.handleSubmit((e) => updateProfile(e))}
         className="space-y-5"
       >
-        <div className="h-[30vh] md:h-[40vh] flex items-start relative">
-          <div
-            className={`w-full h-[75%] rounded-t-md shadow overflow-hidden flex items-center justify-center px-9`}
-          >
             <FormField
               control={form.control}
               name="profileTheme"
@@ -116,9 +111,6 @@ export default function EditProfileForm() {
                 </FormItem>
               )}
             />
-          </div>
-        </div>
-
         <FormField
           control={form.control}
           name="image"
@@ -133,7 +125,6 @@ export default function EditProfileForm() {
             </FormItem>
           )}
         />
-
         <FormField
           control={form.control}
           name="username"
