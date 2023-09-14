@@ -13,7 +13,7 @@ export async function PATCH(req: Request) {
 
      const body = await req.json();
 
-    const { profileTheme, username, displayName, bio, link, birthday } = ProfileValidator.parse(body)
+    const { profileTheme, username, displayName, bio, link, birthday, image } = ProfileValidator.parse(body)
 
       console.log('Received data:', { profileTheme, username, displayName, bio, link, birthday });
 
@@ -34,6 +34,7 @@ export async function PATCH(req: Request) {
         id: session.user.id,
       },
       data: {
+        image: image,
         profileTheme: profileTheme,
         username: username,
         displayName: displayName,

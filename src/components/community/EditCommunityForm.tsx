@@ -78,19 +78,19 @@ export default function EditCommunityForm() {
       });
     },
     onSuccess: (data) => {
-      toast({
-        title: "You submitted the following values:",
-        description: (
-          <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-            <code className="text-white">{JSON.stringify(data)}</code>
-          </pre>
-        ),
-      });
       // toast({
-      //   description: "Your community has been updated.",
+      //   title: "You submitted the following values:",
+      //   description: (
+      //     <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+      //       <code className="text-white">{JSON.stringify(data)}</code>
+      //     </pre>
+      //   ),
       // });
-      // router.refresh();
-      // router.push(`/z/${data}`);
+      toast({
+        description: "Your community has been updated.",
+      });
+      router.refresh();
+      router.push(`/z/${data}`);
     },
   });
 
@@ -101,7 +101,7 @@ export default function EditCommunityForm() {
         className="space-y-5"
       >
         <FormField
-         control={form.control}
+          control={form.control}
           name="image"
           render={({ field }) => (
             <FormItem>

@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const ProfileValidator = z.object({
-  //  image: z.string(),
+   image: z.string(),
   profileTheme: z.string(),
   username: z
     .string()

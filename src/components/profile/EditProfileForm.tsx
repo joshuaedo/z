@@ -6,6 +6,7 @@ import * as z from "zod";
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -25,9 +26,10 @@ import UserAvatar from "../ui/UserAvatar";
 import { useMutation } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
+import { DropZone } from "../ui/UploadImage";
 
 const FormSchema = z.object({
-  //  image: z.string(),
+   image: z.string(),
   profileTheme: z.string(),
   username: z
     .string()
@@ -115,19 +117,22 @@ export default function EditProfileForm() {
               )}
             />
           </div>
-
-          <div className="h-[15vh] md:h-[17vh] w-full absolute z-2 bottom-0 flex items-center px-3 md:px-5 justify-between ">
-            <div className="h-[10vh] md:h-[17vh] w-[10vh] md:w-[17vh] rounded-[50%]">
-              <UserAvatar
-                user={{
-                  name: null,
-                  image: null,
-                }}
-                className="w-full h-full object-contain"
-              />
-            </div>
-          </div>
         </div>
+
+        <FormField
+          control={form.control}
+          name="image"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Profile Photo</FormLabel>
+              <FormControl>
+                <DropZone {...field} />
+              </FormControl>
+              <FormDescription>1:1 is recommended</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
         <FormField
           control={form.control}
