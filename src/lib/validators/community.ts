@@ -1,13 +1,16 @@
 import { z } from "zod";
 
 export const CommunityValidator = z.object({
-    name: z.string().min(3).max(21),
-    description: z.string().max(50)
+  name: z.string().min(3).max(21),
+  description: z.string().max(50),
+  image: z.string(),
 });
 
 export const CommunitySubscriptionValidator = z.object({
-    communityId: z.string()
+  communityId: z.string(),
 });
 
 export type CreateCommunityPayload = z.infer<typeof CommunityValidator>;
-export type SubscribeToCommunityPayload = z.infer<typeof CommunitySubscriptionValidator>;
+export type SubscribeToCommunityPayload = z.infer<
+  typeof CommunitySubscriptionValidator
+>;

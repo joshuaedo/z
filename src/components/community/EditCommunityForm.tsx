@@ -24,7 +24,7 @@ import { DropZone } from "../ui/UploadImage";
 const FormSchema = z.object({
   name: z.string().min(3).max(21),
   description: z.string().max(50),
-  image: z.string().url(),
+  image: z.string(),
 });
 
 export default function EditCommunityForm() {
