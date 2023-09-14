@@ -71,7 +71,7 @@ const SlugPage = async ({ params }: SlugPageProps) => {
 
   return (
     <div className="space-y-6">
-      <div className="md:flex items-center space-y-0 md:space-y-4 md:gap-x-2">
+      <div className="md:flex items-center space-y-3 md:space-y-0 md:gap-x-2">
         <CommunityAvatar community={community} className="h-12 w-12" />
         <div className="flex w-fit items-center justify-center">
           {/* Community Name & Info */}
