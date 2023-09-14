@@ -1,12 +1,12 @@
-"use client"
+"use client";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type EditorJS from "@editorjs/editorjs";
 import { uploadFiles } from "@/lib/uploadthing";
 import { toast } from "@/hooks/use-toast";
 
-interface pageProps {}
+interface UploadImageProps {}
 
-const Page: React.FC<pageProps> = () => {
+const UploadImage: React.FC<UploadImageProps> = () => {
   const ref = useRef<EditorJS | null>(null);
   const [isMounted, setIsMounted] = useState<boolean>(false);
 
@@ -22,7 +22,6 @@ const Page: React.FC<pageProps> = () => {
             ref.current = editor;
           },
           inlineToolbar: true,
-          data: { blocks: [] },
           tools: {
             image: {
               class: ImageTool,
@@ -80,7 +79,11 @@ const Page: React.FC<pageProps> = () => {
   //   }
   // }, [errors]);
 
-  return <div id="editor" />;
+  return (
+    <div className="flex items-center justify-center">
+      <div id="editor" />
+    </div>
+  );
 };
 
-export default Page;
+export default UploadImage;

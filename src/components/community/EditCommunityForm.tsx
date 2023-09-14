@@ -20,13 +20,15 @@ import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { useCustomToast } from "@/hooks/use-custom-toast";
 import { Users } from "lucide-react";
+import { uploadFiles } from "@/lib/uploadthing";
+import UploadImage from "../ui/UploadImage";
 
 const FormSchema = z.object({
   name: z.string().min(3).max(21),
   description: z.string().max(50),
 });
 
-export default function EditCommunityForm() {
+export default async function EditCommunityForm() {
   const router = useRouter();
   const { loginToast } = useCustomToast();
 
@@ -58,12 +60,12 @@ export default function EditCommunityForm() {
         }
 
         if (err.response?.status === 412) {
-            return toast({
-              title: "Invalid community name",
-              description: "Community name is restricted.",
-              variant: "destructive",
-            });
-          }
+          return toast({
+            title: "Invalid community name",
+            description: "Community name is restricted.",
+            variant: "destructive",
+          });
+        }
 
         if (err.response?.status === 401) {
           return loginToast();
@@ -85,6 +87,18 @@ export default function EditCommunityForm() {
     },
   });
 
+  async function uploadByFile(file: File) {
+    const [res] = await uploadFiles([file], "imageUploader");
+    console.log(res);
+
+    return {
+      success: 1,
+      file: {
+        url: res.fileUrl,
+      },
+    };
+  }
+
   return (
     <Form {...form}>
       <form
@@ -94,6 +108,7 @@ export default function EditCommunityForm() {
         <div className="w-full flex justify-center items-center p-2">
           <div className="h-[9vh] md:h-[12vh] w-[9vh] md:w-[12vh] rounded-[50%]">
             <Users className="w-full h-full object-contain" />
+            <UploadImage />
           </div>
         </div>
 
