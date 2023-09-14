@@ -1,3 +1,4 @@
+"use client"
 import { useCallback, useEffect, useRef, useState } from "react";
 import type EditorJS from "@editorjs/editorjs";
 import { uploadFiles } from "@/lib/uploadthing";
