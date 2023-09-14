@@ -14,15 +14,12 @@ import {
 import { toast } from "@/hooks/use-toast";
 import { Button } from "../ui/Button";
 import { Input } from "../ui/Input";
-import UserAvatar from "../ui/UserAvatar";
 import { useMutation } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { useCustomToast } from "@/hooks/use-custom-toast";
 import { Users } from "lucide-react";
-import { UploadButton, uploadFiles } from "@/lib/uploadthing";
 import UploadImage from "../ui/UploadImage";
-import { OurFileRouter } from "@/app/api/uploadthing/core";
 
 const FormSchema = z.object({
   name: z.string().min(3).max(21),
@@ -88,18 +85,6 @@ export default async function EditCommunityForm() {
     },
   });
 
-  async function uploadByFile(file: File) {
-    const [res] = await uploadFiles([file], "imageUploader");
-    console.log(res);
-
-    return {
-      success: 1,
-      file: {
-        url: res.fileUrl,
-      },
-    };
-  }
-
   return (
     <Form {...form}>
       <form
@@ -111,13 +96,6 @@ export default async function EditCommunityForm() {
             <Users className="w-full h-full object-contain" />
           </div>
           <UploadImage />
-          <UploadButton<OurFileRouter>
-            endpoint="imageUploader"
-            onClientUploadComplete={(
-              res?: { fileUrl: string; fileKey: string }[] | undefined
-            ) => console.log(res)}
-            onUploadError={(err) => console.log(err)}
-          />
         </div>
 
         <FormField
