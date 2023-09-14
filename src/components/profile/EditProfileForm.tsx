@@ -70,11 +70,12 @@ export default function EditProfileForm() {
         variant: "destructive",
       });
     },
-    onSuccess: () => {
+    onSuccess: (data) => {
       toast({
         description: "Your profile has been updated.",
       });
       router.refresh();
+      router.push(`/u/${data}`);
     },
   });
 
