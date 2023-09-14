@@ -20,8 +20,9 @@ import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { useCustomToast } from "@/hooks/use-custom-toast";
 import { Users } from "lucide-react";
-import { uploadFiles } from "@/lib/uploadthing";
+import { UploadButton, uploadFiles } from "@/lib/uploadthing";
 import UploadImage from "../ui/UploadImage";
+import { OurFileRouter } from "@/app/api/uploadthing/core";
 
 const FormSchema = z.object({
   name: z.string().min(3).max(21),
@@ -105,11 +106,18 @@ export default async function EditCommunityForm() {
         onSubmit={form.handleSubmit((e) => updateProfile(e))}
         className="space-y-5"
       >
-        <div className="w-full flex justify-center items-center p-2">
+        <div className="w-full flex justify-around items-center p-5">
           <div className="h-[9vh] md:h-[12vh] w-[9vh] md:w-[12vh] rounded-[50%]">
             <Users className="w-full h-full object-contain" />
-            <UploadImage />
           </div>
+          <UploadImage />
+          <UploadButton<OurFileRouter>
+            endpoint="imageUploader"
+            onClientUploadComplete={(
+              res?: { fileUrl: string; fileKey: string }[] | undefined
+            ) => console.log(res)}
+            onUploadError={(err) => console.log(err)}
+          />
         </div>
 
         <FormField

@@ -13,6 +13,7 @@ const CreateCommunity: FC<CreateCommunityProps> = ({ session }) => {
     <div className="rounded-md bg-white shadow px-4 md:px-6 py-4 space-y-5">
       <h2 className="text-xl font-semibold">Create Community</h2>
       <hr />
+      {/* @ts-expect-error Server Component */}
       <EditCommunityForm />
     </div>
   );
