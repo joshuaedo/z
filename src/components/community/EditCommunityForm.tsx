@@ -27,7 +27,7 @@ const FormSchema = z.object({
   image: z.string().url(),
 });
 
-export default async function EditCommunityForm() {
+export default function EditCommunityForm() {
   const router = useRouter();
   const { loginToast } = useCustomToast();
 
@@ -101,7 +101,6 @@ export default async function EditCommunityForm() {
         className="space-y-5"
       >
         <FormField
-          control={form.control}
           name="image"
           render={({ field }) => (
             <FormItem>
