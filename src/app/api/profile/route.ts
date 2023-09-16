@@ -32,27 +32,29 @@ export async function PATCH(req: Request) {
       },
     });
 
+    // check if user is trying to update their own profile
+
     if (usernameExists) {
+      if (usernameExists.id === session.user.id) {
+        // update profile
+        const user = await db.user.update({
+          where: {
+            id: session.user.id,
+          },
+          data: {
+            image: image,
+            profileTheme: profileTheme,
+            username: username,
+            displayName: displayName,
+            bio: bio,
+            link: link,
+            birthday: birthday,
+          },
+        });
+        return new Response(user?.username);
+      }
       return new Response("Username is taken", { status: 409 });
     }
-
-    // update profile
-    const user = await db.user.update({
-      where: {
-        id: session.user.id,
-      },
-      data: {
-        image: image,
-        profileTheme: profileTheme,
-        username: username,
-        displayName: displayName,
-        bio: bio,
-        link: link,
-        birthday: birthday,
-      },
-    });
-
-    return new Response(user?.username);
   } catch (error) {
     error;
 

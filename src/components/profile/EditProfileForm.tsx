@@ -120,7 +120,7 @@ export default function EditProfileForm({ user }: EditProfileFormProps) {
           name="image"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>
+              <FormLabel className="flex gap-2">
                 Profile Photo{" "}
                 <UserAvatar
                   user={{
