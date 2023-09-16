@@ -21,7 +21,7 @@ const UserAccountNav: FC<UserAccountNavProps> = ({ user }) => {
   const displayName = user?.displayName ?? user?.name;
 
   return (
-    <>
+    <div>
       <div className="flex items-center justify-between">
         <UserAvatar
           className="h-11 w-11"
@@ -59,7 +59,7 @@ const UserAccountNav: FC<UserAccountNavProps> = ({ user }) => {
           </p>
         )}
       </div>
-    </>
+    </div>
   );
 };
 
