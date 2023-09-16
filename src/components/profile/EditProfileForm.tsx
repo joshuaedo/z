@@ -36,8 +36,6 @@ interface EditProfileFormProps {
 }
 
 export default function EditProfileForm({ user }: EditProfileFormProps) {
-  console.log(user);
-
   const router = useRouter();
 
   const form = useForm<z.infer<typeof ProfileValidator>>({
