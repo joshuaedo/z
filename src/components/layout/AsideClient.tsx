@@ -5,19 +5,20 @@ import UserAccountNav from "../ui/UserAccountNav";
 import { buttonVariants } from "../ui/Button";
 import { usePathname, useRouter } from "next/navigation";
 import { FC } from "react";
-import { Community } from "@prisma/client";
+import { Community, User } from "@prisma/client";
 import { Session } from "next-auth";
 import Link from "next/link";
 
 interface AsideClientProps {
   session: Session | null;
   subs: Community[];
+  user: User | null;
 }
 
-const AsideClient: FC<AsideClientProps> = ({ session, subs }) => {
+const AsideClient: FC<AsideClientProps> = ({ session, subs, user }) => {
   const router = useRouter();
   const pathname = usePathname();
-  const zUser = session?.user;
+  const zUser = user ?? session?.user;
 
   return (
     <aside className="overflow-hidden h-fit rounded-lg md:shadow md:fixed p-8 space-y-2 bg-white">
@@ -84,7 +85,7 @@ const AsideClient: FC<AsideClientProps> = ({ session, subs }) => {
 
       {zUser ? (
         <Link href={"/u/" + zUser?.username}>
-          <UserAccountNav session={session} />
+          <UserAccountNav user={user} />
         </Link>
       ) : (
         <button
