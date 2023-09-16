@@ -26,6 +26,7 @@ import { useMutation } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { DropZone } from "../ui/UploadImage";
+import { startTransition } from "react";
 
 const FormSchema = z.object({
    image: z.string(),
@@ -74,8 +75,10 @@ export default function EditProfileForm() {
       toast({
         description: "Your profile has been updated.",
       });
-      router.refresh();
-      router.push(`/u/${data}`);
+      startTransition(() => {
+        router.push(`/u/${data}`);
+        router.refresh();
+      })
     },
   });
 

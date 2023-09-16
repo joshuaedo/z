@@ -28,7 +28,7 @@ const FormSchema = z.object({
   image: z.string(),
 });
 
-export default function EditCommunityForm() {
+export default function CreateCommunityForm() {
   const router = useRouter();
   const { loginToast } = useCustomToast();
 
@@ -38,7 +38,7 @@ export default function EditCommunityForm() {
 
   const { mutate: updateProfile, isLoading } = useMutation({
     mutationFn: async (payload: z.infer<typeof FormSchema>) => {
-      const { data } = await axios.patch("/api/community/edit", payload);
+      const { data } = await axios.post("/api/community", payload);
       return data;
     },
     onError: (err) => {

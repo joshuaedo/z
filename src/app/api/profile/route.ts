@@ -1,21 +1,29 @@
-import { getAuthSession } from '@/lib/auth';
-import { db } from '@/lib/db';
-import { ProfileValidator } from "@/lib/validators/profile"
-import { z } from 'zod';
+import { getAuthSession } from "@/lib/auth";
+import { db } from "@/lib/db";
+import { ProfileValidator } from "@/lib/validators/profile";
+import { z } from "zod";
 
 export async function PATCH(req: Request) {
   try {
     const session = await getAuthSession();
 
     if (!session?.user) {
-      return new Response('Unauthorized', { status: 401 });
+      return new Response("Unauthorized", { status: 401 });
     }
 
-     const body = await req.json();
+    const body = await req.json();
 
-    const { profileTheme, username, displayName, bio, link, birthday, image } = ProfileValidator.parse(body)
+    const { profileTheme, username, displayName, bio, link, birthday, image } =
+      ProfileValidator.parse(body);
 
-      console.log('Received data:', { profileTheme, username, displayName, bio, link, birthday });
+    console.log("Received data:", {
+      profileTheme,
+      username,
+      displayName,
+      bio,
+      link,
+      birthday,
+    });
 
     // check if username is taken
     const usernameExists = await db.user.findFirst({
@@ -25,11 +33,11 @@ export async function PATCH(req: Request) {
     });
 
     if (usernameExists) {
-      return new Response('Username is taken', { status: 409 });
+      return new Response("Username is taken", { status: 409 });
     }
 
     // update profile
-    await db.user.update({
+    const user = await db.user.update({
       where: {
         id: session.user.id,
       },
@@ -44,7 +52,7 @@ export async function PATCH(req: Request) {
       },
     });
 
-    return new Response('OK');
+    return new Response(user?.username);
   } catch (error) {
     error;
 
@@ -53,7 +61,7 @@ export async function PATCH(req: Request) {
     }
 
     return new Response(
-      error + 'Could not update profile at this time. Please try later',
+      error + "Could not update profile at this time. Please try later",
       { status: 500 }
     );
   }
