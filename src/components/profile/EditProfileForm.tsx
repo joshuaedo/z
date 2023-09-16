@@ -28,37 +28,33 @@ import { useRouter } from "next/navigation";
 import { DropZone } from "../ui/UploadImage";
 import { startTransition } from "react";
 import { User } from "@prisma/client";
-
-const FormSchema = z.object({
-  image: z.string(),
-  profileTheme: z.string(),
-  username: z
-    .string()
-    .min(2, {
-      message: "Username must be at least 2 characters.",
-    })
-    .max(50),
-  displayName: z.string().max(50),
-  bio: z.string().max(160),
-  link: z.string().max(100),
-  birthday: z.string().max(50),
-});
+import { ProfileValidator } from "@/lib/validators/profile";
+import UserAvatar from "../ui/UserAvatar";
 
 interface EditProfileFormProps {
   user: User | null;
 }
 
 export default function EditProfileForm({ user }: EditProfileFormProps) {
-console.log(user);
+  console.log(user);
 
   const router = useRouter();
 
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
+  const form = useForm<z.infer<typeof ProfileValidator>>({
+    resolver: zodResolver(ProfileValidator),
+    defaultValues: {
+      bio: user?.bio ?? "",
+      birthday: user?.birthday ?? "",
+      displayName: user?.displayName ?? user?.name ?? "",
+      image: user?.image ?? "",
+      link: user?.link ?? "",
+      profileTheme: user?.profileTheme ?? "",
+      username: user?.username ?? "",
+    },
   });
 
   const { mutate: updateProfile, isLoading } = useMutation({
-    mutationFn: async (payload: z.infer<typeof FormSchema>) => {
+    mutationFn: async (payload: z.infer<typeof ProfileValidator>) => {
       const { data } = await axios.patch(`/api/profile/`, payload);
       return data;
     },
@@ -124,7 +120,16 @@ console.log(user);
           name="image"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Profile Photo</FormLabel>
+              <FormLabel>
+                Profile Photo{" "}
+                <UserAvatar
+                  user={{
+                    name: user?.name || null,
+                    image: user?.image || null,
+                  }}
+                  className="h-6 w-6"
+                />
+              </FormLabel>
               <FormControl>
                 <DropZone {...field} />
               </FormControl>

@@ -10,7 +10,9 @@ interface EditCommunityPageProps {
 
 const EditCommunityPage = async ({ params }: EditCommunityPageProps) => {
   const { slug } = params;
+  console.log(slug);
   const editSlug = slug.replace("/edit", "");
+  console.log(editSlug);
 
   const session = await getAuthSession();
 

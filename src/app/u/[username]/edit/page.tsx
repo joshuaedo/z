@@ -1,6 +1,6 @@
-import { getAuthSession } from '@/lib/auth';
-import EditProfile from '@/components/profile/EditProfile';
-import { db } from '@/lib/db';
+import { getAuthSession } from "@/lib/auth";
+import EditProfile from "@/components/profile/EditProfile";
+import { db } from "@/lib/db";
 
 interface EditProfilePageProps {}
 
@@ -13,7 +13,7 @@ const EditProfilePage = async ({}: EditProfilePageProps) => {
     },
   });
 
-  return <EditProfile session={session} user={user} />;
+  return <EditProfile user={user} />;
 };
 
 export default EditProfilePage;
