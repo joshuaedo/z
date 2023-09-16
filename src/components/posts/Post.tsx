@@ -57,7 +57,7 @@ const Post: FC<PostProps> = ({
               <span className="">
                 Posted by{" "}
                 <Link href={`/u/${post.author.username}`}>
-                  u/${post.author.username}
+                  u/{post.author.username}
                 </Link>
               </span>
               {formatTimeToNow(new Date(post.createdAt))}

@@ -74,12 +74,12 @@ const PostPage = async ({ params }: PostPageProps) => {
             <div className="">
               <p className="max-h-40 mt-1 truncate text-xs text-gray-500">
                 Posted by{" "}
-                <Link href={`/u/${post?.author.username}`}>
-                  u/${post?.author.username}
-                </Link>{" "}
-                ?? Posted by{" "}
-                <Link href={`/u/${post?.author.username}`}>
-                  u/${cachedPost.authorUsername}
+                <Link
+                  href={`/u/${
+                    post?.author.username ?? cachedPost.authorUsername
+                  }`}
+                >
+                  u/{post?.author.username ?? cachedPost.authorUsername}
                 </Link>{" "}
                 {formatTimeToNow(
                   new Date(post?.createdAt ?? cachedPost.createdAt)

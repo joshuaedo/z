@@ -85,11 +85,11 @@ const PostComment: FC<PostCommentProps> = ({
           className="h-6 w-6"
         />
         <div className="ml-2 flex items-center gap-x-2">
-          <p className="text-xs font-medium text-gray-900">
-            <a href={`/u/${comment.author.username}`}>
+          <a href={`/u/${comment.author.username}`}>
+            <p className="text-xs font-medium text-gray-900">
               u/{comment.author.username}
-            </a>
-          </p>
+            </p>
+          </a>
           <p className="max-h-40 truncate text-xs text-zinc-500">
             {formatTimeToNow(new Date(comment.createdAt))}
           </p>
