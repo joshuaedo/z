@@ -27,9 +27,10 @@ import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { DropZone } from "../ui/UploadImage";
 import { startTransition } from "react";
+import { User } from "@prisma/client";
 
 const FormSchema = z.object({
-   image: z.string(),
+  image: z.string(),
   profileTheme: z.string(),
   username: z
     .string()
@@ -43,7 +44,13 @@ const FormSchema = z.object({
   birthday: z.string().max(50),
 });
 
-export default function EditProfileForm() {
+interface EditProfileFormProps {
+  user: User | null;
+}
+
+export default function EditProfileForm({ user }: EditProfileFormProps) {
+console.log(user);
+
   const router = useRouter();
 
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -78,7 +85,7 @@ export default function EditProfileForm() {
       startTransition(() => {
         router.push(`/u/${data}`);
         router.refresh();
-      })
+      });
     },
   });
 
@@ -88,33 +95,30 @@ export default function EditProfileForm() {
         onSubmit={form.handleSubmit((e) => updateProfile(e))}
         className="space-y-5"
       >
-            <FormField
-              control={form.control}
-              name="profileTheme"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Profile Theme</FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger className="text-xs md:text-sm">
-                        <SelectValue placeholder="Select a background colour for your profile." />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem value="white">white (default)</SelectItem>
-                      <SelectItem value="zinc-900">black</SelectItem>
-                      <SelectItem value="purple-500">purple</SelectItem>
-                      <SelectItem value="green-500">green</SelectItem>
-                      <SelectItem value="zinc-500">gray</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+        <FormField
+          control={form.control}
+          name="profileTheme"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Profile Theme</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger className="text-xs md:text-sm">
+                    <SelectValue placeholder="Select a background colour for your profile." />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value="white">white (default)</SelectItem>
+                  <SelectItem value="zinc-900">black</SelectItem>
+                  <SelectItem value="purple-500">purple</SelectItem>
+                  <SelectItem value="green-500">green</SelectItem>
+                  <SelectItem value="zinc-500">gray</SelectItem>
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <FormField
           control={form.control}
           name="image"
