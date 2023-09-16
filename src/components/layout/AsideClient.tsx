@@ -81,10 +81,10 @@ const AsideClient: FC<AsideClientProps> = ({ session, subs, user }) => {
         Profile
       </button>
 
-      <hr className="hidden md:flex mb-4" />
+      <hr className="hidden md:flex" />
 
       {zUser ? (
-        <Link href={"/u/" + zUser?.username}>
+        <Link className="flex items-center pt-1" href={"/u/" + zUser?.username}>
           <UserAccountNav user={user} />
         </Link>
       ) : (
