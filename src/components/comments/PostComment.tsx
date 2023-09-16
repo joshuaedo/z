@@ -15,6 +15,7 @@ import { CommentRequest } from "@/lib/validators/comment";
 import axios, { AxiosError } from "axios";
 import { toast } from "@/hooks/use-toast";
 import { useCustomToast } from "@/hooks/use-custom-toast";
+import Link from "next/link";
 
 type ExtendedComment = Comment & {
   votes: CommentVote[];
@@ -77,13 +78,16 @@ const PostComment: FC<PostCommentProps> = ({
   return (
     <div ref={commentRef} className="flex flex-col space-y-3">
       <div className="flex items-center">
-        <UserAvatar
-          user={{
-            name: comment.author.name || null,
-            image: comment.author.image || null,
-          }}
-          className="h-6 w-6"
-        />
+        <Link href={`/u/${comment.author.username}`}>
+          <UserAvatar
+            user={{
+              name: comment.author.name || null,
+              image: comment.author.image || null,
+            }}
+            className="h-6 w-6"
+          />
+        </Link>
+
         <div className="ml-2 flex items-center gap-x-2">
           <a href={`/u/${comment.author.username}`}>
             <p className="text-xs font-medium text-gray-900">

@@ -59,7 +59,7 @@ const Post: FC<PostProps> = ({
                 <Link href={`/u/${post.author.username}`}>
                   u/{post.author.username}
                 </Link>
-              </span>
+              </span>{" "}
               {formatTimeToNow(new Date(post.createdAt))}
             </div>
 
