@@ -87,7 +87,7 @@ export default function CreateCommunityForm() {
       //   ),
       // });
       toast({
-        description: "Your community has been updated.",
+        description: "Your community has been created successfully.",
       });
       startTransition(() => {
         router.push(`/z/${data}`);

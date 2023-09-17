@@ -23,6 +23,7 @@ import { DropZone } from "../ui/UploadImage";
 import { startTransition } from "react";
 import { CommunityValidator } from "@/lib/validators/community";
 import { Community } from "@prisma/client";
+import UserAvatar from "../ui/UserAvatar";
 
 interface EditCommunityFormProps {
   community: Community;
@@ -115,7 +116,16 @@ export default function EditCommunityForm({
           name="image"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Community Photo</FormLabel>
+              <FormLabel className="flex gap-2 items-center">
+                Profile Photo{" "}
+                <UserAvatar
+                  user={{
+                    name: community?.name || null,
+                    image: community?.image || null,
+                  }}
+                  className="h-6 w-6"
+                />
+              </FormLabel>
               <FormControl>
                 <DropZone {...field} />
               </FormControl>

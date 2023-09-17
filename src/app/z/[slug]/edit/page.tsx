@@ -10,8 +10,6 @@ interface EditCommunityPageProps {
 }
 
 const EditCommunityPage = async ({ params }: EditCommunityPageProps) => {
-  const { slug } = params;
-
   const session = await getAuthSession();
 
   const community = await db.community.findFirst({
@@ -21,8 +19,6 @@ const EditCommunityPage = async ({ params }: EditCommunityPageProps) => {
   });
 
   if (!community) return notFound();
-
-  // console.log(community);
 
   return <EditCommunity session={session} community={community} />;
 };
