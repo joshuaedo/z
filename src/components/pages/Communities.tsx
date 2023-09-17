@@ -25,21 +25,21 @@ const Communities: FC<CommunitiesProps> = ({ session, subs }) => {
   return (
     <main className="space-y-6">
       <h2 className="font-bold text-3xl md:text-4xl">Your Communities</h2>
-      <div className="rounded-lg shadow p-8 space-y-5 bg-white">
+      <div className="rounded-lg shadow p-8 space-y-2 bg-white">
         <button
           onClick={() => router.push("/z/create")}
-          className="text-zinc-600 flex items-center gap-x-2 md:gap-x-3 text-xl"
+          className="py-3 pr-4 rounded-lg hover:bg-[#F8FAFC] text-zinc-600 flex items-center gap-x-2 md:gap-x-3 text-xl"
         >
           <Plus className="" />
           <span>Create a community</span>
         </button>
 
-        <ul id="community" className="text-zinc-900 space-y-4">
+        <ul id="community" className="text-zinc-900 space-y-3">
           {subs.map((community) => (
             <li
               key={community.id}
               onClick={() => router.push(`z/${community.name}`)}
-              className="py-1 flex items-center gap-x-4 md:gap-x-5 cursor-pointer"
+              className="py-1 flex items-center gap-x-4 md:gap-x-5 cursor-pointer hover:bg-[#F8FAFC]"
             >
               <CommunityAvatar community={community} className="h-12 w-12" />
               <div>
@@ -62,6 +62,7 @@ const Communities: FC<CommunitiesProps> = ({ session, subs }) => {
               </div>
             </li>
           ))}
+          {subs.length > 0 && <hr />}
         </ul>
       </div>
     </main>
