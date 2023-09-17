@@ -28,7 +28,7 @@ const Communities: FC<CommunitiesProps> = ({ session, subs }) => {
       <div className="rounded-lg shadow p-8 space-y-2 bg-white">
         <button
           onClick={() => router.push("/z/create")}
-          className="py-3 pr-4 rounded-lg hover:bg-[#F8FAFC] text-zinc-600 flex items-center gap-x-2 md:gap-x-3 text-xl"
+          className="py-3 pr-4 rounded-lg hover:bg-[#F8FAFC] text-zinc-600 flex items-center gap-x-2.5 md:gap-x-3.5 text-xl"
         >
           <Plus className="" />
           <span>Create a community</span>
@@ -36,33 +36,35 @@ const Communities: FC<CommunitiesProps> = ({ session, subs }) => {
 
         <ul id="community" className="text-zinc-900 space-y-3">
           {subs.map((community) => (
-            <li
-              key={community.id}
-              onClick={() => router.push(`z/${community.name}`)}
-              className="py-1 flex items-center gap-x-4 md:gap-x-5 cursor-pointer hover:bg-[#F8FAFC]"
-            >
-              <CommunityAvatar community={community} className="h-12 w-12" />
-              <div>
-                <p className="font-medium">
-                  {`z/${
-                    community.name.length > 16
-                      ? community.name.slice(0, 13) + "..."
-                      : community.name
-                  }`}
-                </p>
+            <>
+              <li
+                key={community.id}
+                onClick={() => router.push(`z/${community.name}`)}
+                className="py-1 flex items-center gap-x-4 md:gap-x-5 cursor-pointer hover:bg-[#F8FAFC]"
+              >
+                <CommunityAvatar community={community} className="h-12 w-12" />
+                <div>
+                  <p className="font-medium">
+                    {`z/${
+                      community.name.length > 16
+                        ? community.name.slice(0, 13) + "..."
+                        : community.name
+                    }`}
+                  </p>
 
-                <div className="flex items-center pt-2">
-                  <Users className="mr-2 h-4 w-4 opacity-70" />{" "}
-                  <span className="text-xs text-muted-foreground">
-                    <span>{`${community._count?.subscribers ?? 0} member${
-                      community._count?.subscribers === 1 ? "" : "s"
-                    }`}</span>
-                  </span>
+                  <div className="flex items-center pt-2">
+                    <Users className="mr-2 h-4 w-4 opacity-70" />{" "}
+                    <span className="text-xs text-muted-foreground">
+                      <span>{`${community._count?.subscribers ?? 0} member${
+                        community._count?.subscribers === 1 ? "" : "s"
+                      }`}</span>
+                    </span>
+                  </div>
                 </div>
-              </div>
-            </li>
+              </li>
+              <hr />
+            </>
           ))}
-          {subs.length > 0 && <hr />}
         </ul>
       </div>
     </main>
