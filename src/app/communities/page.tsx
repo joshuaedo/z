@@ -66,16 +66,6 @@ const CommunitiesPage = async ({}: CommunitiesPageProps) => {
     });
   }
 
-console.log(subs)
-
-  // const memberCount = await db.subscription.count({
-  //   where: {
-  //     community: {
-  //       name: slug,
-  //     },
-  //   },
-  // });
-
   return session ? (
     <Communities subs={subs} session={session} />
   ) : (

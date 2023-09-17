@@ -7,9 +7,15 @@ import { Session } from "next-auth";
 import CommunityAvatar from "../community/CommunityAvatar";
 import { Plus } from "lucide-react";
 
+type ExtendedCommunity = Community & {
+  _count?: {
+    subscribers: number;
+  };
+};
+
 interface CommunitiesProps {
   session: Session | null;
-  subs: Community[];
+  subs: ExtendedCommunity[];
 }
 
 const Communities: FC<CommunitiesProps> = ({ session, subs }) => {
@@ -37,7 +43,7 @@ const Communities: FC<CommunitiesProps> = ({ session, subs }) => {
             >
               <CommunityAvatar community={community} className="h-7 w-7" />
               {`z/${community.name}`}
-              {/* {community._count.subscribers} */}
+              {community._count?.subscribers}
             </li>
           ))}
         </ul>
