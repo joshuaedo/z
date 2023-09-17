@@ -26,7 +26,7 @@ const Communities: FC<CommunitiesProps> = ({ session, subs }) => {
   return (
     <main className="space-y-6">
       <h2 className="font-bold text-3xl md:text-4xl">Your Communities</h2>
-      <div className="rounded-lg shadow p-8 space-y-2 bg-white">
+      <div className="rounded-lg shadow px-8 pb-8 pt-4 space-y-2 bg-white">
         <button
           onClick={() => router.push("/z/create")}
           className="py-3 pr-4 rounded-lg hover:bg-[#F8FAFC] text-zinc-600 flex items-center gap-x-2.5 md:gap-x-3.5 text-xl"
@@ -34,7 +34,6 @@ const Communities: FC<CommunitiesProps> = ({ session, subs }) => {
           <Plus className="" />
           <span>Create a community</span>
         </button>
-
         <ul id="community" className="text-zinc-900 space-y-3">
           {subs.map((community) => (
             <>
