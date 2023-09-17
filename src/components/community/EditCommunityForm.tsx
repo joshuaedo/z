@@ -117,7 +117,7 @@ export default function EditCommunityForm({
           render={({ field }) => (
             <FormItem>
               <FormLabel className="flex gap-2 items-center">
-                Profile Photo{" "}
+                Community Photo{" "}
                 <UserAvatar
                   user={{
                     name: community?.name || null,

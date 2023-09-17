@@ -2,7 +2,7 @@ import { z } from "zod";
 
 export const CommunityValidator = z.object({
   name: z.string().min(3).max(21),
-  description: z.string().max(50),
+  description: z.string().max(160),
   image: z.string(),
 });
 
