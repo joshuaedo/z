@@ -8,6 +8,7 @@ import { FC } from "react";
 import { Community, User } from "@prisma/client";
 import { Session } from "next-auth";
 import Link from "next/link";
+import CommunityAvatar from "../community/CommunityAvatar";
 
 interface AsideClientProps {
   session: Session | null;
@@ -84,7 +85,10 @@ const AsideClient: FC<AsideClientProps> = ({ session, subs, user }) => {
       <hr className="hidden md:flex" />
 
       {zUser ? (
-        <Link className="flex flex-col justify-center" href={"/u/" + zUser?.username}>
+        <Link
+          className="flex flex-col justify-center"
+          href={"/u/" + zUser?.username}
+        >
           <UserAccountNav user={user} />
         </Link>
       ) : (
@@ -116,13 +120,13 @@ const AsideClient: FC<AsideClientProps> = ({ session, subs, user }) => {
               id="aside-communities"
               className="text-zinc-600 max-h-[10rem] space-y-1"
             >
-              {/* Map over the user's subscribed communities and generate the list */}
               {subs.map((community) => (
                 <li
                   key={community.id}
                   onClick={() => router.push(`z/${community.name}`)}
-                  className="py-1"
+                  className="py-1 flex gap-x-3 cursor-pointer"
                 >
+                  <CommunityAvatar community={community} className="h-5 w-5" />
                   {`z/${community.name}`}
                 </li>
               ))}
