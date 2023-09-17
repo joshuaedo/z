@@ -30,12 +30,17 @@ import { startTransition } from "react";
 import { User } from "@prisma/client";
 import { ProfileValidator } from "@/lib/validators/profile";
 import UserAvatar from "../ui/UserAvatar";
+import { Session } from "next-auth";
 
 interface EditProfileFormProps {
   user: User | null;
+  session: Session | null;
 }
 
-export default function EditProfileForm({ user }: EditProfileFormProps) {
+export default function EditProfileForm({
+  user,
+  session,
+}: EditProfileFormProps) {
   const router = useRouter();
 
   const form = useForm<z.infer<typeof ProfileValidator>>({
@@ -47,7 +52,7 @@ export default function EditProfileForm({ user }: EditProfileFormProps) {
       image: user?.image ?? "",
       link: user?.link ?? "",
       profileTheme: user?.profileTheme ?? "",
-      username: user?.username ?? "",
+      username: user?.username ?? session?.user?.username ?? "",
     },
   });
 

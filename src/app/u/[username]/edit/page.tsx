@@ -13,7 +13,7 @@ const EditProfilePage = async ({}: EditProfilePageProps) => {
     },
   });
 
-  return <EditProfile user={user} />;
+  return <EditProfile user={user} session={session} />;
 };
 
 export default EditProfilePage;
