@@ -22,13 +22,25 @@ import { useCustomToast } from "@/hooks/use-custom-toast";
 import { DropZone } from "../ui/UploadImage";
 import { startTransition } from "react";
 import { CommunityValidator } from "@/lib/validators/community";
+import { Community } from "@prisma/client";
 
-export default function EditCommunityForm() {
+interface EditCommunityFormProps {
+  community: Community;
+}
+
+export default function EditCommunityForm({
+  community,
+}: EditCommunityFormProps) {
   const router = useRouter();
   const { loginToast } = useCustomToast();
 
   const form = useForm<z.infer<typeof CommunityValidator>>({
     resolver: zodResolver(CommunityValidator),
+    defaultValues: {
+      name: community.name,
+      description: community.description || "",
+      image: community.image || "",
+    },
   });
 
   const { mutate: updateProfile, isLoading } = useMutation({

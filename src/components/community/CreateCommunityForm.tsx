@@ -21,23 +21,22 @@ import { useRouter } from "next/navigation";
 import { useCustomToast } from "@/hooks/use-custom-toast";
 import { DropZone } from "../ui/UploadImage";
 import { startTransition } from "react";
-
-const FormSchema = z.object({
-  name: z.string().min(3).max(21),
-  description: z.string().max(50),
-  image: z.string(),
-});
+import { CommunityValidator } from "@/lib/validators/community";
 
 export default function CreateCommunityForm() {
   const router = useRouter();
   const { loginToast } = useCustomToast();
 
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
+  const form = useForm<z.infer<typeof CommunityValidator>>({
+    resolver: zodResolver(CommunityValidator),
+    defaultValues: {
+      description: "",
+      image: "",
+    },
   });
 
   const { mutate: updateProfile, isLoading } = useMutation({
-    mutationFn: async (payload: z.infer<typeof FormSchema>) => {
+    mutationFn: async (payload: z.infer<typeof CommunityValidator>) => {
       const { data } = await axios.post("/api/community", payload);
       return data;
     },

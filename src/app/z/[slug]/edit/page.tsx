@@ -22,9 +22,9 @@ const EditCommunityPage = async ({ params }: EditCommunityPageProps) => {
 
   if (!community) return notFound();
 
-  console.log(community);
+  // console.log(community);
 
-  return <EditCommunity session={session} />;
+  return <EditCommunity session={session} community={community} />;
 };
 
 export default EditCommunityPage;
