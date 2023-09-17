@@ -1,6 +1,7 @@
 import EditCommunity from "@/components/community/EditCommunity";
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
+import { notFound } from "next/navigation";
 
 interface EditCommunityPageProps {
   params: {
@@ -15,9 +16,11 @@ const EditCommunityPage = async ({ params }: EditCommunityPageProps) => {
 
   const community = await db.community.findFirst({
     where: {
-      name: slug,
+      name: params.slug,
     },
   });
+
+  if (!community) return notFound();
 
   console.log(community);
 
