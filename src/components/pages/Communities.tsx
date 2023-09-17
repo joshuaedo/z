@@ -41,7 +41,7 @@ const Communities: FC<CommunitiesProps> = ({ session, subs }) => {
               onClick={() => router.push(`z/${community.name}`)}
               className="py-1 flex gap-x-3 cursor-pointer"
             >
-              <CommunityAvatar community={community} className="h-7 w-7" />
+              <CommunityAvatar community={community} className="h-16 w-16" />
               <div>
                 <p>
                   {`z/${
