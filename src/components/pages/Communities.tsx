@@ -41,9 +41,12 @@ const Communities: FC<CommunitiesProps> = ({ session, subs }) => {
               <hr />
               <li
                 key={community.id}
-                className="py-1 flex items-center gap-x-4 md:gap-x-5 cursor-pointer hover:bg-[#F8FAFC] rounded-lg p-1"
+                className="py-1 flex items-center hover:bg-[#F8FAFC] rounded-lg p-1"
               >
-                <Link href={`z/${community.name}`} className="w-full h-full">
+                <Link
+                  href={`z/${community.name}`}
+                  className="w-full h-full flex items-center gap-x-4 md:gap-x-5"
+                >
                   <CommunityAvatar
                     community={community}
                     className="h-12 w-12"
