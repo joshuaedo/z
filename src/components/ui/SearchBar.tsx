@@ -73,7 +73,7 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
         }}
         value={input}
         className="outline-none border-none focus focus:border-none focus:outline-none ring-0"
-        placeholder="Explore"
+        placeholder="Search Z..." 
       />
       {input.length > 0 && (
         <CommandList className="absolute bg-white top-full inset-x-0 shadow rounded-b-md">

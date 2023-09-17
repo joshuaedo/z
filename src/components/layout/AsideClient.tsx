@@ -124,10 +124,14 @@ const AsideClient: FC<AsideClientProps> = ({ session, subs, user }) => {
                 <li
                   key={community.id}
                   onClick={() => router.push(`z/${community.name}`)}
-                  className="py-1 flex gap-x-3 cursor-pointer"
+                  className="py-1 flex gap-x-2 cursor-pointer overflow-hidden"
                 >
                   <CommunityAvatar community={community} className="h-5 w-5" />
-                  {`z/${community.name}`}
+                  {`z/${
+                    community.name.length > 13
+                      ? community.name.slice(0, 13) + "..."
+                      : community.name
+                  }`}
                 </li>
               ))}
             </ul>

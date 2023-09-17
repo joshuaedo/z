@@ -114,9 +114,7 @@ const SlugPage = async ({ params }: SlugPageProps) => {
         <div className="flex items-center pt-2">
           <Users className="mr-2 h-4 w-4 opacity-70" />{" "}
           <span className="text-xs text-muted-foreground">
-            <time dateTime={community.createdAt.toDateString()}>
-              {`${memberCount} member${memberCount > 1 ? "s" : ""}`}
-            </time>
+            <span>{`${memberCount} member${memberCount > 1 ? "s" : ""}`}</span>
           </span>
         </div>
       </div>
