@@ -1,28 +1,28 @@
-import SignInFireWall from '@/components/auth/SignInFireWall';
-import Communities from '@/components/pages/Communities';
-import { getAuthSession } from '@/lib/auth';
-import { db } from '@/lib/db';
-import { Community } from '@prisma/client';
+import SignInFireWall from "@/components/auth/SignInFireWall";
+import Communities from "@/components/pages/Communities";
+import { getAuthSession } from "@/lib/auth";
+import { db } from "@/lib/db";
+import { Community } from "@prisma/client";
 
 export const metadata = {
-  title: 'Communities / Z',
-  description: '',
+  title: "Communities / Z",
+  description: "",
   openGraph: {
-    title: 'Communities / Z',
-    description: '',
+    title: "Communities / Z",
+    description: "",
     images: [
       {
-        url: '',
+        url: "",
         width: 200,
         height: 200,
       },
     ],
   },
   twitter: {
-    card: 'summary',
-    title: 'Communities / Z',
-    description: '',
-    images: [''],
+    card: "summary",
+    title: "Communities / Z",
+    description: "",
+    images: [""],
   },
 };
 
@@ -57,11 +57,22 @@ const CommunitiesPage = async ({}: CommunitiesPageProps) => {
           in: communityNames,
         },
       },
+      include: {
+        _count: true,
+      },
       orderBy: {
-        createdAt: 'desc',
+        createdAt: "desc",
       },
     });
   }
+
+  // const memberCount = await db.subscription.count({
+  //   where: {
+  //     community: {
+  //       name: slug,
+  //     },
+  //   },
+  // });
 
   return session ? (
     <Communities subs={subs} session={session} />

@@ -37,6 +37,7 @@ const Communities: FC<CommunitiesProps> = ({ session, subs }) => {
             >
               <CommunityAvatar community={community} className="h-7 w-7" />
               {`z/${community.name}`}
+              {community._count.subscribers}
             </li>
           ))}
         </ul>
