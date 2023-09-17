@@ -6,6 +6,7 @@ import { Community } from "@prisma/client";
 import { Session } from "next-auth";
 import CommunityAvatar from "../community/CommunityAvatar";
 import { Plus, Users } from "lucide-react";
+import Link from "next/link";
 
 type ExtendedCommunity = Community & {
   _count?: {
@@ -40,28 +41,32 @@ const Communities: FC<CommunitiesProps> = ({ session, subs }) => {
               <hr />
               <li
                 key={community.id}
-                onClick={() => router.push(`z/${community.name}`)}
                 className="py-1 flex items-center gap-x-4 md:gap-x-5 cursor-pointer hover:bg-[#F8FAFC] rounded-lg p-1"
               >
-                <CommunityAvatar community={community} className="h-12 w-12" />
-                <div>
-                  <p className="font-medium">
-                    {`z/${
-                      community.name.length > 16
-                        ? community.name.slice(0, 13) + "..."
-                        : community.name
-                    }`}
-                  </p>
+                <Link href={`z/${community.name}`} className="w-full h-full">
+                  <CommunityAvatar
+                    community={community}
+                    className="h-12 w-12"
+                  />
+                  <div>
+                    <p className="font-medium">
+                      {`z/${
+                        community.name.length > 16
+                          ? community.name.slice(0, 13) + "..."
+                          : community.name
+                      }`}
+                    </p>
 
-                  <div className="flex items-center pt-2">
-                    <Users className="mr-2 h-4 w-4 opacity-70" />{" "}
-                    <span className="text-xs text-muted-foreground">
-                      <span>{`${community._count?.subscribers ?? 0} member${
-                        community._count?.subscribers === 1 ? "" : "s"
-                      }`}</span>
-                    </span>
+                    <div className="flex items-center pt-2">
+                      <Users className="mr-2 h-4 w-4 opacity-70" />{" "}
+                      <span className="text-xs text-muted-foreground">
+                        <span>{`${community._count?.subscribers ?? 0} member${
+                          community._count?.subscribers === 1 ? "" : "s"
+                        }`}</span>
+                      </span>
+                    </div>
                   </div>
-                </div>
+                </Link>
               </li>
             </>
           ))}
