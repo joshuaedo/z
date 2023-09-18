@@ -2,7 +2,7 @@
 
 import { ExtendedPost } from '@/types/db';
 import React, { FC, useState } from 'react';
-import PostFeed from './PostFeed';
+import ProfilePostFeed from './ProfilePostFeed';
 
 interface ProfileFeedProps {
   posts: ExtendedPost[];
@@ -35,9 +35,9 @@ const ProfileFeed: FC<ProfileFeedProps> = ({ posts, replies }) => {
         </div>
       </div>
       {!isReply ? (
-        <PostFeed initialPosts={posts} />
+        <ProfilePostFeed initialPosts={posts} />
       ) : (
-        <PostFeed initialPosts={replies} />
+        <ProfilePostFeed initialPosts={replies} />
       )}
     </div>
   );

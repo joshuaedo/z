@@ -2,7 +2,7 @@ import { INFINITE_SCROLLING_PAGINATION_RESULTS } from "@/config";
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { notFound } from "next/navigation";
-import PostFeed from "@/components/feeds/PostFeed";
+import FollowingFeed from "@/components/feeds/FollowingFeed";
 import SubscribeLeaveToggle from "@/components/auth/SubscribeLeaveToggle";
 import AddCommunityPost from "@/components/posts/AddCommunityPost";
 import { CalendarIcon } from "@radix-ui/react-icons";
@@ -172,7 +172,7 @@ const SlugPage = async ({ params }: SlugPageProps) => {
       <AddCommunityPost session={session} isCreator={isCreator} />
 
       {/* Community Feed */}
-      <PostFeed initialPosts={community.posts} />
+      <FollowingFeed initialPosts={community.posts} />
     </div>
   );
 };
