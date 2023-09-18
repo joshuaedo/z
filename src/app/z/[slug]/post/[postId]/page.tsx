@@ -45,9 +45,8 @@ export const generateMetadata = async ({
   });
 
   const author = post?.author.username;
-  const title = `${author} posted about ${post?.title} on Z`;
-  const truncatedContent = post?.content;
-  const description = `${truncatedContent}...`;
+  const title = `${author} posted on Z`;
+  const description = post?.title;
 
   return {
     title,
