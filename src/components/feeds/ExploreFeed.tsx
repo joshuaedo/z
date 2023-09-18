@@ -1,6 +1,6 @@
 import { INFINITE_SCROLLING_PAGINATION_RESULTS } from '@/config';
 import { db } from '@/lib/db';
-import PostFeed from './PostFeed';
+import NotFollowingFeed from './NotFollowingFeed';
 import { getAuthSession } from '@/lib/auth';
 
 const ExploreFeed = async () => {
