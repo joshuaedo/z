@@ -14,10 +14,10 @@ export async function middleware(req: NextRequest) {
 export const config = {
   matcher: [
     '/z/:path*/submit',
-    'z/:path*/edit',
+    '/z/:path*/edit',
     '/z/create',
     '/communities',
     '/u/:path*/edit',
-    'following',
+    '/following',
   ],
 };
