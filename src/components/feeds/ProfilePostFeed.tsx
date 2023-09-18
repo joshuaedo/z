@@ -4,6 +4,8 @@ import { ExtendedPost } from '@/types/db';
 import axios from 'axios';
 import Post from '../posts/Post';
 import { useSession } from 'next-auth/react';
+import { Suspense } from 'react';
+import Loader from '@/components/Loader';
 
 interface ProfilePostFeedProps {
   initialPosts: ExtendedPost[];
@@ -31,15 +33,17 @@ const ProfilePostFeed = async ({
         );
 
         return (
-          <li key={post.id}>
-            <Post
-              currentVote={currentVote}
-              votesAmt={votesAmt}
-              commentAmt={post.comments.length}
-              post={post}
-              communityName={post.community.name}
-            />
-          </li>
+          <Suspense fallback={<Loader />}>
+            <li key={post.id}>
+              <Post
+                currentVote={currentVote}
+                votesAmt={votesAmt}
+                commentAmt={post.comments.length}
+                post={post}
+                communityName={post.community.name}
+              />
+            </li>
+          </Suspense>
         );
       })}
       <li className='w-full text-xs py-6 flex items-center justify-center'>

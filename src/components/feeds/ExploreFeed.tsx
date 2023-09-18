@@ -2,6 +2,8 @@ import { INFINITE_SCROLLING_PAGINATION_RESULTS } from '@/config';
 import { db } from '@/lib/db';
 import NotFollowingFeed from './NotFollowingFeed';
 import { getAuthSession } from '@/lib/auth';
+import { Suspense } from 'react';
+import Loader from '@/components/Loader';
 
 const ExploreFeed = async () => {
   const session = await getAuthSession();
@@ -44,7 +46,11 @@ const ExploreFeed = async () => {
     take: INFINITE_SCROLLING_PAGINATION_RESULTS,
   });
 
-  return <NotFollowingFeed initialPosts={posts} />;
+  return (
+    <Suspense fallback={<Loader />}>
+      <NotFollowingFeed initialPosts={posts} />
+    </Suspense>
+  );
 };
 
 export default ExploreFeed;

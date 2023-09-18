@@ -9,6 +9,8 @@ import { useSession } from 'next-auth/react';
 import Post from '../posts/Post';
 import { Loader2 } from 'lucide-react';
 import { INFINITE_SCROLLING_PAGINATION_RESULTS } from '@/config';
+import { Suspense } from 'react';
+import Loader from '@/components/Loader';
 
 interface FollowingFeedProps {
   initialPosts: ExtendedPost[];
@@ -69,27 +71,31 @@ const FollowingFeed: FC<FollowingFeedProps> = ({
 
         if (index === posts.length - 1) {
           return (
-            <li key={post.id} ref={ref}>
-              <Post
-                currentVote={currentVote}
-                votesAmt={votesAmt}
-                commentAmt={post.comments.length}
-                post={post}
-                communityName={post.community.name}
-              />
-            </li>
+            <Suspense fallback={<Loader />}>
+              <li key={post.id} ref={ref}>
+                <Post
+                  currentVote={currentVote}
+                  votesAmt={votesAmt}
+                  commentAmt={post.comments.length}
+                  post={post}
+                  communityName={post.community.name}
+                />
+              </li>
+            </Suspense>
           );
         } else {
           return (
-            <li key={post.id}>
-              <Post
-                currentVote={currentVote}
-                votesAmt={votesAmt}
-                commentAmt={post.comments.length}
-                post={post}
-                communityName={post.community.name}
-              />
-            </li>
+            <Suspense fallback={<Loader />}>
+              <li key={post.id}>
+                <Post
+                  currentVote={currentVote}
+                  votesAmt={votesAmt}
+                  commentAmt={post.comments.length}
+                  post={post}
+                  communityName={post.community.name}
+                />
+              </li>
+            </Suspense>
           );
         }
       })}
