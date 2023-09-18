@@ -31,7 +31,7 @@ const Communities: FC<CommunitiesProps> = ({ session, subs }) => {
           onClick={() => router.push("/z/create")}
           className="py-3 pr-4 rounded-lg hover:bg-[#F8FAFC] text-zinc-600 flex items-center gap-x-2.5 md:gap-x-3.5 text-xl"
         >
-          <Plus className="" />
+          <Plus />
           <span>Create a community</span>
         </button>
         <ul id="community" className="text-zinc-900 space-y-3">
