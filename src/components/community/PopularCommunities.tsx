@@ -19,7 +19,7 @@ const PopularCommunities: FC<PopularCommunitiesProps> = ({
 }) => {
   return (
     <div className="rounded-lg shadow px-8 pb-8 pt-4 space-y-2 bg-white">
-      <div className="py-3 pr-4 rounded-lg text-zinc-900 flex items-center gap-x-2.5 md:gap-x-3.5 text-base font-semibold">
+      <div className="py-3 pr-4 rounded-lg text-zinc-900 flex items-center gap-x-2.5 md:gap-x-3.5 text-sm font-semibold">
         <TrendingUp />
         <span>POPULAR ON Z</span>
       </div>
