@@ -1,5 +1,3 @@
-'use client';
-
 import { ExtendedPost } from '@/types/db';
 import axios from 'axios';
 import Post from '../posts/Post';
