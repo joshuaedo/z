@@ -27,10 +27,6 @@ export const fetchCache = "force-no-store";
 export const generateMetadata = async ({
   params,
 }: PostPageProps): Promise<Metadata> => {
-  const cachedPost = (await redis.hgetall(
-    `post:${params.postId}`
-  )) as CachedPost;
-
   let post:
     | (Post & {
         votes: Vote[];
@@ -38,35 +34,32 @@ export const generateMetadata = async ({
       })
     | null = null;
 
-  if (!cachedPost) {
-    post = await db.post.findFirst({
-      where: {
-        id: params.postId,
-      },
-      include: {
-        author: true,
-        votes: true,
-      },
-    });
-  }
+  post = await db.post.findFirst({
+    where: {
+      id: params.postId,
+    },
+    include: {
+      author: true,
+      votes: true,
+    },
+  });
 
-  const author = post?.author.username ?? cachedPost.authorUsername;
-  const title = `${author} - ${post?.title ?? cachedPost.title}`;
-  const truncatedContent =
-    post?.content ?? cachedPost.content.substring(0, 100);
+  const author = post?.author.username;
+  const title = `${author} posted about ${post?.title} on Z`;
+  const truncatedContent = post?.content;
   const description = `${truncatedContent}...`;
 
   return {
-    title: `Post / Z - ${title}`,
-    description: description,
+    title,
+    description,
     openGraph: {
-      title: `Post / Z - ${title}`,
-      description: description,
+      title,
+      description,
     },
     twitter: {
       card: "summary_large_image",
-      title: `Post / Z - ${title}`,
-      description: description,
+      title,
+      description,
     },
   };
 };

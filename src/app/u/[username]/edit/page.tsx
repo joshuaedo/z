@@ -15,7 +15,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
   const userMetaName = user?.username;
 
-  const title = `${displayName} (u/@${userMetaName}) • Edit Profile`;
+  const title = `${displayName} (u/${userMetaName}) • Edit Profile`;
 
   const description = `Edit your profile on Z`;
 
@@ -32,7 +32,7 @@ export async function generateMetadata(): Promise<Metadata> {
       ],
     },
     twitter: {
-      card: "summary_large_image", // Use summary_large_image for the Edit Profile page
+      card: "summary_large_image", 
       title,
       description,
       images: [user?.image ?? "https://joshuaedo.sirv.com/Z/Z.png"],
