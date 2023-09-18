@@ -1,22 +1,22 @@
-import { getAuthSession } from "@/lib/auth";
-import { db, restrictedNames } from "@/lib/db";
-import { CommunityValidator } from "@/lib/validators/community";
-import { z } from "zod";
+import { getAuthSession } from '@/lib/auth';
+import { db, restrictedNames } from '@/lib/db';
+import { CommunityValidator } from '@/lib/validators/community';
+import { z } from 'zod';
 
 export async function POST(req: Request) {
   try {
     const session = await getAuthSession();
 
     if (!session?.user) {
-      return new Response("Unauthorized", { status: 401 });
+      return new Response('Unauthorized', { status: 401 });
     }
 
     const body = await req.json();
-    const { name, description } = CommunityValidator.parse(body);
+    const { name, description, image } = CommunityValidator.parse(body);
 
     // Check if the community name is in the restrictedNames array
     if (restrictedNames.includes(name.toLowerCase())) {
-      return new Response("Community name is restricted", { status: 412 });
+      return new Response('Community name is restricted', { status: 412 });
     }
 
     const communityExists = await db.community.findFirst({
@@ -26,12 +26,13 @@ export async function POST(req: Request) {
     });
 
     if (communityExists) {
-      return new Response("Community already exists", { status: 409 });
+      return new Response('Community already exists', { status: 409 });
     }
 
     const community = await db.community.create({
       data: {
         name,
+        image,
         description,
         creatorId: session.user.id,
         createdAt: new Date(), // Set the creation date
@@ -52,6 +53,6 @@ export async function POST(req: Request) {
       return new Response(error.message, { status: 422 });
     }
 
-    return new Response("Could not create community", { status: 500 });
+    return new Response('Could not create community', { status: 500 });
   }
 }
