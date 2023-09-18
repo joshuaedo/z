@@ -85,12 +85,9 @@ const AsideClient: FC<AsideClientProps> = ({ session, subs, user }) => {
       <hr className="hidden md:flex" />
 
       {zUser ? (
-        <button
-          onClick={() => router.push("/u/" + zUser?.username)}
-          className="flex flex-col justify-center"
-        >
+        <Link className="flex flex-col" href={"/u/" + zUser?.username}>
           <UserAccountNav user={user} />
-        </button>
+        </Link>
       ) : (
         <button
           onClick={() => router.push("/sign-in")}
