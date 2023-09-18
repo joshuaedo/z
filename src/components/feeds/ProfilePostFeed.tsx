@@ -4,6 +4,7 @@ import { ExtendedPost } from '@/types/db';
 import { FC } from 'react';
 import axios from 'axios';
 import Post from '../posts/Post';
+import { getAuthSession } from '@/lib/auth';
 
 interface PostFeedProps {
   initialPosts: ExtendedPost[];
@@ -12,6 +13,7 @@ interface PostFeedProps {
 
 const PostFeed: FC<PostFeedProps> = ({ initialPosts, communityName }) => {
   const posts = initialPosts;
+  const session = await getAuthSession();
 
   return (
     <ul className='flex flex-col space-y-6'>
