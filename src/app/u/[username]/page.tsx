@@ -13,27 +13,40 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { username } = params;
 
-  const userMetaName = username ?? "guest";
+  const user = await db.user.findUnique({
+    where: {
+      username,
+    },
+  });
+
+  const displayName = user?.displayName ?? user?.name;
+
+  const userMetaName = user?.username ?? username;
+
+  const title =
+    userMetaName !== undefined
+      ? `${displayName} (u/@${userMetaName}) • Z`
+      : "guest / Z";
+
+  const description = title + ` on Z • ` + user?.bio;
 
   return {
-    title: `u/${username} • Z`,
-    description: "",
+    title,
+    description,
     openGraph: {
-      title: `u/${username} • Z`,
-      description: "",
+      title,
+      description,
       images: [
         {
-          url: "",
-          width: 200,
-          height: 200,
+          url: user?.image ?? "https://joshuaedo.sirv.com/Z/Z.png",
         },
       ],
     },
     twitter: {
       card: "summary",
-      title: `u/${username} • Z`,
-      description: "",
-      images: [""],
+      title,
+      description,
+      images: [user?.image ?? "https://joshuaedo.sirv.com/Z/Z.png"],
     },
   };
 }

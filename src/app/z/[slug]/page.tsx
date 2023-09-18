@@ -11,6 +11,55 @@ import { Users } from "lucide-react";
 import EditCommunityDropdown from "@/components/ui/EditCommunityDropdown";
 import CommunityAvatar from "@/components/community/CommunityAvatar";
 
+export const generateMetadata = async ({ params }: SlugPageProps) => {
+  const { slug } = params;
+
+  const community = await db.community.findFirst({
+    where: { name: slug },
+    include: {
+      posts: {
+        include: {
+          author: true,
+          votes: true,
+          comments: true,
+          community: true,
+        },
+        orderBy: {
+          createdAt: "desc",
+        },
+        take: INFINITE_SCROLLING_PAGINATION_RESULTS,
+      },
+    },
+  });
+
+  if (!community) {
+    return notFound();
+  }
+
+  // Generate metadata dynamically based on the community data
+  const metadata = {
+    title: `z/${community.name}`,
+    description: community.description || "Community",
+    openGraph: {
+      title: `z/${community.name}`,
+      description: community.description || "Community",
+      images: [
+        {
+          url: community.image || "https://joshuaedo.sirv.com/Z/Z.png",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `z/${community.name}`,
+      description: community.description || "Community",
+      images: [community.image || "https://joshuaedo.sirv.com/Z/Z.png"],
+    },
+  };
+
+  return metadata;
+};
+
 interface SlugPageProps {
   params: {
     slug: string;

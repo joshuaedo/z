@@ -1,24 +1,17 @@
 export const metadata = {
   title: "Support / Z",
-  description: "",
+  description: "Get support for Z, the network of diverse communities.",
   openGraph: {
     title: "Support / Z",
-    description: "",
-    images: [
-      {
-        url: "",
-        width: 200,
-        height: 200,
-      },
-    ],
+    description: "Get support for Z, the network of diverse communities.",
   },
   twitter: {
     card: "summary",
     title: "Support / Z",
-    description: "",
-    images: [""],
+    description: "Get support for Z, the network of diverse communities.",
   },
 };
+
 
 interface SupportPageProps {}
 

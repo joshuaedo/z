@@ -10,6 +10,7 @@ import { Post, User, Vote } from "@prisma/client";
 import { Loader2 } from "lucide-react";
 import { ArrowBigDown } from "lucide-react";
 import { ArrowBigUp } from "lucide-react";
+import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
@@ -22,6 +23,53 @@ interface PostPageProps {
 
 export const dynamic = "force-dynamic";
 export const fetchCache = "force-no-store";
+
+export const generateMetadata = async ({
+  params,
+}: PostPageProps): Promise<Metadata> => {
+  const cachedPost = (await redis.hgetall(
+    `post:${params.postId}`
+  )) as CachedPost;
+
+  let post:
+    | (Post & {
+        votes: Vote[];
+        author: User;
+      })
+    | null = null;
+
+  if (!cachedPost) {
+    post = await db.post.findFirst({
+      where: {
+        id: params.postId,
+      },
+      include: {
+        author: true,
+        votes: true,
+      },
+    });
+  }
+
+  const author = post?.author.username ?? cachedPost.authorUsername;
+  const title = `${author} - ${post?.title ?? cachedPost.title}`;
+  const truncatedContent =
+    post?.content ?? cachedPost.content.substring(0, 100);
+  const description = `${truncatedContent}...`;
+
+  return {
+    title: `Post / Z - ${title}`,
+    description: description,
+    openGraph: {
+      title: `Post / Z - ${title}`,
+      description: description,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `Post / Z - ${title}`,
+      description: description,
+    },
+  };
+};
 
 const PostPage = async ({ params }: PostPageProps) => {
   const cachedPost = (await redis.hgetall(

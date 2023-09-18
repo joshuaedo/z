@@ -6,25 +6,18 @@ import { Community } from "@prisma/client";
 
 export const metadata = {
   title: "Communities / Z",
-  description: "",
+  description: "Explore and engage with your favorite communities on Z. Join the conversation, share ideas, and connect with like-minded individuals.",
   openGraph: {
     title: "Communities / Z",
-    description: "",
-    images: [
-      {
-        url: "",
-        width: 200,
-        height: 200,
-      },
-    ],
+    description: "Explore and engage with your favorite communities on Z. Join the conversation, share ideas, and connect with like-minded individuals.",
   },
   twitter: {
     card: "summary",
     title: "Communities / Z",
-    description: "",
-    images: [""],
+    description: "Explore and engage with your favorite communities on Z. Join the conversation, share ideas, and connect with like-minded individuals.",
   },
 };
+
 
 interface CommunitiesPageProps {}
 

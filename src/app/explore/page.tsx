@@ -6,25 +6,18 @@ import { Layers, TrendingUp } from "lucide-react";
 
 export const metadata = {
   title: "Explore / Z",
-  description: "",
+  description: "Discover and explore the latest trends and communities on Z. Join discussions, share your interests, and connect with like-minded people.",
   openGraph: {
     title: "Explore / Z",
-    description: "",
-    images: [
-      {
-        url: "",
-        width: 200,
-        height: 200,
-      },
-    ],
+    description: "Discover and explore the latest trends and communities on Z. Join discussions, share your interests, and connect with like-minded people.",
   },
   twitter: {
     card: "summary",
     title: "Explore / Z",
-    description: "",
-    images: [""],
+    description: "Discover and explore the latest trends and communities on Z. Join discussions, share your interests, and connect with like-minded people.",
   },
 };
+
 
 interface ExplorePageProps {}
 
