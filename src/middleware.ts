@@ -18,6 +18,7 @@ export const config = {
     '/z/create',
     '/communities',
     '/u/:path*/edit',
+    '/u/:path*',
     '/following',
   ],
 };
