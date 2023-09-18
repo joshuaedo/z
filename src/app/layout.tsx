@@ -1,4 +1,4 @@
-import "@uploadthing/react/styles.css"
+import '@uploadthing/react/styles.css';
 import Aside from '@/components/layout/Aside';
 import Header from '@/components/layout/Header';
 import MobileNav from '@/components/layout/MobileNav';
@@ -7,40 +7,43 @@ import { Toaster } from '@/components/ui/Toaster';
 import { cn } from '@/lib/utils';
 import '@/styles/globals.css';
 import { Inter } from 'next/font/google';
+import { Metadata } from 'next';
 
-export const metadata = {
-  title: 'Z',
-  description:
-    'Z, the network of diverse communities where you can explore your passions and interests. Join the conversation.',
-  openGraph: {
+export const generateMetadata = async ({}): Promise<Metadata> => {
+  return {
     title: 'Z',
-    description: 'The Z Network, Join the conversation.',
-    url: 'https://z.joshuaedo.com',
-    siteName: 'Z',
-    images: [
-      {
-        url: 'https://joshuaedo.sirv.com/Z/Z.png',
-        width: 200,
-        height: 200,
-      },
-    ],
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary',
-    title: 'Z',
-    description: 'The Z Network, Join the conversation.',
-    creator: 'Joshua Edo',
-    images: ['https://joshuaedo.sirv.com/Z/Z.png'],
-  },
-  robots: {
-    follow: true,
-    nocache: true,
-    googleBot: {
-      index: true,
-      follow: false,
+    description:
+      'Z, the network of diverse communities where you can explore your passions and interests. Join the conversation.',
+    openGraph: {
+      title: 'Z',
+      description: 'The Z Network, Join the conversation.',
+      url: 'https://z.joshuaedo.com',
+      siteName: 'Z',
+      images: [
+        {
+          url: 'https://joshuaedo.sirv.com/Z/Z.png',
+          width: 200,
+          height: 200,
+        },
+      ],
+      type: 'website',
     },
-  },
+    twitter: {
+      card: 'summary',
+      title: 'Z',
+      description: 'The Z Network, Join the conversation.',
+      creator: 'Joshua Edo',
+      images: ['https://joshuaedo.sirv.com/Z/Z.png'],
+    },
+    robots: {
+      follow: true,
+      nocache: true,
+      googleBot: {
+        index: true,
+        follow: false,
+      },
+    },
+  };
 };
 
 const inter = Inter({ subsets: ['latin'] });
