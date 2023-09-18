@@ -46,7 +46,7 @@ const ExplorePage = async ({}: ExplorePageProps) => {
       <h2 className="font-bold text-3xl md:text-4xl">Explore</h2>
       <SearchBar />
       <PopularCommunities popularCommunities={popularCommunities} />
-      <div className="mt-3 rounded-lg text-zinc-900 flex items-center gap-x-2.5 md:gap-x-3.5 text-sm font-bold">
+      <div className="mt-9 rounded-lg text-zinc-900 flex items-center gap-x-2.5 md:gap-x-3.5 text-sm font-bold">
         <Layers />
         <span>RECOMMENDED FOR YOU</span>
       </div>
