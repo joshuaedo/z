@@ -30,7 +30,7 @@ const PopularCommunities: FC<PopularCommunitiesProps> = ({
             </h2>
             <Link
               href={`z/${community.name}`}
-              className="w-full h-full flex items-center gap-x-4 md:gap-x-5"
+              className="w-full h-full flex items-center justify-between"
             >
               <div>
               <p className="hidden md:block font-medium">
