@@ -20,20 +20,20 @@ const ProfilePostFeed = async ({
   const posts = initialPosts;
 
   return (
-    <ul className='flex flex-col space-y-6'>
-      {posts.map((post, index) => {
-        const votesAmt = post.votes.reduce((acc, vote) => {
-          if (vote.type === 'UP') return acc + 1;
-          if (vote.type === 'DOWN') return acc - 1;
-          return acc;
-        }, 0);
+    <Suspense fallback={<Loader />}>
+      <ul className='flex flex-col space-y-6'>
+        {posts.map((post, index) => {
+          const votesAmt = post.votes.reduce((acc, vote) => {
+            if (vote.type === 'UP') return acc + 1;
+            if (vote.type === 'DOWN') return acc - 1;
+            return acc;
+          }, 0);
 
-        const currentVote = post.votes.find(
-          (vote) => vote.userId == session?.user.id
-        );
+          const currentVote = post.votes.find(
+            (vote) => vote.userId == session?.user.id
+          );
 
-        return (
-          <Suspense fallback={<Loader />}>
+          return (
             <li key={post.id}>
               <Post
                 currentVote={currentVote}
@@ -43,13 +43,13 @@ const ProfilePostFeed = async ({
                 communityName={post.community.name}
               />
             </li>
-          </Suspense>
-        );
-      })}
-      <li className='w-full text-xs py-6 flex items-center justify-center'>
-        <span>- end of feed -</span>
-      </li>
-    </ul>
+          );
+        })}
+        <li className='w-full text-xs py-6 flex items-center justify-center'>
+          <span>- end of feed -</span>
+        </li>
+      </ul>
+    </Suspense>
   );
 };
 
