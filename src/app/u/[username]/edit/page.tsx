@@ -15,9 +15,9 @@ export async function generateMetadata(): Promise<Metadata> {
 
   const userMetaName = user?.username;
 
-  const title = `${displayName} (u/${userMetaName}) • Edit Profile`;
+  const title = `${displayName} (u/${userMetaName}) • Z`;
 
-  const description = `Edit your profile on Z`;
+  const description = `Edit your profile`;
 
   return {
     title,
