@@ -3,7 +3,7 @@ import { db } from '@/lib/db';
 import NotFollowingFeed from './NotFollowingFeed';
 import { getAuthSession } from '@/lib/auth';
 import { Suspense } from 'react';
-import Loader from '@/components/Loader';
+import Loader from '@/components/ui/Loader';
 
 const ExploreFeed = async () => {
   const session = await getAuthSession();

@@ -2,7 +2,7 @@ import { INFINITE_SCROLLING_PAGINATION_RESULTS } from '@/config';
 import { db } from '@/lib/db';
 import PostFeed from './PostFeed';
 import { Suspense } from 'react';
-import Loader from '@/components/Loader';
+import Loader from '@/components/ui/Loader';
 
 const GeneralFeed = async () => {
   const posts = await db.post.findMany({

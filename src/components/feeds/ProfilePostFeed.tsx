@@ -5,7 +5,7 @@ import axios from 'axios';
 import Post from '../posts/Post';
 import { useSession } from 'next-auth/react';
 import { Suspense } from 'react';
-import Loader from '@/components/Loader';
+import Loader from '@/components/ui/Loader';
 
 interface ProfilePostFeedProps {
   initialPosts: ExtendedPost[];

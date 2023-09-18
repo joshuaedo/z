@@ -4,7 +4,7 @@ import { ExtendedPost } from '@/types/db';
 import React, { FC, useState } from 'react';
 import ProfilePostFeed from './ProfilePostFeed';
 import { Suspense } from 'react';
-import Loader from '@/components/Loader';
+import Loader from '@/components/ui/Loader';
 
 interface ProfileFeedProps {
   posts: ExtendedPost[];

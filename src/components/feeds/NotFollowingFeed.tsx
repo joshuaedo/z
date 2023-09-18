@@ -10,7 +10,7 @@ import Post from '../posts/Post';
 import { Loader2 } from 'lucide-react';
 import { INFINITE_SCROLLING_PAGINATION_RESULTS } from '@/config';
 import { Suspense } from 'react';
-import Loader from '@/components/Loader';
+import Loader from '@/components/ui/Loader';
 
 interface NotFollowingFeedProps {
   initialPosts: ExtendedPost[];
