@@ -35,8 +35,10 @@ const ProfileFeed: FC<ProfileFeedProps> = ({ posts, replies }) => {
         </div>
       </div>
       {!isReply ? (
+        // @ts-expect-error Server Component */}
         <ProfilePostFeed initialPosts={posts} />
       ) : (
+        // @ts-expect-error Server Component
         <ProfilePostFeed initialPosts={replies} />
       )}
     </div>
