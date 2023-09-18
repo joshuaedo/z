@@ -1,15 +1,20 @@
+'use client';
+
 import { ExtendedPost } from '@/types/db';
 import axios from 'axios';
 import Post from '../posts/Post';
-import { getAuthSession } from '@/lib/auth';
+import { useSession } from 'next-auth/react';
 
-interface PostFeedProps {
+interface ProfilePostFeedProps {
   initialPosts: ExtendedPost[];
   communityName?: string;
 }
 
-const PostFeed = async ({ initialPosts, communityName }: PostFeedProps) => {
-  const session = await getAuthSession();
+const ProfilePostFeed = async ({
+  initialPosts,
+  communityName,
+}: ProfilePostFeedProps) => {
+  const { data: session } = useSession();
   const posts = initialPosts;
 
   return (
@@ -58,4 +63,4 @@ const PostFeed = async ({ initialPosts, communityName }: PostFeedProps) => {
   );
 };
 
-export default PostFeed;
+export default ProfilePostFeed;
