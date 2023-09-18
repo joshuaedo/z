@@ -32,7 +32,6 @@ const PopularCommunities: FC<PopularCommunitiesProps> = ({
               href={`z/${community.name}`}
               className="w-full h-full flex items-center gap-x-4 md:gap-x-5"
             >
-              <CommunityAvatar community={community} className="h-12 w-12" />
               <div>
               <p className="hidden md:block font-medium">
                       {`z/${
@@ -58,6 +57,7 @@ const PopularCommunities: FC<PopularCommunitiesProps> = ({
                   </span>
                 </div>
               </div>
+              <CommunityAvatar community={community} className="h-12 w-12" />
             </Link>
           </li>
         ))}
