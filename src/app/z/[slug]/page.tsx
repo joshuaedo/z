@@ -1,15 +1,15 @@
-import { INFINITE_SCROLLING_PAGINATION_RESULTS } from "@/config";
-import { getAuthSession } from "@/lib/auth";
-import { db } from "@/lib/db";
-import { notFound } from "next/navigation";
-import FollowingFeed from "@/components/feeds/FollowingFeed";
-import SubscribeLeaveToggle from "@/components/auth/SubscribeLeaveToggle";
-import AddCommunityPost from "@/components/posts/AddCommunityPost";
-import { CalendarIcon } from "@radix-ui/react-icons";
-import { format } from "date-fns/esm";
-import { Users } from "lucide-react";
-import EditCommunityDropdown from "@/components/ui/EditCommunityDropdown";
-import CommunityAvatar from "@/components/community/CommunityAvatar";
+import { INFINITE_SCROLLING_PAGINATION_RESULTS } from '@/config';
+import { getAuthSession } from '@/lib/auth';
+import { db } from '@/lib/db';
+import { notFound } from 'next/navigation';
+import FollowingFeed from '@/components/feeds/FollowingFeed';
+import SubscribeLeaveToggle from '@/components/auth/SubscribeLeaveToggle';
+import AddCommunityPost from '@/components/posts/AddCommunityPost';
+import { CalendarIcon } from '@radix-ui/react-icons';
+import { format } from 'date-fns/esm';
+import { Users } from 'lucide-react';
+import EditCommunityDropdown from '@/components/ui/EditCommunityDropdown';
+import CommunityAvatar from '@/components/community/CommunityAvatar';
 
 export const generateMetadata = async ({ params }: SlugPageProps) => {
   const { slug } = params;
@@ -25,7 +25,7 @@ export const generateMetadata = async ({ params }: SlugPageProps) => {
           community: true,
         },
         orderBy: {
-          createdAt: "desc",
+          createdAt: 'desc',
         },
         take: INFINITE_SCROLLING_PAGINATION_RESULTS,
       },
@@ -39,21 +39,21 @@ export const generateMetadata = async ({ params }: SlugPageProps) => {
   // Generate metadata dynamically based on the community data
   const metadata = {
     title: `z/${community.name}`,
-    description: community.description || "Community",
+    description: community.description || 'Community',
     openGraph: {
       title: `z/${community.name}`,
-      description: community.description || "Community",
+      description: community.description || 'Community',
       images: [
         {
-          url: community.image || "https://joshuaedo.sirv.com/Z/Z.png",
+          url: community.image || 'https://joshuaedo.sirv.com/Z/Z.png',
         },
       ],
     },
     twitter: {
-      card: "summary_large_image",
+      card: 'summary_large_image',
       title: `z/${community.name}`,
-      description: community.description || "Community",
-      images: [community.image || "https://joshuaedo.sirv.com/Z/Z.png"],
+      description: community.description || 'Community',
+      images: [community.image || 'https://joshuaedo.sirv.com/Z/Z.png'],
     },
   };
 
@@ -82,7 +82,7 @@ const SlugPage = async ({ params }: SlugPageProps) => {
           community: true,
         },
         orderBy: {
-          createdAt: "desc",
+          createdAt: 'desc',
         },
         take: INFINITE_SCROLLING_PAGINATION_RESULTS,
       },
@@ -119,16 +119,16 @@ const SlugPage = async ({ params }: SlugPageProps) => {
   });
 
   return (
-    <div className="space-y-6">
-      <div className="md:flex items-center space-y-3 md:space-y-0 md:gap-x-2 max-w-screen">
-        <CommunityAvatar community={community} className="h-12 w-12" />
-        <div className="flex w-fit items-center justify-center">
+    <div className='space-y-6'>
+      <div className='md:flex items-center space-y-3 md:space-y-0 md:gap-x-2 max-w-screen'>
+        <CommunityAvatar community={community} className='h-12 w-12' />
+        <div className='flex w-fit items-center justify-center'>
           {/* Community Name & Info */}
-          <h2 className="font-bold text-2xl md:text-4xl">z/{community.name}</h2>
+          <h2 className='font-bold text-2xl md:text-4xl'>z/{community.name}</h2>
           {/* Community Status */}
           {isCreator ? (
-            <div className="flex items-center">
-              <div className="bg-purple-500 text-zinc-900 rounded-full font-semibold py-1 px-2 border border-zinc-900 mx-2">
+            <div className='flex items-center'>
+              <div className='bg-purple-500 text-zinc-900 rounded-full font-semibold py-1 px-2 border border-zinc-900 mx-2'>
                 Creator
               </div>
               <EditCommunityDropdown communityPath={community.name} />
@@ -144,26 +144,26 @@ const SlugPage = async ({ params }: SlugPageProps) => {
         </div>
       </div>
 
-      <div className="space-y-1 overflow-hidden rounded-md bg-white shadow h-full px-5 py-4">
+      <div className='space-y-1 overflow-hidden rounded-md bg-white shadow h-full px-5 py-4'>
         {community.description && (
-          <div className="">
-            <p className="text-sm">{community.description}</p>
+          <div className=''>
+            <p className='text-sm'>{community.description}</p>
           </div>
         )}
 
-        <div className="flex items-center pt-2">
-          <CalendarIcon className="mr-2 h-4 w-4 opacity-70" />{" "}
-          <span className="text-xs text-muted-foreground">
+        <div className='flex items-center pt-2'>
+          <CalendarIcon className='mr-2 h-4 w-4 opacity-70' />{' '}
+          <span className='text-xs text-muted-foreground'>
             <time dateTime={community.createdAt.toDateString()}>
-              {`Created on ${format(community.createdAt, "MMMM d, yyyy")}`}
+              {`Created on ${format(community.createdAt, 'MMMM d, yyyy')}`}
             </time>
           </span>
         </div>
 
-        <div className="flex items-center pt-2">
-          <Users className="mr-2 h-4 w-4 opacity-70" />{" "}
-          <span className="text-xs text-muted-foreground">
-            <span>{`${memberCount} member${memberCount > 1 ? "s" : ""}`}</span>
+        <div className='flex items-center pt-2'>
+          <Users className='mr-2 h-4 w-4 opacity-70' />{' '}
+          <span className='text-xs text-muted-foreground'>
+            <span>{`${memberCount} member${memberCount > 1 ? 's' : ''}`}</span>
           </span>
         </div>
       </div>
@@ -172,7 +172,10 @@ const SlugPage = async ({ params }: SlugPageProps) => {
       <AddCommunityPost session={session} isCreator={isCreator} />
 
       {/* Community Feed */}
-      <FollowingFeed initialPosts={community.posts} />
+      <FollowingFeed
+        initialPosts={community.posts}
+        communityName={community.name}
+      />
     </div>
   );
 };
