@@ -30,31 +30,17 @@ const ProfilePostFeed = async ({
           (vote) => vote.userId == session?.user.id
         );
 
-        if (index === posts.length - 1) {
-          return (
-            <li key={post.id} ref={ref}>
-              <Post
-                currentVote={currentVote}
-                votesAmt={votesAmt}
-                commentAmt={post.comments.length}
-                post={post}
-                communityName={post.community.name}
-              />
-            </li>
-          );
-        } else {
-          return (
-            <li key={post.id}>
-              <Post
-                currentVote={currentVote}
-                votesAmt={votesAmt}
-                commentAmt={post.comments.length}
-                post={post}
-                communityName={post.community.name}
-              />
-            </li>
-          );
-        }
+        return (
+          <li key={post.id}>
+            <Post
+              currentVote={currentVote}
+              votesAmt={votesAmt}
+              commentAmt={post.comments.length}
+              post={post}
+              communityName={post.community.name}
+            />
+          </li>
+        );
       })}
       <li className='w-full text-xs py-6 flex items-center justify-center'>
         <span>- end of feed -</span>
