@@ -10,12 +10,12 @@ import Post from '../posts/Post';
 import { Loader2 } from 'lucide-react';
 import { INFINITE_SCROLLING_PAGINATION_RESULTS } from '@/config';
 
-interface FollowingFeedProps {
+interface NotFollowingFeedProps {
   initialPosts: ExtendedPost[];
   communityName?: string;
 }
 
-const FollowingFeed: FC<FollowingFeedProps> = ({
+const NotFollowingFeed: FC<NotFollowingFeedProps> = ({
   initialPosts,
   communityName,
 }) => {
@@ -32,7 +32,7 @@ const FollowingFeed: FC<FollowingFeedProps> = ({
     ['infinite-query'],
     async ({ pageParam = 1 }) => {
       const query =
-        `/api/posts/following?limit=${INFINITE_SCROLLING_PAGINATION_RESULTS}&page=${pageParam}` +
+        `/api/posts/not-following?limit=${INFINITE_SCROLLING_PAGINATION_RESULTS}&page=${pageParam}` +
         (!!communityName ? `&communityName=${communityName}` : '');
 
       const { data } = await axios.get(query);
@@ -105,4 +105,4 @@ const FollowingFeed: FC<FollowingFeedProps> = ({
   );
 };
 
-export default FollowingFeed;
+export default NotFollowingFeed;

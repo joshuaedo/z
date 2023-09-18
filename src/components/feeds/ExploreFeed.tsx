@@ -44,7 +44,7 @@ const ExploreFeed = async () => {
     take: INFINITE_SCROLLING_PAGINATION_RESULTS,
   });
 
-  return <PostFeed initialPosts={posts} />;
+  return <NotFollowingFeed initialPosts={posts} />;
 };
 
 export default ExploreFeed;
