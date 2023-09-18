@@ -57,21 +57,21 @@ const NotFollowingFeed: FC<NotFollowingFeedProps> = ({
   const posts = data?.pages.flatMap((page) => page) ?? initialPosts;
 
   return (
-    <ul className='flex flex-col space-y-6'>
-      {posts.map((post, index) => {
-        const votesAmt = post.votes.reduce((acc, vote) => {
-          if (vote.type === 'UP') return acc + 1;
-          if (vote.type === 'DOWN') return acc - 1;
-          return acc;
-        }, 0);
+    <Suspense fallback={<Loader />}>
+      <ul className='flex flex-col space-y-6'>
+        {posts.map((post, index) => {
+          const votesAmt = post.votes.reduce((acc, vote) => {
+            if (vote.type === 'UP') return acc + 1;
+            if (vote.type === 'DOWN') return acc - 1;
+            return acc;
+          }, 0);
 
-        const currentVote = post.votes.find(
-          (vote) => vote.userId == session?.user.id
-        );
+          const currentVote = post.votes.find(
+            (vote) => vote.userId == session?.user.id
+          );
 
-        if (index === posts.length - 1) {
-          return (
-            <Suspense fallback={<Loader />}>
+          if (index === posts.length - 1) {
+            return (
               <li key={post.id} ref={ref}>
                 <Post
                   currentVote={currentVote}
@@ -81,11 +81,9 @@ const NotFollowingFeed: FC<NotFollowingFeedProps> = ({
                   communityName={post.community.name}
                 />
               </li>
-            </Suspense>
-          );
-        } else {
-          return (
-            <Suspense fallback={<Loader />}>
+            );
+          } else {
+            return (
               <li key={post.id}>
                 <Post
                   currentVote={currentVote}
@@ -95,19 +93,19 @@ const NotFollowingFeed: FC<NotFollowingFeedProps> = ({
                   communityName={post.community.name}
                 />
               </li>
-            </Suspense>
-          );
-        }
-      })}
-      {isFetchingNextPage && (
-        <div className='py-2 text-zinc-900 flex items-center justify-center'>
-          <Loader2 className='animate-spin' />
-        </div>
-      )}
-      <li className='w-full text-xs py-6 flex items-center justify-center'>
-        <span>- end of feed -</span>
-      </li>
-    </ul>
+            );
+          }
+        })}
+        {isFetchingNextPage && (
+          <div className='py-2 text-zinc-900 flex items-center justify-center'>
+            <Loader2 className='animate-spin' />
+          </div>
+        )}
+        <li className='w-full text-xs py-6 flex items-center justify-center'>
+          <span>- end of feed -</span>
+        </li>
+      </ul>
+    </Suspense>
   );
 };
 
