@@ -29,7 +29,7 @@ const Communities: FC<CommunitiesProps> = ({ session, subs }) => {
       <div className="rounded-lg shadow px-8 pb-8 pt-4 space-y-2 bg-white">
         <button
           onClick={() => router.push("/z/create")}
-          className="py-3 pr-4 rounded-lg hover:bg-[#F8FAFC] text-zinc-600 flex items-center gap-x-2.5 md:gap-x-3.5 text-xl"
+          className="py-3 pr-4 rounded-lg hover:bg-[#F8FAFC] text-zinc-600 flex items-center gap-x-2.5 md:gap-x-3.5 text-base md:text-xl"
         >
           <Plus />
           <span>Create a community</span>
@@ -51,10 +51,17 @@ const Communities: FC<CommunitiesProps> = ({ session, subs }) => {
                     className="h-12 w-12"
                   />
                   <div>
-                    <p className="font-medium">
+                    <p className="hidden md:block font-medium">
                       {`z/${
                         community.name.length > 16
-                          ? community.name.slice(0, 13) + "..."
+                          ? community.name.slice(0, 15) + "..."
+                          : community.name
+                      }`}
+                    </p>
+                    <p className="md:hidden font-medium">
+                      {`z/${
+                        community.name.length > 11
+                          ? community.name.slice(0, 10) + "..."
                           : community.name
                       }`}
                     </p>

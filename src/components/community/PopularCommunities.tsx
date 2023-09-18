@@ -23,7 +23,7 @@ const PopularCommunities: FC<PopularCommunitiesProps> = ({
         {popularCommunities.map((community, index) => (
           <li
             key={community.id}
-            className="py-1 flex items-center hover:bg-[#F8FAFC] rounded-lg p-1 gap-x-4 md:gap-x-5"
+            className="py-1 flex items-start hover:bg-[#F8FAFC] rounded-lg p-1 gap-x-4 md:gap-x-5"
           >
             <h2 className="font-bold text-3xl text-zinc-400 opacity-70">
               {index + 1 < 10 ? `0${index + 1}` : index + 1}
@@ -34,13 +34,20 @@ const PopularCommunities: FC<PopularCommunitiesProps> = ({
             >
               <CommunityAvatar community={community} className="h-12 w-12" />
               <div>
-                <p className="font-medium">
-                  {`z/${
-                    community.name.length > 16
-                      ? community.name.slice(0, 13) + "..."
-                      : community.name
-                  }`}
-                </p>
+              <p className="hidden md:block font-medium">
+                      {`z/${
+                        community.name.length > 16
+                          ? community.name.slice(0, 15) + "..."
+                          : community.name
+                      }`}
+                    </p>
+                    <p className="md:hidden font-medium">
+                      {`z/${
+                        community.name.length > 11
+                          ? community.name.slice(0, 10) + "..."
+                          : community.name
+                      }`}
+                    </p>
 
                 <div className="flex items-center pt-2">
                   <Users className="mr-2 h-4 w-4 opacity-70" />{" "}
