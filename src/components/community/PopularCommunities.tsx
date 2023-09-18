@@ -18,14 +18,14 @@ const PopularCommunities: FC<PopularCommunitiesProps> = ({
   popularCommunities,
 }) => {
   return (
-    <div className="rounded-lg shadow p-8 space-y-2 bg-white">
+    <div className="rounded-lg shadow px-8 py-6 space-y-2 bg-white">
       <ul id="explore" className="text-zinc-900 space-y-3">
         {popularCommunities.map((community, index) => (
           <li
             key={community.id}
-            className="py-1 flex items-center  hover:bg-[#F8FAFC] rounded-lg p-1"
+            className="py-1 flex items-center hover:bg-[#F8FAFC] rounded-lg p-1 gap-x-4 md:gap-x-5"
           >
-            <h2 className="font-bold text-xl gap-x-4 md:gap-x-5 text-zinc-400">
+            <h2 className="font-bold text-3xl text-zinc-400 opacity-70">
               {index + 1 < 10 ? `0${index + 1}` : index + 1}
             </h2>
             <Link
