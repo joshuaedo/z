@@ -1,4 +1,4 @@
-import { TrendingUp, Users } from "lucide-react";
+import { Users } from "lucide-react";
 import { FC } from "react";
 import CommunityAvatar from "./CommunityAvatar";
 import Link from "next/link";
@@ -18,11 +18,7 @@ const PopularCommunities: FC<PopularCommunitiesProps> = ({
   popularCommunities,
 }) => {
   return (
-    <div className="rounded-lg shadow px-8 pb-8 pt-4 space-y-2 bg-white">
-      <div className="text-zinc-900 flex items-center gap-x-2.5 md:gap-x-3.5 text-sm font-bold">
-        <TrendingUp />
-        <span>POPULAR ON Z</span>
-      </div>
+    <div className="rounded-lg shadow p-8 space-y-2 bg-white">
       <ul id="explore" className="text-zinc-900 space-y-3">
         {popularCommunities.map((community) => (
           <>

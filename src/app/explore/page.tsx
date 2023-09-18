@@ -2,7 +2,7 @@ import PopularCommunities from "@/components/community/PopularCommunities";
 import ExploreFeed from "@/components/feeds/ExploreFeed";
 import SearchBar from "@/components/ui/SearchBar";
 import { db } from "@/lib/db";
-import { Layers } from "lucide-react";
+import { Layers, TrendingUp } from "lucide-react";
 
 export const metadata = {
   title: "Explore / Z",
@@ -45,9 +45,13 @@ const ExplorePage = async ({}: ExplorePageProps) => {
     <div className="space-y-6">
       <h2 className="font-bold text-3xl md:text-4xl">Explore</h2>
       <SearchBar />
+      <div className="pt-6 text-zinc-900 flex items-center gap-x-2.5 md:gap-x-3.5 text-lg font-bold">
+        <TrendingUp className="font-medium" />
+        <span>POPULAR ON Z</span>
+      </div>
       <PopularCommunities popularCommunities={popularCommunities} />
-      <div className="mt-9 rounded-lg text-zinc-900 flex items-center gap-x-2.5 md:gap-x-3.5 text-sm font-bold">
-        <Layers />
+      <div className="pt-6 rounded-lg text-zinc-900 flex items-center gap-x-2.5 md:gap-x-3.5 text-lg font-bold">
+        <Layers className="font-medium" />
         <span>RECOMMENDED FOR YOU</span>
       </div>
       {/* @ts-expect-error Server Component */}
