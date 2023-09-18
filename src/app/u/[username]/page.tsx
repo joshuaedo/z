@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const title =
     userMetaName !== undefined
-      ? `${displayName} (u/@${userMetaName}) • Z`
+      ? `${displayName} (u/${userMetaName}) • Z`
       : "guest / Z";
 
   const description = title + ` on Z • ` + user?.bio;
