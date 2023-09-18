@@ -10,16 +10,16 @@ type ExtendedCommunity = Community & {
   };
 };
 
-interface TrendingCommunitiesProps {
+interface PopularCommunitiesProps {
   popularCommunities: ExtendedCommunity[];
 }
 
-const TrendingCommunities: FC<TrendingCommunitiesProps> = ({
+const PopularCommunities: FC<PopularCommunitiesProps> = ({
   popularCommunities,
 }) => {
   return (
     <div className="rounded-lg shadow px-8 pb-8 pt-4 space-y-2 bg-white">
-      <div className="py-3 pr-4 rounded-lg hover:bg-[#F8FAFC] text-zinc-600 flex items-center gap-x-2.5 md:gap-x-3.5 text-xl">
+      <div className="py-3 pr-4 rounded-lg text-zinc-900 flex items-center gap-x-2.5 md:gap-x-3.5 text-base font-semibold">
         <TrendingUp />
         <span>POPULAR ON Z</span>
       </div>
@@ -63,4 +63,4 @@ const TrendingCommunities: FC<TrendingCommunitiesProps> = ({
   );
 };
 
-export default TrendingCommunities;
+export default PopularCommunities;

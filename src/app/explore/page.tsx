@@ -1,4 +1,4 @@
-import TrendingCommunities from "@/components/community/TrendingCommunities";
+import PopularCommunities from "@/components/community/PopularCommunities";
 import ExploreFeed from "@/components/feeds/ExploreFeed";
 import SearchBar from "@/components/ui/SearchBar";
 import { db } from "@/lib/db";
@@ -29,6 +29,9 @@ interface ExplorePageProps {}
 
 const ExplorePage = async ({}: ExplorePageProps) => {
   const popularCommunities = await db.community.findMany({
+    include: {
+      _count: true,
+    },
     orderBy: {
       subscribers: {
         _count: "desc",
@@ -41,7 +44,7 @@ const ExplorePage = async ({}: ExplorePageProps) => {
     <div className="space-y-6">
       <h2 className="font-bold text-3xl md:text-4xl">Explore</h2>
       <SearchBar />
-      <TrendingCommunities popularCommunities={popularCommunities} />
+      <PopularCommunities popularCommunities={popularCommunities} />
       {/* @ts-expect-error Server Component */}
       <ExploreFeed />
     </div>
