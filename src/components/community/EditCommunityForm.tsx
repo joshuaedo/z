@@ -168,7 +168,7 @@ export default function EditCommunityForm({
           <Button isLoading={isLoading} type="submit">
             Submit
           </Button>
-          <Button variant="subtle" onClick={() => router.back()}>
+          <Button variant="outline" onClick={() => router.back()}>
             Cancel
           </Button>
         </div>

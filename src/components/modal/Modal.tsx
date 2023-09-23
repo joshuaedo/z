@@ -16,7 +16,7 @@ const Modal: FC<ModalProps> = ({
   toggleModal,
 }) => {
   return (
-    <div className={`fixed inset-0 bg-zinc-900/20 z-[9999]`}>
+    <div className={`fixed inset-0 bg-background z-[9999]`}>
       <div
         className={`container flex items-center h-full ${modalContainer} justify-center`}
       >
