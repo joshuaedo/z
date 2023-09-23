@@ -4,7 +4,7 @@ import { INFINITE_SCROLLING_PAGINATION_RESULTS } from "@/config";
 import { db } from "@/lib/db";
 import type { Metadata } from "next";
 import ProfileCard from "@/components/profile/ProfileCard";
-import ProfileFeed from "@/components/feeds/ProfileFeed";
+import ProfileFeed from "@/components/feeds/profile/ProfileFeed";
 
 type Props = {
   params: { username: string };

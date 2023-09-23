@@ -2,7 +2,7 @@ import HomeFeedToggle from '@/components/ui/HomeFeedToggle';
 import { getAuthSession } from '@/lib/auth';
 import SignInFireWall from '@/components/auth/SignInFireWall';
 import { db } from '@/lib/db';
-import FollowingFeed from '@/components/feeds/FollowingFeed';
+import FollowingFeed from '@/components/feeds/following/FollowingFeed';
 
 export const metadata = {
   title: "Home on Z",

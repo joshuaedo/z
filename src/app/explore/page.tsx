@@ -2,7 +2,7 @@ import PopularCommunities from "@/components/community/PopularCommunities";
 import SearchBar from "@/components/ui/SearchBar";
 import { db } from "@/lib/db";
 import { Layers, TrendingUp } from "lucide-react";
-import ExploreFeed from '@/components/feeds/ExploreFeed';
+import ExploreFeed from '@/components/feeds/explore/ExploreFeed';
 
 export const metadata = {
   title: "Explore / Z",
