@@ -56,6 +56,14 @@ export default function RootLayout({
   modal: React.ReactNode;
 }) {
   return (
+    //   <html
+    //   lang='en'
+    //   className={cn(
+    //     'bg-white text-slate-900 antialiased font-sans light',
+    //     fontSans.variable
+    //   )}
+    // >
+    //   <body className='min-h-screen bg-slate-50 antialiased'>
     <html lang="en" suppressHydrationWarning>
       <head />
       <body
@@ -67,7 +75,7 @@ export default function RootLayout({
         <Providers>
           <Header />
           {modal}
-          <main className="container max-w-5xl mx-auto h-full pt-24 pb-20 md:pt-8 md:pb-8">
+          <main className="mobile-container md:container max-w-5xl mx-auto h-full pt-24 pb-20 md:pt-8 md:pb-8">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-y-4 gap-x-4">
               <div className="hidden md:block col-span-1 h-full relative">
                 {/* @ts-expect-error Server Component */}
