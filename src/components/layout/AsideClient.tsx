@@ -9,7 +9,7 @@ import { Community, User } from "@prisma/client";
 import { Session } from "next-auth";
 import Link from "next/link";
 import CommunityAvatar from "../community/CommunityAvatar";
-import { ThemeToggle } from '../ui/ThemeToggle';
+// import { ThemeToggle } from '../ui/ThemeToggle';
 
 interface AsideClientProps {
   session: Session | null;
@@ -160,7 +160,7 @@ const AsideClient: FC<AsideClientProps> = ({ session, subs, user }) => {
         </button>
       </div>
 
-      <ThemeToggle />
+      {/* <ThemeToggle /> */}
     </aside>
   );
 };
