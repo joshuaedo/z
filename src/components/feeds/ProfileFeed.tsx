@@ -5,6 +5,7 @@ import React, { FC, useState } from "react";
 import ProfilePostFeed from "./ProfilePostFeed";
 import { Suspense } from "react";
 import Loader from "@/components/ui/Loader";
+import { Button } from "@/components/ui/Button";
 
 interface ProfileFeedProps {
   posts: ExtendedPost[];
@@ -18,22 +19,20 @@ const ProfileFeed: FC<ProfileFeedProps> = ({ posts, replies }) => {
     <div className="space-y-6">
       <div className="flex w-full items-center justify-center">
         <div className="overflow-hidden max-w-4xl h-fit flex items-center justify-evenly rounded-lg bg-white dark:bg-[#000000] shadow dark:border border-[#333333] px-7 py-5">
-          <button
+          <Button
+            variant="ghost"
             onClick={() => setIsReply(false)}
-            className={`py-2 px-3 hover:bg-[#F8FAFC] cursor-pointer mr-4 ${
-              !isReply ? "font-bold" : "opacity-60"
-            }`}
+            className={`${isReply === "/" ? "font-bold" : "font-medium"}`}
           >
             Posts
-          </button>
-          <button
-            onClick={() => setIsReply(true)}
-            className={`py-2 px-3 hover:bg-[#F8FAFC] cursor-pointer ${
-              isReply ? "font-bold" : "opacity-60"
-            }`}
+          </Button>
+          <Button
+            variant="ghost"
+            onClick={() => setIsReply(false)}
+            className={`${isReply === "/" ? "font-bold" : "font-medium"}`}
           >
             Replies
-          </button>
+          </Button>
         </div>
       </div>
       {!isReply ? (
