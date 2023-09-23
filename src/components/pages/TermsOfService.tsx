@@ -1,4 +1,5 @@
 import { FC } from "react";
+import NextLink from 'next/link';
 
 interface UpdatedDateProps {
   currentDate: Date;
@@ -54,7 +55,7 @@ const TermsOfService = () => {
       <p>
         Your use of the Website is also governed by our Privacy Policy. By using
         the Website, you consent to the collection, processing, and use of your
-        information as described in the Privacy Policy.
+        information as described in the <NextLink href="/privacy-policy">Privacy Policy</NextLink>.
       </p>
 
       <h4>4. Intellectual Property</h4>
@@ -111,7 +112,7 @@ const TermsOfService = () => {
 
       <p>
         If you have any questions or concerns about these Terms of Service,
-        please contact us using the contact information provided on the Website.
+        please contact us at joshua.edo01@gmail.com.
       </p>
 
       <UpdatedDate currentDate={today} />

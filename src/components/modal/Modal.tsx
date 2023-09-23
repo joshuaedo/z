@@ -17,13 +17,13 @@ const Modal: FC<ModalProps> = ({
 }) => {
   return (
     <div
-      className={`fixed inset-0 bg-slate-50 dark:bg-[#0A0A0A] bg-opacity-30 dark:bg-opacity-20 z-[9999]`}
+      className={`fixed inset-0 bg-slate-50 dark:bg-[#0A0A0A] bg-opacity-30 z-[9999]`}
     >
       <div
         className={`container flex items-center h-full ${modalContainer} justify-center`}
       >
         <div
-          className={`relative bg-white dark:bg-[#000000] shadow dark:border border-[#333333] h-fit pt-12 pb-8 px-3 rounded-lg`}
+          className={`relative bg-white dark:bg-[#000000] shadow dark:border border-[#333333] h-fit pt-2 pb-8 px-3 rounded-lg`}
         >
           <ModalHeader showMax={showMax} toggleModal={toggleModal} />
           {children}

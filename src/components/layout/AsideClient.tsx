@@ -157,12 +157,12 @@ const AsideClient: FC<AsideClientProps> = ({ session, subs, user }) => {
         >
           Terms of Service
         </button>
-        <button
+        {/* <button
           onClick={() => router.push("/support")}
           className="block text-xs font-medium rounded-lg"
         >
           Support
-        </button>
+        </button> */}
       </div>
 
       <ThemeToggle />
