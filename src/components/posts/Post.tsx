@@ -32,7 +32,7 @@ const Post: FC<PostProps> = ({
 
   return (
     <>
-      <div className="rounded-md bg-white dark:bg-[#14171A] shadow dark:border border-[#333333]">
+      <div className="rounded-md bg-white dark:bg-[#000000] shadow dark:border border-[#333333]">
         <div className="pr-4 md:px-6 py-4 flex justify-between">
           <PostVoteClient
             postId={post.id}

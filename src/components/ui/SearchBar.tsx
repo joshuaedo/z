@@ -76,7 +76,7 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
         placeholder="Search Z..."
       />
       {input.length > 0 && (
-        <CommandList className="absolute top-full inset-x-0 bg-white dark:bg-[#14171A] shadow dark:border border-[#333333] rounded-b-md">
+        <CommandList className="absolute top-full inset-x-0 bg-white dark:bg-[#000000] shadow dark:border border-[#333333] rounded-b-md">
           {isFetching && (
             <div className="w-full flex p-2 items-center justify-center">
               <Loader2 className="animate-spin" />

@@ -8,7 +8,7 @@ const HomeFeedToggle = () => {
 
   return (
     <div className="flex w-full items-center justify-center">
-      <div className="overflow-hidden max-w-4xl h-fit flex items-center justify-evenly rounded-lg bg-white dark:bg-[#14171A] shadow dark:border border-[#333333] px-7 py-5">
+      <div className="overflow-hidden max-w-4xl h-fit flex items-center justify-evenly rounded-lg bg-white dark:bg-[#000000] shadow dark:border border-[#333333] px-7 py-5">
         <button
           onClick={() => router.push("/")}
           className={`py-2 px-3 hover:bg-[#F8FAFC] cursor-pointer mr-4 ${
