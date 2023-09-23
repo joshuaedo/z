@@ -22,14 +22,14 @@ const ProfileFeed: FC<ProfileFeedProps> = ({ posts, replies }) => {
           <Button
             variant="ghost"
             onClick={() => setIsReply(false)}
-            className={`${isReply === "/" ? "font-bold" : "font-medium"}`}
+            className={`${!isReply ? "font-bold" : "font-medium"}`}
           >
             Posts
           </Button>
           <Button
             variant="ghost"
-            onClick={() => setIsReply(false)}
-            className={`${isReply === "/" ? "font-bold" : "font-medium"}`}
+            onClick={() => setIsReply(true)}
+            className={`${isReply ? "font-bold" : "font-medium"}`}
           >
             Replies
           </Button>
