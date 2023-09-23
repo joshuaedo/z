@@ -1,6 +1,6 @@
-'use client';
-import ModalHeader from './ModalHeader';
-import { FC } from 'react';
+"use client";
+import ModalHeader from "./ModalHeader";
+import { FC } from "react";
 
 interface ModalProps {
   modalContainer: string;
@@ -16,11 +16,13 @@ const Modal: FC<ModalProps> = ({
   toggleModal,
 }) => {
   return (
-    <div className={`fixed inset-0 bg-background z-[9999]`}>
+    <div className={`fixed inset-0 bg-background bg-opacity-50 z-[9999]`}>
       <div
         className={`container flex items-center h-full ${modalContainer} justify-center`}
       >
-        <div className={`relative h-fit pt-12 pb-8 px-3 rounded-lg`}>
+        <div
+          className={`relative bg-background h-fit pt-12 pb-8 px-3 rounded-lg`}
+        >
           <ModalHeader showMax={showMax} toggleModal={toggleModal} />
           {children}
         </div>
