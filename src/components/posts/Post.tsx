@@ -83,7 +83,7 @@ const Post: FC<PostProps> = ({
           </div>
         </div>
 
-        <div className="bg-gray-50 z-20 text-sm p-4 sm:px-6">
+        <div className="bg-gray-50 dark:bg-gray-950 z-20 text-sm p-4 sm:px-6">
           <a
             className="w-fit flex items-center gap-2"
             href={`/z/${communityName}/post/${post.id}`}
