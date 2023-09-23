@@ -37,7 +37,7 @@ const AsideClient: FC<AsideClientProps> = ({ session, subs, user }) => {
         onClick={() => router.push("/")}
         className={`${
           pathname === "/" ? "font-bold" : "font-medium"
-        } hidden md:flex items-end text-xl py-3 pr-4 rounded-lg hover:bg-[#F8FAFC]`}
+        } hidden text-xl `}
       >
         <Home
           strokeWidth={pathname === "/" ? 2 : 1.5}
@@ -51,7 +51,7 @@ const AsideClient: FC<AsideClientProps> = ({ session, subs, user }) => {
         onClick={() => router.push("/communities")}
         className={`${
           pathname === "/communities" ? "font-bold" : "font-medium"
-        } hidden md:flex items-end text-xl py-3 pr-4 rounded-lg hover:bg-[#F8FAFC]`}
+        } hidden text-xl `}
       >
         <Users
           strokeWidth={pathname === "/communities" ? 2 : 1.5}
@@ -65,7 +65,7 @@ const AsideClient: FC<AsideClientProps> = ({ session, subs, user }) => {
         onClick={() => router.push("/explore")}
         className={`${
           pathname === "/explore" ? "font-bold" : "font-medium"
-        } hidden md:flex items-end text-xl py-3 pr-4 rounded-lg hover:bg-[#F8FAFC]`}
+        } hidden text-xl `}
       >
         <Search
           strokeWidth={pathname === "/explore" ? 2 : 1.5}
@@ -79,7 +79,7 @@ const AsideClient: FC<AsideClientProps> = ({ session, subs, user }) => {
         onClick={() => router.push(`/u/${zUser?.username}`)}
         className={`${
           pathname === `/u/${zUser?.username}` ? "font-bold" : "font-medium"
-        } hidden md:flex items-end text-xl py-3 pr-4 rounded-lg hover:bg-[#F8FAFC]`}
+        } hidden text-xl`}
       >
         <UserCircle
           strokeWidth={pathname === `/u/${zUser?.username}` ? 2 : 1.5}
