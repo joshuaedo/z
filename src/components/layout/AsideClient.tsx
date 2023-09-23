@@ -23,11 +23,11 @@ const AsideClient: FC<AsideClientProps> = ({ session, subs, user }) => {
   const zUser = user ?? session?.user;
 
   return (
-    <aside className="overflow-hidden h-fit rounded-lg md:bg-white md:dark:bg-[#000000] shadow dark:border border-[#333333] md:fixed p-8 space-y-2">
+    <aside className="overflow-hidden h-fit rounded-lg md:bg-white md:dark:bg-[#14171A] shadow dark:border border-[#333333] md:fixed p-8 space-y-2">
       <Button
         variant="ghost"
         onClick={() => router.push("/")}
-        className="hidden md:flex items-center"
+        className="hidden md:flex items-center pl-0 mb-4"
       >
         <Icons.logo className="-ml-2 h-8 w-8 md:h-10 md:w-10" />
       </Button>
@@ -37,7 +37,7 @@ const AsideClient: FC<AsideClientProps> = ({ session, subs, user }) => {
         onClick={() => router.push("/")}
         className={`${
           pathname === "/" ? "font-bold" : "font-medium"
-        } hidden md:flex text-xl items-end `}
+        } hidden md:flex text-xl items-end pl-0 mb-4 `}
       >
         <Home
           strokeWidth={pathname === "/" ? 2 : 1.5}
@@ -51,7 +51,7 @@ const AsideClient: FC<AsideClientProps> = ({ session, subs, user }) => {
         onClick={() => router.push("/communities")}
         className={`${
           pathname === "/communities" ? "font-bold" : "font-medium"
-        } hidden md:flex text-xl items-end `}
+        } hidden md:flex text-xl items-end pl-0 mb-4 `}
       >
         <Users
           strokeWidth={pathname === "/communities" ? 2 : 1.5}
@@ -65,7 +65,7 @@ const AsideClient: FC<AsideClientProps> = ({ session, subs, user }) => {
         onClick={() => router.push("/explore")}
         className={`${
           pathname === "/explore" ? "font-bold" : "font-medium"
-        } hidden md:flex text-xl items-end `}
+        } hidden md:flex text-xl items-end pl-0 mb-4 `}
       >
         <Search
           strokeWidth={pathname === "/explore" ? 2 : 1.5}
@@ -79,7 +79,7 @@ const AsideClient: FC<AsideClientProps> = ({ session, subs, user }) => {
         onClick={() => router.push(`/u/${zUser?.username}`)}
         className={`${
           pathname === `/u/${zUser?.username}` ? "font-bold" : "font-medium"
-        } hidden md:flex text-xl items-end`}
+        } hidden md:flex text-xl items-end pl-0 mb-4`}
       >
         <UserCircle
           strokeWidth={pathname === `/u/${zUser?.username}` ? 2 : 1.5}
