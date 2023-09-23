@@ -8,7 +8,7 @@ const SignIn = () => {
     <div className="container mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[25rem]">
       <div className="flex flex-col space-y-2 text-center">
         <Icons.logo className="mx-auto h-7 w-7" />
-        <h1 className="text-2xl font-semibold tracking-tight">Welcome back</h1>
+        <h1 className="text-2xl font-semibold tracking-tight">Welcome</h1>
         <p className="text-xs max-w-xs mx-auto">
           By continuing, you agree to our{" "}
           <a
