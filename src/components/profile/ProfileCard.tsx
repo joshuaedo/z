@@ -106,14 +106,14 @@ const ProfileCard: FC<ProfileCardProps> = ({
         <div className={`${birthday && "ml-1"} flex font-normal`}>
           <div className="flex items-end text-xs tracking-tight text-muted-foreground">
             <span className="flex items-start">
-              <span className="font-bold text-black mr-1">{`${ownedCommunities}`}</span>
+              <span className="font-bold mr-1">{`${ownedCommunities}`}</span>
               {`Communit${ownedCommunities === 1 ? "y" : "ies"} Created`}
             </span>
           </div>
 
           <div className="flex items-start ml-3">
             <span className="flex items-end text-xs tracking-tight text-muted-foreground">
-              <span className="font-bold text-black mr-1">{`${userSubs}`}</span>
+              <span className="font-bol mr-1">{`${userSubs}`}</span>
               {`Subscription${userSubs === 1 ? "" : "s"}`}
             </span>
           </div>
