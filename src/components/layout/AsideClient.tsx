@@ -2,7 +2,7 @@
 import { Icons } from "../ui/Icons";
 import { Home, UserCircle, Search, Users, Plus } from "lucide-react";
 import UserAccountNav from "../ui/UserAccountNav";
-import { buttonVariants } from "../ui/Button";
+import { Button, buttonVariants } from "../ui/Button";
 import { usePathname, useRouter } from "next/navigation";
 import { FC } from "react";
 import { Community, User } from "@prisma/client";
@@ -24,14 +24,16 @@ const AsideClient: FC<AsideClientProps> = ({ session, subs, user }) => {
 
   return (
     <aside className="overflow-hidden h-fit rounded-lg md:bg-white md:dark:bg-[#000000] shadow dark:border border-[#333333] md:fixed p-8 space-y-2">
-      <button
+      <Button
+        variant="ghost"
         onClick={() => router.push("/")}
         className="hidden md:flex items-center"
       >
         <Icons.logo className="-ml-2 h-8 w-8 md:h-10 md:w-10" />
-      </button>
+      </Button>
 
-      <button
+      <Button
+        variant="ghost"
         onClick={() => router.push("/")}
         className={`${
           pathname === "/" ? "font-bold" : "font-medium"
@@ -42,9 +44,10 @@ const AsideClient: FC<AsideClientProps> = ({ session, subs, user }) => {
           className="h-5 w-5 md:h-7 md:w-7 mr-3"
         />
         Home
-      </button>
+      </Button>
 
-      <button
+      <Button
+        variant="ghost"
         onClick={() => router.push("/communities")}
         className={`${
           pathname === "/communities" ? "font-bold" : "font-medium"
@@ -55,9 +58,10 @@ const AsideClient: FC<AsideClientProps> = ({ session, subs, user }) => {
           className="h-5 w-5 md:h-7 md:w-7 mr-3"
         />
         Communities
-      </button>
+      </Button>
 
-      <button
+      <Button
+        variant="ghost"
         onClick={() => router.push("/explore")}
         className={`${
           pathname === "/explore" ? "font-bold" : "font-medium"
@@ -68,9 +72,10 @@ const AsideClient: FC<AsideClientProps> = ({ session, subs, user }) => {
           className="h-5 w-5 md:h-7 md:w-7 mr-3"
         />
         Explore
-      </button>
+      </Button>
 
-      <button
+      <Button
+        variant="ghost"
         onClick={() => router.push(`/u/${zUser?.username}`)}
         className={`${
           pathname === `/u/${zUser?.username}` ? "font-bold" : "font-medium"
@@ -81,7 +86,7 @@ const AsideClient: FC<AsideClientProps> = ({ session, subs, user }) => {
           className="h-5 w-5 md:h-7 md:w-7 mr-3"
         />
         Profile
-      </button>
+      </Button>
 
       <hr className="hidden md:flex" />
 
