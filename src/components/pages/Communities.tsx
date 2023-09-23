@@ -82,7 +82,7 @@ const Communities: FC<CommunitiesProps> = ({ session, subs }) => {
         </ul>
       </div>
       {subs.length < 3 && (
-        <li className="w-full text-xs py-6 flex items-center justify-center">
+        <li className="w-full text-xs py-3 flex items-center justify-center">
           <span>- communities you create/join show up here -</span>
         </li>
       )}
