@@ -18,7 +18,7 @@ const PopularCommunities: FC<PopularCommunitiesProps> = ({
   popularCommunities,
 }) => {
   return (
-    <div className="rounded-lg bg-white dark:bg-[#000000] shadow dark:border border-[#333333] px-8 py-6 space-y-2">
+    <div className="rounded-lg bg-white dark:bg-[#0A0A0A] shadow dark:border border-[#333333] px-8 py-6 space-y-2">
       <ul id="explore" className="text-zinc-900 space-y-3">
         {popularCommunities.map((community, index) => (
           <li
