@@ -12,7 +12,7 @@ interface EditCommunityProps {
 
 const EditCommunity: FC<EditCommunityProps> = ({ session, community }) => {
   return (
-    <div className="rounded-md bg-white shadow px-4 md:px-6 py-4 space-y-5">
+    <div className="rounded-md shadow px-4 md:px-6 py-4 space-y-5">
       <h2 className="text-xl font-semibold">Edit Community</h2>
       <hr />
       <EditCommunityForm community={community} />

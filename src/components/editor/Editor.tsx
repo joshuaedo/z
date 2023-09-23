@@ -182,7 +182,7 @@ const Editor: FC<EditorProps> = ({ communityId, isModalOpen }) => {
   const { ref: titleRef, ...rest } = register('title');
 
   return (
-    <div className='w-full p-4 bg-zinc-50 rounded-lg border-zinc-200 flex items-center justify-center'>
+    <div className='w-full p-4 rounded-lg border-zinc-200 flex items-center justify-center'>
       <form
         id='community-post-form'
         className='w-fit'

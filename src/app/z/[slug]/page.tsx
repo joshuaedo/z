@@ -144,7 +144,7 @@ const SlugPage = async ({ params }: SlugPageProps) => {
         </div>
       </div>
 
-      <div className='space-y-1 overflow-hidden rounded-md bg-white shadow h-full px-5 py-4'>
+      <div className='space-y-1 overflow-hidden rounded-md shadow h-full px-5 py-4'>
         {community.description && (
           <div className=''>
             <p className='text-sm'>{community.description}</p>

@@ -20,7 +20,7 @@ const Modal: FC<ModalProps> = ({
       <div
         className={`container flex items-center h-full ${modalContainer} justify-center`}
       >
-        <div className={`relative bg-white h-fit pt-12 pb-8 px-3 rounded-lg`}>
+        <div className={`relative h-fit pt-12 pb-8 px-3 rounded-lg`}>
           <ModalHeader showMax={showMax} toggleModal={toggleModal} />
           {children}
         </div>

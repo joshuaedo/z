@@ -20,7 +20,7 @@ const AddCommunityPost: FC<AddCommunityPostProps> = ({
 
   return (
     <>
-      <li className='overflow-hidden rounded-md bg-white shadow list-none'>
+      <li className='overflow-hidden rounded-md shadow list-none'>
         <div className='h-full px-5 py-4 flex justify-between gap-4'>
           {/* Avatar */}
           <div className='relative'>

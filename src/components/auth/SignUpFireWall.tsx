@@ -5,7 +5,7 @@ interface SignUpFireWallProps {}
 
 const SignUpFireWall: FC<SignUpFireWallProps> = ({}) => {
   return (
-    <div className='rounded-md bg-white shadow md:px-6 h-[70vh] flex justify-center items-center'>
+    <div className='rounded-md shadow md:px-6 h-[70vh] flex justify-center items-center'>
       <SignUp />
     </div>
   );

@@ -23,7 +23,7 @@ const AsideClient: FC<AsideClientProps> = ({ session, subs, user }) => {
   const zUser = user ?? session?.user;
 
   return (
-    <aside className="overflow-hidden h-fit rounded-lg md:shadow md:fixed p-8 space-y-2 bg-white">
+    <aside className="overflow-hidden h-fit rounded-lg md:shadow md:fixed p-8 space-y-2">
       <button
         onClick={() => router.push("/")}
         className="hidden md:flex items-center"

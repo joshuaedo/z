@@ -41,7 +41,7 @@ const ProfileCard: FC<ProfileCardProps> = ({
   const birthday = user?.birthday
 
   return (
-    <div className='rounded-md bg-white shadow'>
+    <div className='rounded-md shadow'>
       <div className='h-[30vh] md:h-[40vh] flex items-start relative'>
         <div
           className={`w-full bg-${profileTheme} h-[75%] rounded-t-md`}
