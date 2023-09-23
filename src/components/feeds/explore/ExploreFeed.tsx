@@ -1,6 +1,6 @@
 import { INFINITE_SCROLLING_PAGINATION_RESULTS } from '@/config';
 import { db } from '@/lib/db';
-import NotFollowingFeed from './NotFollowingFeed';
+import ExplorePosts from './ExplorePosts';
 import { getAuthSession } from '@/lib/auth';
 import { Suspense } from 'react';
 import Loader from '@/components/ui/Loader';
@@ -48,7 +48,7 @@ const ExploreFeed = async () => {
 
   return (
     <Suspense fallback={<Loader />}>
-      <NotFollowingFeed initialPosts={posts} />
+      <ExplorePosts initialPosts={posts} />
     </Suspense>
   );
 };

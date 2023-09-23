@@ -2,7 +2,6 @@ import { INFINITE_SCROLLING_PAGINATION_RESULTS } from "@/config";
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { notFound } from "next/navigation";
-import FollowingFeed from "@/components/feeds/FollowingFeed";
 import SubscribeLeaveToggle from "@/components/auth/SubscribeLeaveToggle";
 import AddCommunityPost from "@/components/posts/AddCommunityPost";
 import { CalendarIcon } from "@radix-ui/react-icons";
@@ -10,6 +9,7 @@ import { format } from "date-fns/esm";
 import { Users } from "lucide-react";
 import EditCommunityDropdown from "@/components/ui/EditCommunityDropdown";
 import CommunityAvatar from "@/components/community/CommunityAvatar";
+import CommunityFeed from "@/components/feeds/community/CommunityFeed";
 
 export const generateMetadata = async ({ params }: SlugPageProps) => {
   const { slug } = params;
@@ -172,7 +172,7 @@ const SlugPage = async ({ params }: SlugPageProps) => {
       <AddCommunityPost session={session} isCreator={isCreator} />
 
       {/* Community Feed */}
-      <FollowingFeed
+      <CommunityFeed
         initialPosts={community.posts}
         communityName={community.name}
       />

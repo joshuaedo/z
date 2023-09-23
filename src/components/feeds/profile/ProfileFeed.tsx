@@ -2,7 +2,7 @@
 
 import { ExtendedPost } from "@/types/db";
 import React, { FC, useState } from "react";
-import ProfilePostFeed from "./ProfilePostFeed";
+import ProfilePosts from "./ProfilePosts";
 import { Suspense } from "react";
 import Loader from "@/components/ui/Loader";
 import { Button } from "@/components/ui/Button";
@@ -38,12 +38,12 @@ const ProfileFeed: FC<ProfileFeedProps> = ({ posts, replies }) => {
       {!isReply ? (
         <Suspense fallback={<Loader />}>
           {/* @ts-expect-error Server Component */}
-          <ProfilePostFeed initialPosts={posts} />
+          <ProfilePosts initialPosts={posts} />
         </Suspense>
       ) : (
         <Suspense fallback={<Loader />}>
           {/* @ts-expect-error Server Component */}
-          <ProfilePostFeed initialPosts={replies} />
+          <ProfilePosts initialPosts={replies} />
         </Suspense>
       )}
     </div>

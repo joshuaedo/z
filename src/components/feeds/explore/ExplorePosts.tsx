@@ -6,18 +6,18 @@ import { useIntersection } from "@mantine/hooks";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useSession } from "next-auth/react";
-import Post from "../posts/Post";
 import { Loader2 } from "lucide-react";
 import { INFINITE_SCROLLING_PAGINATION_RESULTS } from "@/config";
 import { Suspense } from "react";
 import Loader from "@/components/ui/Loader";
+import Post from "../../posts/Post";
 
-interface FollowingFeedProps {
+interface ExplorePostsProps {
   initialPosts: ExtendedPost[];
   communityName?: string;
 }
 
-const FollowingFeed: FC<FollowingFeedProps> = ({
+const ExplorePosts: FC<ExplorePostsProps> = ({
   initialPosts,
   communityName,
 }) => {
@@ -31,10 +31,10 @@ const FollowingFeed: FC<FollowingFeedProps> = ({
   const { data: session } = useSession();
 
   const { data, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
-    ["infinite-query"],
+    ["explore"],
     async ({ pageParam = 1 }) => {
       const query =
-        `/api/posts/following?limit=${INFINITE_SCROLLING_PAGINATION_RESULTS}&page=${pageParam}` +
+        `/api/posts/not-following?limit=${INFINITE_SCROLLING_PAGINATION_RESULTS}&page=${pageParam}` +
         (!!communityName ? `&communityName=${communityName}` : "");
 
       const { data } = await axios.get(query);
@@ -109,4 +109,4 @@ const FollowingFeed: FC<FollowingFeedProps> = ({
   );
 };
 
-export default FollowingFeed;
+export default ExplorePosts;

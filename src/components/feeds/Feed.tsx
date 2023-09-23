@@ -12,12 +12,12 @@ import { INFINITE_SCROLLING_PAGINATION_RESULTS } from "@/config";
 import { Suspense } from "react";
 import Loader from "@/components/ui/Loader";
 
-interface PostFeedProps {
+interface FeedProps {
   initialPosts: ExtendedPost[];
   communityName?: string;
 }
 
-const PostFeed: FC<PostFeedProps> = ({ initialPosts, communityName }) => {
+const Feed: FC<FeedProps> = ({ initialPosts, communityName }) => {
   const lastPostRef = useRef<HTMLElement>(null);
 
   const { ref, entry } = useIntersection({
@@ -28,7 +28,7 @@ const PostFeed: FC<PostFeedProps> = ({ initialPosts, communityName }) => {
   const { data: session } = useSession();
 
   const { data, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
-    ["infinite-query"],
+    ["posts"],
     async ({ pageParam = 1 }) => {
       const query =
         `/api/posts?limit=${INFINITE_SCROLLING_PAGINATION_RESULTS}&page=${pageParam}` +
@@ -104,4 +104,4 @@ const PostFeed: FC<PostFeedProps> = ({ initialPosts, communityName }) => {
   );
 };
 
-export default PostFeed;
+export default Feed;

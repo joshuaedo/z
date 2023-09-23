@@ -7,15 +7,15 @@ import { useSession } from 'next-auth/react';
 import { Suspense } from 'react';
 import Loader from '@/components/ui/Loader';
 
-interface ProfilePostFeedProps {
+interface ProfilePostsProps {
   initialPosts: ExtendedPost[];
   communityName?: string;
 }
 
-const ProfilePostFeed = async ({
+const ProfilePosts = async ({
   initialPosts,
   communityName,
-}: ProfilePostFeedProps) => {
+}: ProfilePostsProps) => {
   const { data: session } = useSession();
   const posts = initialPosts;
 
@@ -53,4 +53,4 @@ const ProfilePostFeed = async ({
   );
 };
 
-export default ProfilePostFeed;
+export default ProfilePosts;

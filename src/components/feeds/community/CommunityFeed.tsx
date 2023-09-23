@@ -12,12 +12,12 @@ import { INFINITE_SCROLLING_PAGINATION_RESULTS } from "@/config";
 import { Suspense } from "react";
 import Loader from "@/components/ui/Loader";
 
-interface NotFollowingFeedProps {
+interface CommunityFeedProps {
   initialPosts: ExtendedPost[];
   communityName?: string;
 }
 
-const NotFollowingFeed: FC<NotFollowingFeedProps> = ({
+const CommunityFeed: FC<CommunityFeedProps> = ({
   initialPosts,
   communityName,
 }) => {
@@ -31,10 +31,10 @@ const NotFollowingFeed: FC<NotFollowingFeedProps> = ({
   const { data: session } = useSession();
 
   const { data, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
-    ["infinite-query"],
+    ["community"],
     async ({ pageParam = 1 }) => {
       const query =
-        `/api/posts/not-following?limit=${INFINITE_SCROLLING_PAGINATION_RESULTS}&page=${pageParam}` +
+        `/api/posts/following?limit=${INFINITE_SCROLLING_PAGINATION_RESULTS}&page=${pageParam}` +
         (!!communityName ? `&communityName=${communityName}` : "");
 
       const { data } = await axios.get(query);
@@ -109,4 +109,4 @@ const NotFollowingFeed: FC<NotFollowingFeedProps> = ({
   );
 };
 
-export default NotFollowingFeed;
+export default CommunityFeed;
