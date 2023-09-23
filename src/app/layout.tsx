@@ -56,14 +56,14 @@ export default function RootLayout({
   modal: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={cn(
-        "bg-white text-slate-900 antialiased font-sans light",
-        fontSans.variable
-      )}
-    >
-      <body className="min-h-screen bg-slate-50 antialiased">
+    <html lang="en" suppressHydrationWarning>
+      <head />
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased",
+          fontSans.variable
+        )}
+      >
         <Providers>
           <Header />
           {modal}
