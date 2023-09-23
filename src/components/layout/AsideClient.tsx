@@ -114,14 +114,14 @@ const AsideClient: FC<AsideClientProps> = ({ session, subs, user }) => {
             <h4 className="font-medium">Your Communities</h4>
             <button
               onClick={() => router.push("/z/create")}
-              className="text-zinc-600 flex"
+              className="text-muted-foreground flex"
             >
               <Plus className="mr-2" />
               <span>Create a community</span>
             </button>
             <ul
               id="aside-communities"
-              className="text-zinc-600 max-h-[10rem] space-y-1"
+              className="text-muted-foreground max-h-[10rem] space-y-1"
             >
               {subs.map((community) => (
                 <li

@@ -25,7 +25,7 @@ const PopularCommunities: FC<PopularCommunitiesProps> = ({
             key={community.id}
             className="py-1 flex items-start hover:bg-[#F8FAFC] rounded-lg p-1 gap-x-4 md:gap-x-5"
           >
-            <h2 className="font-bold text-3xl text-zinc-400 opacity-70">
+            <h2 className="font-bold text-3xl text-muted-foreground opacity-70">
               {index + 1 < 10 ? `0${index + 1}` : index + 1}
             </h2>
             <Link

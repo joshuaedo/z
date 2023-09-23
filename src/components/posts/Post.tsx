@@ -41,7 +41,7 @@ const Post: FC<PostProps> = ({
           />
 
           <div className="w-0 flex-1">
-            <div className="max-h-40 mt-1 text-2xs text-gray-500">
+            <div className="max-h-40 mt-1 text-2xs text-muted-foreground">
               {communityName ? (
                 <>
                   <a
@@ -64,7 +64,7 @@ const Post: FC<PostProps> = ({
             </div>
 
             <a href={`/z/${communityName}/post/${post.id}`}>
-              <h1 className="text-lg font-semibold py-2 leading-6 text-gray-900 dark:text-white">
+              <h1 className="text-lg font-semibold py-2 leading-6 dark:text-white">
                 {post.title}
               </h1>
             </a>
