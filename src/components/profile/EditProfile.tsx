@@ -12,7 +12,7 @@ interface EditProfileProps {
 
 const EditProfile = ({ user, session }: EditProfileProps) => {
   return (
-    <div className="rounded-m bg-white dark:bg-[#0A0A0A] shadow dark:border border-[#333333] px-4 md:px-6 py-4 space-y-5">
+    <div className="rounded-m bg-white dark:bg-[#000000] shadow dark:border border-[#333333] px-4 md:px-6 py-4 space-y-5">
       <h2 className="text-xl font-semibold">Edit Profile</h2>
       <hr />
       <EditProfileForm user={user} session={session} />

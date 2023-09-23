@@ -91,7 +91,7 @@ const PostPage = async ({ params }: PostPageProps) => {
 
   return (
     <div>
-      <div className="h-full flex flex-col sm:flex-row items-center sm:items-start justify-between bg-white dark:bg-[#0A0A0A] shadow dark:border border-[#333333]">
+      <div className="h-full flex flex-col sm:flex-row items-center sm:items-start justify-between bg-white dark:bg-[#000000] shadow dark:border border-[#333333]">
         <div className="sm:w-0 w-full flex-1 p-5 rounded-sm">
           <div className="flex">
             <Suspense fallback={<PostVoteShell />}>
