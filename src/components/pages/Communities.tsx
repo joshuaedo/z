@@ -81,8 +81,8 @@ const Communities: FC<CommunitiesProps> = ({ session, subs }) => {
               </>
             ))
           ) : (
-            <li className="w-full text-xs py-6 flex items-center justify-center">
-              <span>- communities you create or join show up here -</span>
+            <li className="w-full text-xs py-3 flex items-center justify-center">
+              <span>- communities you create/join show up here -</span>
             </li>
           )}
         </ul>
