@@ -11,7 +11,7 @@ import Aside from "./Aside";
 
 const Header = () => {
   return (
-    <nav className="inline md:hidden fixed top-0 inset-x-0 h-fit bg-zinc-100 border-b border-zinc-300 z-[60] py-4">
+    <nav className="inline md:hidden fixed top-0 inset-x-0 h-fit  border-b border-zinc-300 z-[60] py-4">
       <div className="container max-w-7xl h-full mx-auto flex items-center justify-center relative">
         <div className="absolute top-2 left-8 bg-transparent">
           <DropdownMenu>
