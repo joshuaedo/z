@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { Session } from 'next-auth';
-import { usePathname, useRouter } from 'next/navigation';
-import { FC } from 'react';
-import UserAvatar from '../ui/UserAvatar';
-import { Input } from '../ui/Input';
+import { Session } from "next-auth";
+import { usePathname, useRouter } from "next/navigation";
+import { FC } from "react";
+import UserAvatar from "../ui/UserAvatar";
+import { Input } from "../ui/Input";
 
 interface AddCommunityPostProps {
   session: Session | null;
@@ -20,10 +20,10 @@ const AddCommunityPost: FC<AddCommunityPostProps> = ({
 
   return (
     <>
-      <li className='overflow-hidden rounded-md shadow list-none'>
-        <div className='h-full px-5 py-4 flex justify-between gap-4'>
+      <li className="overflow-hidden rounded-md bg-white dark:bg-[#000000] shadow dark:border border-[#333333] list-none">
+        <div className="h-full px-5 py-4 flex justify-between gap-4">
           {/* Avatar */}
-          <div className='relative'>
+          <div className="relative">
             <UserAvatar
               user={{
                 name: session?.user.name || null,
@@ -32,7 +32,7 @@ const AddCommunityPost: FC<AddCommunityPostProps> = ({
             />
             <span
               className={`absolute bottom-0 right-0 rounded-full h-3 w-3 bg-${
-                isCreator ? 'purple' : 'green'
+                isCreator ? "purple" : "green"
               }-500 outline outline-2 outline-white`}
             />
           </div>
@@ -40,8 +40,8 @@ const AddCommunityPost: FC<AddCommunityPostProps> = ({
           {/* Add Post */}
 
           <Input
-            className='no-focusing focus:ring-0 border-0 outline-none shadow-none placeholder:text-sm placeholder:font-medium px-0 pb-2'
-            onClick={() => router.push(pathname + '/submit')}
+            className="no-focusing focus:ring-0 border-0 outline-none shadow-none placeholder:text-sm placeholder:font-medium px-0 pb-2"
+            onClick={() => router.push(pathname + "/submit")}
             placeholder="What's happening?"
           />
         </div>

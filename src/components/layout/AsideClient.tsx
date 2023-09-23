@@ -9,7 +9,7 @@ import { Community, User } from "@prisma/client";
 import { Session } from "next-auth";
 import Link from "next/link";
 import CommunityAvatar from "../community/CommunityAvatar";
-import { ThemeToggle } from '../ui/ThemeToggle';
+import { ThemeToggle } from "../ui/ThemeToggle";
 
 interface AsideClientProps {
   session: Session | null;
@@ -23,7 +23,7 @@ const AsideClient: FC<AsideClientProps> = ({ session, subs, user }) => {
   const zUser = user ?? session?.user;
 
   return (
-    <aside className="overflow-hidden h-fit rounded-lg md:shadow md:fixed p-8 space-y-2">
+    <aside className="overflow-hidden h-fit rounded-lg md:bg-white dark:bg-[#000000] shadow dark:border border-[#333333] md:fixed p-8 space-y-2">
       <button
         onClick={() => router.push("/")}
         className="hidden md:flex items-center"

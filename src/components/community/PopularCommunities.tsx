@@ -18,7 +18,7 @@ const PopularCommunities: FC<PopularCommunitiesProps> = ({
   popularCommunities,
 }) => {
   return (
-    <div className="rounded-lg shadow px-8 py-6 space-y-2">
+    <div className="rounded-lg bg-white dark:bg-[#000000] shadow dark:border border-[#333333] px-8 py-6 space-y-2">
       <ul id="explore" className="text-zinc-900 space-y-3">
         {popularCommunities.map((community, index) => (
           <li
@@ -33,20 +33,20 @@ const PopularCommunities: FC<PopularCommunitiesProps> = ({
               className="w-full h-full flex items-center justify-between"
             >
               <div>
-              <p className="hidden md:block font-medium">
-                      {`z/${
-                        community.name.length > 16
-                          ? community.name.slice(0, 15) + "..."
-                          : community.name
-                      }`}
-                    </p>
-                    <p className="md:hidden font-medium">
-                      {`z/${
-                        community.name.length > 11
-                          ? community.name.slice(0, 10) + "..."
-                          : community.name
-                      }`}
-                    </p>
+                <p className="hidden md:block font-medium">
+                  {`z/${
+                    community.name.length > 16
+                      ? community.name.slice(0, 15) + "..."
+                      : community.name
+                  }`}
+                </p>
+                <p className="md:hidden font-medium">
+                  {`z/${
+                    community.name.length > 11
+                      ? community.name.slice(0, 10) + "..."
+                      : community.name
+                  }`}
+                </p>
 
                 <div className="flex items-center pt-2">
                   <Users className="mr-2 h-4 w-4 opacity-70" />{" "}

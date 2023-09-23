@@ -73,10 +73,10 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
         }}
         value={input}
         className="outline-none border-none focus focus:border-none focus:outline-none ring-0"
-        placeholder="Search Z..." 
+        placeholder="Search Z..."
       />
       {input.length > 0 && (
-        <CommandList className="absolute top-full inset-x-0 shadow rounded-b-md">
+        <CommandList className="absolute top-full inset-x-0 bg-white dark:bg-[#000000] shadow dark:border border-[#333333] rounded-b-md">
           {isFetching && (
             <div className="w-full flex p-2 items-center justify-center">
               <Loader2 className="animate-spin" />
@@ -106,7 +106,9 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
                         value={community.name}
                       >
                         <Users className="mr-2 h-4 w-4" />
-                        <a className="w-full" href={`/z/${community.name}`}>z/{community.name}</a>
+                        <a className="w-full" href={`/z/${community.name}`}>
+                          z/{community.name}
+                        </a>
                       </CommandItem>
                     ))}
                   </CommandGroup>

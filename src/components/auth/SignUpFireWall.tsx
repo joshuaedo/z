@@ -1,11 +1,11 @@
-import React, { FC } from 'react';
-import SignUp from './SignUp';
+import React, { FC } from "react";
+import SignUp from "./SignUp";
 
 interface SignUpFireWallProps {}
 
 const SignUpFireWall: FC<SignUpFireWallProps> = ({}) => {
   return (
-    <div className='rounded-md shadow md:px-6 h-[70vh] flex justify-center items-center'>
+    <div className="rounded-md bg-white dark:bg-[#000000] shadow dark:border border-[#333333] md:px-6 h-[70vh] flex justify-center items-center">
       <SignUp />
     </div>
   );
