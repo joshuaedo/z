@@ -13,14 +13,14 @@ const SignUp = () => {
           By continuing, you agree to our{' '}
           <a
             href='/terms-of-service'
-            className={'p-0 text-xs text-black underline underline-offset-2'}
+            className={'p-0 text-xsunderline underline-offset-2'}
           >
             terms of service
           </a>{' '}
           and{' '}
           <a
             href='/privacy-policy'
-            className={'p-0 text-xs text-black underline underline-offset-2'}
+            className={'p-0 text-xs underline underline-offset-2'}
           >
             privacy policy.
           </a>

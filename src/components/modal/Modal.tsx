@@ -16,12 +16,14 @@ const Modal: FC<ModalProps> = ({
   toggleModal,
 }) => {
   return (
-    <div className={`fixed inset-0 bg-background bg-opacity-50 z-[9999]`}>
+    <div
+      className={`fixed inset-0 bg-slate-50 dark:bg-[#000000] bg-opacity-30 z-[9999]`}
+    >
       <div
         className={`container flex items-center h-full ${modalContainer} justify-center`}
       >
         <div
-          className={`relative bg-background h-fit pt-12 pb-8 px-3 rounded-lg`}
+          className={`relative bg-white dark:bg-[#000000] h-fit pt-12 pb-8 px-3 rounded-lg`}
         >
           <ModalHeader showMax={showMax} toggleModal={toggleModal} />
           {children}
