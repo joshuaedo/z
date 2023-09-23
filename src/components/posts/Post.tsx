@@ -32,7 +32,7 @@ const Post: FC<PostProps> = ({
 
   return (
     <>
-      <div className="rounded-md bg-white dark:bg-[#0A0A0A] shadow dark:border border-[#333333]">
+      <div className="rounded-md bg-white dark:bg-[#000000] shadow dark:border border-[#333333]">
         <div className="pr-4 md:px-6 py-4 flex justify-between">
           <PostVoteClient
             postId={post.id}
@@ -45,7 +45,7 @@ const Post: FC<PostProps> = ({
               {communityName ? (
                 <>
                   <a
-                    className="underline text-zinc-900 text-sm underline-offset-2"
+                    className="underline text-zinc-900 dark:text-white text-sm underline-offset-2"
                     href={`/z/${communityName}`}
                   >
                     z/{communityName}
@@ -64,7 +64,7 @@ const Post: FC<PostProps> = ({
             </div>
 
             <a href={`/z/${communityName}/post/${post.id}`}>
-              <h1 className="text-lg font-semibold py-2 leading-6 text-gray-900">
+              <h1 className="text-lg font-semibold py-2 leading-6 text-gray-900 dark:text-white">
                 {post.title}
               </h1>
             </a>
