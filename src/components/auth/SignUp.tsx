@@ -29,11 +29,11 @@ const SignUp = () => {
         {/* Sign Up Form */}
         <UserAuthForm />
 
-        <p className='px-4 md:px-8 text-center text-sm text-zinc-700'>
+        <p className='px-4 md:px-8 text-center text-sm text-muted-foreground'>
           Already joined?{' '}
           <Link
             href='/sign-in'
-            className='hover:text-zinc-800 text-sm underline underline-offset-4'
+            className='hover:text-muted-foreground text-sm underline underline-offset-4'
           >
             Sign In
           </Link>

@@ -34,7 +34,7 @@ const Communities: FC<CommunitiesProps> = ({ session, subs }) => {
           <Plus />
           <span>Create a community</span>
         </button>
-        <ul id="community" className="text-zinc-900 space-y-3">
+        <ul id="community" className=" space-y-3">
           {subs.map((community) => (
             <>
               <hr />

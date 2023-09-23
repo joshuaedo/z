@@ -45,7 +45,7 @@ const Post: FC<PostProps> = ({
               {communityName ? (
                 <>
                   <a
-                    className="underline text-zinc-900 dark:text-white text-sm underline-offset-2"
+                    className="underline  dark:text-white text-sm underline-offset-2"
                     href={`/z/${communityName}`}
                   >
                     z/{communityName}

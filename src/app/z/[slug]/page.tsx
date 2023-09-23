@@ -128,7 +128,7 @@ const SlugPage = async ({ params }: SlugPageProps) => {
           {/* Community Status */}
           {isCreator ? (
             <div className="flex items-center">
-              <div className="bg-purple-500 text-zinc-900 rounded-full font-semibold py-1 px-2 border border-zinc-900 mx-2">
+              <div className="bg-purple-500 rounded-full font-semibold py-1 px-2 border border-zinc-900 mx-2">
                 Creator
               </div>
               <EditCommunityDropdown communityPath={community.name} />

@@ -135,7 +135,7 @@ const PostPage = async ({ params }: PostPageProps) => {
 
           <Suspense
             fallback={
-              <Loader2 className="h-5 w-5 animate-spin text-zinc-500" />
+              <Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />
             }
           >
             {/* @ts-expect-error Server Component */}
@@ -156,16 +156,16 @@ function PostVoteShell() {
         aria-label="upvote"
         className="hidden md:inline-flex"
       >
-        <ArrowBigUp className={cn("h-4 w-4 md:h-5 md:w-5 text-zinc-700")} />
+        <ArrowBigUp className={cn("h-4 w-4 md:h-5 md:w-5")} />
       </Button>
       <button
         aria-label="upvote"
         className="py-2 flex justify-center items-center md:hidden"
       >
-        <ArrowBigUp className={cn("h-4 w-4 md:h-5 md:w-5 text-zinc-700")} />
+        <ArrowBigUp className={cn("h-4 w-4 md:h-5 md:w-5")} />
       </button>
 
-      <div className="text-center py-2 font-medium text-sm text-zinc-900">
+      <div className="text-center py-2 font-medium text-sm">
         <Loader2 className="h-3 w-3 animate-spin" />
       </div>
 
@@ -175,13 +175,13 @@ function PostVoteShell() {
         aria-label="downvote"
         className="hidden md:inline-flex"
       >
-        <ArrowBigDown className={cn("h-4 w-4 md:h-5 md:w-5 text-zinc-700")} />
+        <ArrowBigDown className={cn("h-4 w-4 md:h-5 md:w-5")} />
       </Button>
       <button
         aria-label="upvote"
         className="py-2 flex justify-center items-center md:hidden"
       >
-        <ArrowBigDown className={cn("h-4 w-4 md:h-5 md:w-5 text-zinc-700")} />
+        <ArrowBigDown className={cn("h-4 w-4 md:h-5 md:w-5")} />
       </button>
     </div>
   );

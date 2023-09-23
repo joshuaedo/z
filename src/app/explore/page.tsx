@@ -38,12 +38,12 @@ const ExplorePage = async ({}: ExplorePageProps) => {
     <div className="space-y-6">
       <h2 className="font-bold text-3xl md:text-4xl">Explore</h2>
       <SearchBar />
-      <div className="pt-6 text-zinc-900 flex items-center gap-x-2.5 md:gap-x-3.5 text-lg font-bold">
+      <div className="pt-6 flex items-center gap-x-2.5 md:gap-x-3.5 text-lg font-bold">
         <TrendingUp className="font-medium" />
         <span>POPULAR ON Z</span>
       </div>
       <PopularCommunities popularCommunities={popularCommunities} />
-      <div className="pt-6 rounded-lg text-zinc-900 flex items-center gap-x-2.5 md:gap-x-3.5 text-lg font-bold">
+      <div className="pt-6 rounded-lg flex items-center gap-x-2.5 md:gap-x-3.5 text-lg font-bold">
         <Layers className="font-medium" />
         <span>RECOMMENDED FOR YOU</span>
       </div>

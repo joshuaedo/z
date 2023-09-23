@@ -54,7 +54,7 @@ const UserAccountNav: FC<UserAccountNavProps> = ({ user }) => {
       <div className="flex flex-col space-y-1 leading-none">
         {displayName && <p className="font-medium">{displayName}</p>}
         {zUser?.username && (
-          <p className="w-[200px] truncate text-sm text-zinc-700">
+          <p className="w-[200px] truncate text-sm text-muted-foreground">
             {`u/${zUser.username}`}
           </p>
         )}

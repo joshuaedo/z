@@ -100,7 +100,7 @@ const PostComment: FC<PostCommentProps> = ({
         </div>
       </div>
 
-      <p className="text-sm text-zinc-900">{comment.text}</p>
+      <p className="text-sm ">{comment.text}</p>
 
       <div className="flex gap-2 items-center flex-wrap">
         <CommentVotes
@@ -123,7 +123,7 @@ const PostComment: FC<PostCommentProps> = ({
 
         {isReplying ? (
           <div className="grid w-full gap-1.5">
-            <Label className="text-xs text-zinc-900">{`replying as u/${session?.user.username}`}</Label>
+            <Label className="text-xs ">{`replying as u/${session?.user.username}`}</Label>
             <div className="mt-2">
               <Textarea
                 id="comment"
