@@ -23,7 +23,7 @@ const Modal: FC<ModalProps> = ({
         className={`container flex items-center h-full ${modalContainer} justify-center`}
       >
         <div
-          className={`relative bg-white dark:bg-[#000000] shadow dark:border border-[#333333] h-fit pt-2 pb-8 px-3 rounded-lg`}
+          className={`relative bg-white dark:bg-[#000000] shadow dark:border border-[#333333] h-fit pt-8 dark:pt-3 pb-8 px-3 rounded-lg`}
         >
           <ModalHeader showMax={showMax} toggleModal={toggleModal} />
           {children}
