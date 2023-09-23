@@ -35,7 +35,7 @@ const Communities: FC<CommunitiesProps> = ({ session, subs }) => {
           <span>Create a community</span>
         </button>
         <ul id="community" className=" space-y-3">
-          {subs ? (
+          {subs.length !== 0 ? (
             subs.map((community) => (
               <>
                 <hr />
