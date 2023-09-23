@@ -9,7 +9,7 @@ const HomeFeedToggle = () => {
 
   return (
     <div className="flex w-full items-center justify-center">
-      <div className="overflow-hidden max-w-4xl h-fit flex items-center justify-evenly rounded-lg bg-white dark:bg-[#000000] shadow dark:border border-[#333333] px-7 py-5">
+      <div className="overflow-hidden max-w-4xl h-fit flex items-center justify-evenly rounded-lg bg-white dark:bg-[#000000] shadow dark:border border-[#333333] px-7 py-5 text-xl">
         <Button
           variant="ghost"
           onClick={() => router.push("/")}
@@ -20,7 +20,7 @@ const HomeFeedToggle = () => {
         <Button
           variant="ghost"
           onClick={() => router.push("/following")}
-          className={`${pathname === "/" ? "font-bold" : "font-medium"}`}
+          className={`${pathname === "/following" ? "font-bold" : "font-medium"}`}
         >
           Following
         </Button>

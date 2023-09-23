@@ -46,7 +46,7 @@ const ProfileCard: FC<ProfileCardProps> = ({
         <div className={`w-full bg-${profileTheme} h-[75%] rounded-t-md`}></div>
 
         <div className="h-[15vh] md:h-[17vh] w-full absolute z-2 bottom-0 flex items-center px-3 md:px-5 justify-between ">
-          <div className="h-[12vh] md:h-[17vh] w-[12vh] md:w-[17vh] border-2 md:border-4 rounded-[50%] border-white">
+          <div className="h-[12vh] md:h-[17vh] w-[12vh] md:w-[17vh] border-2 md:border-4 rounded-[50%] border-white dark:border-black">
             <UserAvatar
               user={{
                 name: user?.name || null,
