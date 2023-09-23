@@ -17,7 +17,7 @@ const Modal: FC<ModalProps> = ({
 }) => {
   return (
     <div
-      className={`fixed inset-0 bg-slate-50 dark:bg-[#0A0A0A] bg-opacity-30 z-[9999]`}
+      className={`fixed inset-0 bg-slate-50 dark:bg-[#0A0A0A] bg-opacity-30 dark:bg-opacity-20 z-[9999]`}
     >
       <div
         className={`container flex items-center h-full ${modalContainer} justify-center`}
