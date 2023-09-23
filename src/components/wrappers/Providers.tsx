@@ -10,11 +10,9 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <SessionProvider>
-      <NextThemesProvider attribute="class" defaultTheme="system" enableSystem>
-        <QueryClientProvider client={queryClient}>
-          {children}
-        </QueryClientProvider>
-      </NextThemesProvider>
+      {/* <NextThemesProvider attribute="class" defaultTheme="system" enableSystem> */}
+      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+      {/* </NextThemesProvider> */}
     </SessionProvider>
   );
 };

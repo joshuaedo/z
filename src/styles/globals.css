@@ -74,8 +74,16 @@
     @apply bg-background text-foreground;
   }
   .no-focusing {
-    @apply focus-visible:ring-0 focus-visible:outline-none
+    @apply focus-visible:ring-0 focus-visible:outline-none;
   }
+}
+
+.mobile-container {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 0.75rem;
+  padding-left: 0.75rem;
 }
 
 .text-2xs {
@@ -112,7 +120,8 @@
   margin-right: 0 !important;
 }
 
-#editor,#aside-communities {
+#editor,
+#aside-communities {
   width: 100%;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
@@ -122,21 +131,24 @@
   scrollbar-width: none !important;
 }
 
-#editor::-webkit-scrollbar, #aside-communities::-webkit-scrollbar {
+#editor::-webkit-scrollbar,
+#aside-communities::-webkit-scrollbar {
   width: 8px !important;
 }
 
-#editor::-webkit-scrollbar-track, #aside-communities::-webkit-scrollbar-track {
+#editor::-webkit-scrollbar-track,
+#aside-communities::-webkit-scrollbar-track {
   display: none !important;
 }
 
-#editor::-webkit-scrollbar-thumb, #aside-communities::-webkit-scrollbar-thumb {
+#editor::-webkit-scrollbar-thumb,
+#aside-communities::-webkit-scrollbar-thumb {
   background: black !important;
   border-radius: 8px !important;
 }
 
 @media (max-width: 768px) {
-  #editor{
+  #editor {
     display: inline-block;
   }
 }
