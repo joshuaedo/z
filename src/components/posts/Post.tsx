@@ -77,7 +77,7 @@ const Post: FC<PostProps> = ({
                 <EditorOutput content={post.content} />
               </a>
               {pRef.current?.clientHeight === 160 ? (
-                <div className="absolute bottom-0 h-24 w-full bg-gradient-to-t from-white to-transparent" />
+                <div className="absolute bottom-0 h-24 w-full bg-gradient-to-t from-white  dark:from-black to-transparent" />
               ) : null}
             </div>
           </div>
