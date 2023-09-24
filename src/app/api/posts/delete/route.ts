@@ -82,7 +82,7 @@ export async function POST(req: Request) {
         },
       }
     );
-  } catch (error) {
+  } catch (error: any) {
     if (error instanceof z.ZodError) {
       return new Response(
         JSON.stringify({ error: "Invalid request data " + error.message }),
