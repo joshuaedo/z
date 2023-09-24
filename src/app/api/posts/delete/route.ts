@@ -36,7 +36,7 @@ export async function POST(req: Request) {
 
     const existingComments = await db.comment.findMany({
       where: {
-        postId: existingPost.id,
+        postId: existingPost?.id,
       },
       include: {
         replies: true, // Include associated replies
@@ -50,7 +50,7 @@ export async function POST(req: Request) {
         for (const reply of comment.replies) {
           await db.comment.delete({
             where: {
-              id: reply.id,
+              id: reply?.id,
             },
           });
         }
@@ -58,19 +58,19 @@ export async function POST(req: Request) {
         // Now delete the comment itself
         await db.comment.delete({
           where: {
-            id: comment.id,
+            id: comment?.id,
           },
         });
       } catch (error) {
         // Handle errors, log them, or skip the deletion if the comment no longer exists
-        console.error(`Error deleting comment ${comment.id}:`, error);
+        console.error(`Error deleting comment ${comment?.id}:`, error);
       }
     }
 
     // Now you can safely delete the post
     await db.post.delete({
       where: {
-        id: existingPost.id,
+        id: existingPost?.id,
       },
     });
     return new Response(
