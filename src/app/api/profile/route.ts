@@ -35,29 +35,31 @@ export async function PATCH(req: Request) {
     // check if user is trying to update their own profile
 
     if (usernameExists) {
-      if (usernameExists.id === session.user.id) {
-        // update profile
-        const user = await db.user.update({
-          where: {
-            id: session.user.id,
-          },
-          data: {
-            image: image,
-            profileTheme: profileTheme,
-            username: username,
-            displayName: displayName,
-            bio: bio,
-            link: link,
-            birthday: birthday,
-          },
-        });
-        return new Response(user?.username);
+      try {
+        if (usernameExists.id === session.user.id) {
+          // update profile
+          const user = await db.user.update({
+            where: {
+              id: session.user.id,
+            },
+            data: {
+              image: image,
+              profileTheme: profileTheme,
+              username: username,
+              displayName: displayName,
+              bio: bio,
+              link: link,
+              birthday: birthday,
+            },
+          });
+          return new Response(user?.username);
+        }
+      } catch (err) {
+        return new Response(err);
       }
       return new Response("Username is taken", { status: 409 });
     }
   } catch (error) {
-    error;
-
     if (error instanceof z.ZodError) {
       return new Response(error.message, { status: 400 });
     }
