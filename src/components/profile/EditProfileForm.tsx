@@ -62,6 +62,8 @@ export default function EditProfileForm({
       return data;
     },
     onError: (err) => {
+      // eslint-disable-next-line no-console
+      console.log(err);
       if (err instanceof AxiosError) {
         if (err.response?.status === 409) {
           return toast({
@@ -75,7 +77,7 @@ export default function EditProfileForm({
         title: "Something went wrong.",
         description: "Your profile was not updated. Please try again.",
         variant: "destructive",
-      });
+      })
     },
     onSuccess: (data) => {
       toast({
