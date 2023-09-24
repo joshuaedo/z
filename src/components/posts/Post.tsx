@@ -2,11 +2,24 @@
 
 import { formatTimeToNow } from "@/lib/utils";
 import { Post, User, Vote } from "@prisma/client";
-import { MessageSquare } from "lucide-react";
+import { MessageSquare, MoreVertical } from "lucide-react";
 import { FC, useRef } from "react";
 import EditorOutput from "../editor/EditorOutput";
 import PostVoteClient from "./post-vote/PostVoteClient";
 import Link from "next/link";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "../ui/DropDownMenu";
+import { toast } from "@/hooks/use-toast";
+import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
+import { PostDeletionRequest } from "@/lib/validators/post";
+import axios from "axios";
+import { startTransition } from "react";
 
 type PartialVote = Pick<Vote, "type">;
 
@@ -29,6 +42,48 @@ const Post: FC<PostProps> = ({
   currentVote,
 }) => {
   const pRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
+  const { data: session } = useSession();
+  const isAuthor = session?.id === post.author.id;
+
+  const { mutate: deletePost } = useMutation({
+    mutationFn: async ({ postId, postAuthorId }: PostDeletionRequest) => {
+      const payload: PostDeletionRequest = {
+        postId,
+        postAuthorId,
+      };
+      const { data } = await axios.post("/api/posts/delete", payload);
+      console.log(data);
+      return data;
+    },
+    onError: (err) => {
+      console.log(err);
+      toast({
+        title: "Action Failed",
+        description: "Your post was not deleted, please try again later",
+        variant: "destructive",
+      });
+    },
+    onSuccess: () => {
+      startTransition(() => {
+        router.refresh();
+      });
+
+      return toast({
+        description: "Your post has been deleted.",
+        variant: "default",
+      });
+    },
+  });
+
+  async function onClickDelete() {
+    const payload: PostDeletionRequest = {
+      postId: post.id,
+      postAuthorId: post.author.id,
+    };
+
+    deletePost(payload);
+  }
 
   return (
     <>
@@ -40,7 +95,7 @@ const Post: FC<PostProps> = ({
             initialVote={currentVote?.type}
           />
 
-          <div className="w-0 flex-1">
+          <div className="w-0 flex-1 relative">
             <div className="max-h-40 mt-1 text-2xs text-muted-foreground">
               {communityName ? (
                 <>
@@ -61,6 +116,26 @@ const Post: FC<PostProps> = ({
                 </Link>
               </span>{" "}
               {formatTimeToNow(new Date(post.createdAt))}
+              {isAuthor && (
+                <div className="absolute top-1 right-0">
+                  <DropdownMenu>
+                    <DropdownMenuTrigger>
+                      <MoreVertical className="h-4 w-4" />
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent>
+                      <DropdownMenuItem
+                        onSelect={(e) => {
+                          e.preventDefault();
+                          onClickDelete(); // Trigger the delete operation
+                        }}
+                        className="cursor-pointer"
+                      >
+                        Delete Post
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </div>
+              )}
             </div>
 
             <a href={`/z/${communityName}/post/${post.id}`}>
