@@ -44,7 +44,7 @@ const Post: FC<PostProps> = ({
   const pRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
   const { data: session } = useSession();
-  const isAuthor = session?.id === post.author.id;
+  const isAuthor = session?.user.id === post.author.id;
 
   const { mutate: deletePost } = useMutation({
     mutationFn: async ({ postId, postAuthorId }: PostDeletionRequest) => {
