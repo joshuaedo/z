@@ -52,7 +52,7 @@ export async function PATCH(req: Request) {
 
     const updatedCommunity = await db.community.update({
       where: {
-        id: communityExists?.id,
+        id: communityExists?.id!,
       },
       data: {
         name,
