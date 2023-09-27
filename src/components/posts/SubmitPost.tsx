@@ -51,7 +51,7 @@ const SubmitPost = ({ params, community }: SubmitPostProps) => {
 
   return isModalOpen ? (
     <Modal modalContainer="max-w-2xl" showMax toggleModal={toggleModal}>
-      <div className="pt-4 md:pt-6">{modalContent}</div>
+      <div className="pt-8">{modalContent}</div>
     </Modal>
   ) : (
     modalContent
