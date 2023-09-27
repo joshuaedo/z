@@ -2,6 +2,7 @@ import { getAuthSession } from "@/lib/auth";
 import { db, restrictedNames } from "@/lib/db";
 import { CommunityValidator } from "@/lib/validators/community";
 import { z } from "zod";
+import { Community } from "@prisma/client";
 
 export async function PATCH(req: Request) {
   try {
@@ -19,7 +20,7 @@ export async function PATCH(req: Request) {
       return new Response("Community name is restricted", { status: 412 });
     }
 
-    const communityExists = await db.community.findFirst({
+    const communityExists: Community | null = await db.community.findFirst({
       where: {
         name,
       },
