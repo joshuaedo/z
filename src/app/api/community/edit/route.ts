@@ -19,34 +19,39 @@ export async function PATCH(req: Request) {
       return new Response("Community name is restricted", { status: 412 });
     }
 
-    const existingCommunity = await db.community.findFirst({
+    const communityExists = await db.community.findFirst({
       where: {
-        name: name,
+        name,
       },
     });
 
-    // Check if a community with the new name already exists
-    if (existingCommunity && existingCommunity.id !== communityId) {
-      return new Response("Community name already exists", { status: 409 });
+    if (communityExists) {
+      if (communityExists?.creatorId === session.user.id) {
+        try {
+          const community = await db.community.update({
+            where: {
+              id: communityExists?.id,
+            },
+            data: {
+              name,
+              description,
+              image,
+              updatedAt: new Date(), // Set the update date
+            },
+          });
+          return new Response(community?.name);
+        } catch (err) {
+          console.error("Error updating community:", err);
+          return new Response("Failed to update community", { status: 500 });
+        }
+      } else {
+        return new Response("Community already exists", { status: 409 });
+      }
     }
 
-    // Fetch the current community based on some identifier like communityId
-    const communityId = req.params.communityId;
-    const community = await db.community.findUnique({
-      where: {
-        id: communityId,
-      },
-    });
-
-    // Check if the community exists
-    if (!community) {
-      return new Response("Community not found", { status: 404 });
-    }
-
-    // Update the community
     const updatedCommunity = await db.community.update({
       where: {
-        id: communityId,
+        id: communityExists?.id,
       },
       data: {
         name,
@@ -55,8 +60,7 @@ export async function PATCH(req: Request) {
         updatedAt: new Date(), // Set the update date
       },
     });
-
-    return new Response(updatedCommunity.name);
+    return new Response(updatedCommunity?.name);
   } catch (error) {
     if (error instanceof z.ZodError) {
       return new Response(error.message, { status: 422 });
