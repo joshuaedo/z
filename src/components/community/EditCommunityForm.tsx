@@ -21,7 +21,7 @@ import { useRouter } from "next/navigation";
 import { useCustomToast } from "@/hooks/use-custom-toast";
 import { DropZone } from "../ui/UploadImage";
 import { startTransition } from "react";
-import { CommunityValidator } from "@/lib/validators/community";
+import { EditCommunityValidator } from "@/lib/validators/community";
 import { Community } from "@prisma/client";
 import UserAvatar from "../ui/UserAvatar";
 
@@ -35,8 +35,8 @@ export default function EditCommunityForm({
   const router = useRouter();
   const { loginToast } = useCustomToast();
 
-  const form = useForm<z.infer<typeof CommunityValidator>>({
-    resolver: zodResolver(CommunityValidator),
+  const form = useForm<z.infer<typeof EditCommunityValidator>>({
+    resolver: zodResolver(EditCommunityValidator),
     defaultValues: {
       id: community.id,
       name: community.name,
@@ -46,7 +46,7 @@ export default function EditCommunityForm({
   });
 
   const { mutate: updateProfile, isLoading } = useMutation({
-    mutationFn: async (payload: z.infer<typeof CommunityValidator>) => {
+    mutationFn: async (payload: z.infer<typeof EditCommunityValidator>) => {
       const { data } = await axios.patch("/api/community/edit", payload);
       return data;
     },

@@ -1,6 +1,6 @@
 import { getAuthSession } from "@/lib/auth";
 import { db, restrictedNames } from "@/lib/db";
-import { CommunityValidator } from "@/lib/validators/community";
+import { EditCommunityValidator } from "@/lib/validators/community";
 import { z } from "zod";
 
 export async function PATCH(req: Request) {
@@ -12,7 +12,7 @@ export async function PATCH(req: Request) {
     }
 
     const body = await req.json();
-    const { id, name, description, image } = CommunityValidator.parse(body);
+    const { id, name, description, image } = EditCommunityValidator.parse(body);
 
     // Check if the community name is in the restrictedNames array
     if (restrictedNames.includes(name.toLowerCase())) {
