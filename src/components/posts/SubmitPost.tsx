@@ -31,9 +31,7 @@ const SubmitPost = ({ params, community }: SubmitPostProps) => {
           <h3 className="ml-2 mt-2 text-base font-semibold leading-6">
             Create Post
           </h3>
-          <p className="ml-2 mt-1 truncate text-sm ">
-            in z/{params.slug}
-          </p>
+          <p className="ml-2 mt-1 truncate text-sm ">in z/{params.slug}</p>
         </div>
       </div>
 
@@ -53,7 +51,7 @@ const SubmitPost = ({ params, community }: SubmitPostProps) => {
 
   return isModalOpen ? (
     <Modal modalContainer="max-w-2xl" showMax toggleModal={toggleModal}>
-      {modalContent}
+      <div className="pt-4 md:pt-6">{modalContent}</div>
     </Modal>
   ) : (
     modalContent
