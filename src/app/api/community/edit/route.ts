@@ -20,7 +20,7 @@ export async function PATCH(req: Request) {
       return new Response("Community name is restricted", { status: 412 });
     }
 
-    const communityExists: Community | null = await db.community.findFirst({
+    const communityExists: any = await db.community.findFirst({
       where: {
         name,
       },
