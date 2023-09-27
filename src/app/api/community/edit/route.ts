@@ -12,7 +12,7 @@ export async function PATCH(req: Request) {
     }
 
     const body = await req.json();
-    const { name, description, image } = CommunityValidator.parse(body);
+    const { id, name, description, image } = CommunityValidator.parse(body);
 
     // Check if the community name is in the restrictedNames array
     if (restrictedNames.includes(name.toLowerCase())) {
@@ -30,7 +30,7 @@ export async function PATCH(req: Request) {
         try {
           const community = await db.community.update({
             where: {
-              name,
+              id,
             },
             data: {
               name,
@@ -51,7 +51,7 @@ export async function PATCH(req: Request) {
 
     const updatedCommunity = await db.community.update({
       where: {
-        name,
+        id,
       },
       data: {
         name,

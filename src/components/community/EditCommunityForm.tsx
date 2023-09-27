@@ -38,6 +38,7 @@ export default function EditCommunityForm({
   const form = useForm<z.infer<typeof CommunityValidator>>({
     resolver: zodResolver(CommunityValidator),
     defaultValues: {
+      id: community.id,
       name: community.name,
       description: community.description || "",
       image: community.image || "",
