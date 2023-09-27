@@ -43,7 +43,7 @@ export async function PATCH(req: Request) {
           });
           return new Response(user?.username);
         } catch (err) {
-          console.error("Error updating profile:", err);
+          // console.error("Error updating profile:", err);
           return new Response("Failed to update profile", { status: 500 });
         }
       } else {
@@ -72,7 +72,7 @@ export async function PATCH(req: Request) {
       return new Response(error.message, { status: 400 });
     }
 
-    console.error("Unhandled error:", error);
+    // console.error("Unhandled error:", error);
     return new Response(
       "Could not update profile at this time. Please try later",
       { status: 500 }

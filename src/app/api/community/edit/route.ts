@@ -19,30 +19,49 @@ export async function PATCH(req: Request) {
       return new Response("Community name is restricted", { status: 412 });
     }
 
-    const community = await db.community.findFirst({
-        where: {
-          name: name
-        },
-
+    const existingCommunity = await db.community.findFirst({
+      where: {
+        name: name,
+      },
     });
 
-    await db.community.update({
-        where: {
-          id: community?.id
-        },    
-        data: {
-            name,
-            description,
-            image,
-            updatedAt: new Date(), // Set the update date
-          },
-    })
-    return new Response(community?.name);
+    // Check if a community with the new name already exists
+    if (existingCommunity && existingCommunity.id !== communityId) {
+      return new Response("Community name already exists", { status: 409 });
+    }
+
+    // Fetch the current community based on some identifier like communityId
+    const communityId = req.params.communityId;
+    const community = await db.community.findUnique({
+      where: {
+        id: communityId,
+      },
+    });
+
+    // Check if the community exists
+    if (!community) {
+      return new Response("Community not found", { status: 404 });
+    }
+
+    // Update the community
+    const updatedCommunity = await db.community.update({
+      where: {
+        id: communityId,
+      },
+      data: {
+        name,
+        description,
+        image,
+        updatedAt: new Date(), // Set the update date
+      },
+    });
+
+    return new Response(updatedCommunity.name);
   } catch (error) {
     if (error instanceof z.ZodError) {
       return new Response(error.message, { status: 422 });
     }
 
-    return new Response("Could not update community", { status: 500 });
+    return new Response("Could not update community " + error, { status: 500 });
   }
 }
