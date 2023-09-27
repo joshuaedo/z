@@ -117,7 +117,7 @@ const Post: FC<PostProps> = ({
               </span>{" "}
               {formatTimeToNow(new Date(post.createdAt))}
               {isAuthor && (
-                <div className="absolute top-1 right-0">
+                <div className="absolute top-1.5 right-0">
                   <DropdownMenu>
                     <DropdownMenuTrigger>
                       <MoreVertical className="h-4 w-4" />
