@@ -90,7 +90,11 @@ const Post: FC<PostProps> = ({
   return (
     <>
       <div className="rounded-md bg-white dark:bg-[#000000] shadow dark:border border-[#333333]">
-        <div className="pr-4 md:px-6 py-4 flex justify-between">
+        <div
+          className={`${
+            titleExists ? "py-4" : "py-2"
+          } pr-4 md:px-6  flex justify-between`}
+        >
           <PostVoteClient
             postId={post.id}
             initialVotesAmt={votesAmt}
@@ -98,7 +102,11 @@ const Post: FC<PostProps> = ({
           />
 
           <div className="w-0 flex-1 relative">
-            <div className="max-h-40 mt-1 text-2xs text-muted-foreground">
+            <div
+              className={`${
+                titleExists ? "max-h-40" : "max-h-20"
+              } mt-1 text-2xs text-muted-foreground`}
+            >
               {communityName ? (
                 <>
                   <a
@@ -154,7 +162,7 @@ const Post: FC<PostProps> = ({
 
             <div
               className={`${
-                titleExists ? "max-h-40 py-2" : "max-h-20"
+                titleExists ? "max-h-40" : "max-h-20 py-3"
               } relative text-sm w-full overflow-clip`}
               ref={pRef}
             >
