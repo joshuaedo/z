@@ -2,13 +2,13 @@ import { z } from "zod";
 
 export const EditCommunityValidator = z.object({
   id: z.string(),
-  name: z.string().min(3).max(21),
+  name: z.string().min(3).max(21).regex(/^[a-zA-Z0-9_]+$/),
   description: z.string().max(160),
   image: z.string(),
 });
 
 export const CommunityValidator = z.object({
-  name: z.string().min(3).max(21),
+  name: z.string().min(3).max(21).regex(/^[a-zA-Z0-9_]+$/),
   description: z.string().max(160),
   image: z.string(),
 });

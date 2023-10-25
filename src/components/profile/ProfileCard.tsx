@@ -28,9 +28,15 @@ const ProfileCard: FC<ProfileCardProps> = ({
 
   const cleanedImageUrl = imageUrl?.replace(/=s\d+-[a-z]/, "");
 
-  const href = user?.link;
+  let href = user?.link;
 
-  const link = href?.replace(/^(https?:\/\/(www\.)?)?/, "").replace(/\/+$/, "");
+  if (href && !href.startsWith("http://") && !href.startsWith("https://")) {
+    href = `http://${href}`;
+  }
+
+  const link = user?.link
+    ?.replace(/^(https?:\/\/(www\.)?)?/, "")
+    .replace(/\/+$/, "");
 
   const profileTheme = user?.profileTheme ?? "transparent";
 
@@ -65,7 +71,7 @@ const ProfileCard: FC<ProfileCardProps> = ({
                     variant: "outline",
                     size: "sm",
                   }),
-                  "text-xs"
+                  "text-xs",
                 )}
               >
                 Edit Profile

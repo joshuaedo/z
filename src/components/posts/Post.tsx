@@ -138,11 +138,13 @@ const Post: FC<PostProps> = ({
               )}
             </div>
 
-            <a href={`/z/${communityName}/post/${post.id}`}>
-              <h1 className="text-lg font-semibold py-2 leading-6 dark:text-white">
-                {post.title}
-              </h1>
-            </a>
+            {post.title && post.title !== "" && post.title !== " " && (
+              <a href={`/z/${communityName}/post/${post.id}`}>
+                <h1 className="text-lg font-semibold py-2 leading-6 dark:text-white">
+                  {post.title}
+                </h1>
+              </a>
+            )}
 
             <div
               className="relative text-sm max-h-40 w-full overflow-clip"
