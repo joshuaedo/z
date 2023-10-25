@@ -9,7 +9,10 @@ export const ProfileValidator = z.object({
       message: "Username must be at least 1 character.",
     })
     .max(30)
-    .regex(/^[a-zA-Z0-9_]+$/),
+    .regex(/^[a-zA-Z0-9_]+$/, {
+      message:
+        "Username can only contain letters, numbers, and underscores. No spaces.",
+    }),
   displayName: z.string().max(50),
   bio: z.string().max(160),
   link: z.string().max(100),
