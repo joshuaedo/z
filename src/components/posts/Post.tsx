@@ -76,6 +76,8 @@ const Post: FC<PostProps> = ({
     },
   });
 
+  const titleExists = post.title && post.title !== "" && post.title !== " ";
+
   async function onClickDelete() {
     const payload: PostDeletionRequest = {
       postId: post.id,
@@ -109,12 +111,16 @@ const Post: FC<PostProps> = ({
                   <span className="px-1">•</span>
                 </>
               ) : null}
-              <span className="">
-                Posted by{" "}
-                <Link href={`/u/${post.author.username}`}>
-                  u/{post.author.username}
-                </Link>
-              </span>{" "}
+              {post?.author?.username && (
+                <span className="">
+                  Posted by{" "}
+                  <Link href={`/u/${post.author.username}`}>
+                    {post?.author?.username?.length < 3
+                      ? post.author.username
+                      : `u/${post.author.username}`}
+                  </Link>{" "}
+                </span>
+              )}
               {formatTimeToNow(new Date(post.createdAt))}
               {isAuthor && (
                 <div className="absolute top-1.5 right-0">
@@ -138,7 +144,7 @@ const Post: FC<PostProps> = ({
               )}
             </div>
 
-            {post.title && post.title !== "" && post.title !== " " && (
+            {titleExists && (
               <a href={`/z/${communityName}/post/${post.id}`}>
                 <h1 className="text-lg font-semibold py-2 leading-6 dark:text-white">
                   {post.title}
@@ -147,14 +153,20 @@ const Post: FC<PostProps> = ({
             )}
 
             <div
-              className="relative text-sm max-h-40 w-full overflow-clip"
+              className={`${
+                titleExists ? "max-h-40 py-2" : "max-h-20"
+              } relative text-sm w-full overflow-clip`}
               ref={pRef}
             >
               <a href={`/z/${communityName}/post/${post.id}`}>
                 <EditorOutput content={post.content} />
               </a>
               {pRef.current?.clientHeight === 160 ? (
-                <div className="absolute bottom-0 h-24 w-full bg-gradient-to-t from-white  dark:from-black to-transparent" />
+                <div
+                  className={`${
+                    titleExists ? "h-24" : "h-12"
+                  } absolute bottom-0 w-full bg-gradient-to-t from-white  dark:from-black to-transparent`}
+                />
               ) : null}
             </div>
           </div>
