@@ -92,7 +92,7 @@ const PostPage = async ({ params }: PostPageProps) => {
   return (
     <div>
       <div className="h-full flex flex-col sm:flex-row items-center sm:items-start justify-between bg-white dark:bg-[#000000] shadow dark:border border-[#333333]">
-        <div className="sm:w-0 w-full flex-1 py-2.5 px-2.5 md:px-5 md:px-2.5 rounded-sm">
+        <div className="sm:w-0 w-full flex-1 py-2.5 px-2.5 md:px-5 md:py-2.5 rounded-sm">
           <div className="flex">
             <Suspense fallback={<PostVoteShell />}>
               {/* @ts-expect-error Server Component */}
