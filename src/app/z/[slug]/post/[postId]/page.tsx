@@ -65,7 +65,7 @@ export const generateMetadata = async ({
 
 const PostPage = async ({ params }: PostPageProps) => {
   const cachedPost = (await redis.hgetall(
-    `post:${params.postId}`
+    `post:${params.postId}`,
   )) as CachedPost;
 
   let post:
@@ -92,7 +92,7 @@ const PostPage = async ({ params }: PostPageProps) => {
   return (
     <div>
       <div className="h-full flex flex-col sm:flex-row items-center sm:items-start justify-between bg-white dark:bg-[#000000] shadow dark:border border-[#333333]">
-        <div className="sm:w-0 w-full flex-1 p-5 rounded-sm">
+        <div className="sm:w-0 w-full flex-1 py-2.5 px-2.5 md:px-5 md:px-2.5 rounded-sm">
           <div className="flex">
             <Suspense fallback={<PostVoteShell />}>
               {/* @ts-expect-error Server Component */}
@@ -122,7 +122,7 @@ const PostPage = async ({ params }: PostPageProps) => {
                   u/{post?.author.username ?? cachedPost.authorUsername}
                 </Link>{" "}
                 {formatTimeToNow(
-                  new Date(post?.createdAt ?? cachedPost.createdAt)
+                  new Date(post?.createdAt ?? cachedPost.createdAt),
                 )}
               </p>
               <h1 className="text-xl font-semibold py-2 leading-6">
