@@ -1,7 +1,7 @@
 import { getAuthSession } from '@/lib/auth';
-import EditProfile from '@/components/profile/EditProfile';
 import { db } from '@/lib/db';
 import { Metadata } from 'next';
+import Notifications from '@/components/pages/Notifications';
 
 export async function generateMetadata(): Promise<Metadata> {
   const session = await getAuthSession();
@@ -11,13 +11,9 @@ export async function generateMetadata(): Promise<Metadata> {
     },
   });
 
-  const displayName = user?.displayName ?? user?.name;
+  const title = `Notifications • Z`;
 
-  const userMetaName = user?.username;
-
-  const title = `${displayName} (u/${userMetaName}) • Z`;
-
-  const description = `Edit your profile`;
+  const description = `See your notifications on Z.`;
 
   return {
     title,
@@ -40,9 +36,9 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-interface EditProfilePageProps {}
+interface NotificationsPageProps {}
 
-const EditProfilePage = async ({}: EditProfilePageProps) => {
+const NotificationsPage = async ({}: NotificationsPageProps) => {
   const session = await getAuthSession();
 
   const user = await db.user.findUnique({
@@ -51,7 +47,7 @@ const EditProfilePage = async ({}: EditProfilePageProps) => {
     },
   });
 
-  return <EditProfile user={user} session={session} />;
+  return <Notifications session={session} />;
 };
 
-export default EditProfilePage;
+export default NotificationsPage;
