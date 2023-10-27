@@ -11,7 +11,6 @@ import {
 } from "./Command";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { Community, Prisma, User } from "@prisma/client";
 import { Loader2, User2, Users } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import debounce from "lodash.debounce";
