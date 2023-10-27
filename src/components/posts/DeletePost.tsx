@@ -22,9 +22,10 @@ interface DeletePostProps {
         author: User;
       })
     | null;
+  isPage: boolean;
 }
 
-const DeletePost: FC<DeletePostProps> = ({ post }) => {
+const DeletePost: FC<DeletePostProps> = ({ post, isPage }) => {
   const router = useRouter();
   const { mutate: deletePost } = useMutation({
     mutationFn: async ({ postId, postAuthorId }: PostDeletionRequest) => {
@@ -46,7 +47,7 @@ const DeletePost: FC<DeletePostProps> = ({ post }) => {
     },
     onSuccess: () => {
       startTransition(() => {
-        router.refresh();
+        isPage ? router.back() : router.refresh();
       });
 
       return toast({

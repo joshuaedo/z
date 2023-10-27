@@ -154,7 +154,7 @@ const PostPage = async ({ params }: PostPageProps) => {
               {formatTimeToNow(
                 new Date(post?.createdAt ?? cachedPost.createdAt)
               )}
-              {isAuthor && <DeletePost post={post} />}
+              {isAuthor && <DeletePost post={post} isPage={true} />}
             </div>
 
             {titleExists && (

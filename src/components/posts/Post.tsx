@@ -78,7 +78,7 @@ const Post: FC<PostProps> = ({
                 </span>
               )}
               {formatTimeToNow(new Date(post.createdAt))}
-              {isAuthor && <DeletePost post={post} />}
+              {isAuthor && <DeletePost post={post} isPage={false} />}
             </div>
 
             {titleExists && (
