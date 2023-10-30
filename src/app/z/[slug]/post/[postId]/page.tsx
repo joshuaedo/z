@@ -100,6 +100,8 @@ const PostPage = async ({ params }: PostPageProps) => {
   const isAuthor = session?.user.id === post?.author.id;
   const communityName = community?.name;
 
+  console.log(post)
+
   if (!post && !cachedPost) return notFound();
 
   return (
