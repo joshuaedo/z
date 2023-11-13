@@ -95,7 +95,9 @@ const PostPage = async ({ params }: PostPageProps) => {
     },
   });
 
-  const titleExists = post?.title && post?.title !== "" && post?.title !== " ";
+  const title = post?.title ?? cachedPost?.title;
+  const titleExists =
+    title !== null && title !== undefined && title !== "" && title !== " ";
   const session = await getAuthSession();
   const isAuthor = session?.user.id === post?.author.id;
   const communityName = community?.name;
