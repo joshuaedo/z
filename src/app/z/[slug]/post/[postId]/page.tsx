@@ -147,7 +147,7 @@ const PostPage = async ({ params }: PostPageProps) => {
                 <span className="">
                   Posted by{" "}
                   <Link href={`/u/${post?.author.username}`}>
-                    {post?.author?.username?.length < 3
+                    {post?.author?.username?.length! < 3
                       ? post?.author?.username ?? cachedPost?.authorUsername
                       : `u/${
                           post?.author?.username ?? cachedPost?.authorUsername
