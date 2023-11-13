@@ -146,7 +146,6 @@ const PostPage = async ({ params }: PostPageProps) => {
               {(post?.author?.username || cachedPost?.authorUsername) && (
                 <span className="">
                   Posted by{" "}
-                  <EditorOutput content={post?.content ?? cachedPost.content} />
                   <Link href={`/u/${post?.author.username}`}>
                     {post?.author?.username?.length < 3
                       ? post?.author?.username ?? cachedPost?.authorUsername
