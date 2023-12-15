@@ -21,7 +21,6 @@ interface CommunitiesProps {
 
 const Communities: FC<CommunitiesProps> = ({ session, subs }) => {
   const router = useRouter();
-  const zUser = session?.user;
 
   return (
     <main className="space-y-6">

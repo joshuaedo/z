@@ -47,10 +47,10 @@ model User {
   image             String?
   username          String?     @unique
 
-  bio        String?
-  link       String?
-  displayName String?
-  birthday   String?
+  bio          String?
+  link         String?
+  displayName  String?
+  birthday     String?
   profileTheme String?
 
   accounts    Account[]
@@ -61,6 +61,7 @@ model User {
   Vote        Vote[]
 
   Subscription Subscription[]
+  Notification Notification[]
 }
 
 model Community {
@@ -81,17 +82,18 @@ model Community {
 }
 
 model Subscription {
-  user        User      @relation(fields: [userId], references: [id])
-  userId      String
-  community   Community @relation(fields: [communityId], references: [id])
-  communityId String
+  user         User           @relation(fields: [userId], references: [id])
+  userId       String
+  community    Community      @relation(fields: [communityId], references: [id])
+  communityId  String
+  Notification Notification[]
 
   @@id([userId, communityId])
 }
 
 model Post {
   id          String    @id @default(cuid())
-  title       String  
+  title       String
   content     Json?
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
@@ -101,8 +103,9 @@ model Post {
   author   User   @relation(fields: [authorId], references: [id])
   authorId String
 
-  comments Comment[]
-  votes    Vote[]
+  comments     Comment[]
+  votes        Vote[]
+  Notification Notification[]
 }
 
 model Comment {
@@ -119,8 +122,9 @@ model Comment {
   replyTo   Comment?  @relation("ReplyTo", fields: [replyToId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   replies   Comment[] @relation("ReplyTo")
 
-  votes     CommentVote[]
-  commentId String?
+  votes        CommentVote[]
+  commentId    String?
+  Notification Notification[]
 }
 
 enum VoteType {
@@ -146,4 +150,24 @@ model CommentVote {
   type      VoteType
 
   @@id([userId, commentId])
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  type      String
+  userId    String
+  postId    String?
+  commentId String?
+  read      Boolean
+  createdAt DateTime @default(now())
+
+  user      User          @relation(fields: [userId], references: [id])
+  post      Post?         @relation(fields: [postId], references: [id])
+  comment   Comment?      @relation(fields: [commentId], references: [id])
+  subscribe Subscription? @relation(fields: [subscriptionUserId, subscriptionCommunityId], references: [userId, communityId])
+
+  subscriptionUserId      String?
+  subscriptionCommunityId String?
+  commentText             String?
+  voteType                VoteType?
 }
