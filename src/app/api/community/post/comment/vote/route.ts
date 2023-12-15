@@ -15,6 +15,15 @@ export async function PATCH(req: Request) {
       return new Response('Unauthorized', { status: 401 });
     }
 
+    const notificationData = {
+      type: 'comment_vote',
+      userId: session.user.id,
+      read: false,
+
+      commentId,
+      voteType,
+    };
+
     const existingVote = await db.commentVote.findFirst({
       where: {
         userId: session.user.id,
@@ -55,6 +64,10 @@ export async function PATCH(req: Request) {
         userId: session.user.id,
         commentId,
       },
+    });
+
+    await db.notification.create({
+      data: notificationData,
     });
 
     return new Response('OK');

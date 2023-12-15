@@ -1,15 +1,15 @@
-"use client";
-import { Icons } from "../ui/Icons";
-import { Home, UserCircle, Search, Users, Plus } from "lucide-react";
-import UserAccountNav from "../ui/UserAccountNav";
-import { Button, buttonVariants } from "../ui/Button";
-import { usePathname, useRouter } from "next/navigation";
-import { FC } from "react";
-import { Community, User } from "@prisma/client";
-import { Session } from "next-auth";
-import Link from "next/link";
-import CommunityAvatar from "../community/CommunityAvatar";
-import { ThemeToggle } from "../ui/ThemeToggle";
+'use client';
+import { Icons } from '../ui/Icons';
+import { Home, UserCircle, Search, Users, Plus, Bell } from 'lucide-react';
+import UserAccountNav from '../ui/UserAccountNav';
+import { Button, buttonVariants } from '../ui/Button';
+import { usePathname, useRouter } from 'next/navigation';
+import { FC } from 'react';
+import { Community, User } from '@prisma/client';
+import { Session } from 'next-auth';
+import Link from 'next/link';
+import CommunityAvatar from '../community/CommunityAvatar';
+import { ThemeToggle } from '../ui/ThemeToggle';
 
 interface AsideClientProps {
   session: Session | null;
@@ -23,83 +23,97 @@ const AsideClient: FC<AsideClientProps> = ({ session, subs, user }) => {
   const zUser = user ?? session?.user;
 
   return (
-    <aside className="overflow-hidden h-fit rounded-lg md:bg-white dark:md:bg-[#000000] md:shadow dark:md:border border-[#333333] md:fixed p-8 space-y-2">
+    <aside className='overflow-hidden h-fit rounded-lg md:bg-white dark:md:bg-[#000000] md:shadow dark:md:border border-[#333333] md:fixed p-8 space-y-2'>
       <Button
-        variant="ghost"
-        onClick={() => router.push("/")}
-        className="hidden md:flex items-center -ml-3 mb-4"
+        variant='ghost'
+        onClick={() => router.push('/')}
+        className='hidden md:flex items-center -ml-3 mb-4'
       >
-        <Icons.logo className="-ml-2 h-8 w-8 md:h-10 md:w-10" />
+        <Icons.logo className='-ml-2 h-8 w-8 md:h-10 md:w-10' />
       </Button>
 
       <Button
-        variant="ghost"
-        onClick={() => router.push("/")}
+        variant='ghost'
+        onClick={() => router.push('/')}
         className={`${
-          pathname === "/" ? "font-bold" : "font-medium"
+          pathname === '/' ? 'font-bold' : 'font-medium'
         } hidden md:flex text-xl items-end -ml-3 mb-4 `}
       >
         <Home
-          strokeWidth={pathname === "/" ? 2 : 1.5}
-          className="h-5 w-5 md:h-7 md:w-7 mr-3"
+          strokeWidth={pathname === '/' ? 2 : 1.5}
+          className='h-5 w-5 md:h-7 md:w-7 mr-3'
         />
         Home
       </Button>
 
       <Button
-        variant="ghost"
-        onClick={() => router.push("/communities")}
+        variant='ghost'
+        onClick={() => router.push('/communities')}
         className={`${
-          pathname === "/communities" ? "font-bold" : "font-medium"
+          pathname === '/communities' ? 'font-bold' : 'font-medium'
         } hidden md:flex text-xl items-end -ml-3 mb-4 `}
       >
         <Users
-          strokeWidth={pathname === "/communities" ? 2 : 1.5}
-          className="h-5 w-5 md:h-7 md:w-7 mr-3"
+          strokeWidth={pathname === '/communities' ? 2 : 1.5}
+          className='h-5 w-5 md:h-7 md:w-7 mr-3'
         />
         Communities
       </Button>
 
       <Button
-        variant="ghost"
-        onClick={() => router.push("/explore")}
+        variant='ghost'
+        onClick={() => router.push('/explore')}
         className={`${
-          pathname === "/explore" ? "font-bold" : "font-medium"
+          pathname === '/explore' ? 'font-bold' : 'font-medium'
         } hidden md:flex text-xl items-end -ml-3 mb-4 `}
       >
         <Search
-          strokeWidth={pathname === "/explore" ? 2 : 1.5}
-          className="h-5 w-5 md:h-7 md:w-7 mr-3"
+          strokeWidth={pathname === '/explore' ? 2 : 1.5}
+          className='h-5 w-5 md:h-7 md:w-7 mr-3'
         />
         Explore
       </Button>
 
       <Button
-        variant="ghost"
+        variant='ghost'
+        onClick={() => router.push('/notifications')}
+        className={`${
+          pathname === '/explore' ? 'font-bold' : 'font-medium'
+        } hidden md:flex text-xl items-end -ml-3 mb-4 `}
+      >
+        <Bell
+          strokeWidth={pathname === '/notifications' ? 2 : 1.5}
+          className='h-5 w-5 md:h-7 md:w-7 mr-3'
+        />
+        Notifications
+      </Button>
+
+      <Button
+        variant='ghost'
         onClick={() => router.push(`/u/${zUser?.username}`)}
         className={`${
-          pathname === `/u/${zUser?.username}` ? "font-bold" : "font-medium"
+          pathname === `/u/${zUser?.username}` ? 'font-bold' : 'font-medium'
         } hidden md:flex text-xl items-end -ml-3 mb-4`}
       >
         <UserCircle
           strokeWidth={pathname === `/u/${zUser?.username}` ? 2 : 1.5}
-          className="h-5 w-5 md:h-7 md:w-7 mr-3"
+          className='h-5 w-5 md:h-7 md:w-7 mr-3'
         />
         Profile
       </Button>
 
-      <hr className="hidden md:flex" />
+      <hr className='hidden md:flex' />
 
       {zUser ? (
-        <Link className="flex flex-col" href={"/u/" + zUser?.username}>
+        <Link className='flex flex-col' href={'/u/' + zUser?.username}>
           <UserAccountNav user={user} />
         </Link>
       ) : (
         <button
-          onClick={() => router.push("/sign-in")}
+          onClick={() => router.push('/sign-in')}
           className={buttonVariants({
-            variant: "default",
-            size: "lg",
+            variant: 'default',
+            size: 'lg',
           })}
         >
           Sign In
@@ -110,29 +124,29 @@ const AsideClient: FC<AsideClientProps> = ({ session, subs, user }) => {
 
       {zUser && (
         <>
-          <div className="md:hidden space-y-3">
-            <h4 className="font-medium">Your Communities</h4>
+          <div className='md:hidden space-y-3'>
+            <h4 className='font-medium'>Your Communities</h4>
             <button
-              onClick={() => router.push("/z/create")}
-              className="text-muted-foreground flex"
+              onClick={() => router.push('/z/create')}
+              className='text-muted-foreground flex'
             >
-              <Plus className="mr-2" />
+              <Plus className='mr-2' />
               <span>Create a community</span>
             </button>
             <ul
-              id="aside-communities"
-              className="text-muted-foreground max-h-[10rem] space-y-1"
+              id='aside-communities'
+              className='text-muted-foreground max-h-[10rem] space-y-1'
             >
               {subs.map((community) => (
                 <li
                   key={community.id}
                   onClick={() => router.push(`z/${community.name}`)}
-                  className="py-1 flex gap-x-2 cursor-pointer overflow-hidden"
+                  className='py-1 flex gap-x-2 cursor-pointer overflow-hidden'
                 >
-                  <CommunityAvatar community={community} className="h-5 w-5" />
+                  <CommunityAvatar community={community} className='h-5 w-5' />
                   {`z/${
                     community.name.length > 13
-                      ? community.name.slice(0, 13) + "..."
+                      ? community.name.slice(0, 13) + '...'
                       : community.name
                   }`}
                 </li>
@@ -140,20 +154,20 @@ const AsideClient: FC<AsideClientProps> = ({ session, subs, user }) => {
             </ul>
           </div>
 
-          <hr className="md:hidden" />
+          <hr className='md:hidden' />
         </>
       )}
 
-      <div className="space-y-1">
+      <div className='space-y-1'>
         <button
-          onClick={() => router.push("/privacy-policy")}
-          className="block text-xs font-medium rounded-lg"
+          onClick={() => router.push('/privacy-policy')}
+          className='block text-xs font-medium rounded-lg'
         >
           Privacy Policy
         </button>
         <button
-          onClick={() => router.push("/terms-of-service")}
-          className="block text-xs font-medium rounded-lg"
+          onClick={() => router.push('/terms-of-service')}
+          className='block text-xs font-medium rounded-lg'
         >
           Terms of Service
         </button>
