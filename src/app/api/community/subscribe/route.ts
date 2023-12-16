@@ -35,9 +35,26 @@ export async function POST(req: Request) {
       },
     });
 
+    const findCommunity = await db.community.findUnique({
+      where: {
+        id: communityId,
+      },
+    });
+
+    let findNotificationRecipient;
+
+    if (findCommunity?.creatorId) {
+      findNotificationRecipient = await db.user.findUnique({
+        where: {
+          id: findCommunity.creatorId,
+        },
+      });
+    }
+
     const notificationData = {
       type: 'subscribe',
-      userId: session.user.id,
+      recipientId: findNotificationRecipient?.id,
+      senderId: session.user.id,
       read: false,
 
       subscriptionUserId: session.user.id,

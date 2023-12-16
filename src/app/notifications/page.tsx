@@ -5,11 +5,14 @@ import Notifications from '@/components/pages/Notifications';
 
 export async function generateMetadata(): Promise<Metadata> {
   const session = await getAuthSession();
-  const user = await db.user.findUnique({
-    where: {
-      id: session?.user?.id,
-    },
-  });
+  let user;
+  if (session) {
+    user = await db.user.findUnique({
+      where: {
+        id: session?.user?.id,
+      },
+    });
+  }
 
   const title = `Notifications • Z`;
 
@@ -36,18 +39,39 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-interface NotificationsPageProps {}
-
-const NotificationsPage = async ({}: NotificationsPageProps) => {
+const NotificationsPage = async () => {
   const session = await getAuthSession();
+  let notifications;
+  if (session) {
+    notifications = await db.notification.findMany({
+      where: {
+        recipientId: session?.user?.id,
+        read: false,
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+      include: {
+        sender: true,
+        post: {
+          include: {
+            community: true,
+            votes: true,
+            author: true,
+            comments: true,
+          },
+        },
+        subscribe: {
+          include: {
+            community: true,
+          },
+        },
+        comment: true,
+      },
+    });
+  }
 
-  const user = await db.user.findUnique({
-    where: {
-      id: session?.user?.id,
-    },
-  });
-
-  return <Notifications session={session} />;
+  return <Notifications session={session} notifications={notifications} />;
 };
 
 export default NotificationsPage;

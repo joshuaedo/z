@@ -15,9 +15,22 @@ export async function PATCH(req: Request) {
       return new Response('Unauthorized', { status: 401 });
     }
 
+    const findComment = await db.comment.findUnique({
+      where: {
+        id: commentId
+      }
+    })
+
+    const findNotificationRecipient = await db.user.findUnique({
+      where: {
+        id: findComment?.authorId
+      }
+    })
+
     const notificationData = {
       type: 'comment_vote',
-      userId: session.user.id,
+      recipientId: findNotificationRecipient?.id,
+      senderId: session.user.id,
       read: false,
 
       commentId,

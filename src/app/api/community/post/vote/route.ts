@@ -36,9 +36,22 @@ export async function PATCH(req: Request) {
       },
     });
 
+    const findPost = await db.post.findUnique({
+      where: {
+        id: postId
+      }
+    })
+
+    const findNotificationRecipient = await db.user.findUnique({
+      where: {
+        id: findPost?.authorId
+      }
+    })
+
     const notificationData = {
       type: 'vote',
-      userId: session.user.id,
+      recipientId: findNotificationRecipient?.id,
+      senderId: session.user.id,
       read: false,
 
       postId,
