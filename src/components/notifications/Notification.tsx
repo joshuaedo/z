@@ -37,33 +37,35 @@ const Notification = ({ notification }: NotificationProps) => {
 
   if (notification?.type === 'comment') {
     return (
-      <div className='flex gap-6'>
-        <MessageSquare className='h-8 w-8' />
-        {post && sender && comment && (
-          <div className='flex flex-col space-y-3'>
-            <div className='flex items-center'>
-              <Link href={`/u/${sender?.username}`}>
-                <UserAvatar
-                  user={{
-                    name: sender?.name || null,
-                    image: sender?.image || null,
-                  }}
-                  className='h-6 w-6'
-                />
-              </Link>
-              <div className='ml-2 flex items-center gap-x-2'>
-                <a href={`/u/${sender?.username}`}>
-                  <p className='text-xs font-medium'>{displayName}</p>
-                </a>
-                <p className='max-h-40 truncate text-xs text-muted-foreground'>
-                  {formatTimeToNow(new Date(comment?.createdAt))}
-                </p>
+      <Link href={`/z/${post?.community?.name}/post/${post?.id}`}>
+        <div className='flex gap-6'>
+          <MessageSquare className='h-8 w-8' />
+          {post && sender && comment && (
+            <div className='flex flex-col space-y-3'>
+              <div className='flex items-center'>
+                <Link href={`/u/${sender?.username}`}>
+                  <UserAvatar
+                    user={{
+                      name: sender?.name || null,
+                      image: sender?.image || null,
+                    }}
+                    className='h-6 w-6'
+                  />
+                </Link>
+                <div className='ml-2 flex items-center gap-x-2'>
+                  <a href={`/u/${sender?.username}`}>
+                    <p className='text-xs font-medium'>{displayName}</p>
+                  </a>
+                  <p className='max-h-40 truncate text-xs text-muted-foreground'>
+                    {formatTimeToNow(new Date(comment?.createdAt))}
+                  </p>
+                </div>
               </div>
+              <p className='text-sm'>{comment?.text}</p>
             </div>
-            <p className='text-sm '>{comment?.text}</p>
-          </div>
-        )}
-      </div>
+          )}
+        </div>
+      </Link>
     );
   }
 
@@ -81,65 +83,67 @@ const Notification = ({ notification }: NotificationProps) => {
     }
 
     return (
-      <div className='flex gap-6'>
-        {isUpVote ? (
-          <ArrowBigUp className='h-8 w-8 text-purple-500 fill-purple-500' />
-        ) : (
-          <ArrowBigDown className='h-8 w-8 text-red-500 fill-red-500' />
-        )}
+      <Link href={`/z/${post?.community?.name}/post/${post?.id}`}>
+        <div className='flex gap-6'>
+          {isUpVote ? (
+            <ArrowBigUp className='h-8 w-8 text-purple-500 fill-purple-500' />
+          ) : (
+            <ArrowBigDown className='h-8 w-8 text-red-500 fill-red-500' />
+          )}
 
-        <div className='flex items-center'>
-          <Link href={`/u/${sender?.username}`}>
-            <UserAvatar
-              user={{
-                name: sender?.name || null,
-                image: sender?.image || null,
-              }}
-              className='h-6 w-6'
-            />
-          </Link>
-          <div className='ml-2 flex items-center gap-x-2'>
-            <a href={`/u/${sender?.username}`}>
-              <p className='text-sm'>
-                {displayName} {voted} your post
+          <div className='flex items-center'>
+            <Link href={`/u/${sender?.username}`}>
+              <UserAvatar
+                user={{
+                  name: sender?.name || null,
+                  image: sender?.image || null,
+                }}
+                className='h-6 w-6'
+              />
+            </Link>
+            <div className='ml-2 flex items-center gap-x-2'>
+              <p className='text-xs'>
+                <a href={`/u/${sender?.username}`}>{displayName}</a> {voted}{' '}
+                your post
               </p>
-            </a>
-            <p className='max-h-40 truncate text-xs text-muted-foreground'>
-              {formatTimeToNow(new Date(notification?.createdAt))}
-            </p>
+              <p className='hidden md:flex max-h-40 truncate text-xs text-muted-foreground'>
+                {formatTimeToNow(new Date(notification?.createdAt))}
+              </p>
+            </div>
           </div>
         </div>
-      </div>
+      </Link>
     );
   }
 
   if (notification?.type === 'subscribe') {
     return (
-      <div className='flex gap-6'>
-        <Users2 className='h-8 w-8' />
+      <Link href={`/z/${subscription?.community?.id}`}>
+        <div className='flex gap-6'>
+          <Users2 className='h-8 w-8' />
 
-        <div className='flex items-center'>
-          <Link href={`/u/${sender?.username}`}>
-            <UserAvatar
-              user={{
-                name: sender?.name || null,
-                image: sender?.image || null,
-              }}
-              className='h-6 w-6'
-            />
-          </Link>
-          <div className='ml-2 flex items-center gap-x-2'>
-            <a href={`/u/${sender?.username}`}>
-              <p className='text-sm'>
-                {displayName} subscribed to {subscription?.community?.name}
+          <div className='flex items-center'>
+            <Link href={`/u/${sender?.username}`}>
+              <UserAvatar
+                user={{
+                  name: sender?.name || null,
+                  image: sender?.image || null,
+                }}
+                className='h-6 w-6'
+              />
+            </Link>
+            <div className='ml-2 flex items-center gap-x-2'>
+              <p className='text-xs'>
+                <a href={`/u/${sender?.username}`}>{displayName}</a> subscribed
+                to {subscription?.community?.name}
               </p>
-            </a>
-            <p className='max-h-40 truncate text-xs text-muted-foreground'>
-              {formatTimeToNow(new Date(notification?.createdAt))}
-            </p>
+              <p className='hidden md:flex max-h-40 truncate text-xs text-muted-foreground'>
+                {formatTimeToNow(new Date(notification?.createdAt))}
+              </p>
+            </div>
           </div>
         </div>
-      </div>
+      </Link>
     );
   }
 

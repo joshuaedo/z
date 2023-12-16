@@ -3,6 +3,8 @@ import { db } from '@/lib/db';
 import { Metadata } from 'next';
 import Notifications from '@/components/pages/Notifications';
 
+export const dynamic = 'force-dynamic';
+export const fetchCache = 'force-no-store';
 export async function generateMetadata(): Promise<Metadata> {
   const session = await getAuthSession();
   let user;
