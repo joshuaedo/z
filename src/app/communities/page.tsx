@@ -18,10 +18,7 @@ export const metadata = {
   },
 };
 
-
-interface CommunitiesPageProps {}
-
-const CommunitiesPage = async ({}: CommunitiesPageProps) => {
+const CommunitiesPage = async () => {
   const session = await getAuthSession();
   const zUser = session?.user;
 

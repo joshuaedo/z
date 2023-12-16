@@ -1,6 +1,5 @@
 'use client';
 import { Icons } from '../ui/Icons';
-import { Home, UserCircle, Search, Users, Plus, Bell } from 'lucide-react';
 import UserAccountNav from '../ui/UserAccountNav';
 import { Button, buttonVariants } from '../ui/Button';
 import { usePathname, useRouter } from 'next/navigation';
@@ -10,6 +9,8 @@ import { Session } from 'next-auth';
 import Link from 'next/link';
 import CommunityAvatar from '../community/CommunityAvatar';
 import { ThemeToggle } from '../ui/ThemeToggle';
+import { NavIcons } from './NavIcons';
+import { Plus } from 'lucide-react';
 
 interface AsideClientProps {
   session: Session | null;
@@ -24,13 +25,12 @@ const AsideClient: FC<AsideClientProps> = ({ session, subs, user }) => {
 
   return (
     <aside className='overflow-hidden h-fit rounded-lg md:bg-white dark:md:bg-[#000000] md:shadow dark:md:border border-[#333333] md:fixed p-8 space-y-2'>
-      <Button
-        variant='ghost'
+      <div
         onClick={() => router.push('/')}
-        className='hidden md:flex items-center -ml-3 mb-4'
+        className='cursor-pointer hidden md:flex items-center'
       >
-        <Icons.logo className='-ml-2 h-8 w-8 md:h-10 md:w-10' />
-      </Button>
+        <Icons.logo className='h-8 w-8 md:h-10 md:w-10' />
+      </div>
 
       <Button
         variant='ghost'
@@ -39,10 +39,11 @@ const AsideClient: FC<AsideClientProps> = ({ session, subs, user }) => {
           pathname === '/' ? 'font-bold' : 'font-medium'
         } hidden md:flex text-xl items-end -ml-3 mb-4 `}
       >
-        <Home
-          strokeWidth={pathname === '/' ? 2 : 1.5}
-          className='h-5 w-5 md:h-7 md:w-7 mr-3'
-        />
+        {pathname === '/' ? (
+          <NavIcons.homeActive className='h-5 w-5 md:h-7 md:w-7 mr-3' />
+        ) : (
+          <NavIcons.homeInactive className='h-5 w-5 md:h-7 md:w-7 mr-3' />
+        )}
         Home
       </Button>
 
@@ -53,10 +54,11 @@ const AsideClient: FC<AsideClientProps> = ({ session, subs, user }) => {
           pathname === '/communities' ? 'font-bold' : 'font-medium'
         } hidden md:flex text-xl items-end -ml-3 mb-4 `}
       >
-        <Users
-          strokeWidth={pathname === '/communities' ? 2 : 1.5}
-          className='h-5 w-5 md:h-7 md:w-7 mr-3'
-        />
+        {pathname === '/communities' ? (
+          <NavIcons.communityActive className='h-5 w-5 md:h-7 md:w-7 mr-3' />
+        ) : (
+          <NavIcons.communityInactive className='h-5 w-5 md:h-7 md:w-7 mr-3' />
+        )}
         Communities
       </Button>
 
@@ -67,10 +69,11 @@ const AsideClient: FC<AsideClientProps> = ({ session, subs, user }) => {
           pathname === '/explore' ? 'font-bold' : 'font-medium'
         } hidden md:flex text-xl items-end -ml-3 mb-4 `}
       >
-        <Search
-          strokeWidth={pathname === '/explore' ? 2 : 1.5}
-          className='h-5 w-5 md:h-7 md:w-7 mr-3'
-        />
+        {pathname === '/explore' ? (
+          <NavIcons.exploreActive className='h-5 w-5 md:h-7 md:w-7 mr-3' />
+        ) : (
+          <NavIcons.exploreInactive className='h-5 w-5 md:h-7 md:w-7 mr-3' />
+        )}
         Explore
       </Button>
 
@@ -78,13 +81,14 @@ const AsideClient: FC<AsideClientProps> = ({ session, subs, user }) => {
         variant='ghost'
         onClick={() => router.push('/notifications')}
         className={`${
-          pathname === '/explore' ? 'font-bold' : 'font-medium'
+          pathname === '/notifications' ? 'font-bold' : 'font-medium'
         } hidden md:flex text-xl items-end -ml-3 mb-4 `}
       >
-        <Bell
-          strokeWidth={pathname === '/notifications' ? 2 : 1.5}
-          className='h-5 w-5 md:h-7 md:w-7 mr-3'
-        />
+        {pathname === '/notifications' ? (
+          <NavIcons.notificationsActive className='h-5 w-5 md:h-7 md:w-7 mr-3' />
+        ) : (
+          <NavIcons.notificationsInactive className='h-5 w-5 md:h-7 md:w-7 mr-3' />
+        )}
         Notifications
       </Button>
 
@@ -95,10 +99,11 @@ const AsideClient: FC<AsideClientProps> = ({ session, subs, user }) => {
           pathname === `/u/${zUser?.username}` ? 'font-bold' : 'font-medium'
         } hidden md:flex text-xl items-end -ml-3 mb-4`}
       >
-        <UserCircle
-          strokeWidth={pathname === `/u/${zUser?.username}` ? 2 : 1.5}
-          className='h-5 w-5 md:h-7 md:w-7 mr-3'
-        />
+        {pathname === `/u/${zUser?.username}` ? (
+          <NavIcons.profileActive className='h-5 w-5 md:h-7 md:w-7 mr-3' />
+        ) : (
+          <NavIcons.profileInactive className='h-5 w-5 md:h-7 md:w-7 mr-3' />
+        )}
         Profile
       </Button>
 

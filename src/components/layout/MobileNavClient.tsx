@@ -1,8 +1,8 @@
 'use client';
 
-import { Bell, Home, Search, Users } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { NavIcons } from './NavIcons';
 
 const MobileNavClient = () => {
   const pathname = usePathname();
@@ -12,37 +12,44 @@ const MobileNavClient = () => {
         href='/'
         className='flex items-end text-xl font-medium py-1 p-2 rounded-lg'
       >
-        <Home strokeWidth={pathname === '/' ? 2.3 : 1.6} className='h-6 w-6' />
+        {pathname === '/' ? (
+          <NavIcons.homeActive className='h-6 w-6' />
+        ) : (
+          <NavIcons.homeInactive className='h-6 w-6' />
+        )}
       </Link>
 
       <Link
         href='/communities'
         className='flex items-end text-xl font-medium py-1 p-2 rounded-lg'
       >
-        <Users
-          strokeWidth={pathname === '/communities' ? 2.3 : 1.6}
-          className='h-6 w-6'
-        />
+        {pathname === '/communities' ? (
+          <NavIcons.communityActive className='h-6 w-6' />
+        ) : (
+          <NavIcons.communityInactive className='h-6 w-6' />
+        )}
       </Link>
 
       <Link
         href='/explore'
         className='flex items-end text-xl font-medium py-1 pr-2 rounded-lg'
       >
-        <Search
-          strokeWidth={pathname === '/explore' ? 2.3 : 1.6}
-          className='h-6 w-6'
-        />
+        {pathname === '/explore' ? (
+          <NavIcons.exploreActive className='h-6 w-6' />
+        ) : (
+          <NavIcons.exploreInactive className='h-6 w-6' />
+        )}
       </Link>
 
       <Link
         href='/notifications'
         className='flex items-end text-xl font-medium py-1 pr-2 rounded-lg'
       >
-        <Bell
-          strokeWidth={pathname === '/notifications' ? 2.3 : 1.6}
-          className='h-6 w-6'
-        />
+        {pathname === '/notifications' ? (
+          <NavIcons.notificationsActive className='h-6 w-6' />
+        ) : (
+          <NavIcons.notificationsInactive className='h-6 w-6' />
+        )}
       </Link>
     </>
   );

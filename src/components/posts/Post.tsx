@@ -1,7 +1,7 @@
 'use client';
 
 import { formatTimeToNow } from '@/lib/utils';
-import { Post, User, Vote } from '@prisma/client';
+import { Post as PostType, User, Vote } from '@prisma/client';
 import { MessageSquare } from 'lucide-react';
 import { FC, useRef } from 'react';
 import EditorOutput from '../editor/EditorOutput';
@@ -14,7 +14,7 @@ type PartialVote = Pick<Vote, 'type'>;
 
 interface PostProps {
   communityName: string;
-  post: Post & {
+  post: PostType & {
     author: User;
     votes: Vote[];
   };

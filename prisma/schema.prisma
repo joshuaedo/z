@@ -82,9 +82,9 @@ model Community {
 }
 
 model Subscription {
-  user         User           @relation(fields: [userId], references: [id])
+  user         User           @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId       String
-  community    Community      @relation(fields: [communityId], references: [id])
+  community    Community      @relation(fields: [communityId], references: [id], onDelete: Cascade)
   communityId  String
   Notification Notification[]
 
@@ -97,7 +97,7 @@ model Post {
   content     Json?
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
-  community   Community @relation(fields: [communityId], references: [id])
+  community   Community @relation(fields: [communityId], references: [id], onDelete: Cascade)
   communityId String
 
   author   User   @relation(fields: [authorId], references: [id])
@@ -112,9 +112,9 @@ model Comment {
   id        String   @id @default(cuid())
   text      String
   createdAt DateTime @default(now())
-  author    User     @relation(fields: [authorId], references: [id])
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
   authorId  String
-  post      Post     @relation(fields: [postId], references: [id])
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
   postId    String
   userId    String
 
@@ -133,7 +133,7 @@ enum VoteType {
 }
 
 model Vote {
-  user   User     @relation(fields: [userId], references: [id])
+  user   User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String
   post   Post     @relation(fields: [postId], references: [id])
   postId String
@@ -155,19 +155,22 @@ model CommentVote {
 model Notification {
   id        String   @id @default(cuid())
   type      String
-  userId    String
   postId    String?
   commentId String?
   read      Boolean
   createdAt DateTime @default(now())
 
-  user      User          @relation(fields: [userId], references: [id])
+  senderId    String?
+  recipientId String?
+
+  sender    User?         @relation(fields: [senderId], references: [id])
   post      Post?         @relation(fields: [postId], references: [id])
   comment   Comment?      @relation(fields: [commentId], references: [id])
   subscribe Subscription? @relation(fields: [subscriptionUserId, subscriptionCommunityId], references: [userId, communityId])
 
   subscriptionUserId      String?
   subscriptionCommunityId String?
-  commentText             String?
-  voteType                VoteType?
+
+  commentText String?
+  voteType    VoteType?
 }
