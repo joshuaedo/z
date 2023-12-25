@@ -22,11 +22,7 @@ const Notifications = ({ session, notifications }: NotificationsProps) => {
             }
 
             return (
-              <div
-                key={notification.id}
-              >
-                <Notification ke notification={notification} />
-              </div>
+              <Notification key={notification.id} notification={notification} />
             );
           })}
       </ul>
