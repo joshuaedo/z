@@ -56,20 +56,12 @@ export default function RootLayout({
   modal: React.ReactNode;
 }) {
   return (
-    //   <html
-    //   lang='en'
-    //   className={cn(
-    //     'bg-white text-slate-900 antialiased font-sans light',
-    //     fontSans.variable
-    //   )}
-    // >
-    //   <body className='min-h-screen bg-slate-50 antialiased'>
     <html lang="en" suppressHydrationWarning>
       <head />
       <body
         className={cn(
           "min-h-screen bg-slate-50 dark:bg-[#000000] text-black dark:text-[#E7E9EA] font-sans antialiased",
-          fontSans.variable
+          fontSans.variable,
         )}
       >
         <Providers>
@@ -85,7 +77,6 @@ export default function RootLayout({
             </div>
           </main>
           <Toaster />
-          {/* @ts-expect-error Server Component */}
           <MobileNav />
         </Providers>
       </body>
