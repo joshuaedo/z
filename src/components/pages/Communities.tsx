@@ -35,12 +35,9 @@ const Communities: FC<CommunitiesProps> = ({ session, subs }) => {
         </button>
         <ul id="community" className=" space-y-3">
           {subs.map((community) => (
-            <>
+            <div key={community.id}>
               <hr />
-              <li
-                key={community.id}
-                className="py-1 flex items-center rounded-lg p-1"
-              >
+              <li className="py-1 flex items-center rounded-lg p-1">
                 <Link
                   href={`z/${community.name}`}
                   className="w-full h-full flex items-center gap-x-4 md:gap-x-5"
@@ -76,7 +73,7 @@ const Communities: FC<CommunitiesProps> = ({ session, subs }) => {
                   </div>
                 </Link>
               </li>
-            </>
+            </div>
           ))}
         </ul>
       </div>
