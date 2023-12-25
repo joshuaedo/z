@@ -24,9 +24,8 @@ const Notifications = ({ session, notifications }: NotificationsProps) => {
             return (
               <div
                 key={notification.id}
-                className="rounded-md bg-white dark:bg-[#000000] shadow dark:border border-[#333333]"
               >
-                <Notification notification={notification} />
+                <Notification ke notification={notification} />
               </div>
             );
           })}
