@@ -79,16 +79,9 @@ const NotificationItem = ({
                 />
               </Link>
               <div className="ml-2 flex items-center gap-x-2">
-                <a
-                  href={
-                    contentProps.userLink ||
-                    `/u/${contentProps.sender?.username}`
-                  }
-                >
-                  <p className="text-xs">
-                    {contentProps.displayName} {contentProps.text}
-                  </p>
-                </a>
+                <p className="text-xs">
+                  {contentProps.displayName} {contentProps.text}
+                </p>
                 {contentProps.createdAt && (
                   <p className="hidden md:flex max-h-40 truncate text-xs text-muted-foreground">
                     {formatTimeToNow(new Date(contentProps.createdAt))}

@@ -10,6 +10,7 @@ import { Users } from "lucide-react";
 import EditCommunityDropdown from "@/components/ui/EditCommunityDropdown";
 import CommunityAvatar from "@/components/community/CommunityAvatar";
 import CommunityFeed from "@/components/feeds/community/CommunityFeed";
+import { truncateString } from "@/lib/utils";
 
 export const generateMetadata = async ({ params }: SlugPageProps) => {
   const { slug } = params;
@@ -108,6 +109,8 @@ const SlugPage = async ({ params }: SlugPageProps) => {
 
   const isSubscribed = !!subscription;
 
+  const truncatedCommunityName = truncateString(community.name, 10);
+
   const isCreator = community.creatorId === session?.user.id;
 
   const memberCount = await db.subscription.count({
@@ -124,14 +127,17 @@ const SlugPage = async ({ params }: SlugPageProps) => {
         <CommunityAvatar community={community} className="h-12 w-12" />
         <div className="flex w-fit items-center justify-center">
           {/* Community Name & Info */}
-          <h2 className="font-bold text-2xl md:text-4xl">z/{community.name}</h2>
+          <div className="font-bold">
+            <h2 className="md:hidden text-2xl">z/{truncatedCommunityName}</h2>
+            <h2 className="md:flex hidden text-4xl">z/{community.name}</h2>
+          </div>
           {/* Community Status */}
           {isCreator ? (
             <div className="flex items-center">
               <div className="bg-purple-500 rounded-full font-semibold py-1 px-2 border border-zinc-900 mx-2">
                 Creator
               </div>
-              <EditCommunityDropdown communityPath={community.name} />
+              <EditCommunityDropdown communityPath={community?.name} />
             </div>
           ) : null}
           {!isCreator ? (
