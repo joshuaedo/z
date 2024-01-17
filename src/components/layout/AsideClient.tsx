@@ -7,7 +7,7 @@ import { FC } from 'react';
 import { Community, User } from '@prisma/client';
 import { Session } from 'next-auth';
 import Link from 'next/link';
-import CommunityAvatar from '../community/CommunityAvatar';
+import CommunityAvatar from '../communities/CommunityAvatar';
 import { ThemeToggle } from '../ui/ThemeToggle';
 import { NavIcons } from './NavIcons';
 import { Plus } from 'lucide-react';
@@ -90,6 +90,21 @@ const AsideClient: FC<AsideClientProps> = ({ session, subs, user }) => {
           <NavIcons.notificationsInactive className='h-5 w-5 md:h-7 md:w-7 mr-3' />
         )}
         Notifications
+      </Button>
+
+      <Button
+        variant='ghost'
+        onClick={() => router.push('/messages')}
+        className={`${
+          pathname === '/messages' ? 'font-bold' : 'font-medium'
+        } hidden md:flex text-xl items-end -ml-3 mb-4 `}
+      >
+        {pathname === '/messages' ? (
+          <NavIcons.messagesActive className='h-5 w-5 md:h-7 md:w-7 mr-3' />
+        ) : (
+          <NavIcons.messagesInactive className='h-5 w-5 md:h-7 md:w-7 mr-3' />
+        )}
+        Messages
       </Button>
 
       <Button

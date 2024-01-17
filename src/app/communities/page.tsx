@@ -1,20 +1,23 @@
-import SignInFireWall from "@/components/auth/SignInFireWall";
-import Communities from "@/components/pages/Communities";
-import { getAuthSession } from "@/lib/auth";
-import { db } from "@/lib/db";
-import { Community } from "@prisma/client";
+import SignInFireWall from '@/components/auth/SignInFireWall';
+import Communities from '@/components/communities/Communities';
+import { getAuthSession } from '@/lib/auth';
+import { db } from '@/lib/db';
+import { Community } from '@prisma/client';
 
 export const metadata = {
-  title: "Communities / Z",
-  description: "Explore and engage with your favorite communities on Z. Join the conversation, share ideas, and connect with like-minded individuals.",
+  title: 'Communities / Z',
+  description:
+    'Explore and engage with your favorite communities on Z. Join the conversation, share ideas, and connect with like-minded individuals.',
   openGraph: {
-    title: "Communities / Z",
-    description: "Explore and engage with your favorite communities on Z. Join the conversation, share ideas, and connect with like-minded individuals.",
+    title: 'Communities / Z',
+    description:
+      'Explore and engage with your favorite communities on Z. Join the conversation, share ideas, and connect with like-minded individuals.',
   },
   twitter: {
-    card: "summary",
-    title: "Communities / Z",
-    description: "Explore and engage with your favorite communities on Z. Join the conversation, share ideas, and connect with like-minded individuals.",
+    card: 'summary',
+    title: 'Communities / Z',
+    description:
+      'Explore and engage with your favorite communities on Z. Join the conversation, share ideas, and connect with like-minded individuals.',
   },
 };
 
@@ -51,7 +54,7 @@ const CommunitiesPage = async () => {
         _count: true,
       },
       orderBy: {
-        createdAt: "desc",
+        createdAt: 'desc',
       },
     });
   }

@@ -1,8 +1,8 @@
-import EditCommunity from "@/components/community/EditCommunity";
-import { getAuthSession } from "@/lib/auth";
-import { db } from "@/lib/db";
-import { Metadata } from "next";
-import { notFound } from "next/navigation";
+import EditCommunity from '@/components/communities/EditCommunity';
+import { getAuthSession } from '@/lib/auth';
+import { db } from '@/lib/db';
+import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 
 interface EditCommunityPageProps {
   params: {
@@ -20,22 +20,22 @@ export const generateMetadata = async ({
   });
 
   return {
-    title: `Edit ${community?.name ?? "Community"} / Z`,
-    description: community?.description ?? "Edit Community",
+    title: `Edit ${community?.name ?? 'Community'} / Z`,
+    description: community?.description ?? 'Edit Community',
     openGraph: {
-      title: `Edit ${community?.name ?? "Community"} / Z`,
-      description: community?.description ?? "Edit Community",
+      title: `Edit ${community?.name ?? 'Community'} / Z`,
+      description: community?.description ?? 'Edit Community',
       images: [
         {
-          url: community?.image ?? "https://joshuaedo.sirv.com/Z/Z.png",
+          url: community?.image ?? 'https://joshuaedo.sirv.com/Z/Z.png',
         },
       ],
     },
     twitter: {
-      card: "summary",
-      title: `Edit ${community?.name ?? "Community"} / Z`,
-      description: community?.description ?? "Edit Community",
-      images: [community?.image ?? "https://joshuaedo.sirv.com/Z/Z.png"],
+      card: 'summary',
+      title: `Edit ${community?.name ?? 'Community'} / Z`,
+      description: community?.description ?? 'Edit Community',
+      images: [community?.image ?? 'https://joshuaedo.sirv.com/Z/Z.png'],
     },
   };
 };

@@ -1,10 +1,10 @@
-import { getAuthSession } from "@/lib/auth";
-import { db } from "@/lib/db";
-import { Metadata } from "next";
-import Notifications from "@/components/pages/Notifications";
+import { getAuthSession } from '@/lib/auth';
+import { db } from '@/lib/db';
+import { Metadata } from 'next';
+import Notifications from '@/components/notifications/Notifications';
 
-export const dynamic = "force-dynamic";
-export const fetchCache = "force-no-store";
+export const dynamic = 'force-dynamic';
+export const fetchCache = 'force-no-store';
 
 export async function generateMetadata(): Promise<Metadata> {
   const session = await getAuthSession();
@@ -29,15 +29,15 @@ export async function generateMetadata(): Promise<Metadata> {
       description,
       images: [
         {
-          url: user?.image ?? "https://joshuaedo.sirv.com/Z/Z.png",
+          url: user?.image ?? 'https://joshuaedo.sirv.com/Z/Z.png',
         },
       ],
     },
     twitter: {
-      card: "summary_large_image",
+      card: 'summary_large_image',
       title,
       description,
-      images: [user?.image ?? "https://joshuaedo.sirv.com/Z/Z.png"],
+      images: [user?.image ?? 'https://joshuaedo.sirv.com/Z/Z.png'],
     },
   };
 }
@@ -52,7 +52,7 @@ const NotificationsPage = async () => {
         read: false,
       },
       orderBy: {
-        createdAt: "desc",
+        createdAt: 'desc',
       },
       include: {
         sender: true,
