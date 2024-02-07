@@ -1,10 +1,10 @@
-import SignInFireWall from "@/components/auth/SignInFireWall";
-import { getAuthSession } from "@/lib/auth";
-import { INFINITE_SCROLLING_PAGINATION_RESULTS } from "@/config";
-import { db } from "@/lib/db";
-import type { Metadata } from "next";
-import ProfileCard from "@/components/profile/ProfileCard";
-import ProfileFeed from "@/components/feeds/profile/ProfileFeed";
+import SignInFireWall from '@/components/auth/SignInFireWall';
+import { getAuthSession } from '@/lib/auth';
+import { INFINITE_SCROLLING_PAGINATION_RESULTS } from '@/config';
+import { db } from '@/lib/db';
+import type { Metadata } from 'next';
+import ProfileCard from '@/components/profile/ProfileCard';
+import ProfileFeed from '@/components/feeds/profile/ProfileFeed';
 
 type Props = {
   params: { username: string };
@@ -26,9 +26,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const title =
     userMetaName !== undefined
       ? `${displayName} (u/${userMetaName}) • Z`
-      : "guest / Z";
+      : 'guest / Z';
 
-  const description = "View " + `${displayName}'s profile`;
+  const description = 'View ' + `${displayName}'s profile`;
 
   return {
     title,
@@ -38,15 +38,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description,
       images: [
         {
-          url: user?.image ?? "https://joshuaedo.sirv.com/Z/Z.png",
+          url: user?.image ?? 'https://joshuaedo.sirv.com/Z/Z.png',
         },
       ],
     },
     twitter: {
-      card: "summary",
+      card: 'summary',
       title,
       description,
-      images: [user?.image ?? "https://joshuaedo.sirv.com/Z/Z.png"],
+      images: [user?.image ?? 'https://joshuaedo.sirv.com/Z/Z.png'],
     },
   };
 }
@@ -73,7 +73,7 @@ const ProfilePage = async ({ params }: ProfilePageProps) => {
       authorId: user?.id,
     },
     orderBy: {
-      createdAt: "desc",
+      createdAt: 'desc',
     },
     include: {
       votes: true,
@@ -92,7 +92,7 @@ const ProfilePage = async ({ params }: ProfilePageProps) => {
       },
     },
     orderBy: {
-      createdAt: "desc",
+      createdAt: 'desc',
     },
     include: {
       votes: true,
@@ -115,7 +115,7 @@ const ProfilePage = async ({ params }: ProfilePageProps) => {
   });
 
   return session ? (
-    <div className="space-y-6">
+    <div className='space-y-6'>
       <ProfileCard
         user={user}
         session={session}

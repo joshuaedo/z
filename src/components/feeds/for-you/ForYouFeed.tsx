@@ -1,13 +1,13 @@
-import { INFINITE_SCROLLING_PAGINATION_RESULTS } from "@/config";
-import { db } from "@/lib/db";
-import { Suspense } from "react";
-import Loader from "@/components/ui/Loader";
-import ForYouPosts from "./ForYouPosts";
+import { INFINITE_SCROLLING_PAGINATION_RESULTS } from '@/config';
+import { db } from '@/lib/db';
+import { Suspense } from 'react';
+import Loader from '@/components/ui/Loader';
+import ForYouPosts from './ForYouPosts';
 
 const ForYouFeed = async () => {
   const posts = await db.post.findMany({
     orderBy: {
-      createdAt: "desc",
+      createdAt: 'desc',
     },
     include: {
       votes: true,
