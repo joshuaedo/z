@@ -1,11 +1,9 @@
 'use client';
 
-import { useSession } from 'next-auth/react';
 import { usePathname, useRouter } from 'next/navigation';
 import { NavIcons } from './NavIcons';
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '../ui/Button';
-import UserAvatar from '../features/user/UserAvatar';
 
 const IconWrapper = ({
   children,
@@ -32,11 +30,12 @@ const IconWrapper = ({
 };
 
 const MobileNav = () => {
-  const { data: session } = useSession();
-  const zUser = session?.user;
   const pathname = usePathname();
+  const isChatPage = pathname.includes('/messages/u/');
 
-  return (
+  return isChatPage ? (
+    <div />
+  ) : (
     <nav className='inline md:hidden fixed bottom-0 inset-x-0 h-[4rem] bg-zinc-100 dark:bg-[#000000] border-t border-zinc-300 dark:border-[#333333] z-[60]'>
       <div className='container h-full flex items-center justify-between px-8 relative'>
         <>
@@ -79,16 +78,6 @@ const MobileNav = () => {
               <NavIcons.messagesInactive className='h-6 w-6' />
             )}
           </IconWrapper>
-
-          {/* <IconWrapper href={`/u/${zUser?.username}`}>
-            <UserAvatar
-              className="h-6 w-6"
-              user={{
-                name: zUser?.name || null,
-                image: zUser?.image || null,
-              }}
-            />
-          </IconWrapper> */}
         </>
       </div>
     </nav>

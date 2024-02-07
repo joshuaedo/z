@@ -978,22 +978,36 @@
     "@typescript-eslint/types" "5.59.8"
     eslint-visitor-keys "^3.3.0"
 
-"@uploadthing/mime-types@^0.2.0":
-  version "0.2.1"
-  resolved "https://registry.npmjs.org/@uploadthing/mime-types/-/mime-types-0.2.1.tgz"
-  integrity sha512-UDySsPbdi7wp52WG7mp5CiZwaTvokDubqhm1xhFm73Bqhp0PsGbwSSF5PdCXH4fe8Y4EKGrMyWQ4i1fF9+DVVQ==
-
-"@uploadthing/react@^4.1.3":
-  version "4.1.3"
-  resolved "https://registry.npmjs.org/@uploadthing/react/-/react-4.1.3.tgz"
-  integrity sha512-PG463gGyFnvaBhG5tf7rLDUQb9WDbHPzcV/1EGvrkli4LoMHtBXmTeD9WujwopJ4LjyVuXLh4hgYm7ZJlMlThQ==
+"@uploadthing/dropzone@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.npmjs.org/@uploadthing/dropzone/-/dropzone-0.1.1.tgz"
+  integrity sha512-ohlnFQfNr/UmImfipVo4uiBj1HQL7dp/sWBD96iAajc6RaQuYnHATGaSaISpCjZTeoLkksuu4/LR8vU9nSzpvQ==
   dependencies:
-    "@uploadthing/shared" "^5.0.0"
+    attr-accept "^2.2.2"
+    file-selector "^0.6.0"
 
-"@uploadthing/shared@^5.0.0":
-  version "5.2.1"
-  resolved "https://registry.npmjs.org/@uploadthing/shared/-/shared-5.2.1.tgz"
-  integrity sha512-ISb78wuHqU5F/7TVw/3eO0VHQdSx3qdN7I4R4knHynuWFjgJjfUsc+zAAAtpo0UZlwfjIQIv/WtSwxdlNxRPGw==
+"@uploadthing/mime-types@^0.2.2":
+  version "0.2.2"
+  resolved "https://registry.npmjs.org/@uploadthing/mime-types/-/mime-types-0.2.2.tgz"
+  integrity sha512-ZUo1JHOPPMZDsUw1mOhhVDIvJGlsjj6T0xJ/YJtulyJwL43S9B5pxg1cHcRuTEgjaxj7B55jiqQ6r9mDrrjH9A==
+
+"@uploadthing/react@^6.2.2":
+  version "6.2.2"
+  resolved "https://registry.npmjs.org/@uploadthing/react/-/react-6.2.2.tgz"
+  integrity sha512-fDfVooLTbC5/FM1o/chPDf5i8DRxCOeRSuRl0R6yh/jIHTdDO2kwXeM5DTaBazJmaEabh5GB+I9Rwg8nU0QdVA==
+  dependencies:
+    "@uploadthing/dropzone" "^0.1.1"
+    "@uploadthing/shared" "^6.2.0"
+    attr-accept "^2.2.2"
+    file-selector "^0.6.0"
+    tailwind-merge "^1.13.2"
+
+"@uploadthing/shared@^6.2.0", "@uploadthing/shared@^6.2.1":
+  version "6.2.1"
+  resolved "https://registry.npmjs.org/@uploadthing/shared/-/shared-6.2.1.tgz"
+  integrity sha512-g/BHzRDuz7f97lEO4VR6PPIQ61YDp9sZWbohI1qi/Nts+bL6it1PyBKyQXIf9glhtfGoFO9Izb1jayO7wmxJkw==
+  dependencies:
+    std-env "^3.7.0"
 
 "@upstash/redis@^1.21.0":
   version "v1.21.0"
@@ -1390,6 +1404,11 @@ concat-map@0.0.1:
   version "0.0.1"
   resolved "https://registry.npmjs.org/concat-map/-/concat-map-0.0.1.tgz"
   integrity sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==
+
+consola@^3.2.3:
+  version "3.2.3"
+  resolved "https://registry.npmjs.org/consola/-/consola-3.2.3.tgz"
+  integrity sha512-I5qxpzLv+sJhTVEoLYNcTW+bThDCPsit0vLNKShZx6rLtpilNpmmeTPaeqJb9ZE9dV3DGaeby6Vuhrw38WjeyQ==
 
 cookie@^0.5.0:
   version "0.5.0"
@@ -3614,6 +3633,11 @@ source-map-js@^1.0.2:
   resolved "https://registry.npmjs.org/source-map-js/-/source-map-js-1.0.2.tgz"
   integrity sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==
 
+std-env@^3.7.0:
+  version "3.7.0"
+  resolved "https://registry.npmjs.org/std-env/-/std-env-3.7.0.tgz"
+  integrity sha512-JPbdCEQLj1w5GilpiHAx3qJvFndqybBysA3qUOnznweH4QbNYUsW/ea8QzSrnh0vNsezMMw5bcVool8lM0gwzg==
+
 stop-iteration-iterator@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/stop-iteration-iterator/-/stop-iteration-iterator-1.0.0.tgz"
@@ -3768,7 +3792,7 @@ synckit@^0.8.5:
     "@pkgr/utils" "^2.3.1"
     tslib "^2.5.0"
 
-tailwind-merge@^1.14.0:
+tailwind-merge@^1.13.2, tailwind-merge@^1.14.0:
   version "1.14.0"
   resolved "https://registry.npmjs.org/tailwind-merge/-/tailwind-merge-1.14.0.tgz"
   integrity sha512-3mFKyCo/MBcgyOTlrY8T7odzZFx+w+qKSMAmdFzRvqBfLlSigU6TZnlFHK0lkMwj9Bj8OYU+9yW9lmGuS0QEnQ==
@@ -3975,13 +3999,15 @@ update-browserslist-db@^1.0.11:
     escalade "^3.1.1"
     picocolors "^1.0.0"
 
-uploadthing@^4.0.0, uploadthing@^4.1.3:
-  version "4.1.3"
-  resolved "https://registry.npmjs.org/uploadthing/-/uploadthing-4.1.3.tgz"
-  integrity sha512-4cvlRhtld+GwrEE3AsjBLJaqYjZOAuyzwD/69wHcYlT175Ukgw8Yn5xPRAChPIEUmCM7JLBJu6OOneSGP/mRxg==
+uploadthing@^6.0.0, uploadthing@^6.3.3:
+  version "6.3.3"
+  resolved "https://registry.npmjs.org/uploadthing/-/uploadthing-6.3.3.tgz"
+  integrity sha512-YYHgh6YUKNySRW6P6FrCjrbs3TUxydtRzpL4mmhTwYoaP30gc0Uf9LWygPl4bSQJ/1zkBmdSBbZpYdg4VV/NJw==
   dependencies:
-    "@uploadthing/mime-types" "^0.2.0"
-    "@uploadthing/shared" "^5.0.0"
+    "@uploadthing/mime-types" "^0.2.2"
+    "@uploadthing/shared" "^6.2.1"
+    consola "^3.2.3"
+    std-env "^3.7.0"
 
 uri-js@^4.2.2:
   version "4.4.1"
@@ -4128,7 +4154,7 @@ yocto-queue@^0.1.0:
   resolved "https://registry.npmjs.org/yocto-queue/-/yocto-queue-0.1.0.tgz"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
 
-zod@^3.21.4, zod@^3.22.2:
+zod@^3.22.2:
   version "3.22.4"
   resolved "https://registry.npmjs.org/zod/-/zod-3.22.4.tgz"
   integrity sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==

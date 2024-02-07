@@ -13,10 +13,10 @@ const LayoutClient: FC<LayoutClientProps> = ({ children }) => {
 
   return (
     <main
-      className={` ${
+      className={`mx-auto max-w-5xl md:pt-8 ${
         !isChatPage
-          ? 'pb-20 md:pb-8 mobile-container md:container max-w-5xl mx-auto h-full pt-20 md:pt-8'
-          : ''
+          ? 'h-full pb-20 md:pb-8 mobile-container md:container pt-20'
+          : 'h-[100svh]'
       } `}
     >
       <div className='grid grid-cols-1 md:grid-cols-3 gap-y-4 gap-x-4'>

@@ -1,18 +1,47 @@
-import Image from 'next/image';
+'use client';
+
 import React, { FC } from 'react';
+import ConversationBackground from './ConversationBackground';
 
 interface ConversationProps {}
 
 const Conversation: FC<ConversationProps> = ({}) => {
   return (
-    <main className='h-[58svh] md:h-[70svh] relative'>
-      <Image
-        src='/chat-doodle-dark-md.jpg'
-        height={2662}
-        width={1498}
-        alt='chat doodle light'
-        className='h-full w-full object-cover rounded-lg absolute z-[-2]'
-      />
+    <main className='relative'>
+      <ConversationBackground />
+      <div
+        className='absolute max-h-[calc(100svh-88px)] 
+      md:max-h-[calc(100svh-14rem)] 
+      w-screen md:w-[42.3rem] top-0 pt-14 px-2 md:pt-0 overflow-hidden'
+      >
+        <p>ggggggggg</p>
+        <p>ggggggggg</p>
+        <p>ggggggggg</p>
+        <p>ggggggggg</p>
+        <p>ggggggggg</p>
+        <p>ggggggggg</p>
+        <p>ggggggggg</p>
+        <p>ggggggggg</p>
+        <p>ggggggggg</p>
+        <p>ggggggggg</p>
+        <p>ggggggggg</p>
+        <p>ggggggggg</p>
+        <p>ggggggggg</p>
+        <p>ggggggggg</p>
+        <p>ggggggggg</p>
+        <p>ggggggggg</p>
+        <p>ggggggggg</p>
+        <p>ggggggggg</p>
+        <p>ggggggggg</p>
+        <p>ggggggggg</p>
+        <p>ggggggggg</p>
+        <p>ggggggggg</p>
+        <p>ggggggggg</p>
+        <p>ggggggggg</p>
+        <p>ggggggggg</p>
+        <p>ggggggggg</p>
+        <p>ggggggggg</p>
+      </div>
     </main>
   );
 };
