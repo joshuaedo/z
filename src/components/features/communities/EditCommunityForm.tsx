@@ -23,7 +23,7 @@ import { DropZone } from '../../ui/UploadImage';
 import { startTransition } from 'react';
 import { EditCommunityValidator } from '@/validators/community';
 import { Community } from '@prisma/client';
-import UserAvatar from '../../ui/UserAvatar';
+import UserAvatar from '../user/UserAvatar';
 
 interface EditCommunityFormProps {
   community: Community;

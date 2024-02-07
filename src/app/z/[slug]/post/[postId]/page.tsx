@@ -1,6 +1,6 @@
 import CommentSection from '@/components/features/comments/CommentSection';
 import EditorOutput from '@/components/ui/EditorOutput';
-import PostVoteServer from '@/components/posts/post-vote/PostVoteServer';
+import PostVoteServer from '@/components/features/posts/post-vote/PostVoteServer';
 import { Button } from '@/components/ui/Button';
 import { getAuthSession } from '@/lib/auth';
 import { db } from '@/lib/db';
@@ -15,7 +15,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
-import DeletePost from '@/components/posts/DeletePost';
+import DeletePost from '@/components/features/posts/DeletePost';
 
 interface PostPageProps {
   params: {

@@ -5,7 +5,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { NavIcons } from './NavIcons';
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '../ui/Button';
-import UserAvatar from '../ui/UserAvatar';
+import UserAvatar from '../features/user/UserAvatar';
 
 const IconWrapper = ({
   children,

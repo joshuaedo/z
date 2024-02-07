@@ -8,7 +8,7 @@ import {
   DropdownMenuTrigger,
 } from '../ui/DropDownMenu';
 import Aside from './Aside';
-import UserAvatar from '../ui/UserAvatar';
+import UserAvatar from '../features/user/UserAvatar';
 import { getAuthSession } from '@/lib/auth';
 
 const Header = async () => {

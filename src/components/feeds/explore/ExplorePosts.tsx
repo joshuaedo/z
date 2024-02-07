@@ -10,7 +10,7 @@ import { Loader2 } from 'lucide-react';
 import { INFINITE_SCROLLING_PAGINATION_RESULTS } from '@/config';
 import { Suspense } from 'react';
 import Loader from '@/components/ui/Loader';
-import Post from '../../posts/Post';
+import Post from '../../features/posts/Post';
 
 interface ExplorePostsProps {
   initialPosts: ExtendedPost[];

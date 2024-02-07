@@ -1,6 +1,6 @@
 import { Community, Subscription, User } from '@prisma/client';
 import React, { FC } from 'react';
-import UserAvatar from '@/components/ui/UserAvatar';
+import UserAvatar from '../UserAvatar';
 import { buttonVariants } from '../../../ui/Button';
 import { Cake, Link } from 'lucide-react';
 import NextLink from 'next/link';

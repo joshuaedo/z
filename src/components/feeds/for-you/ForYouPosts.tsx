@@ -8,7 +8,7 @@ import axios from 'axios';
 import { useSession } from 'next-auth/react';
 import { Loader2 } from 'lucide-react';
 import { INFINITE_SCROLLING_PAGINATION_RESULTS } from '@/config';
-import Post from '../../posts/Post';
+import Post from '../../features/posts/Post';
 
 interface ForYouPostsProps {
   initialPosts: ExtendedPost[];

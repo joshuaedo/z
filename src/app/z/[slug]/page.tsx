@@ -2,7 +2,7 @@ import { INFINITE_SCROLLING_PAGINATION_RESULTS } from '@/config';
 import { getAuthSession } from '@/lib/auth';
 import { db } from '@/lib/db';
 import { notFound } from 'next/navigation';
-import AddCommunityPost from '@/components/posts/AddCommunityPost';
+import AddCommunityPost from '@/components/features/posts/AddCommunityPost';
 import { CalendarIcon } from '@radix-ui/react-icons';
 import { format } from 'date-fns/esm';
 import { Users } from 'lucide-react';

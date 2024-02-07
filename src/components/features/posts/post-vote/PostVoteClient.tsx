@@ -4,7 +4,7 @@ import { useCustomToast } from '@/hooks/use-custom-toast';
 import { usePrevious } from '@mantine/hooks';
 import { VoteType } from '@prisma/client';
 import { FC, useEffect, useState } from 'react';
-import { Button } from '../../ui/Button';
+import { Button } from '../../../ui/Button';
 import { ArrowBigDown, ArrowBigUp } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useMutation } from '@tanstack/react-query';

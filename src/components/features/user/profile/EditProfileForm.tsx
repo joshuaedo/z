@@ -29,7 +29,7 @@ import { DropZone } from '../../../ui/UploadImage';
 import { startTransition } from 'react';
 import { User } from '@prisma/client';
 import { ProfileValidator } from '@/validators/profile';
-import UserAvatar from '../../../ui/UserAvatar';
+import UserAvatar from '../UserAvatar';
 import { Session } from 'next-auth';
 
 interface EditProfileFormProps {

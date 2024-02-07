@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import UserAvatar from '../../ui/UserAvatar';
+import UserAvatar from '../user/UserAvatar';
 import { ArrowLeft } from 'lucide-react';
 
 interface ConversationHeaderProps {

@@ -1,5 +1,5 @@
 import { ExtendedPost } from '@/types/db';
-import UserAvatar from '../../ui/UserAvatar';
+import UserAvatar from '../user/UserAvatar';
 import Link from 'next/link';
 import { cn, formatTimeToNow } from '@/lib/utils';
 import { ArrowBigUp, MessageSquare, Users2 } from 'lucide-react';

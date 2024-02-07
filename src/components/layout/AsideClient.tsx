@@ -1,6 +1,6 @@
 'use client';
 import { Icons } from '../ui/Icons';
-import UserAccountNav from '../ui/UserAccountNav';
+import UserAccountNav from '../features/user/UserAccountNav';
 import { Button, buttonVariants } from '../ui/Button';
 import { usePathname, useRouter } from 'next/navigation';
 import { FC } from 'react';
