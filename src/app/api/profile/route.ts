@@ -1,5 +1,6 @@
 import { getAuthSession } from '@/lib/auth';
 import { db } from '@/lib/db';
+import { getUserByUsername } from '@/lib/user';
 import { ProfileValidator } from '@/validators/profile';
 import { z } from 'zod';
 
@@ -17,11 +18,7 @@ export async function PATCH(req: Request) {
       ProfileValidator.parse(body);
 
     // Check if username is taken
-    const usernameExists = await db.user.findFirst({
-      where: {
-        username: username,
-      },
-    });
+    const usernameExists = await getUserByUsername(username);
 
     // Check if user is trying to update their own profile
     if (usernameExists) {

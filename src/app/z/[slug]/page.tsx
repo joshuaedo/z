@@ -1,4 +1,3 @@
-import { INFINITE_SCROLLING_PAGINATION_RESULTS } from '@/config';
 import { getAuthSession } from '@/lib/auth';
 import { db } from '@/lib/db';
 import { notFound } from 'next/navigation';
@@ -10,33 +9,17 @@ import EditCommunityDropdown from '@/components/features/communities/EditCommuni
 import CommunityAvatar from '@/components/features/communities/CommunityAvatar';
 import CommunityFeed from '@/components/feeds/community/CommunityFeed';
 import SubscribeLeaveToggle from '@/components/features/auth/SubscribeLeaveToggle';
+import { getCommunityByName } from '@/lib/community';
 
 export const generateMetadata = async ({ params }: SlugPageProps) => {
   const { slug } = params;
 
-  const community = await db.community.findFirst({
-    where: { name: slug },
-    include: {
-      posts: {
-        include: {
-          author: true,
-          votes: true,
-          comments: true,
-          community: true,
-        },
-        orderBy: {
-          createdAt: 'desc',
-        },
-        take: INFINITE_SCROLLING_PAGINATION_RESULTS,
-      },
-    },
-  });
+  const community = await getCommunityByName(slug);
 
   if (!community) {
     return notFound();
   }
 
-  // Generate metadata dynamically based on the community data
   const metadata = {
     title: `z/${community.name}`,
     description: community.description || 'Community',
@@ -71,23 +54,8 @@ const SlugPage = async ({ params }: SlugPageProps) => {
 
   const session = await getAuthSession();
 
-  const community = await db.community.findFirst({
-    where: { name: slug },
-    include: {
-      posts: {
-        include: {
-          author: true,
-          votes: true,
-          comments: true,
-          community: true,
-        },
-        orderBy: {
-          createdAt: 'desc',
-        },
-        take: INFINITE_SCROLLING_PAGINATION_RESULTS,
-      },
-    },
-  });
+  // @ts-expect-error CommunityWithPosts
+  const community: CommunityWithPosts = await getCommunityByName(slug, 'posts');
 
   if (!community) {
     return notFound();
@@ -168,14 +136,14 @@ const SlugPage = async ({ params }: SlugPageProps) => {
         </div>
       </div>
 
-      {/* Community Menu */}
       <AddCommunityPost session={session} isCreator={isCreator} />
 
-      {/* Community Feed */}
-      <CommunityFeed
-        initialPosts={community.posts}
-        communityName={community.name}
-      />
+      {community && community.posts && (
+        <CommunityFeed
+          initialPosts={community?.posts}
+          communityName={community?.name}
+        />
+      )}
     </div>
   );
 };

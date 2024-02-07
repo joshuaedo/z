@@ -16,6 +16,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 import DeletePost from '@/components/features/posts/DeletePost';
+import { getCommunityById } from '@/lib/community';
 
 interface PostPageProps {
   params: {
@@ -66,6 +67,9 @@ export const generateMetadata = async ({
 };
 
 const PostPage = async ({ params }: PostPageProps) => {
+  const community = await getCommunityById(params.postId);
+  const session = await getAuthSession();
+
   const cachedPost = (await redis.hgetall(
     `post:${params.postId}`
   )) as CachedPost;
@@ -89,20 +93,17 @@ const PostPage = async ({ params }: PostPageProps) => {
     });
   }
 
-  const community = await db.community.findFirst({
-    where: {
-      id: params.postId,
-    },
-  });
-
-  const title = post?.title ?? cachedPost?.title;
+  const postId = post?.id ?? cachedPost?.id;
+  const postTitle = post?.title ?? cachedPost?.title;
   const titleExists =
-    title !== null && title !== undefined && title !== '' && title !== ' ';
-  const session = await getAuthSession();
-  const isAuthor = session?.user.id === post?.author.id;
+    postTitle !== null &&
+    postTitle !== undefined &&
+    postTitle !== '' &&
+    postTitle !== ' ';
+  const authorUsername = post?.author?.username ?? cachedPost?.authorUsername;
+  const authorId = post?.author?.id;
+  const isAuthor = session?.user.id === authorId;
   const communityName = community?.name;
-
-  // console.log(post)
 
   if (!post && !cachedPost) return notFound();
 
@@ -117,7 +118,7 @@ const PostPage = async ({ params }: PostPageProps) => {
           <Suspense fallback={<VoteShell />}>
             {/* @ts-expect-error Server Component */}
             <Vote
-              postId={post?.id ?? cachedPost.id}
+              postId={postId}
               getData={async () => {
                 return await db.post.findUnique({
                   where: {
@@ -145,15 +146,13 @@ const PostPage = async ({ params }: PostPageProps) => {
                   <span className='px-1'>•</span>
                 </>
               ) : null}
-              {(post?.author?.username || cachedPost?.authorUsername) && (
+              {authorUsername && (
                 <span className=''>
                   Posted by{' '}
-                  <Link href={`/u/${post?.author.username}`}>
-                    {post?.author?.username?.length! < 3
-                      ? post?.author?.username ?? cachedPost?.authorUsername
-                      : `u/${
-                          post?.author?.username ?? cachedPost?.authorUsername
-                        }`}
+                  <Link href={`/u/${authorUsername}`}>
+                    {authorUsername?.length! < 3
+                      ? authorUsername
+                      : `u/${authorUsername}`}
                   </Link>{' '}
                 </span>
               )}
@@ -165,7 +164,7 @@ const PostPage = async ({ params }: PostPageProps) => {
 
             {titleExists && (
               <h1 className='text-lg font-semibold py-2 leading-6 dark:text-white'>
-                {post?.title ?? cachedPost?.title}
+                {postTitle}
               </h1>
             )}
 
@@ -186,7 +185,7 @@ const PostPage = async ({ params }: PostPageProps) => {
             }
           >
             {/* @ts-expect-error Server Component */}
-            <CommentSection postId={post?.id ?? cachedPost.id} />
+            <CommentSection postId={postId} />
           </Suspense>
         </div>
       </div>

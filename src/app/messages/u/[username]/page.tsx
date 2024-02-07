@@ -1,7 +1,7 @@
 import Conversation from '@/components/features/messages/Conversation';
 import ConversationHeader from '@/components/features/messages/ConversationHeader';
 import ConversationInput from '@/components/features/messages/ConversationInput';
-import { db } from '@/lib/db';
+import { getUserByUsername } from '@/lib/user';
 
 interface ConversationPageProps {
   params: {
@@ -12,11 +12,7 @@ interface ConversationPageProps {
 const ConversationPage = async ({ params }: ConversationPageProps) => {
   const { username } = params;
 
-  const user = await db.user.findUnique({
-    where: {
-      username: username,
-    },
-  });
+  const user = await getUserByUsername(username);
 
   const displayName =
     user?.displayName ?? user?.name ?? user?.username ?? 'zUser';

@@ -15,6 +15,7 @@ const PageTitle = () => {
       case pathname.startsWith('/z/') ||
         pathname.startsWith('/sign') ||
         pathname.includes('/u/') ||
+        pathname === '/following' ||
         pathname === '/':
         setPageHeader(null);
         break;

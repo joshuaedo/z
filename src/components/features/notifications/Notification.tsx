@@ -1,107 +1,10 @@
-import { ExtendedPost } from '@/types/db';
-import UserAvatar from '../user/UserAvatar';
-import Link from 'next/link';
-import { cn, formatTimeToNow } from '@/lib/utils';
 import { ArrowBigUp, MessageSquare, Users2 } from 'lucide-react';
 import { ArrowBigDown } from 'lucide-react';
-import { useRouter } from 'next/navigation';
-import { buttonVariants } from '../../ui/Button';
-import {
-  Community,
-  Subscription,
-  User,
-  Notification as NotificationType,
-  Comment,
-} from '@prisma/client';
-
-export type ExtendedNotification = NotificationType & {
-  sender: User | null;
-  post: ExtendedPost | null;
-  subscribe: ExtendedSubscription | null;
-  comment: Comment | null;
-};
-
-export type ExtendedSubscription = Subscription & {
-  community: Community | null;
-};
+import { ExtendedNotification } from '@/types/db';
+import NotificationClient from './NotificationClient';
 
 export type NotificationProps = {
   notification: ExtendedNotification | undefined;
-};
-
-export type NotificationItemProps = {
-  children: React.ReactNode;
-  href: string;
-  icon: React.ReactNode;
-  contentProps: {
-    sender?: User | null;
-    displayName?: string | null;
-    userLink?: string;
-    text?: string | null;
-    createdAt?: Date | null;
-  };
-};
-
-const NotificationItem = ({
-  children,
-  href,
-  icon,
-  contentProps,
-}: NotificationItemProps) => {
-  const router = useRouter();
-
-  return (
-    <div className='rounded-md bg-white dark:bg-[#000000] shadow dark:border border-[#333333]'>
-      <div
-        className={cn(
-          buttonVariants({
-            variant: 'ghost',
-          }),
-          'w-full h-full justify-start font-normal cursor-pointer'
-        )}
-        onClick={() => router.push(href)}
-      >
-        <div className='flex gap-6'>
-          {icon}
-          <div className='flex flex-col justify-center space-y-3'>
-            <div className='flex items-center'>
-              <Link
-                href={
-                  contentProps.userLink || `/u/${contentProps.sender?.username}`
-                }
-              >
-                <UserAvatar
-                  user={{
-                    name: contentProps.sender?.name || null,
-                    image: contentProps.sender?.image || null,
-                  }}
-                  className='h-6 w-6'
-                />
-              </Link>
-              <div className='ml-2 flex items-center gap-x-2'>
-                <a
-                  href={
-                    contentProps.userLink ||
-                    `/u/${contentProps.sender?.username}`
-                  }
-                >
-                  <p className='text-xs'>
-                    {contentProps.displayName} {contentProps.text}
-                  </p>
-                </a>
-                {contentProps.createdAt && (
-                  <p className='hidden md:flex max-h-40 truncate text-xs text-muted-foreground'>
-                    {formatTimeToNow(new Date(contentProps.createdAt))}
-                  </p>
-                )}
-              </div>
-            </div>
-            {children}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
 };
 
 const Notification = ({ notification }: NotificationProps) => {
@@ -138,7 +41,7 @@ const Notification = ({ notification }: NotificationProps) => {
   };
 
   return filterNotification ? (
-    <NotificationItem
+    <NotificationClient
       href={
         type === 'comment'
           ? `/z/${post?.community?.name}/post/${post?.id}`
@@ -164,7 +67,7 @@ const Notification = ({ notification }: NotificationProps) => {
       {type === 'comment' && (
         <p className='text-sm'>&quot;{comment?.text}&quot;</p>
       )}
-    </NotificationItem>
+    </NotificationClient>
   ) : (
     <></>
   );

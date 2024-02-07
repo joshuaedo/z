@@ -1,7 +1,9 @@
 import { getAuthSession } from '@/lib/auth';
-import { db } from '@/lib/db';
 import { Metadata } from 'next';
-import Notifications from '@/components/features/notifications/Notifications';
+import { getUserById } from '@/lib/user';
+import { getNotificationsById } from '@/lib/notification';
+import { ExtendedNotification } from '@/types/db';
+import Notification from '@/components/features/notifications/Notification';
 
 export const dynamic = 'force-dynamic';
 export const fetchCache = 'force-no-store';
@@ -10,11 +12,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const session = await getAuthSession();
   let user;
   if (session) {
-    user = await db.user.findUnique({
-      where: {
-        id: session?.user?.id,
-      },
-    });
+    user = await getUserById(session?.user?.id);
   }
 
   const title = `Notifications • Z`;
@@ -43,38 +41,32 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 const NotificationsPage = async () => {
+  let notifications: ExtendedNotification[] = [];
   const session = await getAuthSession();
-  let notifications;
   if (session) {
-    notifications = await db.notification.findMany({
-      where: {
-        recipientId: session?.user?.id,
-        read: false,
-      },
-      orderBy: {
-        createdAt: 'desc',
-      },
-      include: {
-        sender: true,
-        post: {
-          include: {
-            community: true,
-            votes: true,
-            author: true,
-            comments: true,
-          },
-        },
-        subscribe: {
-          include: {
-            community: true,
-          },
-        },
-        comment: true,
-      },
-    });
+    notifications = await getNotificationsById(session?.user.id);
   }
 
-  return <Notifications session={session} notifications={notifications} />;
+  return (
+    <main className='space-y-6'>
+      <ul id='notifications' className='space-y-3'>
+        {notifications &&
+          notifications.map((notification) => {
+            if (session?.user.id === notification.senderId) {
+              return <div key={notification.id} />;
+            }
+
+            return (
+              <Notification key={notification.id} notification={notification} />
+            );
+          })}
+      </ul>
+
+      <li className='w-full text-xs py-3 flex items-center justify-center'>
+        <span>- your notifications show up here -</span>
+      </li>
+    </main>
+  );
 };
 
 export default NotificationsPage;

@@ -1,5 +1,6 @@
 import { getAuthSession } from '@/lib/auth';
 import { db } from '@/lib/db';
+import { getUserById } from '@/lib/user';
 import { CommentVoteValidator } from '@/validators/vote';
 import { z } from 'zod';
 
@@ -21,11 +22,7 @@ export async function PATCH(req: Request) {
       },
     });
 
-    const findNotificationRecipient = await db.user.findUnique({
-      where: {
-        id: findComment?.authorId,
-      },
-    });
+    const findNotificationRecipient = await getUserById(findComment?.authorId);
 
     const notificationData = {
       type: 'comment_vote',

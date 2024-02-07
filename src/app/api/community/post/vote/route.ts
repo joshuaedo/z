@@ -4,6 +4,7 @@ import { redis } from '@/lib/redis';
 import { VoteValidator } from '@/validators/vote';
 import { CachedPost } from '@/types/redis';
 import { z } from 'zod';
+import { getUserById } from '@/lib/user';
 
 const CACHE_AFTER_UPVOTES = 1;
 
@@ -42,11 +43,7 @@ export async function PATCH(req: Request) {
       },
     });
 
-    const findNotificationRecipient = await db.user.findUnique({
-      where: {
-        id: findPost?.authorId,
-      },
-    });
+    const findNotificationRecipient = await getUserById(findPost?.authorId);
 
     const notificationData = {
       type: 'vote',

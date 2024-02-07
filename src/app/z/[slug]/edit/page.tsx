@@ -1,5 +1,6 @@
 import EditCommunity from '@/components/features/communities/EditCommunity';
 import { getAuthSession } from '@/lib/auth';
+import { getCommunityByName } from '@/lib/community';
 import { db } from '@/lib/db';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
@@ -13,11 +14,7 @@ interface EditCommunityPageProps {
 export const generateMetadata = async ({
   params,
 }: EditCommunityPageProps): Promise<Metadata> => {
-  const community = await db.community.findFirst({
-    where: {
-      name: params.slug,
-    },
-  });
+  const community = await getCommunityByName(params.slug);
 
   return {
     title: `Edit ${community?.name ?? 'Community'} / Z`,
@@ -43,11 +40,7 @@ export const generateMetadata = async ({
 const EditCommunityPage = async ({ params }: EditCommunityPageProps) => {
   const session = await getAuthSession();
 
-  const community = await db.community.findFirst({
-    where: {
-      name: params.slug,
-    },
-  });
+  const community = await getCommunityByName(params.slug);
 
   if (!community) return notFound();
 

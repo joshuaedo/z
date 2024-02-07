@@ -1,7 +1,8 @@
-import { getAuthSession } from "@/lib/auth";
-import { db } from "@/lib/db";
-import { Community, User } from "@prisma/client";
-import AsideClient from "./AsideClient";
+import { getAuthSession } from '@/lib/auth';
+import { db } from '@/lib/db';
+import { Community, User } from '@prisma/client';
+import AsideClient from './AsideClient';
+import { getUserById } from '@/lib/user';
 
 const Aside = async () => {
   const session = await getAuthSession();
@@ -27,11 +28,7 @@ const Aside = async () => {
       ({ community }) => community.name
     );
 
-    user = await db.user.findUnique({
-      where: {
-        id: zUser.id,
-      },
-    });
+    user = await getUserById(zUser.id);
 
     // Fetch community data based on names
     subs = await db.community.findMany({
@@ -41,7 +38,7 @@ const Aside = async () => {
         },
       },
       orderBy: {
-        createdAt: "desc",
+        createdAt: 'desc',
       },
     });
   }

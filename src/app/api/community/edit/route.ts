@@ -1,4 +1,5 @@
 import { getAuthSession } from '@/lib/auth';
+import { getCommunityByName } from '@/lib/community';
 import { db, restrictedNames } from '@/lib/db';
 import { EditCommunityValidator } from '@/validators/community';
 import { z } from 'zod';
@@ -19,11 +20,7 @@ export async function PATCH(req: Request) {
       return new Response('Community name is restricted', { status: 412 });
     }
 
-    const communityExists = await db.community.findFirst({
-      where: {
-        name,
-      },
-    });
+    const communityExists = await getCommunityByName(name);
 
     if (communityExists) {
       if (communityExists?.creatorId === session.user.id) {
