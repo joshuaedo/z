@@ -10,7 +10,7 @@ import {
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import { MoreVertical } from 'lucide-react';
-import { PostDeletionRequest } from '@/lib/validators/post';
+import { PostDeletionRequest } from '@/validators/post';
 import { toast } from '@/hooks/use-toast';
 import { FC, startTransition } from 'react';
 import { Post, User, Vote } from '@prisma/client';

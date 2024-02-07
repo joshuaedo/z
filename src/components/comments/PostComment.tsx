@@ -11,7 +11,7 @@ import { useSession } from 'next-auth/react';
 import { Label } from '@radix-ui/react-dropdown-menu';
 import { Textarea } from '../ui/TextArea';
 import { useMutation } from '@tanstack/react-query';
-import { CommentRequest } from '@/lib/validators/comment';
+import { CommentRequest } from '@/validators/comment';
 import axios, { AxiosError } from 'axios';
 import { toast } from '@/hooks/use-toast';
 import { useCustomToast } from '@/hooks/use-custom-toast';

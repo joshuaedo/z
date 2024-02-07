@@ -1,5 +1,5 @@
 'use client';
-import Editor from '@/components/editor/Editor';
+import Editor from '@/components/ui/Editor';
 import Modal from '@/components/ui/Modal';
 import { Button } from '@/components/ui/Button';
 import { useState } from 'react';

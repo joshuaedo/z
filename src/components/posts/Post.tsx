@@ -4,7 +4,7 @@ import { formatTimeToNow } from '@/lib/utils';
 import { Post as PostType, User, Vote } from '@prisma/client';
 import { MessageSquare } from 'lucide-react';
 import { FC, useRef } from 'react';
-import EditorOutput from '../editor/EditorOutput';
+import EditorOutput from '../ui/EditorOutput';
 import PostVoteClient from './post-vote/PostVoteClient';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';

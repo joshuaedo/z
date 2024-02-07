@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import * as z from "zod";
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import * as z from 'zod';
 import {
   Form,
   FormControl,
@@ -11,19 +11,19 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/Form";
-import { toast } from "@/hooks/use-toast";
-import { Button } from "../ui/Button";
-import { Input } from "../ui/Input";
-import { useMutation } from "@tanstack/react-query";
-import axios, { AxiosError } from "axios";
-import { useRouter } from "next/navigation";
-import { useCustomToast } from "@/hooks/use-custom-toast";
-import { DropZone } from "../ui/UploadImage";
-import { startTransition } from "react";
-import { EditCommunityValidator } from "@/lib/validators/community";
-import { Community } from "@prisma/client";
-import UserAvatar from "../ui/UserAvatar";
+} from '@/components/ui/Form';
+import { toast } from '@/hooks/use-toast';
+import { Button } from '../ui/Button';
+import { Input } from '../ui/Input';
+import { useMutation } from '@tanstack/react-query';
+import axios, { AxiosError } from 'axios';
+import { useRouter } from 'next/navigation';
+import { useCustomToast } from '@/hooks/use-custom-toast';
+import { DropZone } from '../ui/UploadImage';
+import { startTransition } from 'react';
+import { EditCommunityValidator } from '@/validators/community';
+import { Community } from '@prisma/client';
+import UserAvatar from '../ui/UserAvatar';
 
 interface EditCommunityFormProps {
   community: Community;
@@ -40,39 +40,39 @@ export default function EditCommunityForm({
     defaultValues: {
       id: community.id,
       name: community.name,
-      description: community.description || "",
-      image: community.image || "",
+      description: community.description || '',
+      image: community.image || '',
     },
   });
 
   const { mutate: updateProfile, isLoading } = useMutation({
     mutationFn: async (payload: z.infer<typeof EditCommunityValidator>) => {
-      const { data } = await axios.patch("/api/community/edit", payload);
+      const { data } = await axios.patch('/api/community/edit', payload);
       return data;
     },
     onError: (err) => {
       if (err instanceof AxiosError) {
         if (err.response?.status === 409) {
           return toast({
-            title: "Community already exists",
-            description: "Please choose a different community.",
-            variant: "destructive",
+            title: 'Community already exists',
+            description: 'Please choose a different community.',
+            variant: 'destructive',
           });
         }
 
         if (err.response?.status === 422) {
           return toast({
-            title: "Invalid community name",
-            description: "Please choose a name between 3 and 21 characters.",
-            variant: "destructive",
+            title: 'Invalid community name',
+            description: 'Please choose a name between 3 and 21 characters.',
+            variant: 'destructive',
           });
         }
 
         if (err.response?.status === 412) {
           return toast({
-            title: "Invalid community name",
-            description: "Community name is restricted.",
-            variant: "destructive",
+            title: 'Invalid community name',
+            description: 'Community name is restricted.',
+            variant: 'destructive',
           });
         }
 
@@ -82,9 +82,9 @@ export default function EditCommunityForm({
       }
 
       toast({
-        title: "Action failed",
-        description: "There was an error creating your community.",
-        variant: "destructive",
+        title: 'Action failed',
+        description: 'There was an error creating your community.',
+        variant: 'destructive',
       });
     },
     onSuccess: (data) => {
@@ -97,7 +97,7 @@ export default function EditCommunityForm({
       //   ),
       // });
       toast({
-        description: "Your community has been updated.",
+        description: 'Your community has been updated.',
       });
       startTransition(() => {
         router.push(`/z/${data}`);
@@ -110,21 +110,21 @@ export default function EditCommunityForm({
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit((e) => updateProfile(e))}
-        className="space-y-5"
+        className='space-y-5'
       >
         <FormField
           control={form.control}
-          name="image"
+          name='image'
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="flex gap-2 items-center">
-                Community Photo{" "}
+              <FormLabel className='flex gap-2 items-center'>
+                Community Photo{' '}
                 <UserAvatar
                   user={{
                     name: community?.name || null,
                     image: community?.image || null,
                   }}
-                  className="h-6 w-6"
+                  className='h-6 w-6'
                 />
               </FormLabel>
               <FormControl>
@@ -138,13 +138,13 @@ export default function EditCommunityForm({
 
         <FormField
           control={form.control}
-          name="name"
+          name='name'
           render={({ field }) => (
             <FormItem>
               <FormLabel>Name</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="What is your community called?"
+                  placeholder='What is your community called?'
                   {...field}
                 />
               </FormControl>
@@ -154,22 +154,22 @@ export default function EditCommunityForm({
         />
         <FormField
           control={form.control}
-          name="description"
+          name='description'
           render={({ field }) => (
             <FormItem>
               <FormLabel>Description</FormLabel>
               <FormControl>
-                <Input placeholder="What is your community about?" {...field} />
+                <Input placeholder='What is your community about?' {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <div className="flex justify-end gap-4">
-          <Button isLoading={isLoading} type="submit">
+        <div className='flex justify-end gap-4'>
+          <Button isLoading={isLoading} type='submit'>
             Submit
           </Button>
-          <Button variant="outline" onClick={() => router.back()}>
+          <Button variant='outline' onClick={() => router.back()}>
             Cancel
           </Button>
         </div>

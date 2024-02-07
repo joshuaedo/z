@@ -4,7 +4,7 @@ import { Label } from '../ui/Label';
 import { Textarea } from '../ui/TextArea';
 import { Button } from '../ui/Button';
 import { useMutation } from '@tanstack/react-query';
-import { CommentRequest } from '@/lib/validators/comment';
+import { CommentRequest } from '@/validators/comment';
 import axios, { AxiosError } from 'axios';
 import { toast } from '@/hooks/use-toast';
 import { useCustomToast } from '@/hooks/use-custom-toast';

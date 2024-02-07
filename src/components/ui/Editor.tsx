@@ -1,16 +1,16 @@
-"use client";
+'use client';
 
-import TextareaAutosize from "react-textarea-autosize";
-import { useForm } from "react-hook-form";
-import { PostCreationRequest, PostValidator } from "@/lib/validators/post";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { FC, useCallback, useEffect, useRef, useState } from "react";
-import type EditorJS from "@editorjs/editorjs";
-import { uploadFiles } from "@/lib/uploadthing";
-import { toast } from "@/hooks/use-toast";
-import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
-import { usePathname, useRouter } from "next/navigation";
+import TextareaAutosize from 'react-textarea-autosize';
+import { useForm } from 'react-hook-form';
+import { PostCreationRequest, PostValidator } from '@/validators/post';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { FC, useCallback, useEffect, useRef, useState } from 'react';
+import type EditorJS from '@editorjs/editorjs';
+import { uploadFiles } from '@/lib/uploadthing';
+import { toast } from '@/hooks/use-toast';
+import { useMutation } from '@tanstack/react-query';
+import axios from 'axios';
+import { usePathname, useRouter } from 'next/navigation';
 
 interface EditorProps {
   communityId: string;
@@ -26,7 +26,7 @@ const Editor: FC<EditorProps> = ({ communityId, isModalOpen }) => {
     resolver: zodResolver(PostValidator),
     defaultValues: {
       communityId,
-      title: "",
+      title: '',
       content: null,
     },
   });
@@ -38,20 +38,20 @@ const Editor: FC<EditorProps> = ({ communityId, isModalOpen }) => {
   const router = useRouter();
 
   const initializeEditor = useCallback(async () => {
-    const EditorJS = (await import("@editorjs/editorjs")).default;
-    const Header = (await import("@editorjs/header")).default;
-    const Embed = (await import("@editorjs/embed")).default;
-    const Table = (await import("@editorjs/table")).default;
-    const List = (await import("@editorjs/list")).default;
-    const LinkTool = (await import("@editorjs/link")).default;
-    const InlineCode = (await import("@editorjs/inline-code")).default;
-    const ImageTool = (await import("@editorjs/image")).default;
-    const Code = (await import("@editorjs/code")).default;
+    const EditorJS = (await import('@editorjs/editorjs')).default;
+    const Header = (await import('@editorjs/header')).default;
+    const Embed = (await import('@editorjs/embed')).default;
+    const Table = (await import('@editorjs/table')).default;
+    const List = (await import('@editorjs/list')).default;
+    const LinkTool = (await import('@editorjs/link')).default;
+    const InlineCode = (await import('@editorjs/inline-code')).default;
+    const ImageTool = (await import('@editorjs/image')).default;
+    const Code = (await import('@editorjs/code')).default;
     // const Paragraph = (await import("@editorjs/paragraph")).default;
 
     if (!ref.current) {
       const editor = new EditorJS({
-        holder: "editor",
+        holder: 'editor',
         onReady() {
           ref.current = editor;
         },
@@ -63,7 +63,7 @@ const Editor: FC<EditorProps> = ({ communityId, isModalOpen }) => {
           linkTool: {
             class: LinkTool,
             config: {
-              endpoint: "/api/link",
+              endpoint: '/api/link',
             },
           },
           image: {
@@ -71,7 +71,7 @@ const Editor: FC<EditorProps> = ({ communityId, isModalOpen }) => {
             config: {
               uploader: {
                 async uploadByFile(file: File) {
-                  const [res] = await uploadFiles([file], "imageUploader");
+                  const [res] = await uploadFiles([file], 'imageUploader');
 
                   return {
                     success: 1,
@@ -94,7 +94,7 @@ const Editor: FC<EditorProps> = ({ communityId, isModalOpen }) => {
   }, []);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (typeof window !== 'undefined') {
       setIsMounted(true);
     }
   }, []);
@@ -103,9 +103,9 @@ const Editor: FC<EditorProps> = ({ communityId, isModalOpen }) => {
     if (Object.keys(errors).length) {
       for (const [_key, value] of Object.entries(errors)) {
         toast({
-          title: "Action Failed",
+          title: 'Action Failed',
           description: (value as { message: string }).message,
-          variant: "destructive",
+          variant: 'destructive',
         });
       }
     }
@@ -141,28 +141,28 @@ const Editor: FC<EditorProps> = ({ communityId, isModalOpen }) => {
         content,
         communityId,
       };
-      const { data } = await axios.post("/api/community/post/create", payload);
+      const { data } = await axios.post('/api/community/post/create', payload);
       return data;
     },
     onError: () => {
       toast({
-        title: "Action Failed",
-        description: "Your post was not published, please try again later",
-        variant: "destructive",
+        title: 'Action Failed',
+        description: 'Your post was not published, please try again later',
+        variant: 'destructive',
       });
     },
 
     onSuccess: () => {
       //z/community/submit => z/community
 
-      const newPathname = pathname.split("/").slice(0, -1).join("/");
+      const newPathname = pathname.split('/').slice(0, -1).join('/');
       router.push(newPathname);
 
       router.refresh();
 
       return toast({
-        description: "Your post has been published.",
-        variant: "default",
+        description: 'Your post has been published.',
+        variant: 'default',
       });
     },
   });
@@ -179,16 +179,16 @@ const Editor: FC<EditorProps> = ({ communityId, isModalOpen }) => {
     createPost(payload);
   }
 
-  const { ref: titleRef, ...rest } = register("title");
+  const { ref: titleRef, ...rest } = register('title');
 
   return (
-    <div className="w-full p-4 rounded-lg border-zinc-200 flex items-center justify-center">
+    <div className='w-full p-4 rounded-lg border-zinc-200 flex items-center justify-center'>
       <form
-        id="community-post-form"
-        className="w-fit"
+        id='community-post-form'
+        className='w-fit'
         onSubmit={handleSubmit(onSubmit)}
       >
-        <div className="prose prose-stone dark:prose-invert">
+        <div className='prose prose-stone dark:prose-invert'>
           <TextareaAutosize
             ref={(e) => {
               titleRef(e);
@@ -197,13 +197,13 @@ const Editor: FC<EditorProps> = ({ communityId, isModalOpen }) => {
               _titleRef.current = e;
             }}
             {...rest}
-            placeholder="Title"
-            className="w-full resize-none appearance-none overflow-hidden bg-transparent text-3xl md:text-4xl font-bold focus:outline-none"
+            placeholder='Title'
+            className='w-full resize-none appearance-none overflow-hidden bg-transparent text-3xl md:text-4xl font-bold focus:outline-none'
           />
           <div
-            id="editor"
+            id='editor'
             className={
-              isModalOpen ? "h-[10rem]" : "min-h-[45vh] md:min-h-[35vh]"
+              isModalOpen ? 'h-[10rem]' : 'min-h-[45vh] md:min-h-[35vh]'
             }
           />
         </div>

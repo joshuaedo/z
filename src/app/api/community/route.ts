@@ -1,6 +1,6 @@
 import { getAuthSession } from '@/lib/auth';
 import { db, restrictedNames } from '@/lib/db';
-import { CommunityValidator } from '@/lib/validators/community';
+import { CommunityValidator } from '@/validators/community';
 import { z } from 'zod';
 
 export async function POST(req: Request) {

@@ -28,7 +28,7 @@ import { useRouter } from 'next/navigation';
 import { DropZone } from '../../../ui/UploadImage';
 import { startTransition } from 'react';
 import { User } from '@prisma/client';
-import { ProfileValidator } from '@/lib/validators/profile';
+import { ProfileValidator } from '@/validators/profile';
 import UserAvatar from '../../../ui/UserAvatar';
 import { Session } from 'next-auth';
 

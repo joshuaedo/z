@@ -1,7 +1,7 @@
 import { getAuthSession } from '@/lib/auth';
 import { db } from '@/lib/db';
 import { redis } from '@/lib/redis';
-import { PostVoteValidator } from '@/lib/validators/vote';
+import { PostVoteValidator } from '@/validators/vote';
 import { CachedPost } from '@/types/redis';
 import { z } from 'zod';
 
@@ -38,15 +38,15 @@ export async function PATCH(req: Request) {
 
     const findPost = await db.post.findUnique({
       where: {
-        id: postId
-      }
-    })
+        id: postId,
+      },
+    });
 
     const findNotificationRecipient = await db.user.findUnique({
       where: {
-        id: findPost?.authorId
-      }
-    })
+        id: findPost?.authorId,
+      },
+    });
 
     const notificationData = {
       type: 'vote',
@@ -107,7 +107,6 @@ export async function PATCH(req: Request) {
 
         await redis.hset(`post:${postId}`, cachedPayload);
       }
-
 
       return new Response('OK');
     }

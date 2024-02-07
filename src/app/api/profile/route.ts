@@ -1,14 +1,14 @@
-import { getAuthSession } from "@/lib/auth";
-import { db } from "@/lib/db";
-import { ProfileValidator } from "@/lib/validators/profile";
-import { z } from "zod";
+import { getAuthSession } from '@/lib/auth';
+import { db } from '@/lib/db';
+import { ProfileValidator } from '@/validators/profile';
+import { z } from 'zod';
 
 export async function PATCH(req: Request) {
   try {
     const session = await getAuthSession();
 
     if (!session?.user) {
-      return new Response("Unauthorized", { status: 401 });
+      return new Response('Unauthorized', { status: 401 });
     }
 
     const body = await req.json();
@@ -44,10 +44,10 @@ export async function PATCH(req: Request) {
           return new Response(user?.username);
         } catch (err) {
           // console.error("Error updating profile:", err);
-          return new Response("Failed to update profile", { status: 500 });
+          return new Response('Failed to update profile', { status: 500 });
         }
       } else {
-        return new Response("Username is taken", { status: 409 });
+        return new Response('Username is taken', { status: 409 });
       }
     }
 
@@ -74,7 +74,7 @@ export async function PATCH(req: Request) {
 
     // console.error("Unhandled error:", error);
     return new Response(
-      "Could not update profile at this time. Please try later",
+      'Could not update profile at this time. Please try later',
       { status: 500 }
     );
   }

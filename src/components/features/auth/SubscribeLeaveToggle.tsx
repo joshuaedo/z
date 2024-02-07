@@ -1,7 +1,7 @@
 'use client';
 
 import { useMutation } from '@tanstack/react-query';
-import { SubscribeToCommunityPayload } from '@/lib/validators/community';
+import { SubscribeToCommunityPayload } from '@/validators/community';
 import { FC, startTransition } from 'react';
 import axios, { AxiosError } from 'axios';
 import { useCustomToast } from '@/hooks/use-custom-toast';

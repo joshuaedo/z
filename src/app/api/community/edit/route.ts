@@ -1,14 +1,14 @@
-import { getAuthSession } from "@/lib/auth";
-import { db, restrictedNames } from "@/lib/db";
-import { EditCommunityValidator } from "@/lib/validators/community";
-import { z } from "zod";
+import { getAuthSession } from '@/lib/auth';
+import { db, restrictedNames } from '@/lib/db';
+import { EditCommunityValidator } from '@/validators/community';
+import { z } from 'zod';
 
 export async function PATCH(req: Request) {
   try {
     const session = await getAuthSession();
 
     if (!session?.user) {
-      return new Response("Unauthorized", { status: 401 });
+      return new Response('Unauthorized', { status: 401 });
     }
 
     const body = await req.json();
@@ -16,7 +16,7 @@ export async function PATCH(req: Request) {
 
     // Check if the community name is in the restrictedNames array
     if (restrictedNames.includes(name.toLowerCase())) {
-      return new Response("Community name is restricted", { status: 412 });
+      return new Response('Community name is restricted', { status: 412 });
     }
 
     const communityExists = await db.community.findFirst({
@@ -41,11 +41,11 @@ export async function PATCH(req: Request) {
           });
           return new Response(community?.name);
         } catch (err) {
-          console.error("Error updating community:", err);
-          return new Response("Failed to update community", { status: 500 });
+          console.error('Error updating community:', err);
+          return new Response('Failed to update community', { status: 500 });
         }
       } else {
-        return new Response("Community already exists", { status: 409 });
+        return new Response('Community already exists', { status: 409 });
       }
     }
 
@@ -66,6 +66,6 @@ export async function PATCH(req: Request) {
       return new Response(error.message, { status: 422 });
     }
 
-    return new Response("Could not update community " + error, { status: 500 });
+    return new Response('Could not update community ' + error, { status: 500 });
   }
 }

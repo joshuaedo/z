@@ -3,7 +3,7 @@ import '@/styles/globals.css';
 import Aside from '@/components/layout/Aside';
 import Header from '@/components/layout/Header';
 import MobileNav from '@/components/layout/MobileNav';
-import Providers from '@/components/layout/Providers';
+import Providers from '@/providers';
 import { Toaster } from '@/components/ui/Toaster';
 import { cn } from '@/lib/utils';
 import { Inter as FontSans } from 'next/font/google';

@@ -1,14 +1,14 @@
-import { getAuthSession } from "@/lib/auth";
-import { db } from "@/lib/db";
-import { CommunitySubscriptionValidator } from "@/lib/validators/community";
-import { z } from "zod";
+import { getAuthSession } from '@/lib/auth';
+import { db } from '@/lib/db';
+import { CommunitySubscriptionValidator } from '@/validators/community';
+import { z } from 'zod';
 
 export async function POST(req: Request) {
   try {
     const session = await getAuthSession();
 
     if (!session?.user) {
-      return new Response("Unauthorized", { status: 401 });
+      return new Response('Unauthorized', { status: 401 });
     }
 
     const body = await req.json();
@@ -23,7 +23,7 @@ export async function POST(req: Request) {
     });
 
     if (!subscriptionExists) {
-      return new Response("You are not subscribed to this community", {
+      return new Response('You are not subscribed to this community', {
         status: 400,
       });
     }
@@ -53,13 +53,13 @@ export async function POST(req: Request) {
     return new Response(communityId);
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return new Response("Invalid request data" + error.message, {
+      return new Response('Invalid request data' + error.message, {
         status: 422,
       });
     }
 
     return new Response(
-      "Could not unsubscribe from community, please try again later",
+      'Could not unsubscribe from community, please try again later',
       {
         status: 500,
       }
