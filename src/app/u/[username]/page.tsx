@@ -1,10 +1,10 @@
-import SignInFireWall from '@/components/auth/SignInFireWall';
 import { getAuthSession } from '@/lib/auth';
 import { INFINITE_SCROLLING_PAGINATION_RESULTS } from '@/config';
 import { db } from '@/lib/db';
 import type { Metadata } from 'next';
-import ProfileCard from '@/components/profile/ProfileCard';
+import ProfileCard from '@/components/features/user/profile/ProfileCard';
 import ProfileFeed from '@/components/feeds/profile/ProfileFeed';
+import SignInFireWall from '@/components/features/auth/SignInFireWall';
 
 type Props = {
   params: { username: string };

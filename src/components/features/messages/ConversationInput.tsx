@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Input } from '../ui/Input';
+import { Input } from '../../ui/Input';
 
 interface ConversationInputProps {}
 

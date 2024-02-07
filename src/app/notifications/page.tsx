@@ -1,7 +1,7 @@
 import { getAuthSession } from '@/lib/auth';
 import { db } from '@/lib/db';
 import { Metadata } from 'next';
-import Notifications from '@/components/notifications/Notifications';
+import Notifications from '@/components/features/notifications/Notifications';
 
 export const dynamic = 'force-dynamic';
 export const fetchCache = 'force-no-store';

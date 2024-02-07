@@ -1,6 +1,6 @@
-import Conversation from '@/components/conversation/Conversation';
-import ConversationHeader from '@/components/conversation/ConversationHeader';
-import ConversationInput from '@/components/conversation/ConversationInput';
+import Conversation from '@/components/features/messages/Conversation';
+import ConversationHeader from '@/components/features/messages/ConversationHeader';
+import ConversationInput from '@/components/features/messages/ConversationInput';
 import { db } from '@/lib/db';
 
 interface ConversationPageProps {

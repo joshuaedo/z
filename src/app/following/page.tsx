@@ -1,8 +1,8 @@
 import HomeFeedToggle from '@/components/ui/HomeFeedToggle';
 import { getAuthSession } from '@/lib/auth';
-import SignInFireWall from '@/components/auth/SignInFireWall';
 import { db } from '@/lib/db';
 import FollowingFeed from '@/components/feeds/following/FollowingFeed';
+import SignInFireWall from '@/components/features/auth/SignInFireWall';
 
 export const metadata = {
   title: "Home on Z",

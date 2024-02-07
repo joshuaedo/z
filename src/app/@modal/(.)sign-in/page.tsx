@@ -1,5 +1,5 @@
+import SignIn from '@/components/features/auth/SignIn';
 import Modal from '@/components/ui/Modal';
-import SignIn from '@/components/auth/SignIn';
 
 const SignInModal = () => {
   return (

@@ -1,12 +1,12 @@
 import { Community, Subscription, User } from '@prisma/client';
 import React, { FC } from 'react';
 import UserAvatar from '@/components/ui/UserAvatar';
-import { buttonVariants } from '../ui/Button';
+import { buttonVariants } from '../../../ui/Button';
 import { Cake, Link } from 'lucide-react';
 import NextLink from 'next/link';
 import { cn } from '@/lib/utils';
 import { Session } from 'next-auth';
-import { NavIcons } from '../layout/NavIcons';
+import { NavIcons } from '../../../layout/NavIcons';
 
 interface ProfileCardProps {
   user: User | null;

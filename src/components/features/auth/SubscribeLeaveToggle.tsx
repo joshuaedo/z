@@ -1,7 +1,6 @@
 'use client';
 
 import { useMutation } from '@tanstack/react-query';
-import { Button } from '../ui/Button';
 import { SubscribeToCommunityPayload } from '@/lib/validators/community';
 import { FC, startTransition } from 'react';
 import axios, { AxiosError } from 'axios';
@@ -20,6 +19,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/AlertDialog';
+import { Button } from '@/components/ui/Button';
 
 interface SubscribeLeaveToggleProps {
   communityId: string;

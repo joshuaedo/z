@@ -1,5 +1,5 @@
 import { getAuthSession } from '@/lib/auth';
-import EditProfile from '@/components/profile/EditProfile';
+import EditProfile from '@/components/features/user/profile/EditProfile';
 import { db } from '@/lib/db';
 import { Metadata } from 'next';
 

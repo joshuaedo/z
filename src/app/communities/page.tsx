@@ -1,5 +1,5 @@
-import SignInFireWall from '@/components/auth/SignInFireWall';
 import Communities from '@/components/communities/Communities';
+import SignInFireWall from '@/components/features/auth/SignInFireWall';
 import { getAuthSession } from '@/lib/auth';
 import { db } from '@/lib/db';
 import { Community } from '@prisma/client';

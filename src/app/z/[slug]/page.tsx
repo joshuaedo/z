@@ -2,7 +2,6 @@ import { INFINITE_SCROLLING_PAGINATION_RESULTS } from '@/config';
 import { getAuthSession } from '@/lib/auth';
 import { db } from '@/lib/db';
 import { notFound } from 'next/navigation';
-import SubscribeLeaveToggle from '@/components/auth/SubscribeLeaveToggle';
 import AddCommunityPost from '@/components/posts/AddCommunityPost';
 import { CalendarIcon } from '@radix-ui/react-icons';
 import { format } from 'date-fns/esm';
@@ -10,6 +9,7 @@ import { Users } from 'lucide-react';
 import EditCommunityDropdown from '@/components/communities/EditCommunityDropdown';
 import CommunityAvatar from '@/components/communities/CommunityAvatar';
 import CommunityFeed from '@/components/feeds/community/CommunityFeed';
+import SubscribeLeaveToggle from '@/components/features/auth/SubscribeLeaveToggle';
 
 export const generateMetadata = async ({ params }: SlugPageProps) => {
   const { slug } = params;

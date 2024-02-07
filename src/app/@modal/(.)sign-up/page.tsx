@@ -1,5 +1,5 @@
+import SignUp from '@/components/features/auth/SignUp';
 import Modal from '@/components/ui/Modal';
-import SignUp from '@/components/auth/SignUp';
 
 const SignUpModal = () => {
   return (
