@@ -1,5 +1,5 @@
-import { ExtendedNotification } from '@/components/features/notifications/Notification';
 import { db } from '@/lib/db';
+import { ExtendedNotification } from '@/types/db';
 
 type getNotificationsOptions = {
   recipientId?: string;
