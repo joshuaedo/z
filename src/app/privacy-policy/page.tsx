@@ -16,7 +16,6 @@ const PrivacyPolicyPage = () => {
   return (
     <div className='flex justify-center items-center'>
       <div id='privacy-policy' className='prose prose-stone dark:prose-invert'>
-        <h1>Privacy Policy for Z</h1>
         <p>
           At Z, accessible from z.joshuaedo.com, one of our main priorities is
           the privacy of our visitors. This Privacy Policy document contains
@@ -36,14 +35,14 @@ const PrivacyPolicyPage = () => {
           information collected offline or via channels other than this website.
         </p>
 
-        <h2>Consent</h2>
+        <h4>Consent</h4>
 
         <p>
           By using our website, you hereby consent to our Privacy Policy and
           agree to its terms.
         </p>
 
-        <h2>Information we collect</h2>
+        <h4>Information we collect</h4>
 
         <p>
           The personal information that you are asked to provide, and the
@@ -62,7 +61,7 @@ const PrivacyPolicyPage = () => {
           email address, and telephone number.
         </p>
 
-        <h2>How we use your information</h2>
+        <h4>How we use your information</h4>
 
         <p>We use the information we collect in various ways, including to:</p>
 
@@ -81,7 +80,7 @@ const PrivacyPolicyPage = () => {
           <li>Find and prevent fraud</li>
         </ul>
 
-        <h2>Log Files</h2>
+        <h4>Log Files</h4>
 
         <p>
           Z follows a standard procedure of using log files. These files log
@@ -96,7 +95,7 @@ const PrivacyPolicyPage = () => {
           information.
         </p>
 
-        <h2>Cookies and Web Beacons</h2>
+        <h4>Cookies and Web Beacons</h4>
 
         <p>
           Like any other website, Z uses &quot;cookies&quot;. These cookies are
@@ -107,7 +106,7 @@ const PrivacyPolicyPage = () => {
           and/or other information.
         </p>
 
-        <h2>Advertising Partners Privacy Policies</h2>
+        <h4>Advertising Partners Privacy Policies</h4>
 
         <p>
           You may consult this list to find the Privacy Policy for each of the
@@ -129,7 +128,7 @@ const PrivacyPolicyPage = () => {
           used by third-party advertisers.
         </p>
 
-        <h2>Third Party Privacy Policies</h2>
+        <h4>Third Party Privacy Policies</h4>
 
         <p>
           Z&apos;s Privacy Policy does not apply to other advertisers or
@@ -146,7 +145,7 @@ const PrivacyPolicyPage = () => {
           browsers&apos;respective websites.
         </p>
 
-        <h2>CCPA Privacy Rights (Do Not Sell My Personal Information)</h2>
+        <h4>CCPA Privacy Rights (Do Not Sell My Personal Information)</h4>
 
         <p>
           Under the CCPA, among other rights, California consumers have the
@@ -170,7 +169,7 @@ const PrivacyPolicyPage = () => {
           would like to exercise any of these rights, please contact us.
         </p>
 
-        <h2>GDPR Data Protection Rights</h2>
+        <h4>GDPR Data Protection Rights</h4>
 
         <p>
           We would like to make sure you are fully aware of all of your data
@@ -209,7 +208,7 @@ const PrivacyPolicyPage = () => {
           would like to exercise any of these rights, please contact us.
         </p>
 
-        <h2>Children&apos;s Information</h2>
+        <h4>Children&apos;s Information</h4>
 
         <p>
           Another part of our priority is adding protection for children while
@@ -225,7 +224,7 @@ const PrivacyPolicyPage = () => {
           efforts to promptly remove such information from our records.
         </p>
 
-        <h2>Changes to This Privacy Policy</h2>
+        <h4>Changes to This Privacy Policy</h4>
 
         <p>
           We may update our Privacy Policy from time to time. Thus, we advise
@@ -235,7 +234,7 @@ const PrivacyPolicyPage = () => {
           page.
         </p>
 
-        <h2>Contact Us</h2>
+        <h4>Contact Us</h4>
 
         <p>
           If you have any questions or suggestions about our Privacy Policy, do

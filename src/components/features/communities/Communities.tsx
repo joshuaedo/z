@@ -24,7 +24,6 @@ const Communities: FC<CommunitiesProps> = ({ session, subs }) => {
 
   return (
     <main className='space-y-6'>
-      <h2 className='font-bold text-3xl md:text-4xl'>Your Communities</h2>
       <div className='rounded-lg bg-white dark:bg-[#000000] shadow dark:border border-[#333333] px-8 pb-8 pt-4 space-y-2 '>
         <button
           onClick={() => router.push('/z/create')}

@@ -109,8 +109,8 @@
   font-size: small;
 }
 
-#terms-of-service > li,
-#privacy-policy > li {
+#terms-of-service > ul,
+#privacy-policy > ul {
   font-size: small;
 }
 

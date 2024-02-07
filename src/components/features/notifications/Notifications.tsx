@@ -11,7 +11,6 @@ type NotificationsProps = {
 const Notifications = ({ session, notifications }: NotificationsProps) => {
   return (
     <main className='space-y-6'>
-      <h2 className='font-bold text-3xl md:text-4xl'>Notifications</h2>
       <ul id='notifications' className='space-y-3'>
         {notifications &&
           notifications.map((notification) => {

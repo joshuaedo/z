@@ -1,10 +1,10 @@
-import { ClassValue, clsx } from 'clsx'
-import { twMerge } from 'tailwind-merge'
-import { formatDistanceToNowStrict } from 'date-fns'
-import locale from 'date-fns/locale/en-US'
+import { ClassValue, clsx } from 'clsx';
+import { twMerge } from 'tailwind-merge';
+import { formatDistanceToNowStrict } from 'date-fns';
+import locale from 'date-fns/locale/en-US';
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
 }
 
 const formatDistanceLocale = {
@@ -24,25 +24,25 @@ const formatDistanceLocale = {
   xYears: '{{count}}y',
   overXYears: '{{count}}y',
   almostXYears: '{{count}}y',
-}
+};
 
 function formatDistance(token: string, count: number, options?: any): string {
-  options = options || {}
+  options = options || {};
 
   const result = formatDistanceLocale[
     token as keyof typeof formatDistanceLocale
-  ].replace('{{count}}', count.toString())
+  ].replace('{{count}}', count.toString());
 
   if (options.addSuffix) {
     if (options.comparison > 0) {
-      return 'in ' + result
+      return 'in ' + result;
     } else {
-      if (result === 'just now') return result
-      return result + ' ago'
+      if (result === 'just now') return result;
+      return result + ' ago';
     }
   }
 
-  return result
+  return result;
 }
 
 export function formatTimeToNow(date: Date): string {
@@ -52,5 +52,18 @@ export function formatTimeToNow(date: Date): string {
       ...locale,
       formatDistance,
     },
-  })
+  });
 }
+
+export const formatPathname = (pathname: string) => {
+  const words = pathname.split(/[\/-]/).filter(Boolean);
+
+  const formattedWords = words.map((word: string) => {
+    // Capitalize the first letter of each word
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  });
+
+  const formattedPathname = formattedWords.join(' ');
+
+  return formattedPathname;
+};
