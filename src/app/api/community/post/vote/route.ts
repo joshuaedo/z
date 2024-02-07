@@ -1,7 +1,7 @@
 import { getAuthSession } from '@/lib/auth';
 import { db } from '@/lib/db';
 import { redis } from '@/lib/redis';
-import { PostVoteValidator } from '@/validators/vote';
+import { VoteValidator } from '@/validators/vote';
 import { CachedPost } from '@/types/redis';
 import { z } from 'zod';
 
@@ -11,7 +11,7 @@ export async function PATCH(req: Request) {
   try {
     const body = await req.json();
 
-    const { postId, voteType } = PostVoteValidator.parse(body);
+    const { postId, voteType } = VoteValidator.parse(body);
 
     const session = await getAuthSession();
 

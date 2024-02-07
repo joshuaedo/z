@@ -1,13 +1,13 @@
 import CommentSection from '@/components/features/comments/CommentSection';
 import EditorOutput from '@/components/ui/EditorOutput';
-import PostVoteServer from '@/components/features/posts/post-vote/PostVoteServer';
+import Vote from '@/components/features/votes/Vote';
 import { Button } from '@/components/ui/Button';
 import { getAuthSession } from '@/lib/auth';
 import { db } from '@/lib/db';
 import { redis } from '@/lib/redis';
 import { cn, formatTimeToNow } from '@/lib/utils';
 import { CachedPost } from '@/types/redis';
-import { Post, User, Vote } from '@prisma/client';
+import { Post, User, Vote as VoteType } from '@prisma/client';
 import { Loader2 } from 'lucide-react';
 import { ArrowBigDown } from 'lucide-react';
 import { ArrowBigUp } from 'lucide-react';
@@ -31,7 +31,7 @@ export const generateMetadata = async ({
 }: PostPageProps): Promise<Metadata> => {
   let post:
     | (Post & {
-        votes: Vote[];
+        votes: VoteType[];
         author: User;
       })
     | null = null;
@@ -72,7 +72,7 @@ const PostPage = async ({ params }: PostPageProps) => {
 
   let post:
     | (Post & {
-        votes: Vote[];
+        votes: VoteType[];
         author: User;
       })
     | null = null;
@@ -114,9 +114,9 @@ const PostPage = async ({ params }: PostPageProps) => {
             titleExists ? 'py-4' : 'py-2'
           } pr-4 md:px-6  flex justify-between`}
         >
-          <Suspense fallback={<PostVoteShell />}>
+          <Suspense fallback={<VoteShell />}>
             {/* @ts-expect-error Server Component */}
-            <PostVoteServer
+            <Vote
               postId={post?.id ?? cachedPost.id}
               getData={async () => {
                 return await db.post.findUnique({
@@ -194,7 +194,7 @@ const PostPage = async ({ params }: PostPageProps) => {
   );
 };
 
-function PostVoteShell() {
+function VoteShell() {
   return (
     <div className='flex flex-col w-12 md:w-20 md:gap-4 md:pr-6 md:pb-4'>
       <Button

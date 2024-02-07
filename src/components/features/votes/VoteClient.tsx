@@ -4,21 +4,21 @@ import { useCustomToast } from '@/hooks/use-custom-toast';
 import { usePrevious } from '@mantine/hooks';
 import { VoteType } from '@prisma/client';
 import { FC, useEffect, useState } from 'react';
-import { Button } from '../../../ui/Button';
+import { Button } from '../../ui/Button';
 import { ArrowBigDown, ArrowBigUp } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useMutation } from '@tanstack/react-query';
-import { PostVoteRequest } from '@/validators/vote';
+import { VoteRequest } from '@/validators/vote';
 import axios, { AxiosError } from 'axios';
 import { toast } from '@/hooks/use-toast';
 
-interface PostVoteClientProps {
+interface VoteClientProps {
   postId: string;
   initialVotesAmt: number;
   initialVote?: VoteType | null;
 }
 
-const PostVoteClient: FC<PostVoteClientProps> = ({
+const VoteClient: FC<VoteClientProps> = ({
   postId,
   initialVote,
   initialVotesAmt,
@@ -34,7 +34,7 @@ const PostVoteClient: FC<PostVoteClientProps> = ({
 
   const { mutate: vote } = useMutation({
     mutationFn: async (voteType: VoteType) => {
-      const payload: PostVoteRequest = {
+      const payload: VoteRequest = {
         postId,
         voteType,
       };
@@ -131,4 +131,4 @@ const PostVoteClient: FC<PostVoteClientProps> = ({
   );
 };
 
-export default PostVoteClient;
+export default VoteClient;

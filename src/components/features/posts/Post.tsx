@@ -5,10 +5,10 @@ import { Post as PostType, User, Vote } from '@prisma/client';
 import { MessageSquare } from 'lucide-react';
 import { FC, useRef } from 'react';
 import EditorOutput from '../../ui/EditorOutput';
-import PostVoteClient from './post-vote/PostVoteClient';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import DeletePost from './DeletePost';
+import VoteClient from '../votes/VoteClient';
 
 type PartialVote = Pick<Vote, 'type'>;
 
@@ -43,8 +43,8 @@ const Post: FC<PostProps> = ({
             titleExists ? 'py-4' : 'py-2'
           } pr-4 md:px-6  flex justify-between`}
         >
-          <PostVoteClient
-            postId={post.id}
+          <VoteClient
+            postId={post?.id}
             initialVotesAmt={votesAmt}
             initialVote={currentVote?.type}
           />
