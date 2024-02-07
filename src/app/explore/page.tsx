@@ -1,4 +1,4 @@
-import PopularCommunities from '@/components/communities/PopularCommunities';
+import PopularCommunities from '@/components/features/communities/PopularCommunities';
 import SearchBar from '@/components/ui/SearchBar';
 import { db } from '@/lib/db';
 import { Layers, TrendingUp } from 'lucide-react';

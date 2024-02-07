@@ -1,4 +1,4 @@
-import CreateCommunity from '@/components/communities/CreateCommunity';
+import CreateCommunity from '@/components/features/communities/CreateCommunity';
 import { getAuthSession } from '@/lib/auth';
 
 export const metadata = {

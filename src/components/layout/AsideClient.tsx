@@ -7,7 +7,7 @@ import { FC } from 'react';
 import { Community, User } from '@prisma/client';
 import { Session } from 'next-auth';
 import Link from 'next/link';
-import CommunityAvatar from '../communities/CommunityAvatar';
+import CommunityAvatar from '../features/communities/CommunityAvatar';
 import { ThemeToggle } from '../ui/ThemeToggle';
 import { NavIcons } from './NavIcons';
 import { Plus } from 'lucide-react';

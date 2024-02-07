@@ -1,8 +1,8 @@
 'use client';
 import React, { FC, startTransition, useState } from 'react';
-import { Label } from '../ui/Label';
-import { Textarea } from '../ui/TextArea';
-import { Button } from '../ui/Button';
+import { Label } from '../../ui/Label';
+import { Textarea } from '../../ui/TextArea';
+import { Button } from '../../ui/Button';
 import { useMutation } from '@tanstack/react-query';
 import { CommentRequest } from '@/validators/comment';
 import axios, { AxiosError } from 'axios';

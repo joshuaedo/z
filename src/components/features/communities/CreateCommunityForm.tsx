@@ -13,13 +13,13 @@ import {
   FormMessage,
 } from '@/components/ui/Form';
 import { toast } from '@/hooks/use-toast';
-import { Button } from '../ui/Button';
-import { Input } from '../ui/Input';
+import { Button } from '../../ui/Button';
+import { Input } from '../../ui/Input';
 import { useMutation } from '@tanstack/react-query';
 import axios, { AxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
 import { useCustomToast } from '@/hooks/use-custom-toast';
-import { DropZone } from '../ui/UploadImage';
+import { DropZone } from '../../ui/UploadImage';
 import { startTransition } from 'react';
 import { CommunityValidator } from '@/validators/community';
 

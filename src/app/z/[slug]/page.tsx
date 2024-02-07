@@ -6,8 +6,8 @@ import AddCommunityPost from '@/components/posts/AddCommunityPost';
 import { CalendarIcon } from '@radix-ui/react-icons';
 import { format } from 'date-fns/esm';
 import { Users } from 'lucide-react';
-import EditCommunityDropdown from '@/components/communities/EditCommunityDropdown';
-import CommunityAvatar from '@/components/communities/CommunityAvatar';
+import EditCommunityDropdown from '@/components/features/communities/EditCommunityDropdown';
+import CommunityAvatar from '@/components/features/communities/CommunityAvatar';
 import CommunityFeed from '@/components/feeds/community/CommunityFeed';
 import SubscribeLeaveToggle from '@/components/features/auth/SubscribeLeaveToggle';
 

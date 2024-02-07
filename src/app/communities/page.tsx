@@ -1,4 +1,4 @@
-import Communities from '@/components/communities/Communities';
+import Communities from '@/components/features/communities/Communities';
 import SignInFireWall from '@/components/features/auth/SignInFireWall';
 import { getAuthSession } from '@/lib/auth';
 import { db } from '@/lib/db';

@@ -1,4 +1,4 @@
-import EditCommunity from '@/components/communities/EditCommunity';
+import EditCommunity from '@/components/features/communities/EditCommunity';
 import { getAuthSession } from '@/lib/auth';
 import { db } from '@/lib/db';
 import { Metadata } from 'next';

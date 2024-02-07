@@ -1,15 +1,15 @@
 'use client';
 import React, { FC, startTransition, useRef, useState } from 'react';
-import UserAvatar from '../ui/UserAvatar';
+import UserAvatar from '../../ui/UserAvatar';
 import { Comment, CommentVote, User } from '@prisma/client';
 import { formatTimeToNow } from '@/lib/utils';
 import CommentVotes from './CommentVotes';
-import { Button } from '../ui/Button';
+import { Button } from '../../ui/Button';
 import { MessageSquare } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { Label } from '@radix-ui/react-dropdown-menu';
-import { Textarea } from '../ui/TextArea';
+import { Textarea } from '../../ui/TextArea';
 import { useMutation } from '@tanstack/react-query';
 import { CommentRequest } from '@/validators/comment';
 import axios, { AxiosError } from 'axios';

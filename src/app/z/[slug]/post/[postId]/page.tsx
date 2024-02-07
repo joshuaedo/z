@@ -1,4 +1,4 @@
-import CommentSection from '@/components/comments/CommentSection';
+import CommentSection from '@/components/features/comments/CommentSection';
 import EditorOutput from '@/components/ui/EditorOutput';
 import PostVoteServer from '@/components/posts/post-vote/PostVoteServer';
 import { Button } from '@/components/ui/Button';
