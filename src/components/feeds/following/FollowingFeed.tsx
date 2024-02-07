@@ -7,7 +7,6 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { useSession } from 'next-auth/react';
 import Post from '../../features/posts/Post';
-import { Loader2 } from 'lucide-react';
 import { INFINITE_SCROLLING_PAGINATION_RESULTS } from '@/config';
 import { Suspense } from 'react';
 import Loader from '@/components/ui/Loader';
@@ -96,11 +95,7 @@ const FollowingFeed: FC<FollowingFeedProps> = ({
             );
           }
         })}
-        {isFetchingNextPage && (
-          <div className='py-2  flex items-center justify-center'>
-            <Loader2 className='animate-spin' />
-          </div>
-        )}
+        {isFetchingNextPage && <Loader />}
         <li className='w-full text-xs py-6 flex items-center justify-center'>
           <span>- end of feed -</span>
         </li>

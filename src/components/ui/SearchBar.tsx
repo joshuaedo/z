@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import React, { FC, useCallback, useEffect, useRef, useState } from "react";
+import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
 import {
   Command,
   CommandEmpty,
@@ -8,25 +8,26 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "./Command";
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
-import { Loader2, User2, Users } from "lucide-react";
-import { usePathname, useRouter } from "next/navigation";
-import debounce from "lodash.debounce";
-import { useOnClickOutside } from "@/hooks/use-on-click-outside";
-import { SearchResults } from "@/types/search";
+} from './Command';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+import { User2, Users } from 'lucide-react';
+import { usePathname, useRouter } from 'next/navigation';
+import debounce from 'lodash.debounce';
+import { useOnClickOutside } from '@/hooks/use-on-click-outside';
+import { SearchResults } from '@/types/search';
+import Loader from './Loader';
 
 interface SearchBarProps {}
 
 const SearchBar: FC<SearchBarProps> = ({}) => {
-  const [input, setInput] = useState<string>("");
+  const [input, setInput] = useState<string>('');
   const router = useRouter();
   const pathname = usePathname();
   const commandRef = useRef<HTMLDivElement>(null);
 
   useOnClickOutside(commandRef, () => {
-    setInput("");
+    setInput('');
   });
 
   const {
@@ -39,10 +40,10 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
       if (!input) return [];
 
       const { data } = await axios.get(`/api/search?q=${input}`);
-      console.log(data);
+      // console.log(data);
       return data as SearchResults;
     },
-    queryKey: ["search-query"],
+    queryKey: ['search-query'],
     enabled: false,
   });
 
@@ -57,13 +58,13 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
   }, []);
 
   useEffect(() => {
-    setInput("");
+    setInput('');
   }, [pathname]);
 
   return (
     <Command
       ref={commandRef}
-      className="rounded-lg border max-w-lg z-50 overflow-visible h-fit relative"
+      className='rounded-lg border max-w-lg z-50 overflow-visible h-fit relative'
     >
       <CommandInput
         onValueChange={(text) => {
@@ -71,30 +72,26 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
           debounceRequest();
         }}
         value={input}
-        className="outline-none border-none focus focus:border-none focus:outline-none ring-0"
-        placeholder="Search Z..."
+        className='outline-none border-none focus focus:border-none focus:outline-none ring-0'
+        placeholder='Search Z...'
       />
       {input.length > 0 && (
-        <CommandList className="absolute top-full inset-x-0 bg-white dark:bg-[#000000] shadow dark:border border-[#333333] rounded-b-md">
-          {isFetching && (
-            <div className="w-full flex p-2 items-center justify-center">
-              <Loader2 className="animate-spin" />
-            </div>
-          )}
+        <CommandList className='absolute top-full inset-x-0 bg-white dark:bg-[#000000] shadow dark:border border-[#333333] rounded-b-md'>
+          {isFetching && <Loader />}
           {isFetched && !queryResults && (
-            <CommandEmpty className="p-3 text-sm font-medium">
+            <CommandEmpty className='p-3 text-sm font-medium'>
               No results found.
             </CommandEmpty>
           )}
           {isFetched && (
             <>
               {Array.isArray(queryResults) ? (
-                <CommandEmpty className="p-3 text-sm font-medium">
+                <CommandEmpty className='p-3 text-sm font-medium'>
                   No results found.
                 </CommandEmpty>
               ) : (
-                <div className="">
-                  <CommandGroup heading="Communities">
+                <div className=''>
+                  <CommandGroup heading='Communities'>
                     {queryResults?.communities.map((community) => (
                       <CommandItem
                         onSelect={(e) => {
@@ -104,14 +101,14 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
                         key={community.id}
                         value={community.name}
                       >
-                        <Users className="mr-2 h-4 w-4" />
-                        <a className="w-full" href={`/z/${community.name}`}>
+                        <Users className='mr-2 h-4 w-4' />
+                        <a className='w-full' href={`/z/${community.name}`}>
                           z/{community.name}
                         </a>
                       </CommandItem>
                     ))}
                   </CommandGroup>
-                  <CommandGroup heading="Users">
+                  <CommandGroup heading='Users'>
                     {queryResults?.users.map((user) => (
                       <CommandItem
                         onSelect={(e) => {
@@ -121,8 +118,8 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
                         key={user.id}
                         value={user.username}
                       >
-                        <User2 className="mr-2 h-4 w-4" />
-                        <a className="w-full" href={`/u/${user.username}`}>
+                        <User2 className='mr-2 h-4 w-4' />
+                        <a className='w-full' href={`/u/${user.username}`}>
                           u/{user.username}
                         </a>
                       </CommandItem>

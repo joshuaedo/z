@@ -13,6 +13,7 @@ import { Metadata } from 'next';
 // import { ourFileRouter } from './api/uploadthing/core';
 import PageTitle from '@/components/layout/PageTitle';
 import LayoutClient from '@/components/layout/LayoutClient';
+import HomeFeedToggle from '@/components/layout/HomeFeedToggle';
 
 export const generateMetadata = async ({}): Promise<Metadata> => {
   return {
@@ -80,6 +81,7 @@ export default function RootLayout({
               <Aside />
             </div>
             <div className='col-span-1 md:col-span-2'>
+              <HomeFeedToggle />
               <PageTitle />
               {children}
               <MobileNavbar />

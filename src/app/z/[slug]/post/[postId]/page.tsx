@@ -8,7 +8,6 @@ import { redis } from '@/lib/redis';
 import { cn, formatTimeToNow } from '@/lib/utils';
 import { CachedPost } from '@/types/redis';
 import { Post, User, Vote as VoteType } from '@prisma/client';
-import { Loader2 } from 'lucide-react';
 import { ArrowBigDown } from 'lucide-react';
 import { ArrowBigUp } from 'lucide-react';
 import { Metadata } from 'next';
@@ -17,6 +16,7 @@ import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 import DeletePost from '@/components/features/posts/DeletePost';
 import { getCommunityById } from '@/lib/community';
+import Loader from '@/components/ui/Loader';
 
 interface PostPageProps {
   params: {
@@ -179,11 +179,7 @@ const PostPage = async ({ params }: PostPageProps) => {
         </div>
 
         <div className={`px-4 md:px-6`}>
-          <Suspense
-            fallback={
-              <Loader2 className='h-5 w-5 animate-spin text-muted-foreground' />
-            }
-          >
+          <Suspense fallback={<Loader />}>
             {/* @ts-expect-error Server Component */}
             <CommentSection postId={postId} />
           </Suspense>
@@ -211,9 +207,7 @@ function VoteShell() {
         <ArrowBigUp className={cn('h-4 w-4 md:h-5 md:w-5')} />
       </button>
 
-      <div className='text-center py-2 font-medium text-sm'>
-        <Loader2 className='h-3 w-3 animate-spin' />
-      </div>
+      <Loader />
 
       <Button
         size='sm'
