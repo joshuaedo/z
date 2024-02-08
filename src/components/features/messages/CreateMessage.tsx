@@ -25,13 +25,13 @@ const CreateMessage: FC<CreateMessageProps> = ({ authorId }) => {
   const { loginToast } = useCustomToast();
   const router = useRouter();
   const pathname = usePathname();
-  const recieverUsername = pathname.replace('/messages/u/', '');
+  const recipientUsername = pathname.replace('/messages/u/', '');
 
   const form = useForm<z.infer<typeof MessageValidator>>({
     resolver: zodResolver(MessageValidator),
     defaultValues: {
       authorId,
-      recieverUsername,
+      recipientUsername,
       image: '',
       text: input,
     },
@@ -51,14 +51,14 @@ const CreateMessage: FC<CreateMessageProps> = ({ authorId }) => {
 
       return toast({
         title: 'Action failed',
-        description: 'Something went wrong, please try again later',
+        description: 'Your message was not delivered, please try again later',
         variant: 'destructive',
       });
     },
     onSuccess: () => {
       startTransition(() => {
-        router.refresh();
         setInput('');
+        router.refresh();
       });
     },
   });
