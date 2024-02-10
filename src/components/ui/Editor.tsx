@@ -71,12 +71,15 @@ const Editor: FC<EditorProps> = ({ communityId, isModalOpen }) => {
             config: {
               uploader: {
                 async uploadByFile(file: File) {
-                  const [res] = await uploadFiles([file], 'imageUploader');
+                  const [res] = await uploadFiles('imageUploader', {
+                    // Pass 'imageUploader' directly as the endpoint
+                    files: [file],
+                  });
 
                   return {
                     success: 1,
                     file: {
-                      url: res.fileUrl,
+                      url: res.url,
                     },
                   };
                 },
