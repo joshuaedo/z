@@ -67,3 +67,15 @@ export const formatPathname = (pathname: string) => {
 
   return formattedPathname;
 };
+
+export function truncateString(
+  inputString: string,
+  maxLength: number,
+  ellipsis: string = '...'
+): string {
+  return inputString.length <= maxLength
+    ? inputString
+    : inputString.slice(0, maxLength - ellipsis.length) + ellipsis;
+}
+
+

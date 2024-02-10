@@ -55,7 +55,8 @@ model User {
   Vote              Vote[]
   Subscription      Subscription[]
   Notification      Notification[]
-  Message           Message[]
+  Message           Message[]      @relation("author")
+  receivedMessage   Message[]      @relation("recipient")
 }
 
 model Community {
@@ -155,24 +156,34 @@ model Notification {
 }
 
 model Message {
-  id             String        @id @default(cuid())
-  createdAt      DateTime      @default(now())
-  read           Boolean
-  authorId       String?
-  recipientId    String?
-  text           String?
-  image          String?
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  read      Boolean
+
+  text  String?
+  image String?
+
+  authorId String?
+  author   User?   @relation("author", fields: [authorId], references: [id])
+
+  recipientId String?
+  recipient   User?   @relation("recipient", fields: [recipientId], references: [id])
+
   conversationId String?
-  author         User?         @relation(fields: [authorId], references: [id])
-  Conversation   Conversation? @relation(fields: [conversationId], references: [id])
+  Conversation   Conversation? @relation("messages", fields: [conversationId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  message Conversation[] @relation("lastMessages")
 }
 
 model Conversation {
-  id             String    @id @default(cuid())
-  createdAt      DateTime  @default(now())
-  lastMessageId  String?
+  id             String   @id @default(cuid())
+  createdAt      DateTime @default(now())
   participantIds String
-  messages       Message[]
+
+  messages Message[] @relation("messages")
+
+  lastMessageId String?
+  lastMessage   Message? @relation("lastMessages", fields: [lastMessageId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 }
 
 enum VoteType {

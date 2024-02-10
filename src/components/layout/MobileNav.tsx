@@ -31,9 +31,9 @@ const IconWrapper = ({
 
 const MobileNav = () => {
   const pathname = usePathname();
-  const isChatPage = pathname.includes('/messages/u/');
+  const isConversationPage = pathname.includes('/messages/u/');
 
-  return isChatPage ? (
+  return isConversationPage ? (
     <div />
   ) : (
     <nav className='inline md:hidden fixed bottom-0 inset-x-0 h-[4rem] bg-zinc-100 dark:bg-[#000000] border-t border-zinc-300 dark:border-[#333333] z-[60]'>

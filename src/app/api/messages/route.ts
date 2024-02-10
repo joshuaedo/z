@@ -1,6 +1,8 @@
 import { getAuthSession } from '@/lib/auth';
 import { db } from '@/lib/db';
+import { redis } from '@/lib/redis';
 import { getUserByUsername } from '@/lib/user';
+import { CachedMessage } from '@/types/redis';
 import { MessageValidator } from '@/validators/message';
 // import { nanoid } from 'nanoid';
 import { z } from 'zod';
@@ -66,7 +68,21 @@ export async function PATCH(req: Request) {
           },
         });
 
-        return new Response('OK');
+        const cachedMessagePayload: CachedMessage = {
+          authorId,
+          text,
+          image,
+          recipientId: recipient?.id,
+          read: false,
+          createdAt: newConversation.messages[0].createdAt,
+        };
+
+        await redis.hset(
+          `message:${newConversation.messages[0].id}`,
+          cachedMessagePayload
+        );
+
+        return new Response(cachedMessagePayload.text, { status: 200 });
       } catch (error: any) {
         if (error instanceof z.ZodError) {
           return new Response(error.message, { status: 400 });
@@ -100,7 +116,18 @@ export async function PATCH(req: Request) {
       },
     });
 
-    return new Response('OK');
+    const cachedMessagePayload: CachedMessage = {
+      authorId,
+      text,
+      image,
+      recipientId: recipient?.id,
+      read: false,
+      createdAt: newMessage.createdAt,
+    };
+
+    await redis.hset(`message:${newMessage.id}`, cachedMessagePayload);
+
+    return new Response(cachedMessagePayload.text, { status: 200 });
   } catch (error: any) {
     if (error instanceof z.ZodError) {
       return new Response(error.message, { status: 400 });

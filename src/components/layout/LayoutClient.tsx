@@ -9,14 +9,14 @@ interface LayoutClientProps {
 
 const LayoutClient: FC<LayoutClientProps> = ({ children }) => {
   const pathname = usePathname();
-  const isChatPage = pathname.includes('/messages/u/');
+  const isConversationPage = pathname.includes('/messages/u/');
 
   return (
     <main
-      className={`mx-auto max-w-5xl md:pt-8 ${
-        !isChatPage
-          ? 'h-full pb-20 md:pb-8 mobile-container md:container pt-20'
-          : 'h-[100svh]'
+      className={`mx-auto max-w-5xl h-full md:pt-8 ${
+        !isConversationPage
+          ? 'pb-20 md:pb-8 mobile-container md:container pt-20'
+          : 'relative'
       } `}
     >
       <div className='grid grid-cols-1 md:grid-cols-3 gap-y-4 gap-x-4'>

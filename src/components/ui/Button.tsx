@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { VariantProps, cva } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
-import Loader from './Loader';
 
+import { Loader2 } from 'lucide-react';
 const buttonVariants = cva(
   'active:scale-95 inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background',
   {
@@ -17,8 +17,7 @@ const buttonVariants = cva(
           'hover:bg-zinc-200 bg-zinc-100 dark:bg-transparent dark:hover:bg-zinc-800/50',
         secondary:
           'bg-secondary text-secondary-foreground hover:bg-secondary/80',
-        ghost:
-          'hover:bg-accent hover:text-accent-foreground',
+        ghost: 'hover:bg-accent hover:text-accent-foreground',
         link: 'underline-offset-4 hover:underline text-primary',
       },
       size: {
@@ -52,7 +51,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         disabled={isLoading}
         {...props}
       >
-        {isLoading ? <Loader /> : null}
+        {isLoading ? (
+          <Loader2 className='mr-2 h-4 w-4 animate-spin text-purple-500' />
+        ) : null}
         {children}
       </button>
     );

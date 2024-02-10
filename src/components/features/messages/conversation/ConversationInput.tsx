@@ -16,11 +16,11 @@ import { buttonVariants } from '@/components/ui/Button';
 import { Textarea } from '@/components/ui/TextArea';
 import { cn } from '@/lib/utils';
 
-interface CreateMessageProps {
+interface ConversationInputProps {
   authorId: string | undefined;
 }
 
-const CreateMessage: FC<CreateMessageProps> = ({ authorId }) => {
+const ConversationInput: FC<ConversationInputProps> = ({ authorId }) => {
   const [input, setInput] = useState<string>('');
   const { loginToast } = useCustomToast();
   const router = useRouter();
@@ -48,7 +48,6 @@ const CreateMessage: FC<CreateMessageProps> = ({ authorId }) => {
           return loginToast();
         }
       }
-
       return toast({
         title: 'Action failed',
         description: 'Your message was not delivered, please try again later',
@@ -58,6 +57,9 @@ const CreateMessage: FC<CreateMessageProps> = ({ authorId }) => {
     onSuccess: () => {
       startTransition(() => {
         setInput('');
+        // toast({
+        //   title: 'Message sent',
+        // });
         router.refresh();
       });
     },
@@ -117,4 +119,4 @@ const CreateMessage: FC<CreateMessageProps> = ({ authorId }) => {
   );
 };
 
-export default CreateMessage;
+export default ConversationInput;
