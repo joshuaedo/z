@@ -1,49 +1,220 @@
-import { getAuthSession } from '@/lib/auth';
-import { db } from '@/lib/db';
-import { Community, User } from '@prisma/client';
-import AsideClient from './AsideClient';
-import { getUserById } from '@/lib/user';
+'use client';
+import { Icons } from '../ui/Icons';
+import UserAccountNav from '../features/user/UserAccountNav';
+import { Button, buttonVariants } from '../ui/Button';
+import { usePathname, useRouter } from 'next/navigation';
+import Link from 'next/link';
+import CommunityAvatar from '../features/communities/CommunityAvatar';
+import { ThemeToggle } from '../ui/ThemeToggle';
+import { NavIcons } from './NavIcons';
+import { Plus } from 'lucide-react';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+import { Community, Session, User } from '@prisma/client';
+import Loader from '../ui/Loader';
 
-const Aside = async () => {
-  const session = await getAuthSession();
-  const zUser = session?.user;
+type AsideResults = {
+  session: Session | null;
+  subs: Community[];
+  user: User | null;
+};
 
-  let subs: Community[] = [];
+const Aside = () => {
+  const {
+    data: asideResults,
+    isFetched,
+    isFetching,
+  } = useQuery({
+    queryFn: async () => {
+      const { data } = await axios.get(`/api/aside`);
+      // console.log(data);
+      return data as AsideResults;
+    },
+    queryKey: ['aside'],
+    enabled: true,
+  });
+  const user = asideResults?.user;
+  const subs = asideResults?.subs;
+  const router = useRouter();
+  const pathname = usePathname();
 
-  let user: User | null = null;
+  return (
+    <aside className='overflow-hidden h-fit rounded-lg md:bg-white dark:md:bg-[#000000] md:shadow dark:md:border border-[#333333] md:fixed p-8 space-y-2'>
+      <div
+        onClick={() => router.push('/')}
+        className='cursor-pointer hidden md:flex items-center'
+      >
+        <Icons.logo className='h-8 w-8 md:h-10 md:w-10' />
+      </div>
 
-  if (zUser) {
-    // Fetch user's subscriptions using Prisma
-    const followedCommunities = await db.subscription.findMany({
-      where: {
-        userId: zUser.id,
-      },
-      include: {
-        community: true,
-      },
-    });
+      <Button
+        variant='ghost'
+        onClick={() => router.push('/')}
+        className={`${
+          pathname === '/' ? 'font-bold' : 'font-medium'
+        } hidden md:flex text-xl items-end -ml-3 mb-4 `}
+      >
+        {pathname === '/' ? (
+          <NavIcons.homeActive className='h-5 w-5 md:h-7 md:w-7 mr-3' />
+        ) : (
+          <NavIcons.homeInactive className='h-5 w-5 md:h-7 md:w-7 mr-3' />
+        )}
+        Home
+      </Button>
 
-    // Extract community names from the subscriptions
-    const communityNames = followedCommunities.map(
-      ({ community }) => community.name
-    );
+      <Button
+        variant='ghost'
+        onClick={() => router.push('/communities')}
+        className={`${
+          pathname === '/communities' ? 'font-bold' : 'font-medium'
+        } hidden md:flex text-xl items-end -ml-3 mb-4 `}
+      >
+        {pathname === '/communities' ? (
+          <NavIcons.communityActive className='h-5 w-5 md:h-7 md:w-7 mr-3' />
+        ) : (
+          <NavIcons.communityInactive className='h-5 w-5 md:h-7 md:w-7 mr-3' />
+        )}
+        Communities
+      </Button>
 
-    user = await getUserById(zUser.id);
+      <Button
+        variant='ghost'
+        onClick={() => router.push('/explore')}
+        className={`${
+          pathname === '/explore' ? 'font-bold' : 'font-medium'
+        } hidden md:flex text-xl items-end -ml-3 mb-4 `}
+      >
+        {pathname === '/explore' ? (
+          <NavIcons.exploreActive className='h-5 w-5 md:h-7 md:w-7 mr-3' />
+        ) : (
+          <NavIcons.exploreInactive className='h-5 w-5 md:h-7 md:w-7 mr-3' />
+        )}
+        Explore
+      </Button>
 
-    // Fetch community data based on names
-    subs = await db.community.findMany({
-      where: {
-        name: {
-          in: communityNames,
-        },
-      },
-      orderBy: {
-        createdAt: 'desc',
-      },
-    });
-  }
+      <Button
+        variant='ghost'
+        onClick={() => router.push('/notifications')}
+        className={`${
+          pathname === '/notifications' ? 'font-bold' : 'font-medium'
+        } hidden md:flex text-xl items-end -ml-3 mb-4 `}
+      >
+        {pathname === '/notifications' ? (
+          <NavIcons.notificationsActive className='h-5 w-5 md:h-7 md:w-7 mr-3' />
+        ) : (
+          <NavIcons.notificationsInactive className='h-5 w-5 md:h-7 md:w-7 mr-3' />
+        )}
+        Notifications
+      </Button>
 
-  return <AsideClient session={session} subs={subs} user={user} />;
+      <Button
+        variant='ghost'
+        onClick={() => router.push('/messages')}
+        className={`${
+          pathname === '/messages' ? 'font-bold' : 'font-medium'
+        } hidden md:flex text-xl items-end -ml-3 mb-4 `}
+      >
+        {pathname === '/messages' ? (
+          <NavIcons.messagesActive className='h-5 w-5 md:h-7 md:w-7 mr-3' />
+        ) : (
+          <NavIcons.messagesInactive className='h-5 w-5 md:h-7 md:w-7 mr-3' />
+        )}
+        Messages
+      </Button>
+
+      <Button
+        variant='ghost'
+        onClick={() => router.push(`/u/${user?.username}`)}
+        className={`${
+          pathname === `/u/${user?.username}` ? 'font-bold' : 'font-medium'
+        } hidden md:flex text-xl items-end -ml-3 mb-4`}
+      >
+        {pathname === `/u/${user?.username}` ? (
+          <NavIcons.profileActive className='h-5 w-5 md:h-7 md:w-7 mr-3' />
+        ) : (
+          <NavIcons.profileInactive className='h-5 w-5 md:h-7 md:w-7 mr-3' />
+        )}
+        Profile
+      </Button>
+
+      <hr className='hidden md:flex' />
+
+      {isFetching && <Loader className='md:hidden' />}
+
+      {!isFetching && isFetched && (
+        <>
+          {user ? (
+            <>
+              <Link className='flex flex-col' href={'/u/' + user?.username}>
+                <UserAccountNav user={user} />
+              </Link>
+              <hr />
+              <div className='md:hidden space-y-3'>
+                <h4 className='font-medium'>Your Communities</h4>
+                <button
+                  onClick={() => router.push('/z/create')}
+                  className='text-muted-foreground flex'
+                >
+                  <Plus className='mr-2' />
+                  <span>Create a community</span>
+                </button>
+                <ul
+                  id='aside-communities'
+                  className='text-muted-foreground max-h-[10rem] space-y-1'
+                >
+                  {subs?.map((community) => (
+                    <li
+                      key={community.id}
+                      onClick={() => router.push(`z/${community.name}`)}
+                      className='py-1 flex gap-x-2 cursor-pointer overflow-hidden'
+                    >
+                      <CommunityAvatar
+                        community={community}
+                        className='h-5 w-5'
+                      />
+                      {`z/${
+                        community.name.length > 13
+                          ? community.name.slice(0, 13) + '...'
+                          : community.name
+                      }`}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <hr className='md:hidden' />
+            </>
+          ) : (
+            <button
+              onClick={() => router.push('/sign-in')}
+              className={buttonVariants({
+                variant: 'default',
+                size: 'lg',
+              })}
+            >
+              Sign In
+            </button>
+          )}
+        </>
+      )}
+
+      <div className='space-y-1'>
+        <button
+          onClick={() => router.push('/privacy-policy')}
+          className='block text-xs font-medium rounded-lg'
+        >
+          Privacy Policy
+        </button>
+        <button
+          onClick={() => router.push('/terms-of-service')}
+          className='block text-xs font-medium rounded-lg'
+        >
+          Terms of Service
+        </button>
+      </div>
+
+      <ThemeToggle />
+    </aside>
+  );
 };
 
 export default Aside;

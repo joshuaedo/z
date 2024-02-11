@@ -178,7 +178,7 @@ model Message {
 model Conversation {
   id             String   @id @default(cuid())
   createdAt      DateTime @default(now())
-  participantIds String
+  participantIds String   @unique
 
   messages Message[] @relation("messages")
 

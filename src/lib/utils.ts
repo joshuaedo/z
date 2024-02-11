@@ -77,25 +77,3 @@ export function truncateString(
     ? inputString
     : inputString.slice(0, maxLength - ellipsis.length) + ellipsis;
 }
-
-export function generateParticipantIds(
-  id1: string | undefined,
-  id2: string | undefined
-) {
-  const sanitizedId1 = id1 && id1.trim();
-  const sanitizedId2 = id2 && id2.trim();
-
-  const order1 = `${sanitizedId1}_${sanitizedId2}`;
-  const order2 = `${sanitizedId2}_${sanitizedId1}`;
-
-  if (
-    order1 === '' ||
-    order1 === '_' ||
-    order1 === null ||
-    order1 === undefined
-  ) {
-    return order2;
-  }
-
-  return order1;
-}

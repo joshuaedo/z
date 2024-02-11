@@ -1,19 +1,13 @@
 import '@/styles/globals.css';
 import '@uploadthing/react/styles.css';
-import Aside from '@/components/layout/Aside';
-import MobileHeader from '@/components/layout/Header';
-import MobileNavbar from '@/components/layout/MobileNav';
 import Providers from '@/providers';
-import { Toaster } from '@/components/ui/Toaster';
 import { cn } from '@/lib/utils';
 import { Inter as FontSans } from 'next/font/google';
 import { Metadata } from 'next';
-// import { NextSSRPlugin } from '@uploadthing/react/next-ssr-plugin';
-// import { extractRouterConfig } from 'uploadthing/server';
-// import { ourFileRouter } from './api/uploadthing/core';
-import PageTitle from '@/components/layout/PageTitle';
+import { NextSSRPlugin } from '@uploadthing/react/next-ssr-plugin';
+import { extractRouterConfig } from 'uploadthing/server';
+import { ourFileRouter } from './api/uploadthing/core';
 import LayoutClient from '@/components/layout/LayoutClient';
-import HomeFeedToggle from '@/components/layout/HomeFeedToggle';
 
 export const generateMetadata = async ({}): Promise<Metadata> => {
   return {
@@ -71,23 +65,9 @@ export default function RootLayout({
         )}
       >
         <Providers>
-          {/* <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} /> */}
-          {/* @ts-expect-error Server Component */}
-          <MobileHeader />
+          <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
           {modal}
-          <LayoutClient>
-            <div className='hidden md:block col-span-1 h-full relative'>
-              {/* @ts-expect-error Server Component */}
-              <Aside />
-            </div>
-            <div className='col-span-1 md:col-span-2'>
-              <HomeFeedToggle />
-              <PageTitle />
-              {children}
-              <MobileNavbar />
-            </div>
-          </LayoutClient>
-          <Toaster />
+          <LayoutClient>{children}</LayoutClient>
         </Providers>
       </body>
     </html>

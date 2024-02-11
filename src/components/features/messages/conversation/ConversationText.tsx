@@ -3,6 +3,7 @@ import { redis } from '@/lib/redis';
 import { CachedMessage } from '@/types/redis';
 import { Message, User } from '@prisma/client';
 import { useSession } from 'next-auth/react';
+import Image from 'next/image';
 import { useState } from 'react';
 
 interface ConversationTextProps {
@@ -21,7 +22,7 @@ const ConversationText = async ({ fetchedMessage }: ConversationTextProps) => {
       })
   >(fetchedMessage);
 
-    // if (fetchedMessage?.id) {
+  // if (fetchedMessage?.id) {
   //   const cachedMessage = (await redis.hgetall(
   //     `message:${fetchedMessage?.id}`
   //   )) as CachedMessage;
@@ -29,11 +30,34 @@ const ConversationText = async ({ fetchedMessage }: ConversationTextProps) => {
   // }
 
   const { data: session } = useSession();
-  const loggedInUser = session?.user
-  const isAuthor = message?.authorId === loggedInUser?.id
+  const loggedInUser = session?.user;
+  const loggedInUserIsAuthor = message?.authorId === loggedInUser?.id;
 
-  const text = message?.text;
-  return <div>{text}</div>;
+  const text = message?.text?.trim();
+  const isTextEmpty = text === '';
+
+  const imageUrl = message?.image?.trim();
+  const isImageUrlEmpty = imageUrl === '';
+
+  return (
+    <div
+      className={`flex py-2 ${
+        loggedInUserIsAuthor ? 'justify-end' : 'justify-start'
+      }`}
+    >
+      <div>
+        {text && !isTextEmpty && <p className='max-w-lg bg-red'>{text}</p>}
+        {imageUrl && !isImageUrlEmpty && (
+          <Image
+            src={imageUrl}
+            height={200}
+            width={200}
+            alt={`Image from ${message?.authorId}`}
+          />
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default ConversationText;

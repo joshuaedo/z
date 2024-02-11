@@ -28,14 +28,15 @@ const Conversation = ({ conversation }: ConversationProps) => {
       <div className='md:hidden h-[3rem] w-full' />
       <div
         id='conversation'
-        className='flex h-full flex-1 flex-col-reverse gap-4 p-3 overflow-y-auto'
+        className='flex h-full flex-1 flex-col-reverse gap-4 p-3 overflow-y-auto md:rounded-lg'
         style={bgStyles && bgStyles}
       >
         {messages?.map((message) => (
-          <div key={`${message.id}_y_x`}>
-            {/* @ts-expect-error async component */}
-            <ConversationText fetchedMessage={message} />
-          </div>
+          // @ts-expect-error async component
+          <ConversationText
+            key={`${message.id}_y_x`}
+            fetchedMessage={message}
+          />
         ))}
       </div>
     </>

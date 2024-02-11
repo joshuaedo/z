@@ -2,10 +2,9 @@ import { getAuthSession } from '@/lib/auth';
 import { db } from '@/lib/db';
 import { redis } from '@/lib/redis';
 import { getUserByUsername } from '@/lib/user';
-import { generateParticipantIds } from '@/lib/utils';
+import { generateParticipantIds } from '@/lib/message';
 import { CachedMessage } from '@/types/redis';
 import { MessageValidator } from '@/validators/message';
-// import { nanoid } from 'nanoid';
 import { z } from 'zod';
 
 export async function PATCH(req: Request) {
@@ -14,8 +13,6 @@ export async function PATCH(req: Request) {
 
     const { authorId, recipientUsername, image, text } =
       MessageValidator.parse(body);
-
-    // const messageId = nanoid(10);
 
     // Check if message is empty
     if (image?.trim() === '' && text?.trim() === '') {
@@ -37,7 +34,7 @@ export async function PATCH(req: Request) {
     }
 
     // Check if conversation exists
-    const participantIds = generateParticipantIds(author?.id, recipient?.id);
+    const participantIds = await generateParticipantIds(author?.id, recipient?.id);
     const conversation = await db.conversation.findFirst({
       where: {
         participantIds,
