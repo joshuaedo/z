@@ -183,7 +183,7 @@ model Conversation {
   messages Message[] @relation("messages")
 
   lastMessageId String?
-  lastMessage   Message? @relation("lastMessages", fields: [lastMessageId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  lastMessage   Message? @relation("lastMessages", fields: [lastMessageId], references: [id], onDelete: SetNull, onUpdate: NoAction)
 }
 
 enum VoteType {

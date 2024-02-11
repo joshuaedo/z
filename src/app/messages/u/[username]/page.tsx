@@ -20,9 +20,9 @@ const ConversationPage = async ({ params }: ConversationPageProps) => {
 
   const conversation = await db.conversation.findFirst({
     where: {
-      participantIds: {
-        contains: session?.user.id && user?.id,
-      },
+      participantIds:
+        `${session?.user?.id}_${user?.id}` ||
+        `${user?.id}_${session?.user?.id}`,
     },
     include: {
       messages: {

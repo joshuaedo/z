@@ -30,10 +30,16 @@ export async function PATCH(req: Request) {
       return new Response('Unauthorized', { status: 401 });
     }
 
+    // Check if user is trying to send message to himself
+    if (recipient?.id === author?.id) {
+      return new Response('Not allowed', { status: 401 });
+    }
+
     // Check if conversation exists
     const conversation = await db.conversation.findFirst({
       where: {
-        participantIds: `${author?.id}_${recipient?.id}`,
+        participantIds:
+          `${author?.id}_${recipient?.id}` || `${recipient?.id}_${author?.id}`,
       },
     });
 

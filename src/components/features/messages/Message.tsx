@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Message as MessageType, User } from '@prisma/client';
 import { cn, truncateString } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/Button';
@@ -11,20 +11,32 @@ interface MessageProps {
   message:
     | (MessageType & {
         recipient: User | null;
+        author: User | null;
       })
     | null;
   userId?: string | null;
 }
 
 const Message: FC<MessageProps> = ({ message, userId }) => {
+  const [user, setUser] = useState<User | null | undefined>(null);
   const router = useRouter();
   const recipient = message?.recipient;
+  const author = message?.author;
   const text = message?.text;
-  const username = recipient?.username;
-  const name = recipient?.displayName ?? recipient?.name;
-  const isAuthor = message?.authorId === userId;
+  const loggedInUserIsAuthor = message?.authorId === userId;
 
-  if (!recipient || !text) {
+  useEffect(() => {
+    if (loggedInUserIsAuthor) {
+      setUser(recipient);
+    } else {
+      setUser(author);
+    }
+  }, [author, recipient, loggedInUserIsAuthor]);
+
+  const username = user?.username;
+  const name = user?.displayName ?? user?.name;
+
+  if (!user || !text) {
     return <></>;
   }
 
@@ -42,7 +54,7 @@ const Message: FC<MessageProps> = ({ message, userId }) => {
         <UserAvatar
           user={{
             name: name || null,
-            image: recipient.image || null,
+            image: user.image || null,
           }}
           className='h-12 w-12'
         />
@@ -67,7 +79,7 @@ const Message: FC<MessageProps> = ({ message, userId }) => {
           )}
 
           <div className='pt-1 text-muted-foreground'>
-            {isAuthor && 'You: '}
+            {loggedInUserIsAuthor && 'You: '}
             {truncateString(text, 35)}
           </div>
         </div>

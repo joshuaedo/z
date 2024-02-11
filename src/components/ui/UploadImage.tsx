@@ -2,12 +2,15 @@
 
 import { UploadDropzone, UploadButton } from '@/lib/uploadthing';
 import { cn } from '@/lib/utils';
-import { ImageIcon } from 'lucide-react';
 import { useFormContext } from 'react-hook-form';
 import { buttonVariants } from './Button';
+import Loader from './Loader';
+import Image from 'next/image';
 
 interface UploadImageProps {
   name: string;
+  image: React.JSX.Element;
+  setImage: React.Dispatch<React.SetStateAction<React.JSX.Element>>;
 }
 
 type UploadResponse = {
@@ -18,7 +21,11 @@ type UploadResponse = {
   url: string;
 }[];
 
-const UploadImageButton: React.FC<UploadImageProps> = ({ name }) => {
+const UploadImageButton: React.FC<UploadImageProps> = ({
+  name,
+  image,
+  setImage,
+}) => {
   const { register, setValue } = useFormContext(); // Get form context
 
   // Handle the upload completion
@@ -29,6 +36,10 @@ const UploadImageButton: React.FC<UploadImageProps> = ({ name }) => {
 
       // Set the value of the registered field in your form
       setValue(name, fileUrl);
+
+      setImage(
+        <Image src={fileUrl} height={200} width={200} alt={res[0].name} />
+      );
     }
   };
 
@@ -36,7 +47,11 @@ const UploadImageButton: React.FC<UploadImageProps> = ({ name }) => {
     <UploadButton
       content={{
         button({ ready }) {
-          if (ready) return <ImageIcon />;
+          if (ready) {
+            return image;
+          } else {
+            return <Loader />;
+          }
         },
       }}
       appearance={{

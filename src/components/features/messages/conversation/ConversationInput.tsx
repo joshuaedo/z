@@ -13,8 +13,10 @@ import { MessageValidator } from '@/validators/message';
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/Form';
 import { UploadImageButton } from '@/components/ui/UploadImage';
 import { buttonVariants } from '@/components/ui/Button';
-import { Textarea } from '@/components/ui/TextArea';
 import { cn } from '@/lib/utils';
+import Textarea from 'react-textarea-autosize';
+import Loader from '@/components/ui/Loader';
+import { ImageIcon } from 'lucide-react';
 
 interface ConversationInputProps {
   authorId: string | undefined;
@@ -22,6 +24,7 @@ interface ConversationInputProps {
 
 const ConversationInput: FC<ConversationInputProps> = ({ authorId }) => {
   const [input, setInput] = useState<string>('');
+  const [image, setImage] = useState(<ImageIcon />);
   const { loginToast } = useCustomToast();
   const router = useRouter();
   const pathname = usePathname();
@@ -37,7 +40,7 @@ const ConversationInput: FC<ConversationInputProps> = ({ authorId }) => {
     },
   });
 
-  const { mutate: sendMessage } = useMutation({
+  const { mutate: sendMessage, isLoading } = useMutation({
     mutationFn: async (payload: z.infer<typeof MessageValidator>) => {
       const { data } = await axios.patch(`/api/messages`, payload);
       return data;
@@ -57,9 +60,7 @@ const ConversationInput: FC<ConversationInputProps> = ({ authorId }) => {
     onSuccess: () => {
       startTransition(() => {
         setInput('');
-        // toast({
-        //   title: 'Message sent',
-        // });
+        setImage(<ImageIcon />);
         router.refresh();
       });
     },
@@ -68,51 +69,57 @@ const ConversationInput: FC<ConversationInputProps> = ({ authorId }) => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit((e) => sendMessage(e))}>
-        <div className='flex items-center w-full px-3 border rounded-xl mt-2 bg-white text-black'>
-          <FormField
-            control={form.control}
-            name='image'
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <UploadImageButton {...field} />
-                </FormControl>
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name='text'
-            render={({ field }) => (
-              <FormItem className='flex flex-grow items-stretch'>
-                <FormControl>
-                  <Textarea
-                    id='message'
-                    {...field}
-                    rows={1}
-                    placeholder='Say something.'
-                    className='border-0 rounded-none shadow-none focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-none pr-0 pt-4 pb-3'
-                  />
-                </FormControl>
-              </FormItem>
-            )}
-          />
-
-          {authorId && (
-            <button
-              type='submit'
-              className={cn(
-                buttonVariants({
-                  variant: 'ghost',
-                  size: 'icon',
-                }),
-                'cursor-pointer text-black dark:text-black dark:bg-transparent dark:hover:bg-zinc-200'
+        <div className='px-2 md:px-0'>
+          <div className='flex items-center w-full px-3 border rounded-xl md:mt-2 bg-white text-black'>
+            <FormField
+              control={form.control}
+              name='image'
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <UploadImageButton
+                      image={image}
+                      setImage={setImage}
+                      {...field}
+                    />
+                  </FormControl>
+                </FormItem>
               )}
-            >
-              <SendIcon />
-            </button>
-          )}
+            />
+
+            <FormField
+              control={form.control}
+              name='text'
+              render={({ field }) => (
+                <FormItem className='flex flex-grow items-stretch'>
+                  <FormControl>
+                    <Textarea
+                      id='message'
+                      {...field}
+                      rows={1}
+                      placeholder='Say something.'
+                      className='border-0 rounded-none shadow-none focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-none pr-0 pt-4 pb-3 w-full resize-none appearance-none overflow-hidden bg-transparent focus:outline-none mx-2'
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+
+            {authorId && (
+              <button
+                type='submit'
+                className={cn(
+                  buttonVariants({
+                    variant: 'ghost',
+                    size: 'icon',
+                  }),
+                  'cursor-pointer text-black dark:text-black dark:bg-transparent dark:hover:bg-zinc-200'
+                )}
+              >
+                {isLoading ? <Loader /> : <SendIcon />}
+              </button>
+            )}
+          </div>
         </div>
       </form>
     </Form>

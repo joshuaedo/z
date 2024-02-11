@@ -15,6 +15,7 @@ const MessagesPage = async ({}) => {
       lastMessage: {
         include: {
           recipient: true,
+          author: true,
         },
       },
     },
@@ -23,7 +24,7 @@ const MessagesPage = async ({}) => {
   if (!conversations) {
     return (
       <main>
-        <div className='rounded-lg bg-white dark:bg-[#000000] shadow dark:border border-[#333333] px-8 pb-8 pt-4 space-y-2'>
+        <div className='rounded-lg bg-white dark:bg-[#000000] shadow dark:border border-[#333333] md:px-8 pb-8 pt-4 space-y-2'>
           <ul className='space-y-3'>
             <li className='w-full text-xs py-3 flex items-center justify-center'>
               <span>- no messages yet -</span>
@@ -36,7 +37,7 @@ const MessagesPage = async ({}) => {
 
   return (
     <main>
-      <div className='rounded-lg bg-white dark:bg-[#000000] shadow dark:border border-[#333333] px-2 pb-8 pt-4 space-y-2'>
+      <div className='rounded-lg bg-white dark:bg-[#000000] shadow dark:border border-[#333333] md:px-2 pb-8 pt-4 space-y-2'>
         <ul className='space-y-3'>
           {conversations?.map(({ id, lastMessage }, index) => (
             <li key={`${id}_${index}_x`}>
