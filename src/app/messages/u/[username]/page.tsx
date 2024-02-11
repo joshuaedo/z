@@ -4,6 +4,7 @@ import ConversationInput from '@/components/features/messages/conversation/Conve
 import { getAuthSession } from '@/lib/auth';
 import { db } from '@/lib/db';
 import { getUserByUsername } from '@/lib/user';
+import { generateParticipantIds } from '@/lib/utils';
 
 interface ConversationPageProps {
   params: {
@@ -18,11 +19,11 @@ const ConversationPage = async ({ params }: ConversationPageProps) => {
 
   const user = await getUserByUsername(username);
 
+  const participantIds = generateParticipantIds(session?.user?.id, user?.id);
+
   const conversation = await db.conversation.findFirst({
     where: {
-      participantIds:
-        `${session?.user?.id}_${user?.id}` ||
-        `${user?.id}_${session?.user?.id}`,
+      participantIds,
     },
     include: {
       messages: {

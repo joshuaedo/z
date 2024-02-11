@@ -2,6 +2,7 @@ import { getAuthSession } from '@/lib/auth';
 import { db } from '@/lib/db';
 import { redis } from '@/lib/redis';
 import { getUserByUsername } from '@/lib/user';
+import { generateParticipantIds } from '@/lib/utils';
 import { CachedMessage } from '@/types/redis';
 import { MessageValidator } from '@/validators/message';
 // import { nanoid } from 'nanoid';
@@ -36,10 +37,10 @@ export async function PATCH(req: Request) {
     }
 
     // Check if conversation exists
+    const participantIds = generateParticipantIds(author?.id, recipient?.id);
     const conversation = await db.conversation.findFirst({
       where: {
-        participantIds:
-          `${author?.id}_${recipient?.id}` || `${recipient?.id}_${author?.id}`,
+        participantIds,
       },
     });
 
