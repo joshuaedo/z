@@ -19,6 +19,7 @@ const LayoutClient: FC<LayoutClientProps> = ({ children }) => {
 
   return (
     <>
+      {!isConversationPage && <MobileHeader />}
       <main
         className={`mx-auto max-w-5xl h-full md:pt-8 ${
           !isConversationPage
@@ -31,7 +32,7 @@ const LayoutClient: FC<LayoutClientProps> = ({ children }) => {
             <Aside />
           </div>
           <div className='col-span-1 md:col-span-2 relative'>
-            <MobileHeader />
+            {isConversationPage && <MobileHeader />}
             <HomeFeedToggle />
             <PageTitle />
             {children}
