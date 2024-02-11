@@ -9,8 +9,8 @@ import Image from 'next/image';
 
 interface UploadImageProps {
   name: string;
-  image: React.JSX.Element;
-  setImage: React.Dispatch<React.SetStateAction<React.JSX.Element>>;
+  image?: React.JSX.Element;
+  setImage?: React.Dispatch<React.SetStateAction<React.JSX.Element>>;
 }
 
 type UploadResponse = {
@@ -37,9 +37,11 @@ const UploadImageButton: React.FC<UploadImageProps> = ({
       // Set the value of the registered field in your form
       setValue(name, fileUrl);
 
-      setImage(
-        <Image src={fileUrl} height={200} width={200} alt={res[0].name} />
-      );
+      if (setImage) {
+        setImage(
+          <Image src={fileUrl} height={200} width={200} alt={res[0].name} />
+        );
+      }
     }
   };
 
