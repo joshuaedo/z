@@ -59,7 +59,7 @@ const Message: FC<MessageProps> = ({ message, userId }) => {
           className='h-12 w-12'
         />
 
-        <div className='text-sm'>
+        <div className='text-xs md:text-sm'>
           {username && name && (
             <p className='space-x-1'>
               <span className='font-semibold'>{`${truncateString(
