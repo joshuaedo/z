@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { FC, useEffect, useState } from 'react';
 import { Message as MessageType, User } from '@prisma/client';
-import { cn, truncateString } from '@/lib/utils';
+import { cn, formatMessageTimestamp, truncateString } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/Button';
 import UserAvatar from '../user/UserAvatar';
 
@@ -35,6 +35,8 @@ const Message: FC<MessageProps> = ({ message, userId }) => {
 
   const username = user?.username;
   const name = user?.displayName ?? user?.name;
+  const timestamp = message?.createdAt;
+  const time = timestamp && formatMessageTimestamp(timestamp);
 
   if (!user || !text) {
     return <></>;
@@ -72,9 +74,7 @@ const Message: FC<MessageProps> = ({ message, userId }) => {
                 16
               )} •`}</span>
 
-              <span className='text-muted-foreground'>
-                {new Date(message?.createdAt).toLocaleString()}
-              </span>
+              <span className='text-muted-foreground'>{time}</span>
             </p>
           )}
 

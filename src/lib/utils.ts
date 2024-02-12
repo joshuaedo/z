@@ -77,3 +77,31 @@ export function truncateString(
     ? inputString
     : inputString.slice(0, maxLength - ellipsis.length) + ellipsis;
 }
+
+export function formatMessageTimestamp(timestamp: Date): string {
+  const now = new Date();
+  const diffInDays = Math.floor(
+    (now.getTime() - timestamp.getTime()) / (1000 * 60 * 60 * 24)
+  );
+
+  if (diffInDays === 0) {
+    // If the date is today, return time in 12-hour format without seconds
+    const options: Intl.DateTimeFormatOptions = {
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: true,
+    };
+    return timestamp.toLocaleTimeString('en-US', options);
+  } else if (diffInDays === 1) {
+    // If the date is yesterday, return "Yesterday"
+    return 'Yesterday';
+  } else {
+    // For other dates, return the formatted date
+    const options: Intl.DateTimeFormatOptions = {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+    };
+    return timestamp.toLocaleDateString('en-US', options);
+  }
+}

@@ -156,8 +156,6 @@
     )
     no-repeat center;
   background-attachment: fixed;
-  color: #fff;
-  border-radius: 0.5rem 0.2rem 0.2rem 0.5rem;
 }
 
 @media (max-width: 768px) {

@@ -41,7 +41,7 @@ const ConversationText = async ({ fetchedMessage }: ConversationTextProps) => {
 
   return (
     <div
-      className={`flex py-2 ${
+      className={`flex py-1 ${
         loggedInUserIsAuthor ? 'justify-end' : 'justify-start'
       }`}
     >
@@ -52,10 +52,10 @@ const ConversationText = async ({ fetchedMessage }: ConversationTextProps) => {
       >
         {text && !isTextEmpty && (
           <p
-            className={`max-w-lg h-fit w-fit px-[0.5rem] py-[1rem] ${
+            className={`max-w-lg h-fit w-fit px-[0.5rem] py-[0.5rem] text-white ${
               loggedInUserIsAuthor
-                ? 'message-gradient'
-                : 'bg-[#262626] rounded-sm'
+                ? 'message-gradient rounded-tl-full rounded-tr-md rounded-br-full rounded-bl-full'
+                : 'bg-zinc-600 rounded-tl-full rounded-tr-full rounded-br-full rounded-bl-md'
             }`}
           >
             {text}
