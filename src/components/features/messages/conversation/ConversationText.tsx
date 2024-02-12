@@ -45,8 +45,22 @@ const ConversationText = async ({ fetchedMessage }: ConversationTextProps) => {
         loggedInUserIsAuthor ? 'justify-end' : 'justify-start'
       }`}
     >
-      <div>
-        {text && !isTextEmpty && <p className='max-w-lg bg-red'>{text}</p>}
+      <div
+        className={`flex flex-col ${
+          loggedInUserIsAuthor ? 'flex-end' : 'flex-start'
+        }`}
+      >
+        {text && !isTextEmpty && (
+          <p
+            className={`max-w-lg h-fit w-fit px-[0.5rem] py-[1rem] ${
+              loggedInUserIsAuthor
+                ? 'message-gradient'
+                : 'bg-[#262626] rounded-sm'
+            }`}
+          >
+            {text}
+          </p>
+        )}
         {imageUrl && !isImageUrlEmpty && (
           <Image
             src={imageUrl}

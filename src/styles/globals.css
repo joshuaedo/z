@@ -147,6 +147,19 @@
   border-radius: 8px !important;
 }
 
+.message-gradient {
+  background: linear-gradient(
+      180deg,
+      rgba(139, 47, 184, 1) 0%,
+      rgba(103, 88, 205, 1) 51%,
+      rgba(89, 116, 219, 1) 92%
+    )
+    no-repeat center;
+  background-attachment: fixed;
+  color: #fff;
+  border-radius: 0.5rem 0.2rem 0.2rem 0.5rem;
+}
+
 @media (max-width: 768px) {
   #editor {
     display: inline-block;
