@@ -43,7 +43,9 @@ const ConversationPage = async ({ params }: ConversationPageProps) => {
   return (
     <main className='flex-1 justify-between flex flex-col h-[calc(100svh-0.8rem)] md:h-[calc(100svh-8rem)] relative'>
       <Conversation conversation={conversation} />
-      <ConversationInput authorId={session?.user.id} />
+      <div className='sticky inset-x-0 bottom-2'>
+        <ConversationInput authorId={session?.user.id} />
+      </div>
     </main>
   );
 };

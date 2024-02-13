@@ -7,6 +7,7 @@ import {
   User,
 } from '@prisma/client';
 import ConversationText from './ConversationText';
+import { useRef } from 'react';
 
 interface ConversationProps {
   conversation:
@@ -22,13 +23,14 @@ interface ConversationProps {
 const Conversation = ({ conversation }: ConversationProps) => {
   const bgStyles = useCustomBackground();
   const messages = conversation?.messages;
+  const bottomRef = useRef<HTMLDivElement | null>(null);
 
   return (
     <>
       <div className='md:hidden h-[3rem] w-full' />
       <div
         id='conversation'
-        className='flex h-full flex-1 flex-col-reverse gap-4 p-3 overflow-y-auto md:rounded-lg'
+        className='flex h-full flex-1 flex-col-reverse gap-1.5 px-3 py-5 overflow-y-auto md:rounded-lg'
         style={bgStyles && bgStyles}
       >
         {messages?.map((message) => (
@@ -39,6 +41,7 @@ const Conversation = ({ conversation }: ConversationProps) => {
           />
         ))}
       </div>
+      <div ref={bottomRef} />
     </>
   );
 };

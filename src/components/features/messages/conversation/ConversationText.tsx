@@ -35,27 +35,28 @@ const ConversationText = async ({ fetchedMessage }: ConversationTextProps) => {
 
   const text = message?.text?.trim();
   const isTextEmpty = text === '';
+  const isTextShort = text && text?.length < 6;
 
   const imageUrl = message?.image?.trim();
   const isImageUrlEmpty = imageUrl === '';
 
   return (
     <div
-      className={`flex py-1 ${
+      className={`flex ${
         loggedInUserIsAuthor ? 'justify-end' : 'justify-start'
       }`}
     >
       <div
-        className={`flex flex-col ${
+        className={`gap-1.5 flex flex-col max-w-[70%] md:max-w-[60%] ${
           loggedInUserIsAuthor ? 'flex-end' : 'flex-start'
         }`}
       >
         {text && !isTextEmpty && (
           <p
-            className={`max-w-lg h-fit w-fit px-[0.5rem] py-[0.5rem] text-white ${
+            className={`max-w-lg h-fit w-fit py-2 px-4 text-white ${
               loggedInUserIsAuthor
-                ? 'message-gradient rounded-tl-full rounded-tr-md rounded-br-full rounded-bl-full'
-                : 'bg-zinc-600 rounded-tl-full rounded-tr-full rounded-br-full rounded-bl-md'
+                ? 'message-gradient rounded-l-3xl rounded-br-3xl rounded-tr-sm'
+                : 'bg-zinc-400 dark:bg-zinc-600 rounded-r-3xl rounded-bl-3xl rounded-tl-sm'
             }`}
           >
             {text}
@@ -67,6 +68,7 @@ const ConversationText = async ({ fetchedMessage }: ConversationTextProps) => {
             height={200}
             width={200}
             alt={`Image from ${message?.authorId}`}
+            className='rounded-lg'
           />
         )}
       </div>

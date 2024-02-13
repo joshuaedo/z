@@ -51,6 +51,7 @@ const ConversationInput: FC<ConversationInputProps> = ({ authorId }) => {
           return loginToast();
         }
       }
+      form.clearErrors();
       return toast({
         title: 'Action failed',
         description: 'Your message was not delivered, please try again later',
@@ -61,6 +62,7 @@ const ConversationInput: FC<ConversationInputProps> = ({ authorId }) => {
       startTransition(() => {
         setInput('');
         setImage(<ImageIcon />);
+        form.reset();
         router.refresh();
       });
     },
@@ -97,7 +99,7 @@ const ConversationInput: FC<ConversationInputProps> = ({ authorId }) => {
                       id='message'
                       {...field}
                       rows={1}
-                      placeholder='Say something.'
+                      placeholder={`Message...`}
                       className='border-0 rounded-none shadow-none focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-none pr-0 pt-4 pb-3 w-full resize-none appearance-none overflow-hidden bg-transparent focus:outline-none mx-2'
                     />
                   </FormControl>
