@@ -76,6 +76,9 @@
   .no-focusing {
     @apply focus-visible:ring-0 focus-visible:outline-none;
   }
+  .truncate-w-bg {
+    @apply overflow-x-hidden flex flex-shrink h-fit whitespace-nowrap bg-inherit;
+  }
 }
 
 .mobile-container {

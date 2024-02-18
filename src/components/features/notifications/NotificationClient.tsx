@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import UserAvatar from '../user/UserAvatar';
 import { buttonVariants } from '@/components/ui/Button';
@@ -8,10 +8,13 @@ import { cn, formatTimeToNow } from '@/lib/utils';
 import { NotificationClientProps } from '@/types/db';
 
 const NotificationClient = ({
-  children,
-  href,
   icon,
-  contentProps,
+  href,
+  isRead,
+  sender,
+  createdAt,
+  children,
+  text,
 }: NotificationClientProps) => {
   const router = useRouter();
 
@@ -30,34 +33,28 @@ const NotificationClient = ({
           {icon}
           <div className='flex flex-col justify-center space-y-3'>
             <div className='flex items-center'>
-              <Link
-                href={
-                  contentProps.userLink || `/u/${contentProps.sender?.username}`
-                }
-              >
+              <Link href={`/u/${sender?.username}`}>
                 <UserAvatar
                   user={{
-                    name: contentProps.sender?.name || null,
-                    image: contentProps.sender?.image || null,
+                    name: sender?.name || null,
+                    image: sender?.image || null,
                   }}
                   className='h-6 w-6'
                 />
               </Link>
               <div className='ml-2 flex items-center gap-x-2'>
-                <a
-                  href={
-                    contentProps.userLink ||
-                    `/u/${contentProps.sender?.username}`
-                  }
-                >
+                <a href={`/u/${sender?.username}`}>
                   <p className='text-xs'>
-                    {contentProps.displayName} {contentProps.text}
+                    {sender?.displayName ?? sender?.name} {text}
                   </p>
                 </a>
-                {contentProps.createdAt && (
+                {createdAt && (
                   <p className='hidden md:flex max-h-40 truncate text-xs text-muted-foreground'>
-                    {formatTimeToNow(new Date(contentProps.createdAt))}
+                    {formatTimeToNow(new Date(createdAt))}
                   </p>
+                )}
+                {!isRead && (
+                  <span className='bg-purple-500 w-2 h-2 rounded-full' />
                 )}
               </div>
             </div>

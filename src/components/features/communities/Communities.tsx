@@ -45,20 +45,9 @@ const Communities: FC<CommunitiesProps> = ({ session, subs }) => {
                     community={community}
                     className='h-12 w-12'
                   />
-                  <div>
-                    <p className='hidden md:block font-medium'>
-                      {`z/${
-                        community.name.length > 16
-                          ? community.name.slice(0, 15) + '...'
-                          : community.name
-                      }`}
-                    </p>
-                    <p className='md:hidden font-medium'>
-                      {`z/${
-                        community.name.length > 11
-                          ? community.name.slice(0, 10) + '...'
-                          : community.name
-                      }`}
+                  <div className='w-full overflow-x-hidden'>
+                    <p className='truncate-w-bg max-w-[80%] font-medium'>
+                      {`z/${community.name}`}
                     </p>
 
                     <div className='flex items-center pt-2'>

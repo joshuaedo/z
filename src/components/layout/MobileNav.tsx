@@ -1,9 +1,10 @@
 'use client';
 
 import { usePathname, useRouter } from 'next/navigation';
-import { NavIcons } from './NavIcons';
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '../ui/Button';
+import React from 'react';
+import { nav } from '@/lib/nav';
 
 const IconWrapper = ({
   children,
@@ -20,10 +21,13 @@ const IconWrapper = ({
           variant: 'subtle',
           size: 'icon',
         }),
-        'cursor-pointer'
+        'cursor-pointer relative'
       )}
       onClick={() => router.push(href)}
     >
+      {
+        <span className='absolute top-1.5 right-1.5 bg-purple-500 w-2 h-2 rounded-full' />
+      }
       {children}
     </div>
   );
@@ -38,47 +42,13 @@ const MobileNav = () => {
   ) : (
     <nav className='inline md:hidden fixed bottom-0 inset-x-0 h-[4rem] bg-zinc-100 dark:bg-[#000000] border-t border-zinc-300 dark:border-[#333333] z-[60]'>
       <div className='container h-full flex items-center justify-between px-8 relative'>
-        <>
-          <IconWrapper href='/'>
-            {pathname === '/' ? (
-              <NavIcons.homeActive className='h-6 w-6' />
-            ) : (
-              <NavIcons.homeInactive className='h-6 w-6' />
-            )}
+        {nav.map(({ path: href, iconActive, iconInactive }) => (
+          <IconWrapper key={href} href={href}>
+            {pathname === href
+              ? React.createElement(iconActive, { className: 'h-6 w-6' })
+              : React.createElement(iconInactive, { className: 'h-6 w-6' })}
           </IconWrapper>
-
-          <IconWrapper href='/communities'>
-            {pathname === '/communities' ? (
-              <NavIcons.communityActive className='h-6 w-6' />
-            ) : (
-              <NavIcons.communityInactive className='h-6 w-6' />
-            )}
-          </IconWrapper>
-
-          <IconWrapper href='/explore'>
-            {pathname === '/explore' ? (
-              <NavIcons.exploreActive className='h-6 w-6' />
-            ) : (
-              <NavIcons.exploreInactive className='h-6 w-6' />
-            )}
-          </IconWrapper>
-
-          <IconWrapper href='/notifications'>
-            {pathname === '/notifications' ? (
-              <NavIcons.notificationsActive className='h-6 w-6' />
-            ) : (
-              <NavIcons.notificationsInactive className='h-6 w-6' />
-            )}
-          </IconWrapper>
-
-          <IconWrapper href='/messages'>
-            {pathname === '/messages' ? (
-              <NavIcons.messagesActive className='h-6 w-6' />
-            ) : (
-              <NavIcons.messagesInactive className='h-6 w-6' />
-            )}
-          </IconWrapper>
-        </>
+        ))}
       </div>
     </nav>
   );

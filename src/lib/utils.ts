@@ -84,7 +84,13 @@ export function formatMessageTimestamp(timestamp: Date): string {
     (now.getTime() - timestamp.getTime()) / (1000 * 60 * 60 * 24)
   );
 
-  if (diffInDays === 0) {
+  if (diffInDays === 0 && now.getDate() !== timestamp.getDate()) {
+    // If the date is today but not the same day, return "Yesterday"
+    return 'Yesterday';
+  } else if (diffInDays === 1) {
+    // If the date is yesterday, return "Yesterday"
+    return 'Yesterday';
+  } else if (diffInDays === 0) {
     // If the date is today, return time in 12-hour format without seconds
     const options: Intl.DateTimeFormatOptions = {
       hour: 'numeric',
@@ -92,9 +98,6 @@ export function formatMessageTimestamp(timestamp: Date): string {
       hour12: true,
     };
     return timestamp.toLocaleTimeString('en-US', options);
-  } else if (diffInDays === 1) {
-    // If the date is yesterday, return "Yesterday"
-    return 'Yesterday';
   } else {
     // For other dates, return the formatted date
     const options: Intl.DateTimeFormatOptions = {

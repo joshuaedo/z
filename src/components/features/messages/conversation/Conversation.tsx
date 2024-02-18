@@ -1,48 +1,31 @@
 'use client';
 
-import useCustomBackground from '@/hooks/use-custom-background';
-import {
-  Conversation as ConversationType,
-  Message,
-  User,
-} from '@prisma/client';
-import ConversationText from './ConversationText';
-import { useRef } from 'react';
+import { ExtendedMessage } from '@/types/db';
+import ConversationContainer from './ConversationContainer';
+import ConversationInput from './ConversationInput';
+import { Conversation as ConversationType } from '@prisma/client';
+import useConversation from '@/hooks/use-conversation';
 
 interface ConversationProps {
   conversation:
     | (ConversationType & {
-        messages: (Message & {
-          author: User | null;
-          recipient: User | null;
-        })[];
+        messages: ExtendedMessage[];
       })
     | null;
+  authorId: string | undefined;
 }
 
-const Conversation = ({ conversation }: ConversationProps) => {
-  const bgStyles = useCustomBackground();
-  const messages = conversation?.messages;
-  const bottomRef = useRef<HTMLDivElement | null>(null);
+const Conversation = ({ conversation, authorId }: ConversationProps) => {
+  // const { messages, bottomRef } = useConversation({
+  //   conversationId: conversation?.id,
+  //   initialMessages: conversation?.messages,
+  // });
 
   return (
-    <>
-      <div className='md:hidden h-[3rem] w-full' />
-      <div
-        id='conversation'
-        className='flex h-full flex-1 flex-col-reverse gap-1.5 px-3 py-5 overflow-y-auto md:rounded-lg'
-        style={bgStyles && bgStyles}
-      >
-        {messages?.map((message) => (
-          // @ts-expect-error async component
-          <ConversationText
-            key={`${message.id}_y_x`}
-            fetchedMessage={message}
-          />
-        ))}
-      </div>
-      <div ref={bottomRef} />
-    </>
+    <main className='flex-1 justify-between flex flex-col h-[calc(100svh-0.8rem)] md:h-[calc(100svh-8rem)] relative'>
+      <ConversationContainer messages={conversation?.messages} />
+      <ConversationInput authorId={authorId} />
+    </main>
   );
 };
 

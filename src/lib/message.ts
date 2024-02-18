@@ -1,6 +1,6 @@
 import { db } from './db';
 
-export async function generateParticipantIds(
+export async function getParticipantIds(
   id1: string | undefined,
   id2: string | undefined
 ) {
@@ -25,3 +25,5 @@ export async function generateParticipantIds(
     return order2;
   }
 }
+
+

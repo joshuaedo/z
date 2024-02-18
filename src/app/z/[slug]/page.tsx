@@ -92,7 +92,9 @@ const SlugPage = async ({ params }: SlugPageProps) => {
         <CommunityAvatar community={community} className='h-12 w-12' />
         <div className='flex w-fit items-center justify-center'>
           {/* Community Name & Info */}
-          <h2 className='font-bold text-2xl md:text-4xl'>z/{community.name}</h2>
+          <h2 className='font-bold text-2xl md:text-4xl truncate-w-bg max-w-[60%]'>
+            z/{community.name}
+          </h2>
           {/* Community Status */}
           {isCreator ? (
             <div className='flex items-center'>

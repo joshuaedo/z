@@ -24,6 +24,7 @@ const Message: FC<MessageProps> = ({ message, userId }) => {
   const author = message?.author;
   const text = message?.text;
   const loggedInUserIsAuthor = message?.authorId === userId;
+  const isRead = message?.read === true;
 
   useEffect(() => {
     if (loggedInUserIsAuthor) {
@@ -61,26 +62,34 @@ const Message: FC<MessageProps> = ({ message, userId }) => {
           className='h-12 w-12'
         />
 
-        <div className='text-xs md:text-sm'>
+        <div className='text-xs md:text-sm w-full'>
           {username && name && (
-            <p className='space-x-1'>
-              <span className='font-semibold'>{`${truncateString(
-                name,
-                16
-              )}`}</span>
+            <p className='flex w-full overflow-x-hidden'>
+              <span className='font-semibold truncate-w-bg max-w-[33.3%]'>{`${name}`}</span>
 
-              <span className='text-muted-foreground'>{`u/${truncateString(
-                username,
-                16
-              )} •`}</span>
+              <span className='text-muted-foreground truncate-w-bg max-w-[33.3%] pl-1'>{`u/${username}`}</span>
 
-              <span className='text-muted-foreground'>{time}</span>
+              <span className='text-muted-foreground truncate-w-bg max-w-[33.3%] pl-1'>
+                • {time}
+              </span>
             </p>
           )}
 
-          <div className='pt-1 text-muted-foreground'>
-            {loggedInUserIsAuthor && 'You: '}
-            {truncateString(text, 35)}
+          <div
+            className={`pt-1 flex items-center justify-between text-muted-foreground ${
+              !loggedInUserIsAuthor &&
+              !isRead &&
+              'text-black dark:text-white font-semibold'
+            }`}
+          >
+            <span>
+              {loggedInUserIsAuthor && 'You: '}
+              {truncateString(text, 35)}
+            </span>
+
+            {!loggedInUserIsAuthor && !isRead && (
+              <span className='bg-purple-500 w-2 h-2 rounded-full' />
+            )}
           </div>
         </div>
       </div>

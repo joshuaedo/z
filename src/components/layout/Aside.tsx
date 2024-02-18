@@ -6,18 +6,26 @@ import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import CommunityAvatar from '../features/communities/CommunityAvatar';
 import { ThemeToggle } from '../ui/ThemeToggle';
-import { NavIcons } from './NavIcons';
 import { Plus } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { Community, Session, User } from '@prisma/client';
 import Loader from '../ui/Loader';
-
-type AsideResults = {
+import React from 'react';
+import { nav } from '@/lib/nav';
+import { NavIcons } from './NavIcons';
+interface AsideResults {
   session: Session | null;
   subs: Community[];
   user: User | null;
-};
+}
+
+interface NavButtonProps {
+  path: string;
+  iconActive: React.ElementType;
+  iconInactive: React.ElementType;
+  label: string;
+}
 
 const Aside = () => {
   const {
@@ -27,7 +35,6 @@ const Aside = () => {
   } = useQuery({
     queryFn: async () => {
       const { data } = await axios.get(`/api/aside`);
-      // console.log(data);
       return data as AsideResults;
     },
     queryKey: ['aside'],
@@ -38,6 +45,33 @@ const Aside = () => {
   const router = useRouter();
   const pathname = usePathname();
 
+  const AsideNavButton = ({
+    path,
+    iconActive: IconActive,
+    iconInactive: IconInactive,
+    label,
+  }: NavButtonProps) => (
+    <Button
+      variant='ghost'
+      onClick={() => router.push(path)}
+      className={`${
+        pathname === path ? 'font-bold' : 'font-medium'
+      } hidden md:flex text-xl items-end -ml-3 mb-4 relative`}
+    >
+      {
+        <span className='absolute top-1.5 right-1.5 bg-purple-500 w-2 h-2 rounded-full' />
+      }
+      {pathname === path
+        ? React.createElement(IconActive, {
+            className: 'h-5 w-5 md:h-7 md:w-7 mr-3',
+          })
+        : React.createElement(IconInactive, {
+            className: 'h-5 w-5 md:h-7 md:w-7 mr-3',
+          })}
+      {label}
+    </Button>
+  );
+
   return (
     <aside className='overflow-hidden h-fit rounded-lg md:bg-white dark:md:bg-[#000000] md:shadow dark:md:border border-[#333333] md:fixed p-8 space-y-2'>
       <div
@@ -47,95 +81,16 @@ const Aside = () => {
         <Icons.logo className='h-8 w-8 md:h-10 md:w-10' />
       </div>
 
-      <Button
-        variant='ghost'
-        onClick={() => router.push('/')}
-        className={`${
-          pathname === '/' ? 'font-bold' : 'font-medium'
-        } hidden md:flex text-xl items-end -ml-3 mb-4 `}
-      >
-        {pathname === '/' ? (
-          <NavIcons.homeActive className='h-5 w-5 md:h-7 md:w-7 mr-3' />
-        ) : (
-          <NavIcons.homeInactive className='h-5 w-5 md:h-7 md:w-7 mr-3' />
-        )}
-        Home
-      </Button>
+      {nav.map((button) => (
+        <AsideNavButton key={button.path} {...button} />
+      ))}
 
-      <Button
-        variant='ghost'
-        onClick={() => router.push('/communities')}
-        className={`${
-          pathname === '/communities' ? 'font-bold' : 'font-medium'
-        } hidden md:flex text-xl items-end -ml-3 mb-4 `}
-      >
-        {pathname === '/communities' ? (
-          <NavIcons.communityActive className='h-5 w-5 md:h-7 md:w-7 mr-3' />
-        ) : (
-          <NavIcons.communityInactive className='h-5 w-5 md:h-7 md:w-7 mr-3' />
-        )}
-        Communities
-      </Button>
-
-      <Button
-        variant='ghost'
-        onClick={() => router.push('/explore')}
-        className={`${
-          pathname === '/explore' ? 'font-bold' : 'font-medium'
-        } hidden md:flex text-xl items-end -ml-3 mb-4 `}
-      >
-        {pathname === '/explore' ? (
-          <NavIcons.exploreActive className='h-5 w-5 md:h-7 md:w-7 mr-3' />
-        ) : (
-          <NavIcons.exploreInactive className='h-5 w-5 md:h-7 md:w-7 mr-3' />
-        )}
-        Explore
-      </Button>
-
-      <Button
-        variant='ghost'
-        onClick={() => router.push('/notifications')}
-        className={`${
-          pathname === '/notifications' ? 'font-bold' : 'font-medium'
-        } hidden md:flex text-xl items-end -ml-3 mb-4 `}
-      >
-        {pathname === '/notifications' ? (
-          <NavIcons.notificationsActive className='h-5 w-5 md:h-7 md:w-7 mr-3' />
-        ) : (
-          <NavIcons.notificationsInactive className='h-5 w-5 md:h-7 md:w-7 mr-3' />
-        )}
-        Notifications
-      </Button>
-
-      <Button
-        variant='ghost'
-        onClick={() => router.push('/messages')}
-        className={`${
-          pathname === '/messages' ? 'font-bold' : 'font-medium'
-        } hidden md:flex text-xl items-end -ml-3 mb-4 `}
-      >
-        {pathname === '/messages' ? (
-          <NavIcons.messagesActive className='h-5 w-5 md:h-7 md:w-7 mr-3' />
-        ) : (
-          <NavIcons.messagesInactive className='h-5 w-5 md:h-7 md:w-7 mr-3' />
-        )}
-        Messages
-      </Button>
-
-      <Button
-        variant='ghost'
-        onClick={() => router.push(`/u/${user?.username}`)}
-        className={`${
-          pathname === `/u/${user?.username}` ? 'font-bold' : 'font-medium'
-        } hidden md:flex text-xl items-end -ml-3 mb-4`}
-      >
-        {pathname === `/u/${user?.username}` ? (
-          <NavIcons.profileActive className='h-5 w-5 md:h-7 md:w-7 mr-3' />
-        ) : (
-          <NavIcons.profileInactive className='h-5 w-5 md:h-7 md:w-7 mr-3' />
-        )}
-        Profile
-      </Button>
+      <AsideNavButton
+        path={`/u/${user?.username} `}
+        iconActive={NavIcons.profileActive}
+        iconInactive={NavIcons.profileInactive}
+        label='Profile'
+      />
 
       <hr className='hidden md:flex' />
 
@@ -172,11 +127,9 @@ const Aside = () => {
                         community={community}
                         className='h-5 w-5'
                       />
-                      {`z/${
-                        community.name.length > 13
-                          ? community.name.slice(0, 13) + '...'
-                          : community.name
-                      }`}
+                      <span className='truncate-w-bg max-w-[80%]'>
+                        {`z/${community.name}`}
+                      </span>
                     </li>
                   ))}
                 </ul>
