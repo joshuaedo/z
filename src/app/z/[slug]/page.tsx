@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { getAuthSession } from '@/lib/auth';
 import { db } from '@/lib/db';
 import { notFound } from 'next/navigation';
@@ -10,6 +11,21 @@ import CommunityAvatar from '@/components/features/communities/CommunityAvatar';
 import CommunityFeed from '@/components/feeds/community/CommunityFeed';
 import SubscribeLeaveToggle from '@/components/features/auth/SubscribeLeaveToggle';
 import { getCommunityByName } from '@/lib/community';
+=======
+import { INFINITE_SCROLLING_PAGINATION_RESULTS } from "@/config";
+import { getAuthSession } from "@/lib/auth";
+import { db } from "@/lib/db";
+import { notFound } from "next/navigation";
+import SubscribeLeaveToggle from "@/components/auth/SubscribeLeaveToggle";
+import AddCommunityPost from "@/components/posts/AddCommunityPost";
+import { CalendarIcon } from "@radix-ui/react-icons";
+import { format } from "date-fns/esm";
+import { Users } from "lucide-react";
+import EditCommunityDropdown from "@/components/ui/EditCommunityDropdown";
+import CommunityAvatar from "@/components/community/CommunityAvatar";
+import CommunityFeed from "@/components/feeds/community/CommunityFeed";
+import { truncateString } from "@/lib/utils";
+>>>>>>> 82caef7e4c1e99dc3429256fcb56cf781728eff8
 
 export const generateMetadata = async ({ params }: SlugPageProps) => {
   const { slug } = params;
@@ -76,6 +92,8 @@ const SlugPage = async ({ params }: SlugPageProps) => {
 
   const isSubscribed = !!subscription;
 
+  const truncatedCommunityName = truncateString(community.name, 10);
+
   const isCreator = community.creatorId === session?.user.id;
 
   const memberCount = await db.subscription.count({
@@ -92,16 +110,23 @@ const SlugPage = async ({ params }: SlugPageProps) => {
         <CommunityAvatar community={community} className='h-12 w-12' />
         <div className='flex w-fit items-center justify-center'>
           {/* Community Name & Info */}
+<<<<<<< HEAD
           <h2 className='font-bold text-2xl md:text-4xl truncate-w-bg max-w-[33.3%] md:max-w-[66.6%]'>
             z/{community.name}
           </h2>
+=======
+          <div className="font-bold">
+            <h2 className="md:hidden text-2xl">z/{truncatedCommunityName}</h2>
+            <h2 className="md:flex hidden text-4xl">z/{community.name}</h2>
+          </div>
+>>>>>>> 82caef7e4c1e99dc3429256fcb56cf781728eff8
           {/* Community Status */}
           {isCreator ? (
             <div className='flex items-center'>
               <div className='bg-purple-500 rounded-full font-semibold py-1 px-2 border border-zinc-900 mx-2'>
                 Creator
               </div>
-              <EditCommunityDropdown communityPath={community.name} />
+              <EditCommunityDropdown communityPath={community?.name} />
             </div>
           ) : null}
           {!isCreator ? (

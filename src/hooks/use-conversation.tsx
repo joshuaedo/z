@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useEffect, useRef, useState } from 'react';
-import { pusherClient } from '@/lib/pusher';
-import { find } from 'lodash';
-import { ExtendedMessage } from '@/types/db';
+import { useEffect, useRef, useState } from "react";
+import { pusherClient } from "@/lib/pusher";
+import { find } from "lodash";
+import { ExtendedMessage } from "@/types/db";
 
 interface UseConversationProps {
   conversationId: string | undefined;
@@ -15,7 +15,7 @@ const useConversation = ({
   initialMessages,
 }: UseConversationProps) => {
   const [messages, setMessages] = useState<ExtendedMessage[] | undefined>(
-    initialMessages
+    initialMessages,
   );
   const bottomRef = useRef<HTMLDivElement | null>(null);
 
@@ -37,11 +37,11 @@ const useConversation = ({
         bottomRef?.current?.scrollIntoView;
       };
 
-      pusherClient.bind('messages:new', messageHandler);
+      pusherClient.bind("messages:new", messageHandler);
 
       return () => {
         pusherClient.unsubscribe(conversationId);
-        pusherClient.unbind('messages:new', messageHandler);
+        pusherClient.unbind("messages:new", messageHandler);
       };
     }
   }, [conversationId]);

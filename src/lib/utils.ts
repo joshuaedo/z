@@ -1,12 +1,20 @@
+<<<<<<< HEAD
 import { ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { formatDistanceToNowStrict } from 'date-fns';
 import locale from 'date-fns/locale/en-US';
+=======
+import { ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
+import { formatDistanceToNowStrict } from "date-fns";
+import locale from "date-fns/locale/en-US";
+>>>>>>> 82caef7e4c1e99dc3429256fcb56cf781728eff8
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+<<<<<<< HEAD
 const formatDistanceLocale = {
   lessThanXSeconds: 'just now',
   xSeconds: 'just now',
@@ -25,12 +33,41 @@ const formatDistanceLocale = {
   overXYears: '{{count}}y',
   almostXYears: '{{count}}y',
 };
+=======
+export function truncateString(str: string, maxLength: number): string {
+  if (str.length <= maxLength) {
+    return str;
+  } else {
+    return str.slice(0, maxLength) + "...";
+  }
+}
+>>>>>>> 82caef7e4c1e99dc3429256fcb56cf781728eff8
+
+const formatDistanceLocale = {
+  lessThanXSeconds: "just now",
+  xSeconds: "just now",
+  halfAMinute: "just now",
+  lessThanXMinutes: "{{count}}m",
+  xMinutes: "{{count}}m",
+  aboutXHours: "{{count}}h",
+  xHours: "{{count}}h",
+  xDays: "{{count}}d",
+  aboutXWeeks: "{{count}}w",
+  xWeeks: "{{count}}w",
+  aboutXMonths: "{{count}}m",
+  xMonths: "{{count}}m",
+  aboutXYears: "{{count}}y",
+  xYears: "{{count}}y",
+  overXYears: "{{count}}y",
+  almostXYears: "{{count}}y",
+};
 
 function formatDistance(token: string, count: number, options?: any): string {
   options = options || {};
 
   const result = formatDistanceLocale[
     token as keyof typeof formatDistanceLocale
+<<<<<<< HEAD
   ].replace('{{count}}', count.toString());
 
   if (options.addSuffix) {
@@ -39,6 +76,16 @@ function formatDistance(token: string, count: number, options?: any): string {
     } else {
       if (result === 'just now') return result;
       return result + ' ago';
+=======
+  ].replace("{{count}}", count.toString());
+
+  if (options.addSuffix) {
+    if (options.comparison > 0) {
+      return "in " + result;
+    } else {
+      if (result === "just now") return result;
+      return result + " ago";
+>>>>>>> 82caef7e4c1e99dc3429256fcb56cf781728eff8
     }
   }
 
@@ -53,6 +100,7 @@ export function formatTimeToNow(date: Date): string {
       formatDistance,
     },
   });
+<<<<<<< HEAD
 }
 
 export const formatPathname = (pathname: string) => {
@@ -107,4 +155,6 @@ export function formatMessageTimestamp(timestamp: Date): string {
     };
     return timestamp.toLocaleDateString('en-US', options);
   }
+=======
+>>>>>>> 82caef7e4c1e99dc3429256fcb56cf781728eff8
 }

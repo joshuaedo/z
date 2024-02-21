@@ -1,19 +1,24 @@
-'use client';
-import { redis } from '@/lib/redis';
-import { CachedMessage } from '@/types/redis';
-import { Message, User } from '@prisma/client';
-import { useSession } from 'next-auth/react';
-import Image from 'next/image';
-import { useEffect, useState } from 'react';
+"use client";
+import { redis } from "@/lib/redis";
+import { CachedMessage } from "@/types/redis";
+import { MessageRequest } from "@/validators/message";
+import { Message, User } from "@prisma/client";
+import { useSession } from "next-auth/react";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 
-interface ConversationTextProps {
+interface FetchedMessageProps {
   fetchedMessage: Message & {
     author: User | null;
     recipient: User | null;
   };
 }
 
-const ConversationText = ({ fetchedMessage }: ConversationTextProps) => {
+interface SentMessageProps {
+  sentMessage: MessageRequest;
+}
+
+const FetchedMessage = ({ fetchedMessage }: FetchedMessageProps) => {
   const [message, setMessage] = useState<
     | CachedMessage
     | (Message & {
@@ -29,7 +34,7 @@ const ConversationText = ({ fetchedMessage }: ConversationTextProps) => {
         try {
           if (messageId) {
             const cachedMessage = (await redis.hgetall(
-              `message:${messageId}`
+              `message:${messageId}`,
             )) as CachedMessage;
             return cachedMessage;
           }
@@ -51,36 +56,30 @@ const ConversationText = ({ fetchedMessage }: ConversationTextProps) => {
   const loggedInUser = session?.user;
   const loggedInUserIsAuthor = message?.authorId === loggedInUser?.id;
 
-  // const text = message?.text?.trim();
-  // const isTextEmpty = text === '';
-
-  // const imageUrl = message?.image?.trim();
-  // const isImageUrlEmpty = imageUrl === '';
-
   const text = message?.text;
-  const isTextEmpty = text === '';
+  const isTextEmpty = text === "";
 
   const imageUrl = message?.image;
-  const isImageUrlEmpty = imageUrl === '';
+  const isImageUrlEmpty = imageUrl === "";
 
   return (
     message?.authorId && (
       <div
         className={`flex ${
-          loggedInUserIsAuthor ? 'justify-end' : 'justify-start'
+          loggedInUserIsAuthor ? "justify-end" : "justify-start"
         }`}
       >
         <div
           className={`gap-1.5 flex flex-col max-w-[70%] md:max-w-[60%] ${
-            loggedInUserIsAuthor ? 'flex-end' : 'flex-start'
+            loggedInUserIsAuthor ? "flex-end" : "flex-start"
           }`}
         >
           {text && !isTextEmpty && (
             <p
               className={`max-w-lg h-fit w-fit py-2 px-4 text-white ${
                 loggedInUserIsAuthor
-                  ? 'message-gradient rounded-l-3xl rounded-br-3xl rounded-tr-sm'
-                  : 'bg-zinc-400 dark:bg-zinc-600 rounded-r-3xl rounded-bl-3xl rounded-tl-sm'
+                  ? "message-gradient rounded-l-3xl rounded-br-3xl rounded-tr-sm"
+                  : "bg-zinc-400 dark:bg-zinc-600 rounded-r-3xl rounded-bl-3xl rounded-tl-sm"
               }`}
             >
               {text}
@@ -92,7 +91,7 @@ const ConversationText = ({ fetchedMessage }: ConversationTextProps) => {
               height={200}
               width={200}
               alt={`Image from ${message?.authorId}`}
-              className='rounded-lg'
+              className="rounded-lg"
             />
           )}
         </div>
@@ -101,4 +100,39 @@ const ConversationText = ({ fetchedMessage }: ConversationTextProps) => {
   );
 };
 
-export default ConversationText;
+const SentMessage = ({ sentMessage: message }: SentMessageProps) => {
+  const text = message?.text;
+  const isTextEmpty = text === "";
+
+  const imageUrl = message?.image;
+  const isImageUrlEmpty = imageUrl === "";
+
+  return (
+    message?.authorId && (
+      <div className={`flex justify-end`}>
+        <div
+          className={`gap-1.5 flex flex-col max-w-[70%] md:max-w-[60%] flex-end`}
+        >
+          {text && !isTextEmpty && (
+            <p
+              className={`max-w-lg h-fit w-fit py-2 px-4 text-white message-gradient rounded-l-3xl rounded-br-3xl rounded-tr-sm opacity-70 animate-pulse`}
+            >
+              {text}
+            </p>
+          )}
+          {imageUrl && !isImageUrlEmpty && (
+            <Image
+              src={imageUrl}
+              height={200}
+              width={200}
+              alt={`Image from ${message?.authorId}`}
+              className="rounded-lg"
+            />
+          )}
+        </div>
+      </div>
+    )
+  );
+};
+
+export { FetchedMessage, SentMessage };

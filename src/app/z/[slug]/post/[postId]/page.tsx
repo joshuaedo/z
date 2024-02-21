@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import CommentSection from '@/components/features/comments/CommentSection';
 import EditorOutput from '@/components/ui/EditorOutput';
 import Vote from '@/components/features/votes/Vote';
@@ -17,6 +18,27 @@ import { Suspense } from 'react';
 import DeletePost from '@/components/features/posts/DeletePost';
 import { getCommunityById } from '@/lib/community';
 import Loader from '@/components/ui/Loader';
+=======
+import CommentSection from "@/components/comments/CommentSection";
+import EditorOutput from "@/components/editor/EditorOutput";
+import PostVoteServer from "@/components/posts/post-vote/PostVoteServer";
+import { Button } from "@/components/ui/Button";
+import { getAuthSession } from "@/lib/auth";
+import { db } from "@/lib/db";
+import { redis } from "@/lib/redis";
+import { cn, formatTimeToNow } from "@/lib/utils";
+import { CachedPost } from "@/types/redis";
+import { Post, User, Vote } from "@prisma/client";
+import { ArrowBigDown } from "lucide-react";
+import { ArrowBigUp } from "lucide-react";
+import { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { Suspense } from "react";
+import DeletePost from "@/components/posts/DeletePost";
+import Loader from "@/components/ui/Loader";
+import { Loader2 } from "lucide-react";
+>>>>>>> 82caef7e4c1e99dc3429256fcb56cf781728eff8
 
 interface PostPageProps {
   params: {
