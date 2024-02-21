@@ -1,47 +1,11 @@
-<<<<<<< HEAD
-import { ClassValue, clsx } from 'clsx';
-import { twMerge } from 'tailwind-merge';
-import { formatDistanceToNowStrict } from 'date-fns';
-import locale from 'date-fns/locale/en-US';
-=======
 import { ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { formatDistanceToNowStrict } from "date-fns";
 import locale from "date-fns/locale/en-US";
->>>>>>> 82caef7e4c1e99dc3429256fcb56cf781728eff8
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
-
-<<<<<<< HEAD
-const formatDistanceLocale = {
-  lessThanXSeconds: 'just now',
-  xSeconds: 'just now',
-  halfAMinute: 'just now',
-  lessThanXMinutes: '{{count}}m',
-  xMinutes: '{{count}}m',
-  aboutXHours: '{{count}}h',
-  xHours: '{{count}}h',
-  xDays: '{{count}}d',
-  aboutXWeeks: '{{count}}w',
-  xWeeks: '{{count}}w',
-  aboutXMonths: '{{count}}m',
-  xMonths: '{{count}}m',
-  aboutXYears: '{{count}}y',
-  xYears: '{{count}}y',
-  overXYears: '{{count}}y',
-  almostXYears: '{{count}}y',
-};
-=======
-export function truncateString(str: string, maxLength: number): string {
-  if (str.length <= maxLength) {
-    return str;
-  } else {
-    return str.slice(0, maxLength) + "...";
-  }
-}
->>>>>>> 82caef7e4c1e99dc3429256fcb56cf781728eff8
 
 const formatDistanceLocale = {
   lessThanXSeconds: "just now",
@@ -67,16 +31,6 @@ function formatDistance(token: string, count: number, options?: any): string {
 
   const result = formatDistanceLocale[
     token as keyof typeof formatDistanceLocale
-<<<<<<< HEAD
-  ].replace('{{count}}', count.toString());
-
-  if (options.addSuffix) {
-    if (options.comparison > 0) {
-      return 'in ' + result;
-    } else {
-      if (result === 'just now') return result;
-      return result + ' ago';
-=======
   ].replace("{{count}}", count.toString());
 
   if (options.addSuffix) {
@@ -85,7 +39,6 @@ function formatDistance(token: string, count: number, options?: any): string {
     } else {
       if (result === "just now") return result;
       return result + " ago";
->>>>>>> 82caef7e4c1e99dc3429256fcb56cf781728eff8
     }
   }
 
@@ -100,7 +53,6 @@ export function formatTimeToNow(date: Date): string {
       formatDistance,
     },
   });
-<<<<<<< HEAD
 }
 
 export const formatPathname = (pathname: string) => {
@@ -111,7 +63,7 @@ export const formatPathname = (pathname: string) => {
     return word.charAt(0).toUpperCase() + word.slice(1);
   });
 
-  const formattedPathname = formattedWords.join(' ');
+  const formattedPathname = formattedWords.join(" ");
 
   return formattedPathname;
 };
@@ -119,7 +71,7 @@ export const formatPathname = (pathname: string) => {
 export function truncateString(
   inputString: string,
   maxLength: number,
-  ellipsis: string = '...'
+  ellipsis: string = "...",
 ): string {
   return inputString.length <= maxLength
     ? inputString
@@ -129,32 +81,30 @@ export function truncateString(
 export function formatMessageTimestamp(timestamp: Date): string {
   const now = new Date();
   const diffInDays = Math.floor(
-    (now.getTime() - timestamp.getTime()) / (1000 * 60 * 60 * 24)
+    (now.getTime() - timestamp.getTime()) / (1000 * 60 * 60 * 24),
   );
 
   if (diffInDays === 0 && now.getDate() !== timestamp.getDate()) {
     // If the date is today but not the same day, return "Yesterday"
-    return 'Yesterday';
+    return "Yesterday";
   } else if (diffInDays === 1) {
     // If the date is yesterday, return "Yesterday"
-    return 'Yesterday';
+    return "Yesterday";
   } else if (diffInDays === 0) {
     // If the date is today, return time in 12-hour format without seconds
     const options: Intl.DateTimeFormatOptions = {
-      hour: 'numeric',
-      minute: 'numeric',
+      hour: "numeric",
+      minute: "numeric",
       hour12: true,
     };
-    return timestamp.toLocaleTimeString('en-US', options);
+    return timestamp.toLocaleTimeString("en-US", options);
   } else {
     // For other dates, return the formatted date
     const options: Intl.DateTimeFormatOptions = {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
+      year: "numeric",
+      month: "short",
+      day: "numeric",
     };
-    return timestamp.toLocaleDateString('en-US', options);
+    return timestamp.toLocaleDateString("en-US", options);
   }
-=======
->>>>>>> 82caef7e4c1e99dc3429256fcb56cf781728eff8
 }

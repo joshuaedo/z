@@ -1,26 +1,14 @@
 "use client";
 
-<<<<<<< HEAD:src/components/features/posts/Post.tsx
-import { formatTimeToNow } from '@/lib/utils';
-import { Post as PostType, User, Vote } from '@prisma/client';
-import { MessageSquare } from 'lucide-react';
-import { FC, useRef } from 'react';
-import EditorOutput from '../../ui/EditorOutput';
-import Link from 'next/link';
-import { useSession } from 'next-auth/react';
-import DeletePost from './DeletePost';
-import VoteClient from '../votes/VoteClient';
-=======
 import { formatTimeToNow } from "@/lib/utils";
 import { Post as PostType, User, Vote } from "@prisma/client";
 import { MessageSquare } from "lucide-react";
 import { FC, useRef } from "react";
-import EditorOutput from "../editor/EditorOutput";
-import PostVoteClient from "./post-vote/PostVoteClient";
+import EditorOutput from "../../ui/EditorOutput";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import DeletePost from "./DeletePost";
->>>>>>> 82caef7e4c1e99dc3429256fcb56cf781728eff8:src/components/posts/Post.tsx
+import VoteClient from "../votes/VoteClient";
 
 type PartialVote = Pick<Vote, "type">;
 
