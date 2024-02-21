@@ -37,6 +37,7 @@ const Conversation = ({ conversation, authorId }: ConversationProps) => {
         className="flex h-full flex-1 flex-col-reverse gap-1.5 px-3 py-5 overflow-y-auto md:rounded-lg"
         style={bgStyles && bgStyles}
       >
+        {/* Conversation Background */}
         {sentMessages
           ?.slice()
           .reverse()

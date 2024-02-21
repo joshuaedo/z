@@ -161,6 +161,11 @@
   background-attachment: fixed;
 }
 
+.text-2xs {
+  font-size: 0.45rem;
+  line-height: 1rem;
+}
+
 @media (max-width: 768px) {
   #editor {
     display: inline-block;

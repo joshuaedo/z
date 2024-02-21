@@ -60,6 +60,7 @@ const ConversationInput = ({
         }
       }
       form.clearErrors();
+      setSentMessages([]);
       return toast({
         title: "Action failed",
         description: "Your message was not delivered, please try again later",

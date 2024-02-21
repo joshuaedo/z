@@ -6,7 +6,7 @@ import {
   Post,
   User,
   Vote,
-} from '@prisma/client';
+} from "@prisma/client";
 
 export type ExtendedPost = Post & {
   community: Community;
@@ -39,4 +39,12 @@ export type NotificationClientProps = {
   text?: string | null;
   createdAt?: Date | null;
   isRead?: boolean | null;
+};
+
+export type UnreadNotifications = {
+  isNewHomeFeed: boolean;
+  isNewExploreFeed: boolean;
+  isJoinedNewCommunity: boolean;
+  unreadNotificationsCount: number;
+  unreadMessagesCount: number;
 };

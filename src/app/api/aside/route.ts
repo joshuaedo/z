@@ -1,8 +1,8 @@
-import { getAuthSession } from '@/lib/auth';
-import { db } from '@/lib/db';
-import { getUserById } from '@/lib/user';
-import { Community, User } from '@prisma/client';
-import { z } from 'zod';
+import { getAuthSession } from "@/lib/auth";
+import { db } from "@/lib/db";
+import { getUserById } from "@/lib/user";
+import { Community, User } from "@prisma/client";
+import { z } from "zod";
 
 export async function GET(req: Request) {
   try {
@@ -26,7 +26,7 @@ export async function GET(req: Request) {
 
       // Extract community names from the subscriptions
       const communityNames = followedCommunities.map(
-        ({ community }) => community.name
+        ({ community }) => community.name,
       );
 
       user = await getUserById(zUser.id);
@@ -39,7 +39,7 @@ export async function GET(req: Request) {
           },
         },
         orderBy: {
-          createdAt: 'desc',
+          createdAt: "desc",
         },
       });
 
@@ -51,13 +51,13 @@ export async function GET(req: Request) {
 
       return new Response(JSON.stringify(res));
     } else {
-      return new Response('Unauthorized', { status: 401 });
+      return new Response("Unauthorized", { status: 401 });
     }
   } catch (error) {
     if (error instanceof z.ZodError) {
       return new Response(error.message, { status: 422 });
     }
 
-    return new Response('Could not retrieve', { status: 500 });
+    return new Response("Could not retrieve aside details", { status: 500 });
   }
 }
