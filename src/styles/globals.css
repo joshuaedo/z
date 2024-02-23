@@ -90,7 +90,12 @@
 }
 
 .text-2xs {
-  font-size: 0.65rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.text-3xs {
+  font-size: 0.45rem;
   line-height: 1rem;
 }
 
@@ -159,11 +164,6 @@
     )
     no-repeat center;
   background-attachment: fixed;
-}
-
-.text-2xs {
-  font-size: 0.45rem;
-  line-height: 1rem;
 }
 
 @media (max-width: 768px) {

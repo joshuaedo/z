@@ -15,23 +15,25 @@ export async function GET() {
 
       const isJoinedNewCommunity = false;
 
-      const notifications = await db.notification.findMany({
+      const unreadNotificationsCount = await db.notification.count({
         where: {
           recipientId: zUser?.id,
           read: false,
+          senderId: { not: zUser?.id }, // Exclude notifications sent by the user to themselves
         },
       });
 
-      const unreadNotificationsCount = notifications?.length;
-
-      const messages = await db.message.findMany({
+      const unreadMessagesCount = await db.conversation.count({
         where: {
-          recipientId: zUser?.id,
-          read: false,
+          participantIds: {
+            contains: zUser?.id,
+          },
+          lastMessage: {
+            read: false,
+            authorId: { not: zUser?.id }, // Exclude messages sent by the user
+          },
         },
       });
-
-      const unreadMessagesCount = messages?.length;
 
       const res: UnreadNotifications = {
         isNewHomeFeed,

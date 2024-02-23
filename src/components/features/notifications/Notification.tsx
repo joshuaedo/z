@@ -13,6 +13,7 @@ const Notification = ({ notification }: NotificationProps) => {
   }
 
   const {
+    id,
     sender,
     type,
     post,
@@ -62,6 +63,7 @@ const Notification = ({ notification }: NotificationProps) => {
 
   return isNotificationAvailable ? (
     <NotificationClient
+      id={id}
       href={href}
       icon={icon}
       isRead={isRead}

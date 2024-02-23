@@ -18,7 +18,7 @@ const useUnreadNotifications = (href: string) => {
   );
 
   const nbClassName =
-    "absolute top-1 right-1 bg-purple-500 w-5 h-5 p-1 border-2 border-white dark:border-black rounded-full flex items-center justify-center font-bold text-2xs";
+    "absolute top-1 right-1 bg-purple-500 w-5 h-5 p-1 border-2 border-white dark:border-black rounded-full flex items-center justify-center font-bold text-3xs";
 
   useEffect(() => {
     switch (href) {

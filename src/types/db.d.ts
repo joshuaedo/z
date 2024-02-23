@@ -32,6 +32,7 @@ export type ExtendedNotification = Notification & {
 };
 
 export type NotificationClientProps = {
+  id: string;
   children: React.ReactNode;
   href: string;
   icon: React.ReactNode;

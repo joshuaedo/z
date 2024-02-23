@@ -1,5 +1,5 @@
-import { db } from '@/lib/db';
-import { ExtendedNotification } from '@/types/db';
+import { db } from "@/lib/db";
+import { ExtendedNotification } from "@/types/db";
 
 type getNotificationsOptions = {
   recipientId?: string;
@@ -21,10 +21,10 @@ const getNotifications = async ({
   const notifications = await db.notification.findMany({
     where: {
       ...whereCondition,
-      read: false,
+      // read: false,
     },
     orderBy: {
-      createdAt: 'desc',
+      createdAt: "desc",
     },
     include: {
       sender: true,

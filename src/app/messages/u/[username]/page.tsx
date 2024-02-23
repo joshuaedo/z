@@ -1,8 +1,8 @@
-import Conversation from '@/components/features/messages/conversation/Conversation';
-import { getAuthSession } from '@/lib/auth';
-import { db } from '@/lib/db';
-import { getUserByUsername } from '@/lib/user';
-import { getParticipantIds } from '@/lib/message';
+import Conversation from "@/components/features/messages/conversation/Conversation";
+import { getAuthSession } from "@/lib/auth";
+import { db } from "@/lib/db";
+import { getUserByUsername } from "@/lib/user";
+import { getParticipantIds } from "@/lib/message";
 
 interface ConversationPageProps {
   params: {
@@ -30,7 +30,13 @@ const ConversationPage = async ({ params }: ConversationPageProps) => {
           recipient: true,
         },
         orderBy: {
-          createdAt: 'desc',
+          createdAt: "desc",
+        },
+      },
+      lastMessage: {
+        include: {
+          author: true,
+          recipient: true,
         },
       },
     },
