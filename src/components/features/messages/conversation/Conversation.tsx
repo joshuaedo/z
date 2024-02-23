@@ -17,7 +17,7 @@ interface ConversationProps {
   conversation:
     | (ConversationType & {
         messages: ExtendedMessage[];
-        lastMessage: ExtendedMessage;
+        lastMessage: ExtendedMessage | null; 
       })
     | null;
   authorId: string | undefined;
