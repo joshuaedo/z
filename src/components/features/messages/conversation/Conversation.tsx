@@ -36,7 +36,7 @@ const Conversation = ({ conversation, authorId }: ConversationProps) => {
   const router = useRouter();
   const { loginToast } = useCustomToast();
   const recipientIsReadingConversation =
-    conversation?.lastMessage.recipientId === authorId;
+    conversation?.lastMessage?.recipientId === authorId;
 
   const { mutate: readConversation } = useMutation({
     mutationFn: async () => {
