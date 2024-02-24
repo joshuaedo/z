@@ -8,9 +8,9 @@ import { useRouter } from "next/navigation";
 interface ModalProps {
   modalContainer: string;
   children: React.ReactNode;
-  showMax: boolean;
+  showMax?: boolean;
   toggleModal?: any;
-  isModalInterceptor: boolean;
+  isModalInterceptor?: boolean;
 }
 
 const Modal: FC<ModalProps> = ({
