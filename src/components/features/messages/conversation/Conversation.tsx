@@ -69,7 +69,7 @@ const Conversation = ({ conversation, authorId }: ConversationProps) => {
         className="flex h-full flex-1 flex-col-reverse gap-1.5 py-5 md:rounded-lg"
         style={bgProps && bgProps}
       >
-        {seen && (
+        {!recipientIsReadingConversation && seen && (
           <div className="flex justify-end text-muted-foreground text-xs px-2">
             <p>Seen</p>
           </div>

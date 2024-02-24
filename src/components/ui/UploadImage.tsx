@@ -1,11 +1,13 @@
-'use client';
+"use client";
 
-import { UploadDropzone, UploadButton } from '@/lib/uploadthing';
-import { cn } from '@/lib/utils';
-import { useFormContext } from 'react-hook-form';
-import { buttonVariants } from './Button';
-import Loader from './Loader';
-import Image from 'next/image';
+import { UploadDropzone, UploadButton } from "@/lib/uploadthing";
+import { cn } from "@/lib/utils";
+import { useFormContext } from "react-hook-form";
+import { buttonVariants } from "./Button";
+import Loader from "./Loader";
+import Image from "next/image";
+import { ImagePlusIcon } from "lucide-react";
+import { useState } from "react";
 
 interface UploadImageProps {
   name: string;
@@ -26,20 +28,17 @@ const UploadImageButton: React.FC<UploadImageProps> = ({
   image,
   setImage,
 }) => {
-  const { register, setValue } = useFormContext(); // Get form context
+  const { setValue } = useFormContext();
 
-  // Handle the upload completion
   const handleUploadComplete = (res?: UploadResponse | undefined) => {
     if (res && res.length > 0) {
-      // Extract the file URL from the response
       const fileUrl = res[0].url;
 
-      // Set the value of the registered field in your form
       setValue(name, fileUrl);
 
       if (setImage) {
         setImage(
-          <Image src={fileUrl} height={200} width={200} alt={res[0].name} />
+          <Image src={fileUrl} height={200} width={200} alt={res[0].name} />,
         );
       }
     }
@@ -59,15 +58,15 @@ const UploadImageButton: React.FC<UploadImageProps> = ({
       appearance={{
         button: cn(
           buttonVariants({
-            variant: 'ghost',
-            size: 'icon',
+            variant: "ghost",
+            size: "icon",
           }),
-          'cursor-pointer bg-transparent text-black dark:text-black dark:bg-transparent focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-none dark:hover:bg-zinc-200'
+          "cursor-pointer bg-transparent text-black dark:text-black dark:bg-transparent focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-none dark:hover:bg-zinc-200",
         ),
-        allowedContent: 'hidden',
+        allowedContent: "hidden",
       }}
-      className={''}
-      endpoint='imageUploader'
+      className={""}
+      endpoint="imageUploader"
       onClientUploadComplete={handleUploadComplete}
       onUploadError={(err) => console.log(`ERROR! ${err.message}`)}
     />
@@ -75,22 +74,63 @@ const UploadImageButton: React.FC<UploadImageProps> = ({
 };
 
 const DropZone: React.FC<UploadImageProps> = ({ name }) => {
-  const { register, setValue } = useFormContext(); // Get form context
+  const { setValue } = useFormContext();
 
-  // Handle the upload completion
+  const [dropZone, setDropZone] = useState({
+    uploadIcon: <ImagePlusIcon className="h-20 w-20" />,
+    buttonText: "Upload Image",
+    isButtonDisabled: false,
+    label: "",
+  });
+
+  const { uploadIcon, buttonText, isButtonDisabled, label } = dropZone;
+
   const handleUploadComplete = (res?: UploadResponse | undefined) => {
     if (res && res.length > 0) {
-      // Extract the file URL from the response
       const fileUrl = res[0].url;
 
-      // Set the value of the registered field in your form
       setValue(name, fileUrl);
+
+      setDropZone({
+        uploadIcon: (
+          <Image src={fileUrl} height={200} width={200} alt={res[0].name} />
+        ),
+        buttonText: "Image uploaded",
+        isButtonDisabled: true,
+        label: "",
+      });
     }
   };
 
   return (
     <UploadDropzone
-      endpoint='imageUploader'
+      content={{
+        button({}) {
+          return buttonText;
+        },
+        uploadIcon() {
+          return uploadIcon;
+        },
+        label() {
+          return label;
+        },
+      }}
+      appearance={{
+        container: "cursor-ponter",
+        button: cn(
+          buttonVariants({
+            variant: "outline",
+          }),
+          `bg-transparent text-black dark:text-white ${isButtonDisabled ? "cursor-not-allowed" : "cursor-pointer"}`,
+        ),
+        uploadIcon: cn(
+          buttonVariants({
+            variant: "ghost",
+          }),
+        ),
+        allowedContent: "hidden",
+      }}
+      endpoint="imageUploader"
       onClientUploadComplete={handleUploadComplete}
       onUploadError={(err) => console.log(err)}
     />

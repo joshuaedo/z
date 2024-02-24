@@ -1,27 +1,128 @@
-'use client';
+import { getAuthSession } from "@/lib/auth";
+import { db } from "@/lib/db";
+import type { Metadata } from "next";
+import ProfileCard from "@/components/features/user/profile/ProfileCard";
+import ProfileFeed from "@/components/feeds/profile/ProfileFeed";
+import SignInFireWall from "@/components/features/auth/SignInFireWall";
+import { getUserByUsername } from "@/lib/user";
 
-import SignInFireWall from '@/components/features/auth/SignInFireWall';
-import { Button } from '@/components/ui/Button';
-import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
+export const dynamic = "force-dynamic";
+export const fetchCache = "force-no-store";
 
-const RedirectToProfilePage = () => {
-  const router = useRouter();
-  const { data: session } = useSession();
+export async function generateMetadata({}): Promise<Metadata> {
+  let user;
 
-  const handleViewProfile = () => {
-    router.push(`/u/${session?.user?.username}`);
+  const session = await getAuthSession();
+
+  const username = session?.user?.username;
+
+  if (username) {
+    user = await getUserByUsername(username);
+  }
+
+  const displayName = user?.displayName ?? user?.name;
+
+  const userMetaName = user?.username ?? username;
+
+  const title =
+    userMetaName !== undefined
+      ? `${displayName} (u/${userMetaName}) • Z`
+      : "guest / Z";
+
+  const description =
+    "View " + `View ${displayName ? `${displayName}'s` : "your"} profile`;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      images: [
+        {
+          url: user?.image ?? "https://joshuaedo.sirv.com/Z/Z.png",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary",
+      title,
+      description,
+      images: [user?.image ?? "https://joshuaedo.sirv.com/Z/Z.png"],
+    },
   };
+}
 
-  return (
-    <div className='flex flex-col items-center justify-center min-h-[65svh]'>
-      {session ? (
-        <Button onClick={handleViewProfile}>View Profile</Button>
-      ) : (
-        <SignInFireWall />
-      )}
+const ProfilePage = async () => {
+  let user;
+
+  const session = await getAuthSession();
+
+  const username = session?.user?.username;
+
+  if (username) {
+    user = await getUserByUsername(username);
+  }
+
+  const posts = await db.post.findMany({
+    where: {
+      authorId: user?.id,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+    include: {
+      votes: true,
+      author: true,
+      comments: true,
+      community: true,
+    },
+  });
+
+  const replies = await db.post.findMany({
+    where: {
+      comments: {
+        some: {
+          authorId: user?.id,
+        },
+      },
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+    include: {
+      votes: true,
+      author: true,
+      comments: true,
+      community: true,
+    },
+  });
+
+  const subscriptions = await db.subscription.findMany({
+    where: {
+      userId: user?.id,
+    },
+  });
+
+  const createdCommunities = await db.community.findMany({
+    where: {
+      Creator: user,
+    },
+  });
+
+  return session && user ? (
+    <div className="space-y-6">
+      <ProfileCard
+        user={user}
+        session={session}
+        subscriptions={subscriptions}
+        createdCommunities={createdCommunities}
+      />
+      <ProfileFeed posts={posts} replies={replies} />
     </div>
+  ) : (
+    <SignInFireWall />
   );
 };
 
-export default RedirectToProfilePage;
+export default ProfilePage;

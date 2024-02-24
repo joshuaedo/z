@@ -23,10 +23,10 @@ const Modal: FC<ModalProps> = ({
   const router = useRouter();
   return (
     <div
-      className={`fixed inset-0 bg-slate-50 dark:bg-[#0A0A0A] z-[9999] ${isModalInterceptor ? "bg-opacity-30 dark:bg-opacity-20" : "bg-opacity-60 dark:bg-opacity-60 py-8"}`}
+      className={`fixed inset-0 bg-slate-50 dark:bg-[#0A0A0A] z-[9999] ${isModalInterceptor ? "bg-opacity-30 dark:bg-opacity-20" : "bg-opacity-60 dark:bg-opacity-60 h-full w-full"}`}
     >
       <div
-        className={`container flex items-center h-full ${modalContainer} justify-center`}
+        className={`${isModalInterceptor ? "container" : "w-full"} flex items-center h-full ${modalContainer} justify-center`}
       >
         <div
           className={`relative bg-white dark:bg-[#000000] shadow dark:border border-[#333333]  ${isModalInterceptor ? "h-fit" : "w-full h-full flex justify-center items-center"} pt-8 dark:pt-3 pb-8 px-3 rounded-lg`}

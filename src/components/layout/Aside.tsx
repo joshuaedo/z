@@ -90,7 +90,7 @@ const Aside = () => {
       ))}
 
       <AsideNavButton
-        path={`/u/${user?.username} `}
+        path={`${user ? `/u/${user?.username}` : "/profile"}`}
         iconActive={NavIcons.profileActive}
         iconInactive={NavIcons.profileInactive}
         label="Profile"

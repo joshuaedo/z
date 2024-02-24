@@ -11,7 +11,7 @@ export const fetchCache = "force-no-store";
 
 export async function generateMetadata({
   params,
-}: ProfilePageProps): Promise<Metadata> {
+}: UserPageProps): Promise<Metadata> {
   const { username } = params;
 
   const user = await getUserByUsername(username);
@@ -48,13 +48,13 @@ export async function generateMetadata({
   };
 }
 
-interface ProfilePageProps {
+interface UserPageProps {
   params: {
     username: string;
   };
 }
 
-const ProfilePage = async ({ params }: ProfilePageProps) => {
+const UserPage = async ({ params }: UserPageProps) => {
   const { username } = params;
 
   const session = await getAuthSession();
@@ -122,4 +122,4 @@ const ProfilePage = async ({ params }: ProfilePageProps) => {
   );
 };
 
-export default ProfilePage;
+export default UserPage;
