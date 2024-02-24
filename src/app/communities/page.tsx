@@ -1,23 +1,22 @@
-import Communities from '@/components/features/communities/Communities';
-import SignInFireWall from '@/components/features/auth/SignInFireWall';
-import { getAuthSession } from '@/lib/auth';
-import { db } from '@/lib/db';
-import { Community } from '@prisma/client';
+import Communities from "@/components/features/communities/Communities";
+import { getAuthSession } from "@/lib/auth";
+import { db } from "@/lib/db";
+import { Community } from "@prisma/client";
 
 export const metadata = {
-  title: 'Communities / Z',
+  title: "Communities / Z",
   description:
-    'Explore and engage with your favorite communities on Z. Join the conversation, share ideas, and connect with like-minded individuals.',
+    "Explore and engage with your favorite communities on Z. Join the conversation, share ideas, and connect with like-minded individuals.",
   openGraph: {
-    title: 'Communities / Z',
+    title: "Communities / Z",
     description:
-      'Explore and engage with your favorite communities on Z. Join the conversation, share ideas, and connect with like-minded individuals.',
+      "Explore and engage with your favorite communities on Z. Join the conversation, share ideas, and connect with like-minded individuals.",
   },
   twitter: {
-    card: 'summary',
-    title: 'Communities / Z',
+    card: "summary",
+    title: "Communities / Z",
     description:
-      'Explore and engage with your favorite communities on Z. Join the conversation, share ideas, and connect with like-minded individuals.',
+      "Explore and engage with your favorite communities on Z. Join the conversation, share ideas, and connect with like-minded individuals.",
   },
 };
 
@@ -40,7 +39,7 @@ const CommunitiesPage = async () => {
 
     // Extract community names from the subscriptions
     const communityNames = followedCommunities.map(
-      ({ community }) => community.name
+      ({ community }) => community.name,
     );
 
     // Fetch community data based on names
@@ -54,16 +53,12 @@ const CommunitiesPage = async () => {
         _count: true,
       },
       orderBy: {
-        createdAt: 'desc',
+        createdAt: "desc",
       },
     });
   }
 
-  return session ? (
-    <Communities subs={subs} session={session} />
-  ) : (
-    <SignInFireWall />
-  );
+  return <Communities subs={subs} />;
 };
 
 export default CommunitiesPage;

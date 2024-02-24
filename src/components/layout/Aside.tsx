@@ -119,7 +119,7 @@ const Aside = () => {
                 </button>
                 <ul
                   id="aside-communities"
-                  className="text-muted-foreground max-h-[10rem] space-y-1"
+                  className=" text-muted-foreground max-h-[10rem] space-y-1"
                 >
                   {subs?.map((community) => (
                     <li

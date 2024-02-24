@@ -55,7 +55,7 @@ const Message: FC<MessageProps> = ({ message, userId }) => {
           buttonVariants({
             variant: "ghost",
           }),
-          "w-full h-full flex items-center gap-x-4 md:gap-x-5 font-normal cursor-pointer justify-start",
+          "px-3 w-full h-full flex items-center gap-x-4 md:gap-x-5 font-normal cursor-pointer justify-start",
         )}
         onClick={() => router.push(`/messages/u/${username}`)}
       >

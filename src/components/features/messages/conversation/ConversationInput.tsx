@@ -47,9 +47,10 @@ const ConversationInput = ({
   });
 
   //   send messages
-  const { mutate: sendMessage, isLoading } = useMutation({
+  const { mutate: sendMessage } = useMutation({
     mutationFn: async (payload: z.infer<typeof MessageValidator>) => {
       setSentMessages((prev) => [...(prev || []), payload]);
+      form.reset();
       const { data } = await axios.patch(`/api/messages`, payload);
       return data;
     },
@@ -70,7 +71,6 @@ const ConversationInput = ({
     onSuccess: () => {
       startTransition(() => {
         setImage(<ImageIcon />);
-        form.reset();
         topRef?.current?.scrollIntoView;
         setSentMessages([]);
         router.refresh();
@@ -133,7 +133,7 @@ const ConversationInput = ({
                     "cursor-pointer text-black dark:text-black dark:bg-transparent dark:hover:bg-zinc-200",
                   )}
                 >
-                  {isLoading ? <Loader /> : <SendIcon />}
+                  {<SendIcon />}
                 </button>
               )}
             </div>
