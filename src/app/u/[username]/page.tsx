@@ -1,23 +1,20 @@
-import SignInFireWall from "@/components/auth/SignInFireWall";
 import { getAuthSession } from "@/lib/auth";
-import { INFINITE_SCROLLING_PAGINATION_RESULTS } from "@/config";
 import { db } from "@/lib/db";
 import type { Metadata } from "next";
-import ProfileCard from "@/components/profile/ProfileCard";
+import ProfileCard from "@/components/features/user/profile/ProfileCard";
 import ProfileFeed from "@/components/feeds/profile/ProfileFeed";
+import SignInFireWall from "@/components/features/auth/SignInFireWall";
+import { getUserByUsername } from "@/lib/user";
 
-type Props = {
-  params: { username: string };
-};
+export const dynamic = "force-dynamic";
+export const fetchCache = "force-no-store";
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: UserPageProps): Promise<Metadata> {
   const { username } = params;
 
-  const user = await db.user.findUnique({
-    where: {
-      username,
-    },
-  });
+  const user = await getUserByUsername(username);
 
   const displayName = user?.displayName ?? user?.name;
 
@@ -51,22 +48,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-interface ProfilePageProps {
+interface UserPageProps {
   params: {
     username: string;
   };
 }
 
-const ProfilePage = async ({ params }: ProfilePageProps) => {
+const UserPage = async ({ params }: UserPageProps) => {
   const { username } = params;
 
   const session = await getAuthSession();
 
-  const user = await db.user.findUnique({
-    where: {
-      username: username,
-    },
-  });
+  const user = await getUserByUsername(username);
 
   const posts = await db.post.findMany({
     where: {
@@ -129,4 +122,4 @@ const ProfilePage = async ({ params }: ProfilePageProps) => {
   );
 };
 
-export default ProfilePage;
+export default UserPage;

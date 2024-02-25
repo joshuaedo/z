@@ -2,7 +2,7 @@
 
 import { ExtendedPost } from '@/types/db';
 import axios from 'axios';
-import Post from '../../posts/Post';
+import Post from '../../features/posts/Post';
 import { useSession } from 'next-auth/react';
 import { Suspense } from 'react';
 import Loader from '@/components/ui/Loader';

@@ -1,22 +1,22 @@
-import CommentSection from "@/components/comments/CommentSection";
-import EditorOutput from "@/components/editor/EditorOutput";
-import PostVoteServer from "@/components/posts/post-vote/PostVoteServer";
+import CommentSection from "@/components/features/comments/CommentSection";
+import EditorOutput from "@/components/ui/EditorOutput";
+import Vote from "@/components/features/votes/Vote";
 import { Button } from "@/components/ui/Button";
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { redis } from "@/lib/redis";
 import { cn, formatTimeToNow } from "@/lib/utils";
 import { CachedPost } from "@/types/redis";
-import { Post, User, Vote } from "@prisma/client";
+import { Post, User, Vote as VoteType } from "@prisma/client";
 import { ArrowBigDown } from "lucide-react";
 import { ArrowBigUp } from "lucide-react";
 import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
-import DeletePost from "@/components/posts/DeletePost";
+import DeletePost from "@/components/features/posts/DeletePost";
+import { getCommunityById } from "@/lib/community";
 import Loader from "@/components/ui/Loader";
-import { Loader2 } from "lucide-react";
 
 interface PostPageProps {
   params: {
@@ -32,7 +32,7 @@ export const generateMetadata = async ({
 }: PostPageProps): Promise<Metadata> => {
   let post:
     | (Post & {
-        votes: Vote[];
+        votes: VoteType[];
         author: User;
       })
     | null = null;
@@ -67,13 +67,16 @@ export const generateMetadata = async ({
 };
 
 const PostPage = async ({ params }: PostPageProps) => {
+  const community = await getCommunityById(params.postId);
+  const session = await getAuthSession();
+
   const cachedPost = (await redis.hgetall(
     `post:${params.postId}`,
   )) as CachedPost;
 
   let post:
     | (Post & {
-        votes: Vote[];
+        votes: VoteType[];
         author: User;
       })
     | null = null;
@@ -90,20 +93,17 @@ const PostPage = async ({ params }: PostPageProps) => {
     });
   }
 
-  const community = await db.community.findFirst({
-    where: {
-      id: params.postId,
-    },
-  });
-
-  const title = post?.title ?? cachedPost?.title;
+  const postId = post?.id ?? cachedPost?.id;
+  const postTitle = post?.title ?? cachedPost?.title;
   const titleExists =
-    title !== null && title !== undefined && title !== "" && title !== " ";
-  const session = await getAuthSession();
-  const isAuthor = session?.user.id === post?.author.id;
+    postTitle !== null &&
+    postTitle !== undefined &&
+    postTitle !== "" &&
+    postTitle !== " ";
+  const authorUsername = post?.author?.username ?? cachedPost?.authorUsername;
+  const authorId = post?.author?.id;
+  const isAuthor = session?.user.id === authorId;
   const communityName = community?.name;
-
-  // console.log(post)
 
   if (!post && !cachedPost) return notFound();
 
@@ -115,10 +115,10 @@ const PostPage = async ({ params }: PostPageProps) => {
             titleExists ? "py-4" : "py-2"
           } pr-4 md:px-6  flex justify-between`}
         >
-          <Suspense fallback={<PostVoteShell />}>
+          <Suspense fallback={<VoteShell />}>
             {/* @ts-expect-error Server Component */}
-            <PostVoteServer
-              postId={post?.id ?? cachedPost.id}
+            <Vote
+              postId={postId}
               getData={async () => {
                 return await db.post.findUnique({
                   where: {
@@ -146,15 +146,13 @@ const PostPage = async ({ params }: PostPageProps) => {
                   <span className="px-1">•</span>
                 </>
               ) : null}
-              {(post?.author?.username || cachedPost?.authorUsername) && (
+              {authorUsername && (
                 <span className="">
                   Posted by{" "}
-                  <Link href={`/u/${post?.author.username}`}>
-                    {post?.author?.username?.length! < 3
-                      ? post?.author?.username ?? cachedPost?.authorUsername
-                      : `u/${
-                          post?.author?.username ?? cachedPost?.authorUsername
-                        }`}
+                  <Link href={`/u/${authorUsername}`}>
+                    {authorUsername?.length! < 3
+                      ? authorUsername
+                      : `u/${authorUsername}`}
                   </Link>{" "}
                 </span>
               )}
@@ -166,7 +164,7 @@ const PostPage = async ({ params }: PostPageProps) => {
 
             {titleExists && (
               <h1 className="text-lg font-semibold py-2 leading-6 dark:text-white">
-                {post?.title ?? cachedPost?.title}
+                {postTitle}
               </h1>
             )}
 
@@ -183,7 +181,7 @@ const PostPage = async ({ params }: PostPageProps) => {
         <div className={`px-4 md:px-6`}>
           <Suspense fallback={<Loader />}>
             {/* @ts-expect-error Server Component */}
-            <CommentSection postId={post?.id ?? cachedPost.id} />
+            <CommentSection postId={postId} />
           </Suspense>
         </div>
       </div>
@@ -191,7 +189,7 @@ const PostPage = async ({ params }: PostPageProps) => {
   );
 };
 
-function PostVoteShell() {
+function VoteShell() {
   return (
     <div className="flex flex-col w-12 md:w-20 md:gap-4 md:pr-6 md:pb-4">
       <Button

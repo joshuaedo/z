@@ -1,16 +1,14 @@
-"use client";
+'use client';
 
-import { ExtendedPost } from "@/types/db";
-import { FC, useEffect, useRef } from "react";
-import { useIntersection } from "@mantine/hooks";
-import { useInfiniteQuery } from "@tanstack/react-query";
-import axios from "axios";
-import { useSession } from "next-auth/react";
-import { Loader2 } from "lucide-react";
-import { INFINITE_SCROLLING_PAGINATION_RESULTS } from "@/config";
-import { Suspense } from "react";
-import Loader from "@/components/ui/Loader";
-import Post from '../../posts/Post';
+import { ExtendedPost } from '@/types/db';
+import { FC, useEffect, useRef } from 'react';
+import { useIntersection } from '@mantine/hooks';
+import { useInfiniteQuery } from '@tanstack/react-query';
+import axios from 'axios';
+import { useSession } from 'next-auth/react';
+import { INFINITE_SCROLLING_PAGINATION_RESULTS } from '@/config';
+import Post from '../../features/posts/Post';
+import Loader from '@/components/ui/Loader';
 
 interface ForYouPostsProps {
   initialPosts: ExtendedPost[];
@@ -28,11 +26,11 @@ const ForYouPosts: FC<ForYouPostsProps> = ({ initialPosts, communityName }) => {
   const { data: session } = useSession();
 
   const { data, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
-    ["for-you"],
+    ['for-you'],
     async ({ pageParam = 1 }) => {
       const query =
         `/api/posts?limit=${INFINITE_SCROLLING_PAGINATION_RESULTS}&page=${pageParam}` +
-        (!!communityName ? `&communityName=${communityName}` : "");
+        (!!communityName ? `&communityName=${communityName}` : '');
 
       const { data } = await axios.get(query);
       return data as ExtendedPost[];
@@ -54,11 +52,11 @@ const ForYouPosts: FC<ForYouPostsProps> = ({ initialPosts, communityName }) => {
   const posts = data?.pages.flatMap((page) => page) ?? initialPosts;
 
   return (
-    <ul className="flex flex-col space-y-6">
+    <ul className='flex flex-col space-y-6'>
       {posts.map((post, index) => {
         const votesAmt = post.votes.reduce((acc, vote) => {
-          if (vote.type === "UP") return acc + 1;
-          if (vote.type === "DOWN") return acc - 1;
+          if (vote.type === 'UP') return acc + 1;
+          if (vote.type === 'DOWN') return acc - 1;
           return acc;
         }, 0);
 
@@ -92,12 +90,8 @@ const ForYouPosts: FC<ForYouPostsProps> = ({ initialPosts, communityName }) => {
           );
         }
       })}
-      {isFetchingNextPage && (
-        <div className="py-2  flex items-center justify-center">
-          <Loader2 className="animate-spin" />
-        </div>
-      )}
-      <li className="w-full text-xs py-6 flex items-center justify-center">
+      {isFetchingNextPage && <Loader />}
+      <li className='w-full text-xs py-6 flex items-center justify-center'>
         <span>- end of feed -</span>
       </li>
     </ul>

@@ -1,20 +1,22 @@
-import HomeFeedToggle from '@/components/ui/HomeFeedToggle';
 import { getAuthSession } from '@/lib/auth';
-import SignInFireWall from '@/components/auth/SignInFireWall';
 import { db } from '@/lib/db';
 import FollowingFeed from '@/components/feeds/following/FollowingFeed';
+import SignInFireWall from '@/components/features/auth/SignInFireWall';
 
 export const metadata = {
-  title: "Home on Z",
-  description: "Your personalized home feed on Z. Stay updated with the latest posts from the communities you follow.",
+  title: 'Home on Z',
+  description:
+    'Your personalized home feed on Z. Stay updated with the latest posts from the communities you follow.',
   openGraph: {
-    title: "Home on Z",
-    description: "Your personalized home feed on Z. Stay updated with the latest posts from the communities you follow.",
+    title: 'Home on Z',
+    description:
+      'Your personalized home feed on Z. Stay updated with the latest posts from the communities you follow.',
   },
   twitter: {
-    card: "summary",
-    title: "Home on Z",
-    description: "Your personalized home feed on Z. Stay updated with the latest posts from the communities you follow.",
+    card: 'summary',
+    title: 'Home on Z',
+    description:
+      'Your personalized home feed on Z. Stay updated with the latest posts from the communities you follow.',
   },
 };
 
@@ -52,16 +54,7 @@ export default async function HomePage() {
 
   return (
     <div className={`relative`}>
-      {session ? (
-        <>
-          <HomeFeedToggle />
-          <div className={`${session && 'pt-6'}`}>
-            <FollowingFeed initialPosts={posts} />
-          </div>
-        </>
-      ) : (
-        <SignInFireWall />
-      )}
+      {session ? <FollowingFeed initialPosts={posts} /> : <SignInFireWall />}
     </div>
   );
 }

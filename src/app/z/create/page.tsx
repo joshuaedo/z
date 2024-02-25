@@ -1,20 +1,19 @@
-import CreateCommunity from "@/components/community/CreateCommunity";
-import { getAuthSession } from "@/lib/auth";
+import CreateCommunity from '@/components/features/communities/CreateCommunity';
+import { getAuthSession } from '@/lib/auth';
 
 export const metadata = {
-  title: "Create a Community / Z",
-  description: "Create your own community on Z and start the conversation.",
+  title: 'Create a Community / Z',
+  description: 'Create your own community on Z and start the conversation.',
   openGraph: {
-    title: "Create a Community / Z",
-    description: "Create your own community on Z and start the conversation.",
+    title: 'Create a Community / Z',
+    description: 'Create your own community on Z and start the conversation.',
   },
   twitter: {
-    card: "summary",
-    title: "Create a Community / Z",
-    description: "Create your own community on Z and start the conversation.",
+    card: 'summary',
+    title: 'Create a Community / Z',
+    description: 'Create your own community on Z and start the conversation.',
   },
 };
-
 
 interface CreateCommunityPageProps {}
 

@@ -1,6 +1,8 @@
 import { getAuthSession } from '@/lib/auth';
+import { getCommunityById } from '@/lib/community';
 import { db } from '@/lib/db';
-import { CommunitySubscriptionValidator } from '@/lib/validators/community';
+import { getUserById } from '@/lib/user';
+import { CommunitySubscriptionValidator } from '@/validators/community';
 import { z } from 'zod';
 
 export async function POST(req: Request) {
@@ -35,20 +37,12 @@ export async function POST(req: Request) {
       },
     });
 
-    const findCommunity = await db.community.findUnique({
-      where: {
-        id: communityId,
-      },
-    });
+    const findCommunity = await getCommunityById(communityId);
 
     let findNotificationRecipient;
 
     if (findCommunity?.creatorId) {
-      findNotificationRecipient = await db.user.findUnique({
-        where: {
-          id: findCommunity.creatorId,
-        },
-      });
+      findNotificationRecipient = await getUserById(findCommunity?.creatorId);
     }
 
     const notificationData = {

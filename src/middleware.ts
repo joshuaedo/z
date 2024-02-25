@@ -10,7 +10,6 @@ export async function middleware(req: NextRequest) {
   }
 }
 
-// See "Matching Paths" below to learn more
 export const config = {
   matcher: [
     '/z/:path*/submit',
@@ -20,5 +19,7 @@ export const config = {
     '/notifications',
     '/u/:path*/edit',
     '/following',
+    '/messages',
+    '/messages/u/:path*',
   ],
 };

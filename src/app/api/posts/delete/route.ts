@@ -1,14 +1,14 @@
-import { db } from "@/lib/db";
-import { z } from "zod";
-import { getAuthSession } from "@/lib/auth";
-import { PostDeletionValidator } from "@/lib/validators/post";
+import { db } from '@/lib/db';
+import { z } from 'zod';
+import { getAuthSession } from '@/lib/auth';
+import { PostDeletionValidator } from '@/validators/post';
 
 export async function POST(req: Request) {
   try {
     const session = await getAuthSession();
 
     if (!session?.user) {
-      return new Response("Sign in", { status: 401 });
+      return new Response('Sign in', { status: 401 });
     }
 
     const body = await req.json();
@@ -16,7 +16,7 @@ export async function POST(req: Request) {
     const { postId, postAuthorId } = PostDeletionValidator.parse(body);
 
     if (postAuthorId !== session?.user.id) {
-      return new Response("You are not authorized to delete this post", {
+      return new Response('You are not authorized to delete this post', {
         status: 401,
       });
     }
@@ -28,7 +28,7 @@ export async function POST(req: Request) {
       include: {
         comments: {
           include: {
-            votes: true, 
+            votes: true,
           },
         },
       },
@@ -42,7 +42,7 @@ export async function POST(req: Request) {
         replies: true, // Include associated replies
       },
     });
-    
+
     for (const comment of existingComments) {
       // Attempt to delete the comment and handle any potential errors
       try {
@@ -54,7 +54,7 @@ export async function POST(req: Request) {
             },
           });
         }
-    
+
         // Now delete the comment itself
         await db.comment.delete({
           where: {
@@ -74,22 +74,22 @@ export async function POST(req: Request) {
       },
     });
     return new Response(
-      JSON.stringify({ message: "Post deleted successfully" }),
+      JSON.stringify({ message: 'Post deleted successfully' }),
       {
         status: 200,
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
       }
     );
   } catch (error: any) {
     if (error instanceof z.ZodError) {
       return new Response(
-        JSON.stringify({ error: "Invalid request data " + error.message }),
+        JSON.stringify({ error: 'Invalid request data ' + error.message }),
         {
           status: 422,
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
         }
       );
@@ -97,12 +97,12 @@ export async function POST(req: Request) {
 
     return new Response(
       JSON.stringify({
-        error: "Could not delete post, please try again later " + error.message,
+        error: 'Could not delete post, please try again later ' + error.message,
       }),
       {
         status: 500,
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
       }
     );

@@ -1,4 +1,4 @@
-import SignInFireWall from '@/components/auth/SignInFireWall';
+import SignInFireWall from '@/components/features/auth/SignInFireWall';
 
 export const metadata = {
   title: "Sign In to Z",

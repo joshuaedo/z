@@ -7,14 +7,6 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function truncateString(str: string, maxLength: number): string {
-  if (str.length <= maxLength) {
-    return str;
-  } else {
-    return str.slice(0, maxLength) + "...";
-  }
-}
-
 const formatDistanceLocale = {
   lessThanXSeconds: "just now",
   xSeconds: "just now",
@@ -61,4 +53,58 @@ export function formatTimeToNow(date: Date): string {
       formatDistance,
     },
   });
+}
+
+export const formatPathname = (pathname: string) => {
+  const words = pathname.split(/[\/-]/).filter(Boolean);
+
+  const formattedWords = words.map((word: string) => {
+    // Capitalize the first letter of each word
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  });
+
+  const formattedPathname = formattedWords.join(" ");
+
+  return formattedPathname;
+};
+
+export function truncateString(
+  inputString: string,
+  maxLength: number,
+  ellipsis: string = "...",
+): string {
+  return inputString.length <= maxLength
+    ? inputString
+    : inputString.slice(0, maxLength - ellipsis.length) + ellipsis;
+}
+
+export function formatMessageTimestamp(timestamp: Date): string {
+  const now = new Date();
+  const diffInDays = Math.floor(
+    (now.getTime() - timestamp.getTime()) / (1000 * 60 * 60 * 24),
+  );
+
+  if (diffInDays === 0 && now.getDate() !== timestamp.getDate()) {
+    // If the date is today but not the same day, return "Yesterday"
+    return "Yesterday";
+  } else if (diffInDays === 1) {
+    // If the date is yesterday, return "Yesterday"
+    return "Yesterday";
+  } else if (diffInDays === 0) {
+    // If the date is today, return time in 12-hour format without seconds
+    const options: Intl.DateTimeFormatOptions = {
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    };
+    return timestamp.toLocaleTimeString("en-US", options);
+  } else {
+    // For other dates, return the formatted date
+    const options: Intl.DateTimeFormatOptions = {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    };
+    return timestamp.toLocaleDateString("en-US", options);
+  }
 }

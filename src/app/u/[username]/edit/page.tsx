@@ -1,15 +1,11 @@
 import { getAuthSession } from '@/lib/auth';
-import EditProfile from '@/components/profile/EditProfile';
-import { db } from '@/lib/db';
+import EditProfile from '@/components/features/user/profile/EditProfile';
 import { Metadata } from 'next';
+import { getUserById } from '@/lib/user';
 
 export async function generateMetadata(): Promise<Metadata> {
   const session = await getAuthSession();
-  const user = await db.user.findUnique({
-    where: {
-      id: session?.user?.id,
-    },
-  });
+  const user = await getUserById(session?.user?.id);
 
   const displayName = user?.displayName ?? user?.name;
 
@@ -45,11 +41,7 @@ interface EditProfilePageProps {}
 const EditProfilePage = async ({}: EditProfilePageProps) => {
   const session = await getAuthSession();
 
-  const user = await db.user.findUnique({
-    where: {
-      id: session?.user?.id,
-    },
-  });
+  const user = await getUserById(session?.user?.id);
 
   return <EditProfile user={user} session={session} />;
 };
