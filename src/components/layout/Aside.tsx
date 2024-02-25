@@ -124,7 +124,7 @@ const Aside = () => {
                   {subs?.map((community) => (
                     <li
                       key={community.id}
-                      onClick={() => router.push(`z/${community.name}`)}
+                      onClick={() => router.push(`/z/${community.name}`)}
                       className="py-1 flex gap-x-2 cursor-pointer overflow-hidden"
                     >
                       <CommunityAvatar

@@ -88,9 +88,9 @@ const SlugPage = async ({ params }: SlugPageProps) => {
 
   return (
     <div className="space-y-6">
-      <div className="md:flex items-center space-y-3 md:space-y-0 md:gap-x-2 max-w-screen">
+      <div className="md:flex items-center space-y-3 md:space-y-0 md:gap-x-2 w-full">
         <CommunityAvatar community={community} className="h-12 w-12" />
-        <div className="flex w-fit items-center justify-start">
+        <div className="flex w-full items-center justify-start">
           {/* Community Name & Info */}
           <h2 className="font-bold text-2xl md:text-4xl overflow-hidden flex flex-shrink h-fit whitespace-nowrap bg-inherit max-w-[50%] md:max-w-[65%]">
             z/{community.name}
