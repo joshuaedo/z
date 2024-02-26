@@ -28,23 +28,25 @@ Welcome to the Z Network, where diverse communities converge, passions flourish,
 - **Styled using Tailwind CSS:** Combine utility-first and component-based styling.
 - **Validation using Zod:** Ensure data integrity through robust validation.
 
+
 ## Roadmap
 
 - [x] **Add Notification Feature**
 - [x] **Add a Chat Feature**
-- **Add a Welcome Message/Notification on Sign-Up**
-- **Add Release Versioning**
-- **Add Live-Chat Feature**
-- **Add Push Notifications**
-- **Add a Support Page**
+- [ ] **Add a Welcome Message/Notification on Sign-Up**
+- [ ] **Add Release Versioning**
+- [ ] **Add Live-Chat Feature**
+- [ ] **Add Push Notifications**
+- [ ] **Add a Support Page**
 
+Now, the items without an 'x' inside the square brackets will appear as unchecked checkboxes.
 
 ## Known Issues
 
 Here is a list of ongoing challenges:
 
 - Posts remain on the page after being deleted until the page is manually refreshed.
-The loader skeleton on the post page requires more padding.
+- The loader skeleton on the post page requires more padding.
 - Loading Page on `loading.tsx` sometimes causes layout shifts, especially when signing in.
 - Several color options are not functional on the profile theme.
 
