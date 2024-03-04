@@ -1,19 +1,19 @@
-'use client';
+"use client";
 
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/DropDownMenu';
-import { useMutation } from '@tanstack/react-query';
-import axios from 'axios';
-import { MoreVertical } from 'lucide-react';
-import { PostDeletionRequest } from '@/validators/post';
-import { toast } from '@/hooks/use-toast';
-import { FC, startTransition } from 'react';
-import { Post, User, Vote } from '@prisma/client';
+} from "@/components/ui/DropDownMenu";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
+import { MoreVertical } from "lucide-react";
+import { PostDeletionRequest } from "@/validators/post";
+import { toast } from "@/hooks/use-toast";
+import React, { FC, startTransition } from "react";
+import { Post, User, Vote } from "@prisma/client";
 
 interface DeletePostProps {
   post:
@@ -22,27 +22,36 @@ interface DeletePostProps {
         author: User;
       })
     | null;
-  isPage: boolean;
+  isPage?: boolean;
+  setIsPostDeleted?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const DeletePost: FC<DeletePostProps> = ({ post, isPage }) => {
+const DeletePost: FC<DeletePostProps> = ({
+  post,
+  isPage = false,
+  setIsPostDeleted,
+}) => {
   const router = useRouter();
   const { mutate: deletePost } = useMutation({
     mutationFn: async ({ postId, postAuthorId }: PostDeletionRequest) => {
+      if (!isPage && setIsPostDeleted) {
+        setIsPostDeleted(true);
+      }
       const payload: PostDeletionRequest = {
         postId,
         postAuthorId,
       };
-      const { data } = await axios.post('/api/posts/delete', payload);
-      //   console.log(data);
+      const { data } = await axios.post("/api/posts/delete", payload);
       return data;
     },
     onError: () => {
-      //   console.log(err);
+      if (!isPage && setIsPostDeleted) {
+        setIsPostDeleted(false);
+      }
       toast({
-        title: 'Action Failed',
-        description: 'Your post was not deleted, please try again later',
-        variant: 'destructive',
+        title: "Action Failed",
+        description: "Your post was not deleted, please try again later",
+        variant: "destructive",
       });
     },
     onSuccess: () => {
@@ -51,8 +60,8 @@ const DeletePost: FC<DeletePostProps> = ({ post, isPage }) => {
       });
 
       return toast({
-        description: 'Your post has been deleted.',
-        variant: 'default',
+        description: "Your post has been deleted.",
+        variant: "default",
       });
     },
   });
@@ -70,10 +79,10 @@ const DeletePost: FC<DeletePostProps> = ({ post, isPage }) => {
 
   return (
     <>
-      <div className='absolute top-1.5 right-0'>
+      <div className="absolute top-1.5 right-0">
         <DropdownMenu>
           <DropdownMenuTrigger>
-            <MoreVertical className='h-4 w-4' />
+            <MoreVertical className="h-4 w-4" />
           </DropdownMenuTrigger>
           <DropdownMenuContent>
             <DropdownMenuItem
@@ -81,7 +90,7 @@ const DeletePost: FC<DeletePostProps> = ({ post, isPage }) => {
                 e.preventDefault();
                 onClickDelete(); // Trigger the delete operation
               }}
-              className='cursor-pointer'
+              className="cursor-pointer"
             >
               Delete Post
             </DropdownMenuItem>

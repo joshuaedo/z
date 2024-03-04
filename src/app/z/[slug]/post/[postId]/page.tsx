@@ -95,11 +95,7 @@ const PostPage = async ({ params }: PostPageProps) => {
 
   const postId = post?.id ?? cachedPost?.id;
   const postTitle = post?.title ?? cachedPost?.title;
-  const titleExists =
-    postTitle !== null &&
-    postTitle !== undefined &&
-    postTitle !== "" &&
-    postTitle !== " ";
+  const titleExists = postTitle && postTitle.trim() !== "";
   const authorUsername = post?.author?.username ?? cachedPost?.authorUsername;
   const authorId = post?.author?.id;
   const isAuthor = session?.user.id === authorId;
