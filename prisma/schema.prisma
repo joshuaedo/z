@@ -3,8 +3,9 @@ generator client {
 }
 
 datasource db {
-  provider     = "mysql"
+  provider     = "postgresql"
   url          = env("DATABASE_URL")
+  directUrl = env("DATABASE_URL_UNPOOLED")
   relationMode = "prisma"
 }
 
@@ -110,7 +111,7 @@ model Comment {
   replyToId    String?
   author       User           @relation(fields: [authorId], references: [id], onDelete: Cascade)
   post         Post           @relation(fields: [postId], references: [id], onDelete: Cascade)
-  replyTo      Comment?       @relation("ReplyTo", fields: [replyToId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  replyTo      Comment?       @relation("ReplyTo", fields: [replyToId], references: [id], onDelete: Restrict, onUpdate: Restrict)
   replies      Comment[]      @relation("ReplyTo")
   votes        CommentVote[]
   Notification Notification[]
@@ -170,7 +171,7 @@ model Message {
   recipient   User?   @relation("recipient", fields: [recipientId], references: [id])
 
   conversationId String?
-  Conversation   Conversation? @relation("messages", fields: [conversationId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  Conversation   Conversation? @relation("messages", fields: [conversationId], references: [id], onDelete: Restrict, onUpdate: Restrict)
 
   message Conversation[] @relation("lastMessages")
 }
@@ -183,7 +184,7 @@ model Conversation {
   messages Message[] @relation("messages")
 
   lastMessageId String?
-  lastMessage   Message? @relation("lastMessages", fields: [lastMessageId], references: [id], onDelete: SetNull, onUpdate: NoAction)
+  lastMessage   Message? @relation("lastMessages", fields: [lastMessageId], references: [id], onDelete: SetNull, onUpdate: Restrict)
 }
 
 enum VoteType {
